@@ -1,37 +1,18 @@
-## Welcome to GitHub Pages
+# ddo-calc
 
-You can use the [editor on GitHub](https://github.com/truthencode/ddo-calc/edit/gh-pages/docs/index.md) to maintain and preview the content for your website in Markdown files.
+## DDO Calculations, Planner and Plotting
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
-### Markdown
+DDO-Calc is a set of programs that I am creating to become more familiar with alternative JVM languages and multiple platforms.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+I am also a fan of [DDO Online](http://www.ddo.com).
 
-```markdown
-Syntax highlighted code block
+At the end, I would like to create a Character planner that includes the ability to discover / analyze equipment and support a database.  Target clients may include Android, Desktop via JavaFx and web (possible Google Web App).
 
-# Header 1
-## Header 2
-### Header 3
+The bulk of the codebase is targeted for Scala, with R providing some analytics / graphing of power curves etc.
 
-- Bulleted
-- List
+The transport will eventually be an interconnected RESTful API over Websockets where possible using JSoN with optional Xml outputs utilizing Firebase and / or MongoDB as a potential backend.
 
-1. Numbered
-2. List
+One of the final additional goals is extensibility.  The intention is to provide an Open API and to be both Swagger 2.0 and RAML 0.8 compliant.
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/truthencode/ddo-calc/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+This API will should feature Semantic Versioning once considered stable enough to promote out of Alpha status.
