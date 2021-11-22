@@ -24,19 +24,20 @@ import org.scalatest.{FunSpec, Matchers}
 import io.truthencode.ddo.support.StringUtils.Extensions
 
 class RomanNumeralManglingTest extends FunSpec with Matchers with LazyLogging {
-describe("Roman Numeral Suffixes") {
-  they("should survive bidirectional conversion") {
-    val numbers = List(1,2,5,11)
-    numbers.foreach{ n=>
-      val rn = RomanNumeral.toRoman(n)
-      val someString = s"Ability $rn"
-      val replaced = someString.replaceRomanNumerals
-      val displayed = replaced.replaceNumbersWithRomanNumerals
-      logger.debug(s"we have $rn $someString rp: $replaced dp $displayed")
 
-      someString shouldEqual(displayed)
+  describe("Roman Numeral Suffixes") {
+    they("should survive bidirectional conversion") {
+      val numbers = List(1, 2, 5, 11)
+      numbers.foreach { n =>
+        val rn = RomanNumeral.toRoman(n)
+        val someString = s"Ability $rn"
+        val replaced = someString.replaceRomanNumerals
+        val displayed = replaced.replaceNumbersWithRomanNumerals
+        logger.debug(s"we have $rn $someString rp: $replaced dp $displayed")
+
+        someString shouldEqual displayed
+      }
     }
   }
-}
 
 }

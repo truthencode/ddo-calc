@@ -21,8 +21,8 @@ import io.truthencode.ddo.model.race.Race
 import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, GrantsToRace}
 
 /**
-  * Created by adarr on 2/18/2017.
-  */
+ * Created by adarr on 2/18/2017.
+ */
 trait HalfElfSocialGraces
     extends FeatRequisiteImpl
     with Passive

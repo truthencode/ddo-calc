@@ -24,14 +24,15 @@ import io.truthencode.ddo.support.naming.{DisplayName, FriendlyDisplay}
 import scala.collection.immutable
 
 /**
-  * An enhancement Tier separates Enhancements into various levels and require increasing pre-requisites such as a certain
-  * number of Action points spent
-  */
+ * An enhancement Tier separates Enhancements into various levels and require increasing
+ * pre-requisites such as a certain number of Action points spent
+ */
 sealed trait Tier extends EnumEntry with DisplayName {
 
   override protected def nameSource: String = {
     entryName.splitByCase.toPascalCase
   }
+
   val tier: String
 }
 
@@ -60,6 +61,7 @@ trait Tier5 extends Tier {
 }
 
 object Tier extends Enum[Tier] {
+
   case object Core extends Core
   case object Tier1 extends Tier1
   case object Tier2 extends Tier2

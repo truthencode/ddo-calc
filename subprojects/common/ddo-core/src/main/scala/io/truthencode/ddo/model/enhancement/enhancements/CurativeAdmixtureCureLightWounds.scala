@@ -37,8 +37,8 @@ trait CurativeAdmixtureCureLightWounds
     )
 
   /**
-    * Some enhancements can be taken multiple times (generally up to three)
-    */
+   * Some enhancements can be taken multiple times (generally up to three)
+   */
   override val ranks: Int = 3
 
   override protected def nameSource: String = "CureLightWounds"

@@ -26,19 +26,19 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * DilettanteRogue.bmp
-  * Half-Elf Dilettante: Rogue	Passive	You deal +1d6 Sneak Attack damage (does not stack with the Rogue Sneak Attack ability).
-  * Half-Elf,
-  * 13 Dexterity
-  */
+ * DilettanteRogue.bmp Half-Elf Dilettante: Rogue Passive You deal +1d6 Sneak Attack damage (does
+ * not stack with the Rogue Sneak Attack ability). Half-Elf, 13 Dexterity
+ */
 protected[feats] trait HalfElfDilettanteRogue
     extends FeatRequisiteImpl
     with HalfElfDilettantePreFix
     with Passive
     with RequiresAttribute
     with RequiresAllOfRace { self: RacialFeat =>
+
   override def allOfRace: Seq[(Race, Int)] = List((Race.HalfElf, 1))
 
   override def requiresAttribute: Seq[(Attribute, Int)] =
     List((Attribute.Dexterity, 13))
+
 }

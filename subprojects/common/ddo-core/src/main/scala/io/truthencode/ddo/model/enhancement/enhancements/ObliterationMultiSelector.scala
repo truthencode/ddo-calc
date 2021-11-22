@@ -30,6 +30,7 @@ trait ObliterationMultiSelector
     with DisplayProperties
     with FriendlyDisplay
     with MultiSelectorKeyGeneratorImpl {
+
   def element: String
 
   override def displayText: String = withPrefix.getOrElse("") + nameSource
@@ -39,19 +40,19 @@ trait ObliterationMultiSelector
   )
 
   /**
-    * Some enhancements have multiple ranks.
-    * This is the cost for each rank.
-    * Older versions had increasing costs which has been streamlined to a linear progression.
-    *
-    * @return
-    */
+   * Some enhancements have multiple ranks. This is the cost for each rank. Older versions had
+   * increasing costs which has been streamlined to a linear progression.
+   *
+   * @return
+   */
   override def apCostPerRank: Int = 1
 
   /**
-    * Some enhancements can be taken multiple times (generally up to three)
-    */
+   * Some enhancements can be taken multiple times (generally up to three)
+   */
   override val ranks: Int = 3
 
   protected lazy val keys: immutable.Seq[String] =
     keyList.map(v => s"$prefix$v")
+
 }

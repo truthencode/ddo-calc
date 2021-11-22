@@ -25,9 +25,7 @@ rootProject.name = "ddo-calc-parent"
 
 
     pluginManagement {
-        //  Scala
-        // Coverage
-        val scoveragePluginVersion: String by settings
+
         // Avro
         val avroHuggerPluginVersion: String by settings
         val openApiGeneratorPluginVersion: String by settings
@@ -40,8 +38,6 @@ rootProject.name = "ddo-calc-parent"
             id("com.zlad.gradle.avrohugger") version avroHuggerPluginVersion
             id("com.chudsaviet.gradle.avrohugger") version avroHuggerPluginVersion
             id("org.openapi.generator") version openApiGeneratorPluginVersion
-            id("org.scoverage") version scoveragePluginVersion
-
             id("org.kordamp.gradle.project") version kordampGradlePluginVersion
         }
 

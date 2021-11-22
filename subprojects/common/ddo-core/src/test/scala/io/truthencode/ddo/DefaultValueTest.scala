@@ -20,16 +20,19 @@ package io.truthencode.ddo
 import com.typesafe.scalalogging.LazyLogging
 import org.scalatest.{FunSpec, Matchers}
 
-
 class DefaultValueTest extends FunSpec with Matchers with LazyLogging {
+
   final val greeting = "Hello World"
   val noDefault: DefaultValue[String] = new DefaultValue[String] with NoDefault[String] {}
+
   val greetDefault = new DefaultValue[String] {
     override lazy val default = Some(greeting)
   }
+
   val otherGreet = new DefaultValue[String] {
     override lazy val default = Some(greeting)
   }
+
   describe("A Default Value ") {
     it("should be able to check if it has one") {
       noDefault.hasDefault should be(false)
@@ -65,4 +68,5 @@ class DefaultValueTest extends FunSpec with Matchers with LazyLogging {
       }
     }
   }
+
 }

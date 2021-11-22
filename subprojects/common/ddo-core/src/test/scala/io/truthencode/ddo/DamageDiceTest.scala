@@ -37,28 +37,22 @@ class DamageDiceTest
     with LazyLogging {
 
   final val maxFlags = 4
+
   val diceSet =
-    Vector(
-      "3[2d10] + 4",
-      "1.5[1d8]",
-      "1d8",
-      "10d4",
-      "15d3",
-      "[3d4]",
-      "3d4 + 2",
-      "3[2d10] - 4"
-    )
+    Vector("3[2d10] + 4", "1.5[1d8]", "1d8", "10d4", "15d3", "[3d4]", "3d4 + 2", "3[2d10] - 4")
+
   val validDiceExp: TableFor1[String] = Table(
-    ("dice"),
+    "dice",
     "3[2d10] + 4",
     "1.5[1d8]",
     "1d8",
     "10d4",
     "15d3",
-  //  "[3d4]", // we really shouldn't be using this
+    //  "[3d4]", // we really shouldn't be using this
     "3d4 + 2",
     "3[2d10] - 4"
   )
+
   def randomDiceSets: Traversable[String] = {
 
     @scala.annotation.tailrec
@@ -74,10 +68,12 @@ class DamageDiceTest
     def pl: Set[String] =
       shuffle(PhysicalDamageType.values.map(_.entryName)).take(rng).toSet
 
-    val tpl: immutable.Seq[String] = for { i <- 0.to(maxFlags) } yield pl
-      .mkString(",")
+    val tpl: immutable.Seq[String] =
+      for { i <- 0.to(maxFlags) } yield pl
+        .mkString(",")
     for { x <- diceSet.cross(tpl) } yield s"${x._1} ${x._2}"
   }
+
   describe("DnD Dice") {
     they("should support 3[2D4 + 3] flags syntax") {
       randomDiceSets.foreach { d =>
@@ -88,11 +84,11 @@ class DamageDiceTest
       val dExp = "3[2d10] - 4 Slash"
       val dice = DamageInfo(dExp)
       dice.damageType should contain(PhysicalDamageType.Slash)
-      dice.extra.toInt shouldEqual (-4)
-      dice.extra.symbol shouldEqual ("-")
-      dice.weaponModifier shouldEqual (3)
-      dice.dice.number shouldEqual (2)
-      dice.dice.sides shouldEqual (10)
+      dice.extra.toInt shouldEqual -4
+      dice.extra.symbol shouldEqual "-"
+      dice.weaponModifier shouldEqual 3
+      dice.dice.number shouldEqual 2
+      dice.dice.sides shouldEqual 10
 
     }
 

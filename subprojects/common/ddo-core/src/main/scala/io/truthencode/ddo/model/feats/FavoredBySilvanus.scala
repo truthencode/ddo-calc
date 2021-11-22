@@ -21,13 +21,11 @@ import io.truthencode.ddo.model.religions.Silvanus
 import io.truthencode.ddo.support.requisite.FeatRequisiteImpl
 
 /**
-  * Created by adarr on 4/7/2017.
-  */
+ * Created by adarr on 4/7/2017.
+ */
 trait FavoredBySilvanus
     extends FeatRequisiteImpl
     with ForgottenRealmsReligionNonWarforged
     with FollowerBase
     with Silvanus
-    with SilvanusFeatBase { self: DeityFeat =>
-
-}
+    with SilvanusFeatBase { self: DeityFeat => }

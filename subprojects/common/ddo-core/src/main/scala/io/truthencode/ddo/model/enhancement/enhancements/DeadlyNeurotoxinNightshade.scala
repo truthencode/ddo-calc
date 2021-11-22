@@ -21,21 +21,19 @@ import io.truthencode.ddo.model.enhancement.enhancements.classbased.ApothecaryTi
 
 trait DeadlyNeurotoxinNightshade extends ApothecaryTierFive with ClassEnhancementImpl {
 
-  override lazy val description: Option[String] = Some(
-    """Choose between Deadly Neurotoxin and Nightshade.
+  override lazy val description: Option[String] = Some("""Choose between Deadly Neurotoxin and Nightshade.
       |Deadly Neurotoxin: Offensive Gildleaf or Ceruleite Spells will reduce your targets Armor Class and Magical Resistance rating by -1 per stack, max 5.
       |
       |Nightshade: Spell point Cost: 10, Cooldown: 30 seconds, Metamagics: Quicken, Accelerate Primer: Gildleaf
       |
-      |Target enemy falls asleep for 6 seconds with no save.""".stripMargin
-  )
+      |Target enemy falls asleep for 6 seconds with no save.""".stripMargin)
 
   override def displayText: String = "Deadly Neurotoxin/Nightshade"
   override def apCostPerRank: Int = 1
 
   /**
-    * Some enhancements can be taken multiple times (generally up to three)
-    */
+   * Some enhancements can be taken multiple times (generally up to three)
+   */
   override val ranks: Int = 1
 
 }

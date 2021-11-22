@@ -40,6 +40,7 @@ trait Gildleaf extends Primer
 trait Ceruleite extends Primer
 
 object Primer extends Enum[Primer] {
+
   override def values: immutable.IndexedSeq[Primer] = findValues
   case object Crimsonite extends Primer with Crimsonite
   case object Gildleaf extends Primer with Gildleaf

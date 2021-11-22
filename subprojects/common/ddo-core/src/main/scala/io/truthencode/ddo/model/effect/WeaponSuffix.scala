@@ -21,7 +21,9 @@ import enumeratum.{Enum, EnumEntry}
 import io.truthencode.ddo.NoDefault
 
 sealed trait WeaponSuffix extends EnumEntry with Suffix
+
 object WeaponSuffix extends Enum[WeaponSuffix] with NoDefault[WeaponSuffix] {
+
   val values = findValues
   case object ArcaneDetonation extends WeaponSuffix
   case object Backstabbing extends WeaponSuffix

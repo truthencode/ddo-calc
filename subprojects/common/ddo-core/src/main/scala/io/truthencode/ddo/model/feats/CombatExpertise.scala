@@ -23,15 +23,12 @@ import io.truthencode.ddo.model.attribute.Attribute
 import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, RequiresAttribute}
 
 /**
-  * [[https://ddowiki.com/page/Combat_Expertise Combat Expertise]]
-  * Cooldown: 30 seconds
-  * Usage: Active, Toggled Stance
-  * Prerequisite: Intelligence 13
-  * Description
-  * Defensive Combat Stance: While using Combat Expertise mode, you suffer -5 to your attack rolls but gain +10% feat bonus to Armor Class.
-  * Spells have three times their normal cooldown when this mode is active.
-  * Combat Expertise dispels and wards against all Rage effects.
-  */
+ * [[https://ddowiki.com/page/Combat_Expertise Combat Expertise]] Cooldown: 30 seconds Usage:
+ * Active, Toggled Stance Prerequisite: Intelligence 13 Description Defensive Combat Stance: While
+ * using Combat Expertise mode, you suffer -5 to your attack rolls but gain +10% feat bonus to Armor
+ * Class. Spells have three times their normal cooldown when this mode is active. Combat Expertise
+ * dispels and wards against all Rage effects.
+ */
 protected[feats] trait CombatExpertise
     extends FeatRequisiteImpl
     with ActiveFeat
@@ -41,7 +38,8 @@ protected[feats] trait CombatExpertise
     with ArtificerBonusFeat
     with DefensiveCombatStance {
   self: GeneralFeat =>
+
   override val requiresAttribute = List((Attribute.Intelligence, 13))
 
-    override def coolDown: Option[Duration] = Some(Duration.ofSeconds(30))
+  override def coolDown: Option[Duration] = Some(Duration.ofSeconds(30))
 }

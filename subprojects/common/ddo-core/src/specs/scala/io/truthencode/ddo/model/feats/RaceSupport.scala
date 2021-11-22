@@ -26,14 +26,18 @@ import io.truthencode.ddo.support.requisite.RequirementOption
 import scala.collection.JavaConverters._
 
 /**
-  * Created by adarr on 2/19/2017.
-  */
+ * Created by adarr on 2/19/2017.
+ */
 trait RaceSupport extends LazyLogging {
+
   val raceId: Race
+
   implicit class Util(source: Seq[Feat]) {
+
     def toJava: util.List[String] = {
       source.map(_.displayText).toList.sorted.asJava
     }
+
   }
 
   def verifyGrantedFeats: util.List[String] = {
@@ -41,9 +45,8 @@ trait RaceSupport extends LazyLogging {
       .featsFromRace(raceId, RequirementOption.AutoGrant)
       .toJava
 
-    logger.info(
-      s"verify ${RequirementOption.AutoGrant.entryName} racial feats located ${f
-        .size()} values for Race $raceId ")
+    logger.info(s"verify ${RequirementOption.AutoGrant.entryName} racial feats located ${f
+      .size()} values for Race $raceId ")
     logger.debug(s"values: $f")
     f
   }
@@ -53,10 +56,10 @@ trait RaceSupport extends LazyLogging {
       .featsFromRace(raceId, RequirementOption.Available)
       .toJava
 
-    logger.info(
-      s"verify ${RequirementOption.Available.entryName} racial feats located ${f
-        .size()} values for Race $raceId ")
+    logger.info(s"verify ${RequirementOption.Available.entryName} racial feats located ${f
+      .size()} values for Race $raceId ")
     logger.debug(s"values: $f")
     f
   }
+
 }

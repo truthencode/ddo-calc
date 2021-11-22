@@ -26,17 +26,16 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * Icon Feat Superior Weapon Focus.png
-  * Superior Weapon Focus
-  * Passive
-  * Provides an additional +1 bonus to attack rolls with the chosen weapon type and additional +2 stacking Melee Power or Ranged Power.
-  *
-  * @todo add Level 16 Fighter req
-  *       Level 16: Fighter, Greater Weapon Focus
-  *       Greater Weapon Specialization in the same Specific Weapon Type
-  **/
+ * Icon Feat Superior Weapon Focus.png Superior Weapon Focus Passive Provides an additional +1 bonus
+ * to attack rolls with the chosen weapon type and additional +2 stacking Melee Power or Ranged
+ * Power.
+ *
+ * @todo
+ *   add Level 16 Fighter req Level 16: Fighter, Greater Weapon Focus Greater Weapon Specialization
+ *   in the same Specific Weapon Type
+ */
 protected[feats] trait SuperiorWeaponFocusBase
-  extends FeatRequisiteImpl
+    extends FeatRequisiteImpl
     with ClassRequisiteImpl
     with Passive
     with RequiresAllOfClass
@@ -45,4 +44,5 @@ protected[feats] trait SuperiorWeaponFocusBase
 
   override def anyOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((HeroicCharacterClass.Fighter, 16))
+
 }

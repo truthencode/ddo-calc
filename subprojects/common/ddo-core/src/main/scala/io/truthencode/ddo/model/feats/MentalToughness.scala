@@ -24,16 +24,15 @@ import io.truthencode.ddo.support.requisite.{
   RequiresAnyOfClass
 }
 
-/** Icon Feat Mental Toughness.png
-  * Mental Toughness
-  * Passive
-  * This feat Increases the character maximum spell points by 10 at level 1, and 5 spell points for each additional level.
-  *     Also increases your spell critical chance by 1%.
-  *
-  * @todo Flag Wizard Bonus Feat
-  *       Level 1: Artificer, Bard, Cleric, Druid, Favored Soul
-  *       Level 1: Sorcerer, Wizard; Level 4: Paladin, Ranger
-  */
+/**
+ * Icon Feat Mental Toughness.png Mental Toughness Passive This feat Increases the character maximum
+ * spell points by 10 at level 1, and 5 spell points for each additional level. Also increases your
+ * spell critical chance by 1%.
+ *
+ * @todo
+ *   Flag Wizard Bonus Feat Level 1: Artificer, Bard, Cleric, Druid, Favored Soul Level 1: Sorcerer,
+ *   Wizard; Level 4: Paladin, Ranger
+ */
 trait MentalToughness
     extends FeatRequisiteImpl
     with ClassRequisiteImpl
@@ -53,4 +52,5 @@ trait MentalToughness
       (HeroicCharacterClass.Paladin, 4),
       (HeroicCharacterClass.Ranger, 4)
     )
+
 }

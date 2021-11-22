@@ -23,12 +23,10 @@ import com.wix.accord.scalatest.ResultMatchers
 import org.scalatest.{FunSpec, Matchers}
 
 // @RunWith(classOf[JUnitRunner])
-class GuardTest
-    extends FunSpec
-    with Matchers
-    with ResultMatchers
-    with LazyLogging {
+class GuardTest extends FunSpec with Matchers with ResultMatchers with LazyLogging {
+
   val rnIV = "IV"
+
   describe("A Guard Enchantment") {
     it("Can support a Roman Numeral 1 - 10") {
       val rn =
@@ -51,8 +49,7 @@ class GuardTest
     }
 
     it("May have a single prefix") {
-      noException should be thrownBy Some(
-        GuardModifier(prefix = Some(Modifier.Minor.entryName)))
+      noException should be thrownBy Some(GuardModifier(prefix = Some(Modifier.Minor.entryName)))
     }
 
     it("Must reject a disallowed  prefix") {
@@ -83,28 +80,27 @@ class GuardTest
     }
 
     it("Must reject a invalid  prefix") {
-      assume (io.truthencode.ddo.support.AssertionStatus.isEnabled)
+      assume(io.truthencode.ddo.support.AssertionStatus.isEnabled)
       an[AssertionError] should be thrownBy {
         Some(GuardModifier(prefix = Some("Super Uber Rock me Epic")))
       }
     }
 
     it("Must not have a secondary prefix") {
-      assume (io.truthencode.ddo.support.AssertionStatus.isEnabled)
+      assume(io.truthencode.ddo.support.AssertionStatus.isEnabled)
       an[AssertionError] should be thrownBy {
         GuardModifier(sPrefix = Some("Uber"))
       }
     }
 
     it("Must not have both a prefix AND a suffix") {
-      assume (io.truthencode.ddo.support.AssertionStatus.isEnabled)
+      assume(io.truthencode.ddo.support.AssertionStatus.isEnabled)
       a[AssertionError] should be thrownBy {
-        Some(
-          GuardModifier(prefix = Some(Modifier.Minor.entryName),
-                        suffix = Some(rnIV)))
+        Some(GuardModifier(prefix = Some(Modifier.Minor.entryName), suffix = Some(rnIV)))
       }
     }
 
     it("Supports Named Guards")(pending)
   }
+
 }

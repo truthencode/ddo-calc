@@ -20,10 +20,15 @@ package io.truthencode.ddo.model.feats
 import io.truthencode.ddo.support.requisite.{RequiresAllOfFeat, RequiresCharacterLevel}
 
 /**
-  * @todo Needs to follow parent feat format like weapon focus
-  */
-protected[feats] trait OverwhelmingCritical extends Passive with RequiresCharacterLevel with RequiresAllOfFeat{
+ * @todo
+ *   Needs to follow parent feat format like weapon focus
+ */
+protected[feats] trait OverwhelmingCritical
+    extends Passive
+    with RequiresCharacterLevel
+    with RequiresAllOfFeat {
   self: EpicFeat =>
+
   override val characterLevel: Int = 27
 
   override def allOfFeats: Seq[Feat] = List(GeneralFeat.ImprovedCritical)

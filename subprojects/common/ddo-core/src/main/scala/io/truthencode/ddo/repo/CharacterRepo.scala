@@ -16,8 +16,9 @@
  * limitations under the License.
  */
 package io.truthencode.ddo.repo
+
 import io.truthencode.ddo.model.character.Character
 
 trait CharacterRepo {
-def get(id:String):Character
+  def get(id: String): Character
 }

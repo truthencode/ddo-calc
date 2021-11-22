@@ -20,8 +20,8 @@ package io.truthencode.ddo.model.feats
 import io.truthencode.ddo.support.requisite.{FreeFeat, RequiresAllOfFeat}
 
 /**
-  * Created by adarr on 4/3/2017.
-  */
+ * Created by adarr on 4/3/2017.
+ */
 protected[feats] trait EpicMentalToughness
     extends FreeFeat
     with SpellCastingPassive

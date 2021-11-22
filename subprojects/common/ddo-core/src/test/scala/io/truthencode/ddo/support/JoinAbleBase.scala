@@ -23,6 +23,7 @@ import scala.collection.{GenIterable, GenSeq, MapLike}
 import scala.language.higherKinds
 
 trait JoinAbleBase[+X, C <: GenIterable[X]] {
+
   val sampleSize = 15
 //  implicit def asSeq(x: C) = x.toSeq
   def portion: Int = sampleSize / 2 + (sampleSize / 3)

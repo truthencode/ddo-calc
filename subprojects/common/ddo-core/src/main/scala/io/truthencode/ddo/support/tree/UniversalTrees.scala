@@ -24,20 +24,24 @@ import io.truthencode.ddo.support.StringUtils.Extensions
 import io.truthencode.ddo.support.naming.{DisplayName, FriendlyDisplay}
 
 import scala.collection.immutable
+
 sealed trait UniversalTrees
-    extends EnumEntry with UniversalTree
+    extends EnumEntry
+    with UniversalTree
     with DisplayName
     with FriendlyDisplay {
+
   override protected def nameSource: String =
     entryName.splitByCase.toPascalCase
 
-    /**
-     * Used when qualifying a search with a prefix.
-     * Examples include finding "HalfElf" from qualified "Race:HalfElf"
-     *
-     * @return A default or applied prefix
-     */
-    override def searchPrefixSource: String = "UniversalEnhancement"
+  /**
+   * Used when qualifying a search with a prefix. Examples include finding "HalfElf" from qualified
+   * "Race:HalfElf"
+   *
+   * @return
+   *   A default or applied prefix
+   */
+  override def searchPrefixSource: String = "UniversalEnhancement"
 }
 
 trait Falconry extends UniversalTrees
@@ -45,6 +49,7 @@ trait HarperAgent extends UniversalTrees
 trait VistaniKnifeFighter extends UniversalTrees with TreePrefix
 
 object UniversalTrees extends Enum[UniversalTrees] {
+
   case object Falconry extends Falconry
   case object HarperAgent extends HarperAgent
   case object VistaniKnifeFighter extends VistaniKnifeFighter

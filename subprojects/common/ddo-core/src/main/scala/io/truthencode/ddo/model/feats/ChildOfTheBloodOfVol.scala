@@ -21,8 +21,8 @@ import io.truthencode.ddo.model.religions.BloodOfVol
 import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, RequiresAllOfFeat}
 
 /**
-  * Created by adarr on 4/7/2017.
-  */
+ * Created by adarr on 4/7/2017.
+ */
 trait ChildOfTheBloodOfVol
     extends FeatRequisiteImpl
     with EberronReligionNonWarforged

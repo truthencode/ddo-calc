@@ -23,6 +23,7 @@ import io.truthencode.ddo.model.stats.BasicStat
 
 trait DodgeChanceFeature extends Features {
   self: SourceInfo =>
+
   val dodgeBonusType: BonusType
   val dodgeBonusAmount: Int
   private val src = this
@@ -38,13 +39,13 @@ trait DodgeChanceFeature extends Features {
 
       override val source: SourceInfo = src
       override lazy val value: Int = dodgeBonusAmount
+      override lazy val effectText: Option[String] = Some(s"Grants a $dodgeBonusAmount to dodge")
 
     }
 
-
   abstract override def features: List[Feature[_]] = {
     assert(dodgeChance.value == dodgeBonusAmount)
-      super.features :+ dodgeChance
+    super.features :+ dodgeChance
   }
 
 }

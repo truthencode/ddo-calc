@@ -44,9 +44,7 @@ class SpellElementTest extends FunSpec with Matchers with LazyLogging {
       //  results.ma
     }
 
-    it(
-      "Should extract an element by type correctly directly from the collection"
-    ) {
+    it("Should extract an element by type correctly directly from the collection") {
       val eName = UseSpellName(name = "Example Spell")
 
       val elements: Seq[SpellElement] = Seq(eName)
@@ -62,9 +60,7 @@ class SpellElementTest extends FunSpec with Matchers with LazyLogging {
       val n = SpellElement.extract[WithSpellInfo](elements.toList)
       n shouldNot contain(eName)
     }
-    it(
-      "Should gracefully fail to find an missing element by type from the collection"
-    ) {
+    it("Should gracefully fail to find an missing element by type from the collection") {
       val eName = UseSpellName(name = "Example Spell")
 
       val elements: Seq[SpellElement] = Seq(eName)
@@ -73,4 +69,5 @@ class SpellElementTest extends FunSpec with Matchers with LazyLogging {
       n shouldNot contain(eName)
     }
   }
+
 }

@@ -21,7 +21,6 @@ import com.typesafe.scalalogging.LazyLogging
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, Matchers}
 
-
 class IntegrationIT extends FunSpec with Matchers with MockitoSugar with LazyLogging {
   describe("Integration Tests")(pending)
 }

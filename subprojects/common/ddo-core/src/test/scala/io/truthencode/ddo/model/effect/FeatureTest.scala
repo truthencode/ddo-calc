@@ -25,15 +25,16 @@ import io.truthencode.ddo.model.skill.Skill
 import io.truthencode.ddo.model.skill.Skill.{Listen, Spot}
 import io.truthencode.ddo.model.stats.BasicStat
 import org.scalatest.TryValues._
-import org.scalatest.{FunSpec, Matchers}
+import org.scalatest.{FunSpec, Matchers, OptionValues}
 
 import scala.collection.immutable
 
-class FeatureTest extends FunSpec with Matchers with LazyLogging {
+class FeatureTest extends FunSpec with Matchers with OptionValues with LazyLogging {
 
   def fixture = new {
     val sourceInfo: SourceInfo = SourceInfo("TestContext", this)
   }
+
   describe("A feature") {
     it("should be able to affect a dodge chance ") {
       val param = EffectParameter.BonusType(BonusType.Feat)
@@ -60,8 +61,8 @@ class FeatureTest extends FunSpec with Matchers with LazyLogging {
       val part = EffectPart.Skill
       val feat = GeneralFeat.Alertness
       val ff: immutable.Seq[Feature.SkillEffect] = feat.features collect {
-          case y: Feature.SkillEffect => y
-        }
+        case y: Feature.SkillEffect => y
+      }
       ff.map(_.skill) should contain allOf (Listen, Spot)
     }
 
@@ -78,6 +79,8 @@ class FeatureTest extends FunSpec with Matchers with LazyLogging {
           x.parameter.success.value should be(param)
           x.part should be a 'success
           x.part.success.value should be(part)
+          x.value shouldEqual 3
+          x.effectText.value shouldEqual s"Grants a ${x.value} to dodge"
         }
       }
 

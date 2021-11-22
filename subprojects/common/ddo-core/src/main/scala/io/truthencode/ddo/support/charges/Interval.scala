@@ -22,7 +22,8 @@ import enumeratum.{Enum, EnumEntry}
 import scala.collection.immutable
 
 /**
- * Represents the timespan or interval which triggers a charge to be recovered such as Rest or Duration
+ * Represents the timespan or interval which triggers a charge to be recovered such as Rest or
+ * Duration
  */
 sealed trait Interval extends EnumEntry
 
@@ -31,15 +32,16 @@ trait ResetOnRest extends Interval
 trait ResetOnDuration extends Interval
 
 object Interval extends Enum[Interval] {
+
   override def values: immutable.IndexedSeq[Interval] = findValues
 
-    /**
-     * Replenished by Resting
-     */
+  /**
+   * Replenished by Resting
+   */
   case object PerRest extends ResetOnRest
 
-    /**
-     * Replenished after time elapses
-     */
+  /**
+   * Replenished after time elapses
+   */
   case object PerInterval extends ResetOnDuration
 }

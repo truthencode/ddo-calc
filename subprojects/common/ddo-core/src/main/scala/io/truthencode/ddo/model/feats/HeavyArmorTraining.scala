@@ -25,20 +25,20 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * Icon Heavy Armor Training.png
-  * Heavy Armor Training
-  * Passive
-  * While in heavy armor, get +3 PRR and MRR.
-  *
-  * Level 2: Fighter
-  **/
+ * Icon Heavy Armor Training.png Heavy Armor Training Passive While in heavy armor, get +3 PRR and
+ * MRR.
+ *
+ * Level 2: Fighter
+ */
 trait HeavyArmorTraining
-  extends FeatRequisiteImpl
+    extends FeatRequisiteImpl
     with ClassRequisiteImpl
     with Passive
     with RequiresAllOfClass
     with FighterBonusFeat {
   self: GeneralFeat =>
+
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((HeroicCharacterClass.Fighter, 2))
+
 }

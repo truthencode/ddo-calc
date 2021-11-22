@@ -27,16 +27,16 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * This feat increases the maximum spell points by 80,
-  * increases the spell critical chance by 5% and grants Echoes of Power if the spell points pool drops below 12.
-  *
-  * @note granted Level 1 : Cleric, Druid, Favored Soul, Artificer, Sorcerer, Wizard, Warlock
-  *     granted via enhancement for:
-  *     Bard - third rank of Magical Studies from Spellsinger enhancements
-  *     Ranger - third rank of Energy of the Wild from Arcane Archer enhancements
-  *
-  *     Any other class as a trainable feat
-  */
+ * This feat increases the maximum spell points by 80, increases the spell critical chance by 5% and
+ * grants Echoes of Power if the spell points pool drops below 12.
+ *
+ * @note
+ *   granted Level 1 : Cleric, Druid, Favored Soul, Artificer, Sorcerer, Wizard, Warlock granted via
+ *   enhancement for: Bard - third rank of Magical Studies from Spellsinger enhancements Ranger
+ *   - third rank of Energy of the Wild from Arcane Archer enhancements
+ *
+ * Any other class as a trainable feat
+ */
 protected[feats] trait MagicalTraining
     extends FeatRequisiteImpl
     with Passive
@@ -49,4 +49,5 @@ protected[feats] trait MagicalTraining
 
   override def grantToClass: Seq[(HeroicCharacterClass, Int)] =
     magicClasses.map((_, 1))
+
 }

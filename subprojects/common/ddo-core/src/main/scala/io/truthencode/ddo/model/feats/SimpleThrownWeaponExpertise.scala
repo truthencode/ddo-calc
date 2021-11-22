@@ -28,10 +28,12 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * You are skilled with the use of Simple Thrown Weapons (Throwing Daggers and Darts) and while using one, you gain Doubleshot equal to your Dexterity.
-  *
-  * @see [[https://ddowiki.com/page/Simple_Thrown_Weapon_Expertise]]
-  */
+ * You are skilled with the use of Simple Thrown Weapons (Throwing Daggers and Darts) and while
+ * using one, you gain Doubleshot equal to your Dexterity.
+ *
+ * @see
+ *   [[https://ddowiki.com/page/Simple_Thrown_Weapon_Expertise]]
+ */
 protected[feats] trait SimpleThrownWeaponExpertise
     extends FeatRequisiteImpl
     with RequiresAttribute

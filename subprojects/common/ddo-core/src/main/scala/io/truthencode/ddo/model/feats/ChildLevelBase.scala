@@ -22,8 +22,8 @@ import io.truthencode.ddo.model.item.weapon.FavoredWeapon
 import io.truthencode.ddo.support.requisite.{RequiresAllOfClass, RequiresAllOfFeat}
 
 /**
-  * Created by adarr on 4/10/2017.
-  */
+ * Created by adarr on 4/10/2017.
+ */
 trait ChildLevelBase
     extends ReligionFeatBase
     with Passive

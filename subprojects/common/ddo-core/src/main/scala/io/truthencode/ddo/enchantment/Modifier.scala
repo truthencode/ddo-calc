@@ -24,6 +24,7 @@ import io.truthencode.ddo.support.IndexedEnum
 sealed trait Modifier extends EnumEntry
 
 object Modifier extends IndexedEnum[Modifier] with NoDefault[Modifier] {
+
   override val values = findValues
   case object Minor extends Modifier
   case object Lesser extends Modifier

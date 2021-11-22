@@ -60,17 +60,17 @@ dependencies {
         acceptanceTestImplementation.extendsFrom(configurations["testCompileClasspath"])
         acceptanceTestImplementation(group = "org.concordion", name = "concordion", version = concordionVersion)
         acceptanceTestImplementation(
-            group = "com.vladsch.flexmark",
-            name = "flexmark-ext-gfm-strikethrough",
-            version = "0.62.2"
+                group = "com.vladsch.flexmark",
+                name = "flexmark-ext-gfm-strikethrough",
+                version = "0.62.2"
         )
         acceptanceTestImplementation(group = "com.vladsch.flexmark", name = "flexmark-ext-emoji", version = "0.62.2")
 
         // https://mvnrepository.com/artifact/com.vladsch.flexmark/flexmark-ext-gfm-tasklist
         acceptanceTestImplementation(
-            group = "com.vladsch.flexmark",
-            name = "flexmark-ext-gfm-tasklist",
-            version = "0.62.2"
+                group = "com.vladsch.flexmark",
+                name = "flexmark-ext-gfm-tasklist",
+                version = "0.62.2"
         )
 
         testImplementation(group = "com.wix", name = "accord-scalatest_2.12", version = "0.7.3")
@@ -105,10 +105,10 @@ tasks.withType<ScalaCompile>().configureEach {
     scalaCompileOptions.apply {
         val scalaCompilerPlugin by configurations.getting
         additionalParameters?.plusAssign(
-            listOf(
-                "-feature", "-deprecation", "-Ywarn-dead-code", "-Xplugin:${scalaCompilerPlugin.asPath}",
-                "-P:genjavadoc:out=$buildDir/generated/java"
-            )
+                listOf(
+                        "-feature", "-deprecation", "-Ywarn-dead-code", "-Xplugin:${scalaCompilerPlugin.asPath}",
+                        "-P:genjavadoc:out=$buildDir/generated/java", "-Xsource:3"
+                )
         )
         // Need to add -Ypartial-unification for Tapir
     }

@@ -27,8 +27,8 @@ import io.truthencode.ddo.support.requisite._
 import scala.collection.immutable
 
 /**
-  * Created by adarr on 2/14/2017.
-  */
+ * Created by adarr on 2/14/2017.
+ */
 sealed trait EpicFeat
     extends Feat
     with FriendlyDisplay
@@ -37,18 +37,19 @@ sealed trait EpicFeat
   self: FeatType with Requisite with Inclusion with EpicFeatCategory =>
 
   /**
-    * Default Minimum Level for all Epic Feats.
-    * Override this with a higher level as needed.
-    */
+   * Default Minimum Level for all Epic Feats. Override this with a higher level as needed.
+   */
   override val characterLevel: Int = EpicLevels.min
 
 }
 
 // scalastyle:off  number.of.methods
 object EpicFeat extends Enum[EpicFeat] with FeatSearchPrefix with FeatMatcher {
-  val matchFeat: PartialFunction[Feat, EpicFeat] = {
-    case x: EpicFeat => x
+
+  val matchFeat: PartialFunction[Feat, EpicFeat] = { case x: EpicFeat =>
+    x
   }
+
   val matchFeatById: PartialFunction[String, EpicFeat] = {
     case x: String if EpicFeat.namesToValuesMap.contains(x) =>
       EpicFeat.withNameOption(x) match {
@@ -151,29 +152,19 @@ object EpicFeat extends Enum[EpicFeat] with FeatSearchPrefix with FeatMatcher {
       with RangedCombatPassive
       with CombatArchery
 
-  case object BurstOfGlacialWrath
-      extends FeatRequisiteImpl
-      with EpicFeat
-      with BurstOfGlacialWrath
+  case object BurstOfGlacialWrath extends FeatRequisiteImpl with EpicFeat with BurstOfGlacialWrath
 
   case object Ruin extends FeatRequisiteImpl with EpicFeat with Ruin
 
-  case object GreaterRuin
-      extends FeatRequisiteImpl
-      with EpicFeat
-      with GreaterRuin
+  case object GreaterRuin extends FeatRequisiteImpl with EpicFeat with GreaterRuin
 
-  case object EpicMentalToughness
-      extends FeatRequisiteImpl
-      with EpicFeat
-      with EpicMentalToughness
+  case object EpicMentalToughness extends FeatRequisiteImpl with EpicFeat with EpicMentalToughness
 
-  case object EpicSpellFocus
-      extends EpicSpellFocusBase
-      with EpicFeat
-      with ParentFeat {
+  case object EpicSpellFocus extends EpicSpellFocusBase with EpicFeat with ParentFeat {
+
     override val subFeats: Seq[EpicFeat with SubFeat] =
       epicSpellFocusAny
+
   }
 
   case class EpicSpellFocus(school: School)
@@ -181,10 +172,12 @@ object EpicFeat extends Enum[EpicFeat] with FeatSearchPrefix with FeatMatcher {
       with EpicFeat
       with SubFeat
       with Prefix {
+
     override protected def nameSource: String = school.displayText
 
-    /** Delimits the prefix and text.
-      */
+    /**
+     * Delimits the prefix and text.
+     */
     override protected val prefixSeparator: String = ": "
 
     override def prefix: Option[String] = Some("EpicSpellFocus".splitByCase)
@@ -196,10 +189,7 @@ object EpicFeat extends Enum[EpicFeat] with FeatSearchPrefix with FeatMatcher {
     override def allOfFeats: Seq[GeneralFeat] = lesser
   }
 
-  case object EpicSpellPenetration
-      extends FeatRequisiteImpl
-      with EpicFeat
-      with EpicSpellPenetration
+  case object EpicSpellPenetration extends FeatRequisiteImpl with EpicFeat with EpicSpellPenetration
 
   case object ImprovedAugmentSummoning
       extends FeatRequisiteImpl
@@ -283,11 +273,7 @@ object EpicFeat extends Enum[EpicFeat] with FeatSearchPrefix with FeatMatcher {
       with FreeFeat
       with MasterOfTheWilds
 
-  case object EmboldenSpell
-      extends FeatRequisiteImpl
-      with EpicFeat
-      with FreeFeat
-      with EmboldenSpell
+  case object EmboldenSpell extends FeatRequisiteImpl with EpicFeat with FreeFeat with EmboldenSpell
 
   case object IntensifySpell
       extends FeatRequisiteImpl
@@ -310,10 +296,7 @@ object EpicFeat extends Enum[EpicFeat] with FeatSearchPrefix with FeatMatcher {
       with EpicFeat
       with InspireExcellence
 
-  case object ImprovedMartialArts
-      extends FeatRequisiteImpl
-      with EpicFeat
-      with ImprovedMartialArts
+  case object ImprovedMartialArts extends FeatRequisiteImpl with EpicFeat with ImprovedMartialArts
 
   case object VorpalStrikes extends VorpalStrikes with EpicFeat
 

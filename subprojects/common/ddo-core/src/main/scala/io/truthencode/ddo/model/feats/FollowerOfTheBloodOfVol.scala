@@ -21,13 +21,11 @@ import io.truthencode.ddo.model.religions.BloodOfVol
 import io.truthencode.ddo.support.requisite.FeatRequisiteImpl
 
 /**
-  * Created by adarr on 4/7/2017.
-  */
+ * Created by adarr on 4/7/2017.
+ */
 trait FollowerOfTheBloodOfVol
     extends FeatRequisiteImpl
     with EberronReligionNonWarforged
     with FollowerBase
     with BloodOfVol
-    with TheBloodOfVolFeatBase { self: DeityFeat =>
-
-}
+    with TheBloodOfVolFeatBase { self: DeityFeat => }

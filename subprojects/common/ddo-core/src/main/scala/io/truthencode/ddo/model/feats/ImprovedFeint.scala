@@ -27,16 +27,15 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * [[https://ddowiki.com/page/Improved_Feint Improved Feint]]
-  * Icon Feat Improved Feint.png
-  * Improved Feint -- Active - Special Attack
-  * A tactical melee attack which Bluffs the enemy, enabling Sneak Attacks.
-  *
-  * Combat Expertise,
-  * MustContainAtLeastOne of : Sneak Attack or Half-Elf Dilettante: Rogue
-  *
-  * @todo Implement MustContainAtLeastOneOf(Sneak Attack or Half-Elf Dilettante: Rogue)
-  */
+ * [[https://ddowiki.com/page/Improved_Feint Improved Feint]] Icon Feat Improved Feint.png Improved
+ * Feint -- Active - Special Attack A tactical melee attack which Bluffs the enemy, enabling Sneak
+ * Attacks.
+ *
+ * Combat Expertise, MustContainAtLeastOne of : Sneak Attack or Half-Elf Dilettante: Rogue
+ *
+ * @todo
+ *   Implement MustContainAtLeastOneOf(Sneak Attack or Half-Elf Dilettante: Rogue)
+ */
 protected[feats] trait ImprovedFeint
     extends FeatRequisiteImpl
     with ActiveFeat
@@ -45,6 +44,7 @@ protected[feats] trait ImprovedFeint
     with RequiresAllOfFeat
     with FighterBonusFeat {
   self: GeneralFeat =>
+
   override def anyOfFeats: Seq[Feat] = List(ClassFeat.SneakAttack)
 
   override def coolDown: Option[Duration] = Some(Duration.ofSeconds(8))

@@ -27,6 +27,7 @@ import org.junit.runner.RunWith
 //@FullOGNL
 //@RunWith(classOf[ConcordionRunner])
 class MonksClassFeatOld extends ClassFeatDisplayHelper {
+
   override val cClass: HeroicCharacterClass = Monk
   override val enum: E = Feat
 }

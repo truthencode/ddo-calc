@@ -22,14 +22,14 @@ sealed trait TypeCategory
 trait MaterialBased extends TypeCategory
 
 /**
-  * Can affect health via positive / negative / poison / rust / repair etc
-  */
+ * Can affect health via positive / negative / poison / rust / repair etc
+ */
 trait Health extends TypeCategory
 
 /**
-  * Shape or delivery method (Yes, we need a better name for this) such as Dealing Cold via Piercing Icicles or bludgeoning
-  * rocks of ice.
-  */
+ * Shape or delivery method (Yes, we need a better name for this) such as Dealing Cold via Piercing
+ * Icicles or bludgeoning rocks of ice.
+ */
 trait Form extends TypeCategory
 
 /**
@@ -38,12 +38,13 @@ trait Form extends TypeCategory
 trait AlignmentBased extends TypeCategory
 
 /**
- * Typeless is a special flag used to denote all-encompassing or impregnable effects such as DR/ or untyped damage.
+ * Typeless is a special flag used to denote all-encompassing or impregnable effects such as DR/ or
+ * untyped damage.
  */
 trait Typeless extends TypeCategory
 
 /**
- * Currently a placeholder for errata, undefined and or non-categorized types such as magic or light.
- * These may be subject to moving to a new or different category in the future.
+ * Currently a placeholder for errata, undefined and or non-categorized types such as magic or
+ * light. These may be subject to moving to a new or different category in the future.
  */
 trait Other extends TypeCategory

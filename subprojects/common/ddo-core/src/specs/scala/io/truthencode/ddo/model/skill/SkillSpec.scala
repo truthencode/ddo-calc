@@ -32,9 +32,16 @@ import scala.collection.JavaConverters._
 @FullOGNL
 //@Extensions(Array(classOf[EmbedExtension], classOf[CollapseOutputExtension]))
 @RunWith(classOf[ConcordionRunner])
-@ConcordionOptions(declareNamespaces = Array("ext", "urn:concordion-extensions:2010"),
-  markdownExtensions = Array(MarkdownExtensions.WIKILINKS, MarkdownExtensions.AUTOLINKS, MarkdownExtensions.TASKLISTITEMS))
+@ConcordionOptions(
+  declareNamespaces = Array("ext", "urn:concordion-extensions:2010"),
+  markdownExtensions = Array(
+    MarkdownExtensions.WIKILINKS,
+    MarkdownExtensions.AUTOLINKS,
+    MarkdownExtensions.TASKLISTITEMS
+  )
+)
 class SkillSpec {
+
   val enum = Skill
 
   def prettyPrint(): String = {
@@ -56,9 +63,10 @@ class SkillSpec {
   }
 
   def withNameAsList(skillId: String): util.List[Skill] = {
-    for {v <- enum.values
-         if v.toString == skillId} yield v
+    for {
+      v <- enum.values
+      if v.toString == skillId
+    } yield v
   }.asJava
-
 
 }

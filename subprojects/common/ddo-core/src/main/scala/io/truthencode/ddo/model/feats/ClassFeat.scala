@@ -28,8 +28,8 @@ import io.truthencode.ddo.support.requisite._
 import scala.collection.immutable
 
 /**
-  * Created by adarr on 2/14/2017.
-  */
+ * Created by adarr on 2/14/2017.
+ */
 sealed trait ClassFeat
     extends Feat
     with FriendlyDisplay
@@ -38,8 +38,8 @@ sealed trait ClassFeat
     with FeatMatcher {
   self: FeatType with Requisite with Inclusion with RequisiteType =>
 
-  val matchFeat: PartialFunction[Feat, ClassFeat] = {
-    case x: ClassFeat => x
+  val matchFeat: PartialFunction[Feat, ClassFeat] = { case x: ClassFeat =>
+    x
   }
 
   val matchFeatById: PartialFunction[String, ClassFeat] = {
@@ -48,6 +48,7 @@ sealed trait ClassFeat
         case Some(y) => y
       }
   }
+
 }
 
 // scalastyle:off number.of.methods
@@ -66,9 +67,10 @@ object ClassFeat extends Enum[ClassFeat] with FeatSearchPrefix {
       with SubFeat
 
   /**
-    * @todo Need to add Grants for Gnomish / Deep Gnome Tier 4/ Deep Wood Stalker Tier 5
-    *       Harper Tier 4, Epic Primal Avatar Tier 2
-    */
+   * @todo
+   *   Need to add Grants for Gnomish / Deep Gnome Tier 4/ Deep Wood Stalker Tier 5 Harper Tier 4,
+   *   Epic Primal Avatar Tier 2
+   */
   case object FavoredEnemy
       extends ClassFeat
       with FeatRequisiteImpl
@@ -78,10 +80,12 @@ object ClassFeat extends Enum[ClassFeat] with FeatSearchPrefix {
 
     override val subFeats: immutable.IndexedSeq[FavoredEnemyType] =
       favoredEnemies
+
     private val rangerLevels = (5 to 20 by 5) :+ 1
 
     override def grantToClass: Seq[(HeroicCharacterClass, Int)] =
       rangerLevels.map((Ranger, _))
+
   }
 
   // Alchemists

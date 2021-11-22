@@ -25,8 +25,7 @@ import io.truthencode.ddo.support.tree.TreeLike
 
 trait Multivial extends BombardierCore with ClassEnhancementImpl {
 
-  override lazy val description: Option[String] = Some(
-    """Select an Element to specialize in.
+  override lazy val description: Option[String] = Some("""Select an Element to specialize in.
       |BombadierMultivialAcid.png SLA: Multivial of Acid(SP:15, Cooldown:12 seconds)
       |BombadierMultivialCold.png SLA: Multivial of Frost(SP:15, Cooldown:12 seconds)
       |BombadierMultivialElectric.png SLA: Multivial of Sparks(SP:15, Cooldown:12 seconds)
@@ -35,14 +34,13 @@ trait Multivial extends BombardierCore with ClassEnhancementImpl {
       |Primer Element: Crimsonite (Red),
       |Passive: +4 Intelligence, and 2 extra Burning Ambition Dice.
       |While in Pyrite Reaction, you gain +2 Conjuration DCs.
-      |""".stripMargin
-  )
+      |""".stripMargin)
 
   override def apCostPerRank: Int = 1
 
   /**
-    * Some enhancements can be taken multiple times (generally up to three)
-    */
+   * Some enhancements can be taken multiple times (generally up to three)
+   */
   override val ranks: Int = 1
 
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] = Seq((Alchemist, 20))

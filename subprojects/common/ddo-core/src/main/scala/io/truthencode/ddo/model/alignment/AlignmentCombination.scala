@@ -18,6 +18,7 @@
 package io.truthencode.ddo.model.alignment
 
 trait AlignmentCombination {
+
   val law: LawAxis
   val moral: MoralAxis
 }

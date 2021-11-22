@@ -35,27 +35,29 @@ trait WeakeningMixtureMultiSelector
     with DisplayProperties
     with FriendlyDisplay
     with MultiSelectorKeyGeneratorImpl {
+
   def element: String
 
   override lazy val description: Option[String] = Some(
     s"Throw a vial that explodes with ($element) on impact, dealing 1d6+3 (element) damage per Caster Level to all enemies nearby. (Max Caster Level 10)"
   )
+
   override def displayText: String = withPrefix.getOrElse("") + nameSource
 
   /**
-    * Some enhancements have multiple ranks.
-    * This is the cost for each rank.
-    * Older versions had increasing costs which has been streamlined to a linear progression.
-    *
-    * @return
-    */
+   * Some enhancements have multiple ranks. This is the cost for each rank. Older versions had
+   * increasing costs which has been streamlined to a linear progression.
+   *
+   * @return
+   */
   override def apCostPerRank: Int = 1
 
   /**
-    * Some enhancements can be taken multiple times (generally up to three)
-    */
+   * Some enhancements can be taken multiple times (generally up to three)
+   */
   override val ranks: Int = 1
 
   protected lazy val keys: immutable.Seq[String] =
     keyList.map(v => s"$prefix$v")
+
 }

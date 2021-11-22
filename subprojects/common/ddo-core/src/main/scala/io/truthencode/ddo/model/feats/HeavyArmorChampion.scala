@@ -24,23 +24,21 @@ import io.truthencode.ddo.support.requisite.{
   RequiresAllOfClass
 }
 
-/** Icon Heavy Armor Training.png
-  * Heavy Armor Champion
-  * Passive
-  * While in heavy armor, get +12 PRR and MRR.
-  *
-  * Level 14: Fighter
-  * *
-  * Note: they all stack with each other.
-  *
-  */
+/**
+ * Icon Heavy Armor Training.png Heavy Armor Champion Passive While in heavy armor, get +12 PRR and
+ * MRR.
+ *
+ * Level 14: Fighter * Note: they all stack with each other.
+ */
 trait HeavyArmorChampion
-  extends FeatRequisiteImpl
+    extends FeatRequisiteImpl
     with ClassRequisiteImpl
     with Passive
     with RequiresAllOfClass
     with FighterBonusFeat {
   self: GeneralFeat =>
+
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((HeroicCharacterClass.Fighter, 14))
+
 }

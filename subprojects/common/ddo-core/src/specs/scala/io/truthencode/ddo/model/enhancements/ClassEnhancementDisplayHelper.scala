@@ -29,6 +29,7 @@ import io.truthencode.ddo.support.requisite.{
 import io.truthencode.ddo.support.tree.ClassTrees
 
 trait ClassEnhancementDisplayHelper extends EnhancementDisplayHelper with LazyLogging {
+
   override val enum: E = ClassEnhancement
   type ENH = ClassEnhancement with Tier with ActionPointRequisite with PointInTreeRequisite
 
@@ -37,10 +38,10 @@ trait ClassEnhancementDisplayHelper extends EnhancementDisplayHelper with LazyLo
   lazy val mappedValues: Map[String, ClassEnhancementInfo] = {
 
     val ee = ClassEnhancement.values collect {
-        case x: ClassEnhancement with Tier with ClassBasedEnhancements with PointInTreeRequisite with PointsAvailableRequisite with RequiresActionPoints
-            if x.tree == tree =>
-          x
-      }
+      case x: ClassEnhancement with Tier with ClassBasedEnhancements with PointInTreeRequisite with PointsAvailableRequisite with RequiresActionPoints
+          if x.tree == tree =>
+        x
+    }
     logger.info(s"Display Helper loaded ${ee.size} values for ${tree.displayText}")
     ee.map { v =>
       logger.info(s"Loading enhancement with entry id: ${v.entryName} with key ${v.displayText}")

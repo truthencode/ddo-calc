@@ -26,8 +26,8 @@ import org.scalatest.{FunSpec, Matchers}
 import scala.languageFeature.postfixOps
 
 /**
-  * Created by adarr on 1/28/2017.
-  */
+ * Created by adarr on 1/28/2017.
+ */
 class ActivationType$Test extends FunSpec with Matchers with LazyLogging {
 
   describe("ActivationType$Test") {
@@ -75,4 +75,5 @@ class ActivationType$Test extends FunSpec with Matchers with LazyLogging {
     it("should withNameOption") {}
 
   }
+
 }

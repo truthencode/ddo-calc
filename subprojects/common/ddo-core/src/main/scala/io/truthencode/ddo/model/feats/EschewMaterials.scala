@@ -21,8 +21,8 @@ import io.truthencode.ddo.model.classes.HeroicCharacterClass
 import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, RequiresAnyOfClass}
 
 /**
-  * Created by adarr on 2/21/2017.
-  */
+ * Created by adarr on 2/21/2017.
+ */
 trait EschewMaterials
     extends FeatRequisiteImpl
     with MetaMagic
@@ -33,4 +33,5 @@ trait EschewMaterials
 
   override def anyOfClass: Seq[(HeroicCharacterClass, Int)] =
     MetaMagicFeat.minimumSpellCastingClass
+
 }

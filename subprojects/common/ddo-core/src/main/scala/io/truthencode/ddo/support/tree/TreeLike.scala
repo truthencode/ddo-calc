@@ -27,48 +27,54 @@ import io.truthencode.ddo.support.naming.{DisplayName, FriendlyDisplay}
 import io.truthencode.ddo.support.points.SpendablePoints
 
 import scala.collection.immutable
+
 sealed trait TreeLike extends EnumEntry with DisplayName with FriendlyDisplay with SearchPrefix {
+
   override protected def nameSource: String =
     entryName.splitByCase.toPascalCase
+
   val pointType: SpendablePoints
 }
 
 object TreeLike extends Enum[TreeLike] {
-  override lazy val values
-      : immutable.IndexedSeq[TreeLike] = ClassTrees.values ++ DestinySpheres.values ++ EpicDestiny.values ++ ReaperTrees.values ++ UniversalTrees.values
+
+  override lazy val values: immutable.IndexedSeq[TreeLike] =
+    ClassTrees.values ++ DestinySpheres.values ++ EpicDestiny.values ++ ReaperTrees.values ++ UniversalTrees.values
+
 }
 
 /**
-  * Represents Enhancement Trees such as Universal and Class Enhancement trees (Pale Master, Falconry etc)
-  */
+ * Represents Enhancement Trees such as Universal and Class Enhancement trees (Pale Master, Falconry
+ * etc)
+ */
 trait EnhancementTree extends TreeLike {
-    override val pointType: SpendablePoints = SpendablePoints.ActionPoints
+  override val pointType: SpendablePoints = SpendablePoints.ActionPoints
 }
 
 /**
-  * Enhancement Lines with Class Restrictions
-  */
+ * Enhancement Lines with Class Restrictions
+ */
 trait ClassTree extends EnhancementTree
 
 /**
-  * Enhancement Lines with no Class Restrictions
-  */
+ * Enhancement Lines with no Class Restrictions
+ */
 trait UniversalTree extends EnhancementTree
 
 trait ReaperTree extends TreeLike {
-    override val pointType: SpendablePoints = SpendablePoints.SurvivalPoints
+  override val pointType: SpendablePoints = SpendablePoints.SurvivalPoints
 }
 
 /**
-  * One of the Epic Destiny Spheres (Primal, Arcane etc)
-  */
+ * One of the Epic Destiny Spheres (Primal, Arcane etc)
+ */
 trait DestinySphere extends TreeLike {
-    override val pointType: SpendablePoints = SpendablePoints.FatePoints
+  override val pointType: SpendablePoints = SpendablePoints.FatePoints
 }
 
 /**
-  * Epic Destinies lines within a given sphere such as Grandmaster of Flowers
-  */
+ * Epic Destinies lines within a given sphere such as Grandmaster of Flowers
+ */
 trait DestinyTree extends TreeLike {
-    override val pointType: SpendablePoints = SpendablePoints.EpicDestinyPoints
+  override val pointType: SpendablePoints = SpendablePoints.EpicDestinyPoints
 }

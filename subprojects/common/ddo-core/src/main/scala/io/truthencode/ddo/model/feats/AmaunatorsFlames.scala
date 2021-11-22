@@ -22,8 +22,8 @@ import io.truthencode.ddo.support.naming.DisplayProperties
 import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, RequiresAllOfFeat}
 
 /**
-  * Created by adarr on 4/7/2017.
-  */
+ * Created by adarr on 4/7/2017.
+ */
 trait AmaunatorsFlames
     extends FeatRequisiteImpl
     with ForgottenRealmsReligionNonWarforged

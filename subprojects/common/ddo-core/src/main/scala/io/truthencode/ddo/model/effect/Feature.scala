@@ -26,10 +26,12 @@ import io.truthencode.ddo.model.skill.Skill
 import scala.util.Try
 
 /**
-  * A general Feature with a base type value of V
-  * @tparam V Generally a primitive Type such as Int but may be a more complex object
-  */
+ * A general Feature with a base type value of V
+ * @tparam V
+ *   Generally a primitive Type such as Int but may be a more complex object
+ */
 sealed trait Feature[V] {
+
   val parameter: Try[EffectParameter]
   val part: Try[EffectPart]
   val value: V
@@ -39,7 +41,8 @@ sealed trait Feature[V] {
     case None        => None
     case Some(value) => Some(value.entryName)
   }
-  val effectText: Option[String] = None
+
+  lazy val effectText: Option[String] = None
 }
 
 object Feature {
@@ -72,7 +75,7 @@ object Feature {
 
     override lazy val name: Option[String] = Some(skill.withPrefix)
 
-    override val effectText: Option[String] = Some(
+    override lazy val effectText: Option[String] = Some(
       s"provides a ${numberToSignedText(value)} ${bonusType.entryName} bonus to ${partToModify.entryName}"
     )
 
@@ -85,24 +88,30 @@ object Feature {
     override val source: SourceInfo
   ) extends PartModifier[Int, Attribute]
       with ParameterModifier[Int, BonusType] {
+
     override protected[this] val partToModify: Attribute = attribute
     override protected[this] val parameterToModify: BonusType = bonusType
   }
 
 }
+
 trait AugmentFeatureValue extends Feature[Int]
 
 /**
-  * Modification info used to change / affect the value of type V
-  * @tparam V Generally a primitive Type such as Int but may be a more complex object
-  * @tparam E Entry ID / Enumeration used to qualify which part is being modified.
-  */
+ * Modification info used to change / affect the value of type V
+ * @tparam V
+ *   Generally a primitive Type such as Int but may be a more complex object
+ * @tparam E
+ *   Entry ID / Enumeration used to qualify which part is being modified.
+ */
 trait PartModifier[V, E <: EnumEntry] extends Feature[V] {
   self: ParameterModifier[V, _] =>
+
   protected[this] val partToModify: E
 
   override val part: Try[EffectPart] =
     EffectPart.tryFindByPattern(partToModify.entryName)
+
 }
 
 trait FeatModifier[T, E <: Feat] extends PartModifier[T, E] {
@@ -110,16 +119,20 @@ trait FeatModifier[T, E <: Feat] extends PartModifier[T, E] {
 }
 
 /**
-  * A parameter that SHOULD be found in EffectParameter used for validation / stacking
-  * @tparam V Generally a primitive Type such as Int but may be a more complex object
-  * @tparam E Enum of the parameter type being used, such as A Bonus Type of 'Action Boost'
-  */
+ * A parameter that SHOULD be found in EffectParameter used for validation / stacking
+ * @tparam V
+ *   Generally a primitive Type such as Int but may be a more complex object
+ * @tparam E
+ *   Enum of the parameter type being used, such as A Bonus Type of 'Action Boost'
+ */
 trait ParameterModifier[V, E <: EnumEntry] extends Feature[V] {
   self: PartModifier[V, _] =>
+
   protected[this] val parameterToModify: E
 
   override lazy val parameter: Try[EffectParameter] =
     EffectParameter.tryFindByPattern(parameterToModify.entryName)
+
 }
 
 case class EffectFeature[T](

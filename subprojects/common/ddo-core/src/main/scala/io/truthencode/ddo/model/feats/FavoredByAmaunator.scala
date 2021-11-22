@@ -21,12 +21,11 @@ import io.truthencode.ddo.model.religions.Amaunator
 import io.truthencode.ddo.support.requisite.FeatRequisiteImpl
 
 /**
-  * Created by adarr on 4/7/2017.
-  */
+ * Created by adarr on 4/7/2017.
+ */
 trait FavoredByAmaunator
     extends FeatRequisiteImpl
     with ForgottenRealmsReligionNonWarforged
     with FollowerBase
     with Amaunator
-    with AmaunatorFeatBase { self: DeityFeat =>
-}
+    with AmaunatorFeatBase { self: DeityFeat => }

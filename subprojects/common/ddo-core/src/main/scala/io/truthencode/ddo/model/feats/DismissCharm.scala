@@ -28,12 +28,13 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * [[https://ddowiki.com/page/Dismiss_Charm Dismiss Charm]]
-  * Activate this short-ranged ability while targeting a charmed, commanded, controlled,
-  * or dominated enemy that is under your control to dispel the controlling effect.
-  *
-  * @note As of Update 26 all classes now receive this feat at level 1
-  */
+ * [[https://ddowiki.com/page/Dismiss_Charm Dismiss Charm]] Activate this short-ranged ability while
+ * targeting a charmed, commanded, controlled, or dominated enemy that is under your control to
+ * dispel the controlling effect.
+ *
+ * @note
+ *   As of Update 26 all classes now receive this feat at level 1
+ */
 protected[feats] trait DismissCharm
     extends FeatRequisiteImpl
     with ActiveFeat
@@ -45,4 +46,5 @@ protected[feats] trait DismissCharm
 
   override def grantToClass: Seq[(HeroicCharacterClass, Int)] =
     HeroicCharacterClass.values.map((_, 1))
+
 }

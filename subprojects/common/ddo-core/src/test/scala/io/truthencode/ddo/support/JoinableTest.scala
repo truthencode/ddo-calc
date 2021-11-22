@@ -23,6 +23,7 @@ import org.scalatest.{FunSpec, Matchers}
 import scala.collection.{immutable, GenSeq}
 
 class JoinableTest extends FunSpec with Matchers with JoinAbleSeq[Int, GenSeq[Int]] {
+
   override lazy val source: Seq[Int] = 1 to sampleSize
 
   describe("Joins (Sequence)") {
@@ -33,11 +34,13 @@ class JoinableTest extends FunSpec with Matchers with JoinAbleSeq[Int, GenSeq[In
     }
 
   }
+
   describe("Left Joins") {
     they("should contain all of the unique left side plus any common elements of the right side") {
       leftJoinA should contain theSameElementsAs commonWithA
     }
   }
+
   describe("Right Joins") {
     they("should contall all the unique right side plus any common elements of the left side") {
       rightJoinA should contain theSameElementsAs commonWithB

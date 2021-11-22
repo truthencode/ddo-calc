@@ -27,13 +27,10 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * Icon Feat Diehard.png
-  * Diehard
-  * Passive
-  * You automatically stabilize when incapacitated.
-  */
+ * Icon Feat Diehard.png Diehard Passive You automatically stabilize when incapacitated.
+ */
 protected[feats] trait Diehard
-  extends FeatRequisiteImpl
+    extends FeatRequisiteImpl
     with ClassRequisiteImpl
     with Passive
     with FreeFeat

@@ -21,8 +21,7 @@ import io.truthencode.ddo.model.enhancement.enhancements.classbased.BombardierTi
 
 trait SpellvialSelection extends BombardierTierOne with ClassEnhancementImpl {
 
-  override lazy val description: Option[String] = Some(
-    """Spellvial Selection: Select an Element to specialize in.
+  override lazy val description: Option[String] = Some("""Spellvial Selection: Select an Element to specialize in.
       |BombadierVialAcid.png SLA: Vial of Acid
       |BombadierVialCold.png SLA: Vial of Frost
       |BombadierVialElectric.png SLA: Vial of Sparks
@@ -34,14 +33,13 @@ trait SpellvialSelection extends BombardierTierOne with ClassEnhancementImpl {
       |Primer Element: Crimsonite (Red)
       |Conjuring a bottle of (element), you throw a projectile at a single foe that deals 3 to 8 (element) damage per caster level, max caster level 10.
       |DND Dice: Deals 1d6+2 (element) damage per caster level, max 10d6+20
-      |""".stripMargin
-  )
+      |""".stripMargin)
 
   override def apCostPerRank: Int = 1
 
   /**
-    * Some enhancements can be taken multiple times (generally up to three)
-    */
+   * Some enhancements can be taken multiple times (generally up to three)
+   */
   override val ranks: Int = 3
 
 }

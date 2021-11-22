@@ -21,7 +21,6 @@ description = "Common misc String and convenience Utilities"
 plugins {
     id("scala-profiles")
     id("acceptance-test-conventions")
-    id("org.scoverage")  // version "3.1.5"
 }
 
 dependencies {

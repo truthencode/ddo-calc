@@ -39,4 +39,5 @@ trait Searchable[T <: EnumEntry with SearchPattern] extends Enum[T] with LazyLog
     }
 
   }
+
 }

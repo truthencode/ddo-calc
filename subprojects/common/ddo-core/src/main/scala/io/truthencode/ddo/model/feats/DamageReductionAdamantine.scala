@@ -44,4 +44,5 @@ trait DamageReductionAdamantine
 
   override def anyOfFeats: Seq[Feat] =
     List(DeityFeat.BelovedOfTheLordOfBlades)
+
 }

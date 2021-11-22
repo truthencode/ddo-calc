@@ -20,9 +20,11 @@ package io.truthencode.ddo.model.feats
 import io.truthencode.ddo.model.religions.{Onatar, Religion}
 
 /**
-  * Created by adarr on 5/2/2017.
-  */
+ * Created by adarr on 5/2/2017.
+ */
 trait OnatarFeatBase extends ReligionFeatBase { self: Onatar =>
+
   abstract override def allowedReligions: List[Religion] =
     super.allowedReligions ++ List(Religion.Onatar)
+
 }

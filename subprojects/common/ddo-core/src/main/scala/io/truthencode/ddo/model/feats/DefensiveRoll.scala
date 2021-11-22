@@ -18,17 +18,13 @@
 package io.truthencode.ddo.model.feats
 
 import io.truthencode.ddo.model.classes.HeroicCharacterClass
-import io.truthencode.ddo.support.requisite.{
-  ClassRequisite,
-  FeatRequisiteImpl,
-  GrantsToClass
-}
+import io.truthencode.ddo.support.requisite.{ClassRequisite, FeatRequisiteImpl, GrantsToClass}
 
 /**
-  * If you are at below 20% of your hitpoint maximum,
-  *     each time you are struck with an attack there is a percentage chance equal to your Reflex save that the attack does half main damage,
-  *     and its special effects are negated (as if you were blocking).
-  */
+ * If you are at below 20% of your hitpoint maximum, each time you are struck with an attack there
+ * is a percentage chance equal to your Reflex save that the attack does half main damage, and its
+ * special effects are negated (as if you were blocking).
+ */
 protected[feats] trait DefensiveRoll
     extends FeatRequisiteImpl
     with ClassRequisite

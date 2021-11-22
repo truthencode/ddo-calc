@@ -23,27 +23,27 @@ import io.truthencode.ddo.support.naming.{DisplayName, FriendlyDisplay}
 
 import scala.collection.immutable
 
-sealed trait ReaperTrees
-    extends EnumEntry
-    with ReaperTree
-    with DisplayName
-    with FriendlyDisplay {
+sealed trait ReaperTrees extends EnumEntry with ReaperTree with DisplayName with FriendlyDisplay {
+
   override protected def nameSource: String =
     entryName.splitByCase.toPascalCase
 
-    /**
-     * Used when qualifying a search with a prefix.
-     * Examples include finding "HalfElf" from qualified "Race:HalfElf"
-     *
-     * @return A default or applied prefix
-     */
-    override def searchPrefixSource: String = "ReaperEnhancement"
+  /**
+   * Used when qualifying a search with a prefix. Examples include finding "HalfElf" from qualified
+   * "Race:HalfElf"
+   *
+   * @return
+   *   A default or applied prefix
+   */
+  override def searchPrefixSource: String = "ReaperEnhancement"
 }
+
 trait DreadAdversary extends ReaperTrees
 trait DireThaumaturge extends ReaperTrees
 trait GrimBarricade extends ReaperTrees
 
 object ReaperTrees extends Enum[ReaperTrees] with TreePrefix {
+
   override def values: immutable.IndexedSeq[ReaperTrees] = findValues
   case object DreadAdversary extends DreadAdversary
   case object DireThaumaturge extends DireThaumaturge

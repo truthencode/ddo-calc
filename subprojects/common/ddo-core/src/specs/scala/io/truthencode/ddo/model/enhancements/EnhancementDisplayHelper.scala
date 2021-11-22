@@ -22,6 +22,7 @@ import io.truthencode.ddo.model.enhancement.Enhancement
 import io.truthencode.ddo.support.tree.ClassTrees
 
 trait EnhancementDisplayHelper extends DisplayHelper {
+
   override val enum: E = Enhancement
   def tree: ClassTrees
 }

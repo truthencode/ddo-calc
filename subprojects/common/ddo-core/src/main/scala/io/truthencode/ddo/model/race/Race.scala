@@ -27,8 +27,8 @@ import io.truthencode.ddo.support.SearchPrefix
 import scala.collection.immutable.IndexedSeq
 
 /**
-  * Represents a DDO Race [http://ddowiki.com/page/Races]
-  */
+ * Represents a DDO Race [http://ddowiki.com/page/Races]
+ */
 sealed trait Race extends EnumEntry with AttributeModifierInit {
   self: Availability with HomeWorld with AttributeModifier =>
 }
@@ -51,10 +51,12 @@ trait Bladeforged
     with DexterityModifier
     with ConstitutionModifier
     with WisdomModifier {
+
   override protected lazy val intModifierDexterity: Int = -2
   override protected lazy val intModifierConstitution: Int = 2
   override protected lazy val intModifierWisdom: Int = -2
 }
+
 // Svirfneblin
 trait DeepGnome
     extends Race
@@ -65,6 +67,7 @@ trait DeepGnome
     with WisdomModifier
     with StrengthModifier
     with CharismaModifier {
+
   override protected lazy val intModifierIntelligence: Int = 2
   override protected lazy val intModifierWisdom: Int = 2
   override protected lazy val intModifierStrength: Int = -2
@@ -78,6 +81,7 @@ trait DragonBorn
     with StrengthModifier
     with CharismaModifier
     with DexterityModifier {
+
   override protected lazy val intModifierDexterity: Int = -2
   override protected lazy val intModifierCharisma: Int = 2
   override protected lazy val intModifierStrength: Int = 2
@@ -104,6 +108,7 @@ trait Dwarf
     with FreeToPlayFeature
     with ConstitutionModifier
     with CharismaModifier {
+
   override protected lazy val intModifierConstitution: Int = 2
   override protected lazy val intModifierCharisma: Int = -2
 }
@@ -114,6 +119,7 @@ trait Elf
     with FreeToPlayFeature
     with DexterityModifier
     with ConstitutionModifier {
+
   override protected lazy val intModifierDexterity: Int = 2
   override protected lazy val intModifierConstitution: Int = -2
 }
@@ -124,6 +130,7 @@ trait Gnome
     with PremiumFeature
     with IntelligenceModifier
     with StrengthModifier {
+
   override protected lazy val intModifierIntelligence: Int = 2
   override protected lazy val intModifierStrength: Int = -2
 }
@@ -134,15 +141,12 @@ trait Halfling
     with FreeToPlayFeature
     with DexterityModifier
     with StrengthModifier {
+
   override protected lazy val intModifierDexterity: Int = 2
   override protected lazy val intModifierStrength: Int = -2
 }
 
-trait HalfElf
-    extends Race
-    with EberronRace
-    with PremiumFeature
-    with DefaultAttributeModifier
+trait HalfElf extends Race with EberronRace with PremiumFeature with DefaultAttributeModifier
 
 trait HalfOrc
     extends Race
@@ -151,16 +155,13 @@ trait HalfOrc
     with StrengthModifier
     with IntelligenceModifier
     with CharismaModifier {
+
   override protected lazy val intModifierStrength: Int = 2
   override protected lazy val intModifierIntelligence: Int = -2
   override protected lazy val intModifierCharisma: Int = -2
 }
 
-trait Human
-    extends Race
-    with EberronRace
-    with FreeToPlayFeature
-    with DefaultAttributeModifier
+trait Human extends Race with EberronRace with FreeToPlayFeature with DefaultAttributeModifier
 
 trait Morninglord
     extends Race
@@ -169,6 +170,7 @@ trait Morninglord
     with IconicClass
     with IntelligenceModifier
     with ConstitutionModifier {
+
   override protected lazy val intModifierIntelligence: Int = 2
   override protected lazy val intModifierConstitution: Int = -2
 }
@@ -187,6 +189,7 @@ trait Shadarkai
     with IconicClass
     with DexterityModifier
     with CharismaModifier {
+
   override protected lazy val intModifierDexterity: Int = 2
   override protected lazy val intModifierCharisma: Int = -2
 }
@@ -198,19 +201,23 @@ trait Warforged
     with ConstitutionModifier
     with WisdomModifier
     with CharismaModifier {
+
   override protected lazy val intModifierConstitution: Int = 2
   override protected lazy val intModifierWisdom: Int = -2
   override protected lazy val intModifierCharisma: Int = -2
 }
 
 object Race extends Enum[Race] with SearchPrefix {
+
   implicit class FamilyOps(r: Race) {
+
     def families: Seq[RaceFamily] = {
       for {
         family <- RaceFamily.values
         if family.includedRaces contains r
       } yield family
     }
+
   }
 
   case object Bladeforged extends Bladeforged
@@ -245,11 +252,11 @@ object Race extends Enum[Race] with SearchPrefix {
   override def values: IndexedSeq[Race] = findValues
 
   /**
-    * An optional delimiter such as a colon when overridden.
-    * By default, this is set to Option.None
-    *
-    * @return The delimiter, if it exists.
-    */
+   * An optional delimiter such as a colon when overridden. By default, this is set to Option.None
+   *
+   * @return
+   *   The delimiter, if it exists.
+   */
   override def delimiter: Option[String] = Some(":")
 
   override def searchPrefixSource: String = "Race"

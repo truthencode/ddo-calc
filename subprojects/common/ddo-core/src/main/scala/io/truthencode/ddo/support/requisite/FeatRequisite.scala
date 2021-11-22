@@ -24,10 +24,11 @@ import scala.language.{implicitConversions, postfixOps}
 import scala.languageFeature.higherKinds
 
 /**
-  * Created by adarr on 1/29/2017.
-  */
+ * Created by adarr on 1/29/2017.
+ */
 sealed trait FeatRequisite {
   self: Requisite =>
+
   def anyOfFeats: Seq[Feat] // = IndexedSeq.apply()
 
   def allOfFeats: Seq[Feat] // = IndexedSeq.apply()
@@ -37,6 +38,7 @@ sealed trait FeatRequisite {
 
 trait FeatRequisiteImpl extends MustContainImpl[Requirement] with FeatRequisite {
   self: Requisite with RequisiteType =>
+
   def anyOfFeats: Seq[Feat] = IndexedSeq.apply()
 
   def allOfFeats: Seq[Feat] = IndexedSeq.apply()
@@ -45,11 +47,14 @@ trait FeatRequisiteImpl extends MustContainImpl[Requirement] with FeatRequisite 
 }
 
 object FeatRequisite {
+
   def stringToClass(classId: String*): Seq[Feat] = {
-    for {cls <- classId
-         cOpt <- Feat.withNameInsensitiveOption(cls)
+    for {
+      cls  <- classId
+      cOpt <- Feat.withNameInsensitiveOption(cls)
     } yield cOpt
   }
+
 }
 
 /**
@@ -62,6 +67,7 @@ trait RequiresAnyOfFeat extends FeatRequisite with RequiresOneOf[Requirement] wi
   abstract override def oneOf: Seq[Requirement] = super.oneOf ++ {
     anyOfFeats collect featToReq
   }
+
 }
 
 trait RequiresAllOfFeat extends FeatRequisite with RequiresAllOf[Requirement] with Requisite {
@@ -69,6 +75,7 @@ trait RequiresAllOfFeat extends FeatRequisite with RequiresAllOf[Requirement] wi
   abstract override def allOf: Seq[Requirement] = super.allOf ++ {
     allOfFeats collect featToReq
   }
+
 }
 
 trait RequiresNoneOfFeat extends FeatRequisite with RequiresNoneOf[Requirement] with Requisite {
@@ -76,6 +83,5 @@ trait RequiresNoneOfFeat extends FeatRequisite with RequiresNoneOf[Requirement] 
   abstract override def noneOf: Seq[Requirement] = super.noneOf ++ {
     noneOfFeats collect featToReq
   }
+
 }
-
-

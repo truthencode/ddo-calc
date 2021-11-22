@@ -17,7 +17,6 @@
  */
 package io.truthencode.ddo.model.effect
 
-
 import io.truthencode.ddo.enhancement.BonusType
 import io.truthencode.ddo.model.effect.EffectPart.{Feat, Skill}
 import io.truthencode.ddo.model.feats.{Feat => Feats}
@@ -28,30 +27,35 @@ import io.truthencode.ddo.support.requisite.FreeFeat
 import org.scalatest.{FunSpec, Matchers}
 
 class EffTest extends FunSpec with Matchers {
+
   describe("An Effect (EFF)") {
     it("should not need a description") {
-       //  typical random loot such as Warrior's boots of X
-              val featList = Feats.values collect Feats.fnTacticalFeats
-                val randomLootWarriorPrefix = for {s <- featList} yield Eff(
-                  TriggerEvent.Passive,
-                  bonusType = BonusType.Enhancement,
-                  magnitude = new Magnitude {
-                      /**
-                       * Percent chance to occur
-                       */
-                      override val chance: Int = 4
-                      /**
-                       * Damage Dice
-                       */
-                      override val damage: DamageDice = DamageInfo("2d1")
-                      /**
-                       * Base Price Modifier
-                       */
-                      override val bpm: Int = 3
-                  } ,
-                  difficultyCheck = None,
-                    target = Feat(s)
-              )
+      //  typical random loot such as Warrior's boots of X
+      val featList = Feats.values collect Feats.fnTacticalFeats
+      val randomLootWarriorPrefix =
+        for { s <- featList } yield Eff(
+          TriggerEvent.Passive,
+          bonusType = BonusType.Enhancement,
+          magnitude = new Magnitude {
+
+            /**
+             * Percent chance to occur
+             */
+            override val chance: Int = 4
+
+            /**
+             * Damage Dice
+             */
+            override val damage: DamageDice = DamageInfo("2d1")
+
+            /**
+             * Base Price Modifier
+             */
+            override val bpm: Int = 3
+          },
+          difficultyCheck = None,
+          target = Feat(s)
+        )
     }
     ignore("should support things such as Combat Mastery") {
       /* https://ddowiki.com/page/Combat_Mastery
@@ -65,7 +69,7 @@ class EffTest extends FunSpec with Matchers {
 
     Quality bonus: C:Quality Combat Mastery items
        */
-    // typical random loot such as Warrior's boots of X
+      // typical random loot such as Warrior's boots of X
 //      val featList = Feats.values collect Feats.fnTacticalFeats
 //        val randomLootWarriorPrefix = for {s <- featList} yield Eff(
 //          TriggerEvent.Passive,
@@ -77,4 +81,5 @@ class EffTest extends FunSpec with Matchers {
 
     }
   }
+
 }

@@ -28,11 +28,15 @@ trait TacticalFeatFeatDisplayHelper extends FeatDisplayHelper with LazyLogging {
 }
 
 abstract class TacticalFeatFeatDisplayHelperJava extends TacticalFeatFeatDisplayHelper {
+
   type S = Feat with Tactical
 
-    val filterByTactical: PartialFunction[Entry, Entry] = {
-        case x: Tactical => x
-    }
+  val filterByTactical: PartialFunction[Entry, Entry] = { case x: Tactical =>
+    x
+  }
 
-  def tacticalFeats: util.List[Entry] ={enum.values collect filterByTactical}.sortBy(_.entryName).asJava
+  def tacticalFeats: util.List[Entry] = { enum.values collect filterByTactical }
+    .sortBy(_.entryName)
+    .asJava
+
 }

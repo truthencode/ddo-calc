@@ -23,9 +23,11 @@ import io.truthencode.ddo.support.SearchPrefix
 import scala.collection.immutable.IndexedSeq
 
 /**
-  * [[http://ddowiki.com/page/FavorPatron FavorPatron]] FavorPatron can be gained for a faction which can provide various benefits in-game.
-  */
+ * [[http://ddowiki.com/page/FavorPatron FavorPatron]] FavorPatron can be gained for a faction which
+ * can provide various benefits in-game.
+ */
 sealed trait FavorPatron extends EnumEntry {
+
   val maxFavor: Int
   val availableFreeFavor: Int = 0
 }
@@ -33,11 +35,12 @@ sealed trait FavorPatron extends EnumEntry {
 object FavorPatron extends Enum[FavorPatron] with SearchPrefix {
 
   /**
-    * Used when qualifying a search with a prefix.
-    * Examples include finding "HalfElf" from qualified "Race:HalfElf"
-    *
-    * @return A default or applied prefix
-    */
+   * Used when qualifying a search with a prefix. Examples include finding "HalfElf" from qualified
+   * "Race:HalfElf"
+   *
+   * @return
+   *   A default or applied prefix
+   */
   override def searchPrefixSource: String = "FavorPatron"
 
   case object AgentsOfArgonnessen extends FavorPatron {
@@ -48,18 +51,20 @@ object FavorPatron extends Enum[FavorPatron] with SearchPrefix {
     override val maxFavor: Int = 225
   }
 
-
   case object TheCoinLords extends FavorPatron {
+
     override val maxFavor: Int = 608
     override val availableFreeFavor: Int = 261
   }
 
   case object HouseDeneith extends FavorPatron {
+
     override val maxFavor: Int = 318
     override val availableFreeFavor: Int = 135
   }
 
   case object TheFreeAgents extends FavorPatron {
+
     override val maxFavor: Int = 624
     override val availableFreeFavor: Int = 147
   }
@@ -73,32 +78,38 @@ object FavorPatron extends Enum[FavorPatron] with SearchPrefix {
   }
 
   case object HouseJorasco extends FavorPatron {
+
     override val maxFavor: Int = 282
     override val availableFreeFavor: Int = 141
   }
 
   case object HouseKundarak extends FavorPatron {
+
     override val maxFavor: Int = 342
     override val availableFreeFavor: Int = 162
   }
 
   case object HousePhiarlan extends FavorPatron {
+
     override val maxFavor: Int = 372
     override val availableFreeFavor: Int = 93
   }
 
   case object PurpleDragonKnights extends FavorPatron {
+
     override val maxFavor: Int = 417
     override val availableFreeFavor: Int = 33
   }
 
   case object TheSilverFlame extends FavorPatron {
+
     override val maxFavor: Int = 540
     override val availableFreeFavor: Int = 27
 
   }
 
   case object TheTwelve extends FavorPatron {
+
     override val maxFavor: Int = 339
     override val availableFreeFavor: Int = 18
   }

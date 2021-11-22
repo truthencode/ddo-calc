@@ -27,8 +27,8 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * +5 MRR, +25% Fortification
-  */
+ * +5 MRR, +25% Fortification
+ */
 protected[feats] trait EntropicWard
     extends FeatRequisiteImpl
     with Passive

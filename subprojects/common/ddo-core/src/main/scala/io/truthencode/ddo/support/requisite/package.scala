@@ -31,9 +31,10 @@ import io.truthencode.ddo.support.requisite.Requirement._
 import io.truthencode.ddo.support.tree.TreeLike
 
 /**
-  * Created by adarr on 1/30/2017.
-  */
+ * Created by adarr on 1/30/2017.
+ */
 package object requisite {
+
   type Result = (Boolean, Option[List[Requisite]])
 
   object RequirementImplicits {
@@ -52,6 +53,7 @@ package object requisite {
 
         override def apply(v1: (FavorPatron, Int)): ReqFavorPatron =
           ReqFavorPatron(v1._1.entryName, v1._2)
+
       }
 
     implicit class SkillImplicits(val source: (Skill, Int)) {
@@ -68,6 +70,7 @@ package object requisite {
 
         override def apply(v1: (Skill, Int)): ReqSkill =
           ReqSkill(v1._1.entryName, v1._2)
+
       }
 
     implicit class AttributeImplicits(val source: (Attribute, Int)) {
@@ -84,6 +87,7 @@ package object requisite {
 
         override def apply(v1: (Attribute, Int)): ReqAttribute =
           ReqAttribute(v1._1.entryName, v1._2)
+
       }
 
     implicit class RaceImplicits(val source: (Race, Int)) {
@@ -100,22 +104,23 @@ package object requisite {
 
         override def apply(v1: (Race, Int)): ReqRace =
           ReqRace(v1._1.entryName, v1._2)
+
       }
 
     implicit class FeatImplicits(val source: Feat with EnumEntry) {
       def toReq: ReqFeat = featToReq(source)
     }
 
-    val matchGeneralFeat: PartialFunction[Feat, GeneralFeat] = {
-      case x: GeneralFeat => x
+    val matchGeneralFeat: PartialFunction[Feat, GeneralFeat] = { case x: GeneralFeat =>
+      x
     }
 
-    val matchClassFeat: PartialFunction[Feat, ClassFeat] = {
-      case x: ClassFeat => x
+    val matchClassFeat: PartialFunction[Feat, ClassFeat] = { case x: ClassFeat =>
+      x
     }
 
-    val matchRacialFeat: PartialFunction[Feat, RacialFeat] = {
-      case x: RacialFeat => x
+    val matchRacialFeat: PartialFunction[Feat, RacialFeat] = { case x: RacialFeat =>
+      x
     }
 
 //    val matchGFeatId : PartialFunction[String,GeneralFeat] = {
@@ -138,15 +143,20 @@ package object requisite {
       override def apply(v1: Feat): ReqFeat = ReqFeat(v1.entryName)
     }
 
+    val classEnhancementToReq: PartialFunction[ClassEnhancement, ReqClassEnhancement] =
+      new PartialFunction[ClassEnhancement, ReqClassEnhancement] {
 
-    val classEnhancementToReq: PartialFunction[ClassEnhancement,ReqClassEnhancement]  = new PartialFunction[ClassEnhancement,ReqClassEnhancement]  {
         override def isDefinedAt(x: ClassEnhancement): Boolean =
-        Requirement
-        .withNameOption(s"${ClassEnhancement.searchPrefix}${x.entryName}")
-        .isDefined
+          Requirement
+            .withNameOption(s"${ClassEnhancement.searchPrefix}${x.entryName}")
+            .isDefined
 
-        override def apply(v1: ClassEnhancement): ReqClassEnhancement = ReqClassEnhancement(v1.entryName)
-    }
+        override def apply(v1: ClassEnhancement): ReqClassEnhancement = ReqClassEnhancement(
+          v1.entryName
+        )
+
+      }
+
 //    val anyFeatToReq = new PartialFunction[Feat, ReqFeat] {
 //      override def isDefinedAt(x: Feat): Boolean =
 //        Requirement
@@ -191,14 +201,15 @@ package object requisite {
 
         override def apply(v1: (HeroicCharacterClass, Int)): ReqClass =
           ReqClass(v1._1.entryName, v1._2)
+
       }
 
     val alignmentTypeToReq: PartialFunction[AlignmentType, ReqAlignment] = {
       case x: AlignmentType => ReqAlignment(Left(x))
     }
 
-    val alignmentsToReq: PartialFunction[Alignments, ReqAlignment] = {
-      case x: Alignments => ReqAlignment(Right(x))
+    val alignmentsToReq: PartialFunction[Alignments, ReqAlignment] = { case x: Alignments =>
+      ReqAlignment(Right(x))
     }
 
     val characterLevelToReq: PartialFunction[Int, ReqCharacterLevel] = {
@@ -219,9 +230,10 @@ package object requisite {
 //          }
     }
 
-      val progressionWithPointsToReq: PartialFunction[(TreeLike,SpendablePoints, Int), ReqPointsSpentInTree] = {
-          case (x: TreeLike,_, y: Int) => ReqPointsSpentInTree(x, y)
-      }
+    val progressionWithPointsToReq
+      : PartialFunction[(TreeLike, SpendablePoints, Int), ReqPointsSpentInTree] = {
+      case (x: TreeLike, _, y: Int) => ReqPointsSpentInTree(x, y)
+    }
 //    val pointsToReq: PartialFunction[(Points with SpendablePoint,Int),ReqPointsSpent] = {
 //        case x: (Points with SpendablePoint,Int) => {
 //            x._1

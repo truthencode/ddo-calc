@@ -24,18 +24,19 @@ import io.truthencode.ddo.support.requisite.{
   RequiresAllOfClass
 }
 
-/** Icon Tactical Training.png
-  * Tactical Combatant 	Passive 	+4 bonus to Tactics DC's.
-  * *
-  * Level 8: Fighter
-  * */
+/**
+ * Icon Tactical Training.png Tactical Combatant Passive +4 bonus to Tactics DC's. * Level 8:
+ * Fighter
+ */
 trait TacticalCombatant
-  extends FeatRequisiteImpl
+    extends FeatRequisiteImpl
     with ClassRequisiteImpl
     with Passive
     with RequiresAllOfClass
     with FighterBonusFeat {
   self: GeneralFeat =>
+
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((HeroicCharacterClass.Fighter, 8))
+
 }

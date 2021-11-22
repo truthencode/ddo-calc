@@ -22,8 +22,9 @@ import io.truthencode.ddo.model.feats.SubFeatInformation
 import io.truthencode.ddo.support.naming.{DisplayProperties, FriendlyDisplay}
 
 trait DisplayHelper {
-    type Entry = EnumEntry with DisplayProperties
-    type E = Enum[_ <: Entry]
 
-    val enum: E
+  type Entry = EnumEntry with DisplayProperties
+  type E = Enum[_ <: Entry]
+
+  val enum: E
 }

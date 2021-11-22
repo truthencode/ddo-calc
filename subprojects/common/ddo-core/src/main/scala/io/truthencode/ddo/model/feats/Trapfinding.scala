@@ -19,23 +19,21 @@ package io.truthencode.ddo.model.feats
 
 import io.truthencode.ddo.model.classes.HeroicCharacterClass
 import io.truthencode.ddo.model.classes.HeroicCharacterClass.{Artificer, Rogue}
-import io.truthencode.ddo.support.requisite.{
-  FeatRequisiteImpl,
-  GrantsToClass,
-  RequiresAnyOfClass
-}
+import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, GrantsToClass, RequiresAnyOfClass}
 
 /**
-  * Created by adarr on 2/16/2017.
-  */
+ * Created by adarr on 2/16/2017.
+ */
 protected[feats] trait Trapfinding
     extends FeatRequisiteImpl
     with Passive
     with GrantsToClass
     with RequiresAnyOfClass {
+
   override def anyOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((Rogue, 1), (Artificer, 1))
 
   override def grantToClass: Seq[(HeroicCharacterClass, Int)] =
     List((Rogue, 1), (Artificer, 1))
+
 }

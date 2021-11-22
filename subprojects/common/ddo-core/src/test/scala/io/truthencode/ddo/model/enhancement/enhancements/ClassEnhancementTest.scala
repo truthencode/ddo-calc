@@ -22,14 +22,15 @@ import org.scalatest.{FunSpec, Matchers}
 import io.truthencode.ddo.support.StringUtils._
 
 class ClassEnhancementTest extends FunSpec with Matchers with LazyLogging {
+
   describe("A Class Enhancement") {
     it("should have a description") {
       val d = ClassEnhancement.Determination
       d.description shouldNot be(empty)
-      d.rawDescription shouldEqual ("+1 Will Save")
+      d.rawDescription shouldEqual "+1 Will Save"
     }
     it("should have Tier information") {
-      ClassEnhancement.Determination.tier shouldEqual ("Core")
+      ClassEnhancement.Determination.tier shouldEqual "Core"
     }
     it("should read names with spaces") {
       val name = "Alchemical Shield".toPascalCase
@@ -68,4 +69,5 @@ class ClassEnhancementTest extends FunSpec with Matchers with LazyLogging {
       val st = 0
     }
   }
+
 }

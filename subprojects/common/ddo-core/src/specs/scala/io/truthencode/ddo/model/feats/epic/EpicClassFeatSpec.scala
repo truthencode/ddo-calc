@@ -22,8 +22,18 @@ import java.util
 import com.typesafe.scalalogging.LazyLogging
 import enumeratum.{Enum, EnumEntry}
 import io.truthencode.ddo.model.classes.HeroicCharacterClass
-import io.truthencode.ddo.model.feats.{ClassFeatDisplayHelper, ClassRestricted, EpicFeatFeatDisplayHelper, SubFeatInformation}
-import io.truthencode.ddo.support.naming.{Description, DisplayName, DisplayProperties, FriendlyDisplay}
+import io.truthencode.ddo.model.feats.{
+  ClassFeatDisplayHelper,
+  ClassRestricted,
+  EpicFeatFeatDisplayHelper,
+  SubFeatInformation
+}
+import io.truthencode.ddo.support.naming.{
+  Description,
+  DisplayName,
+  DisplayProperties,
+  FriendlyDisplay
+}
 import io.truthencode.ddo.support.requisite.ClassRequisite
 import org.concordion.integration.junit4.ConcordionRunner
 import org.junit.runner.RunWith
@@ -32,6 +42,7 @@ import scala.collection.JavaConverters._
 
 @RunWith(classOf[ConcordionRunner])
 class EpicClassFeatSpec extends LazyLogging {
+
   type Entry = EnumEntry with DisplayProperties
   type E = Enum[_ <: Entry]
   type CharClass = Option[HeroicCharacterClass]
@@ -49,6 +60,7 @@ class EpicClassFeatSpec extends LazyLogging {
   val filterByAnyOfs: PartialFunction[Entry, Entry] = {
     case x: ClassRequisite if x.anyOfClass.exists(findHelper.isDefinedForClass(_)) => x
   }
+
   private var instanceClass: Option[HeroicCharacterClass] = None
 
   def setUpClass(classId: String): Unit = {
@@ -81,8 +93,8 @@ class EpicClassFeatSpec extends LazyLogging {
     new ClassFeatDisplayHelper with EpicFeatFeatDisplayHelper {
       override val cClass: HeroicCharacterClass =
         instanceClass.getOrElse(HeroicCharacterClass.Artificer)
-      override val filterByCategory: PartialFunction[Entry, Entry] = {
-        case x: ClassRestricted => x
+      override val filterByCategory: PartialFunction[Entry, Entry] = { case x: ClassRestricted =>
+        x
       }
 
       override def verify(): util.List[String] = {

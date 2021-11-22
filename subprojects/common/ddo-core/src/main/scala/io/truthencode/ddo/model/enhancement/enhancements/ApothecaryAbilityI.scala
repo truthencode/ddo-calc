@@ -28,14 +28,12 @@ trait ApothecaryAbilityI
   override val abilitySelections: Seq[Attribute] =
     Seq(Attribute.Intelligence, Attribute.Constitution)
 
-  override lazy val description: Option[String] = Some(
-    "+1 to either Intelligence or Constitution"
-  )
+  override lazy val description: Option[String] = Some("+1 to either Intelligence or Constitution")
 
   /**
-    * Roman Numeral Suffix
-    *
-    * @return
-    */
+   * Roman Numeral Suffix
+   *
+   * @return
+   */
   override def rnSuffix: Int = 1
 }

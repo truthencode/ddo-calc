@@ -20,10 +20,12 @@ package io.truthencode.ddo.model.feats
 import io.truthencode.ddo.model.religions.{Religion, SovereignHost}
 
 /**
-  * Created by adarr on 5/2/2017.
-  */
+ * Created by adarr on 5/2/2017.
+ */
 trait TheSovereignHostFeatBase extends ReligionFeatBase {
   self: SovereignHost =>
+
   abstract override def allowedReligions: List[Religion] =
     super.allowedReligions ++ List(Religion.SovereignHost)
+
 }

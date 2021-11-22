@@ -19,22 +19,19 @@ package io.truthencode.ddo.model.feats
 
 import io.truthencode.ddo.model.classes.HeroicCharacterClass
 import io.truthencode.ddo.model.classes.HeroicCharacterClass.Warlock
-import io.truthencode.ddo.support.requisite.{
-  FeatRequisiteImpl,
-  GrantsToClass,
-  RequiresAllOfClass
-}
+import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, GrantsToClass, RequiresAllOfClass}
 
 /**
-  * +5 Magical Resistance Rating
-  * This feat can be granted multiple times.
-  */
+ * +5 Magical Resistance Rating This feat can be granted multiple times.
+ */
 protected[feats] trait ParagonsAegis
     extends FeatRequisiteImpl
     with Passive
     with RequiresAllOfClass
     with GrantsToClass { self: ClassFeat =>
+
   private def artiLevels = 12 to 20 by 2
+
   override def grantToClass: Seq[(HeroicCharacterClass, Int)] =
     artiLevels.map((Warlock, _))
 

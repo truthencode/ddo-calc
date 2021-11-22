@@ -27,10 +27,9 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * Plunge one enemy's mind into an illusory realm.
-  * That enemy is dazed and cannot act for 20 seconds. E
-  * ach time this enemy is damaged, there's a 10% chance they break free.
-  */
+ * Plunge one enemy's mind into an illusory realm. That enemy is dazed and cannot act for 20
+ * seconds. E ach time this enemy is damaged, there's a 10% chance they break free.
+ */
 protected[feats] trait DarkOnesLuck
     extends FeatRequisiteImpl
     with Passive

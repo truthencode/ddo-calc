@@ -23,6 +23,7 @@ import scala.collection.{GenIterable, GenSeq}
 import scala.language.higherKinds
 
 trait JoinAbleSeq[+X, C <: GenSeq[X]] extends JoinAbleBase[X, C] {
+
   lazy val source = GenSeq[X]()
   val list = source.take(sampleSize)
   //  val list:C = source.take(sampleSize)

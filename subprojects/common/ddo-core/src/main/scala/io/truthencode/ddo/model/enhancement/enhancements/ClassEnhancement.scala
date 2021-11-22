@@ -30,14 +30,15 @@ import io.truthencode.ddo.support.tree.{ClassTrees, Ranks}
 import scala.collection.immutable
 
 /**
-  * Class based enhancement which requires at least one level in a particular class.
-  */
+ * Class based enhancement which requires at least one level in a particular class.
+ */
 sealed trait ClassEnhancement extends Enhancement with ClassBased with Ranks {
   self: Tier
     with ClassBasedEnhancements
     with PointInTreeRequisite
     with PointsAvailableRequisite
     with RequiresActionPoints =>
+
   val tree: ClassTrees
 
   override def displayText: String = displaySource.lowerCaseNoise
@@ -56,6 +57,7 @@ object ClassEnhancement extends Enum[ClassEnhancement] with ClassEnhancementSear
 
   override def values: immutable.IndexedSeq[ClassEnhancement] =
     findValues ++ generateObliterationMultiSelector ++ generateWeakeningMixtureMultiSelector
+
   // Alchemist
   // Apothecary
   // Core Enhancements
@@ -71,6 +73,7 @@ object ClassEnhancement extends Enum[ClassEnhancement] with ClassEnhancementSear
 
   case object SpellCriticalChancePositiveAndNegativeI
       extends SpellCriticalChancePositiveAndNegativeI
+
   case object EnergyOfTheScholar extends EnergyOfTheScholar
   case object SoothingPoultices extends SoothingPoultices
   // Tier2
@@ -78,6 +81,7 @@ object ClassEnhancement extends Enum[ClassEnhancement] with ClassEnhancementSear
 
   case object SpellCriticalChancePositiveAndNegativeII
       extends SpellCriticalChancePositiveAndNegativeII
+
   case object StoneOfTheScholar extends StoneOfTheScholar
   case object LifeSalve extends LifeSalve
   // Tier3
@@ -86,6 +90,7 @@ object ClassEnhancement extends Enum[ClassEnhancement] with ClassEnhancementSear
 
   case object SpellCriticalChancePositiveAndNegativeIII
       extends SpellCriticalChancePositiveAndNegativeIII
+
   case object WillfulAmbition extends WillfulAmbition
   case object ApothecaryAbilityI extends ApothecaryAbilityI
   // Tier4
@@ -93,12 +98,14 @@ object ClassEnhancement extends Enum[ClassEnhancement] with ClassEnhancementSear
 
   case object SpellCriticalChancePositiveAndNegativeIV
       extends SpellCriticalChancePositiveAndNegativeIV
+
   case object RunForYourLife extends RunForYourLife
   case object AbilityII extends ApothecaryAbilityII
 
   // Tier5
   case object CurativeAdmixtureCureOrInflictCriticalWounds
       extends CurativeAdmixtureCureOrInflictCriticalWounds
+
   case object GlovesOfTheMasterApothecary extends GlovesOfTheMasterApothecary
   case object MasterApothecary extends MasterApothecary
   case object Dissolve extends Dissolve
@@ -143,6 +150,7 @@ object ClassEnhancement extends Enum[ClassEnhancement] with ClassEnhancementSear
 
   case class ElementalObliterationSelector(id: String, element: String)
       extends ObliterationMultiSelector {
+
     override protected def nameSource: String = s"${id}Obliteration"
     override def entryName: String = nameSource
   }
@@ -166,7 +174,9 @@ object ClassEnhancement extends Enum[ClassEnhancement] with ClassEnhancementSear
 
     override val subEnhancements: Seq[ClassEnhancement with SubEnhancement] =
       generateObliterationMultiSelector
+
   }
+
   case object Augmentation extends Augmentation
   case object InfernoOfCreation extends InfernoOfCreation
   case object ConjurationFocus extends ConjurationFocus
@@ -174,6 +184,7 @@ object ClassEnhancement extends Enum[ClassEnhancement] with ClassEnhancementSear
   // Weakening Mixture multi select for element
   case class WeakeningMixtureSelector(id: String, element: String)
       extends WeakeningMixtureMultiSelector {
+
     override protected def nameSource: String = id
 
     override def entryName: String = withPrefix.getOrElse("").concat(id)
@@ -189,5 +200,7 @@ object ClassEnhancement extends Enum[ClassEnhancement] with ClassEnhancementSear
 
     override val subEnhancements: Seq[ClassEnhancement with SubEnhancement] =
       generateWeakeningMixtureMultiSelector
+
   }
+
 }

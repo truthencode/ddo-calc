@@ -22,9 +22,7 @@ import org.scalatest.FunSpec
 class MultiSelectorKeyGeneratorTest extends FunSpec {
 
   describe("MultiSelectorKeyGeneratorTest") {
-    it("should keyList") {
-
-
-    }
+    it("should keyList") {}
   }
+
 }

@@ -21,6 +21,7 @@ import io.truthencode.ddo.model.effect.Suffix
 import io.truthencode.ddo.model.effect.Prefix
 
 trait RomanNumeral {
+
   type Self <: RomanNumeral
   val symbol: String
   lazy val symbolValue: Int = RomanNumeral.fromRoman(symbol)
@@ -36,22 +37,22 @@ object RomanNumeral {
 
   // from [[https://www.rosettacode.org/wiki/Roman_numerals/Decode#Scala rosettacode]]
   /**
-    * Translates Roman Numerals to Int
-    * [[https://www.rosettacode.org/wiki/Roman_numerals/Decode#Scala rosettacode]]
-    */
+   * Translates Roman Numerals to Int
+   * [[https://www.rosettacode.org/wiki/Roman_numerals/Decode#Scala rosettacode]]
+   */
   def fromRoman(s: String): Int = {
     s.toUpperCase
       .map(numerals)
-      .foldLeft((0, 0)) {
-        case ((sum, last), curr) => (sum + curr + (if (last < curr) -2 * last else 0), curr)
+      .foldLeft((0, 0)) { case ((sum, last), curr) =>
+        (sum + curr + (if (last < curr) -2 * last else 0), curr)
       }
       ._1
   }
 
   /**
-    * Translates Int into Roman numerals
-    * [[https://www.rosettacode.org/wiki/Roman_numerals/Decode#Scala rosettacode]]
-    */
+   * Translates Int into Roman numerals
+   * [[https://www.rosettacode.org/wiki/Roman_numerals/Decode#Scala rosettacode]]
+   */
   def toRoman(num: Int): String = {
     def convert(value: Int, table: List[(Int, String)]): String = table.headOption match {
       case None                  => ""
@@ -77,20 +78,14 @@ object RomanNumeral {
   )
   // scalastyle:off regex
   /**
-    * // A small test
-    * def test( roman:String ) = println( roman + " => " + fromRoman( roman ) )
-    *
-    * test("MCMXC")
-    * test("MMVIII")
-    * test("MDCLXVI")
-    *
-    * def testR( arabic:Int ) = println( arabic + " => " + toRoman( arabic ) )
-    *
-    * testR(1990)
-    * testR(2008)
-    * testR(1666)
-    *
-    */
+   * // A small test def test( roman:String ) = println( roman + " => " + fromRoman( roman ) )
+   *
+   * test("MCMXC") test("MMVIII") test("MDCLXVI")
+   *
+   * def testR( arabic:Int ) = println( arabic + " => " + toRoman( arabic ) )
+   *
+   * testR(1990) testR(2008) testR(1666)
+   */
   // scalastyle:on
 
   def fnRomanNumeralToNumber: PartialFunction[String, Int] = new PartialFunction[String, Int] {
@@ -105,6 +100,7 @@ object RomanNumeral {
     def apply(x: String): Int = {
       fromRoman(x)
     }
+
   }
 
   def fnNumberToRomanNumeral: PartialFunction[String, String] =
@@ -118,6 +114,7 @@ object RomanNumeral {
 
       override def apply(v1: String): String = toRoman(v1.toInt)
     }
+
 }
 
 trait RomanSuffix extends RomanNumeral with Suffix

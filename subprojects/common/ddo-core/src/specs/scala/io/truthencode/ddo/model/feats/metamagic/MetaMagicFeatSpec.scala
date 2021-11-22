@@ -27,6 +27,7 @@ import scala.collection.JavaConverters._
 
 @RunWith(classOf[ConcordionRunner])
 class MetaMagic {
+
   def verifyFeats(): util.List[String] = {
     MetaMagicFeat.values
       .map { x =>

@@ -24,15 +24,13 @@ import io.truthencode.ddo.support.requisite.{
   RequiresAllOfClass
 }
 
-/** Weapon Specialization Passive Feats
-  * Icon Feat Weapon Specialization.png
-  * Weapon Specialization
-  * Passive
-  * Provides a +2 bonus to damage rolls with the chosen weapon type and +2 stacking Melee Power or Ranged Power.
-  * This feat can be taken multiple times, once for each weapon type.
-  */
+/**
+ * Weapon Specialization Passive Feats Icon Feat Weapon Specialization.png Weapon Specialization
+ * Passive Provides a +2 bonus to damage rolls with the chosen weapon type and +2 stacking Melee
+ * Power or Ranged Power. This feat can be taken multiple times, once for each weapon type.
+ */
 protected[feats] trait WeaponSpecializationBase
-  extends FeatRequisiteImpl
+    extends FeatRequisiteImpl
     with ClassRequisiteImpl
     with Passive
     with RequiresAllOfClass
@@ -41,4 +39,5 @@ protected[feats] trait WeaponSpecializationBase
 
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((HeroicCharacterClass.Fighter, 4))
+
 }

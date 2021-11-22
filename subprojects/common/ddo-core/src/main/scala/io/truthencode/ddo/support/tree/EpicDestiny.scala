@@ -29,17 +29,20 @@ sealed trait EpicDestiny
     with DestinySphere
     with DisplayName
     with FriendlyDisplay {
+
   override protected def nameSource: String =
     entryName.splitByCase.toPascalCase
 
-    /**
-     * Used when qualifying a search with a prefix.
-     * Examples include finding "HalfElf" from qualified "Race:HalfElf"
-     *
-     * @return A default or applied prefix
-     */
-    override def searchPrefixSource: String = "Destiny"
+  /**
+   * Used when qualifying a search with a prefix. Examples include finding "HalfElf" from qualified
+   * "Race:HalfElf"
+   *
+   * @return
+   *   A default or applied prefix
+   */
+  override def searchPrefixSource: String = "Destiny"
 }
+
 // Arcane
 trait DraconicIncarnation extends EpicDestiny
 trait Fatesinger extends EpicDestiny
@@ -51,15 +54,18 @@ trait UnyieldingSentinel extends EpicDestiny
 // Martial
 trait GrandmasterOfFlowers extends EpicDestiny
 trait LegendaryDreadnought extends EpicDestiny
+
 trait ShadowDancer extends EpicDestiny {
   override def displayText: String = "Shadow-dancer"
 }
+
 // Primal
 trait FuryOfTheWild extends EpicDestiny
 trait PrimalAvatar extends EpicDestiny
 trait ShiradiChampion extends EpicDestiny
 
 object EpicDestiny extends Enum[EpicDestiny] with SearchPrefix {
+
   override def values: immutable.IndexedSeq[EpicDestiny] = findValues
   case object DraconicIncarnation extends DraconicIncarnation
   case object Fatesinger extends Fatesinger
@@ -78,10 +84,11 @@ object EpicDestiny extends Enum[EpicDestiny] with SearchPrefix {
   case object ShiradiChampion extends ShiradiChampion
 
   /**
-    * Used when qualifying a search with a prefix.
-    * Examples include finding "HalfElf" from qualified "Race:HalfElf"
-    *
-    * @return A default or applied prefix
-    */
+   * Used when qualifying a search with a prefix. Examples include finding "HalfElf" from qualified
+   * "Race:HalfElf"
+   *
+   * @return
+   *   A default or applied prefix
+   */
   override def searchPrefixSource: String = "Destiny"
 }

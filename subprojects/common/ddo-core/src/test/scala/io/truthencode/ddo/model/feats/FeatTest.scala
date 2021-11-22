@@ -40,9 +40,9 @@ class FeatTest extends FunSpec with Matchers with LazyLogging {
       val feats = Feat.values
       feats.foreach { x =>
         val idInfo = Map(
-          "entryName" -> x.entryName,
+          "entryName"     -> x.entryName,
           "displaySource" -> x.displaySource,
-          "displayText" -> x.displayText
+          "displayText"   -> x.displayText
         )
         logger.debug(s"Id Info $idInfo")
 
@@ -61,8 +61,9 @@ class FeatTest extends FunSpec with Matchers with LazyLogging {
         QuiveringPalm
       ) // .map(_.entryName).sorted
       val tacticalFeats = { Feat.values collect Feat.fnTacticalFeats } // .map(_.entryName).sorted
-      tactical should contain only (tacticalFeats : _*)
+      tactical should contain only (tacticalFeats: _*)
 
     }
   }
+
 }

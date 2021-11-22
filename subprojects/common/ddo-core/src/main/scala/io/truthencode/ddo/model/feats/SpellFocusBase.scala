@@ -24,20 +24,22 @@ import io.truthencode.ddo.support.requisite.{
   RequiresAnyOfClass
 }
 
-/** Icon Feat Spell Focus.png
-  * Spell Focus - Passive
-  * This feat makes it harder for enemies to resist the caster's spells of a particular school by adding +1 to the difficulty class of the spell.
-  *
-  * Level 1: Artificer, Bard, Cleric, Druid, Favored Soul
-  * Level 1: Sorcerer, Wizard; Level 4: Paladin, Ranger
-  *
-  * @todo create spell focus:X feats
-  */
+/**
+ * Icon Feat Spell Focus.png Spell Focus - Passive This feat makes it harder for enemies to resist
+ * the caster's spells of a particular school by adding +1 to the difficulty class of the spell.
+ *
+ * Level 1: Artificer, Bard, Cleric, Druid, Favored Soul Level 1: Sorcerer, Wizard; Level 4:
+ * Paladin, Ranger
+ *
+ * @todo
+ *   create spell focus:X feats
+ */
 protected[feats] trait SpellFocusBase
     extends FeatRequisiteImpl
     with ClassRequisiteImpl
     with Passive
     with RequiresAnyOfClass { self: GeneralFeat =>
+
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List(
       (HeroicCharacterClass.Artificer, 1),
@@ -50,4 +52,5 @@ protected[feats] trait SpellFocusBase
       (HeroicCharacterClass.Paladin, 4),
       (HeroicCharacterClass.Ranger, 4)
     )
+
 }

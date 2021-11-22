@@ -21,20 +21,13 @@ import io.truthencode.ddo.activation.{AtWillEvent, OnSummon}
 import io.truthencode.ddo.model.classes.HeroicCharacterClass
 import io.truthencode.ddo.model.classes.HeroicCharacterClass.Artificer
 import io.truthencode.ddo.model.misc.DefaultCasterCoolDown
-import io.truthencode.ddo.support.requisite.{
-  FeatRequisiteImpl,
-  GrantsToClass,
-  RequiresAllOfClass
-}
+import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, GrantsToClass, RequiresAllOfClass}
 
 /**
-  * [[https://ddowiki.com/page/Unleash_Iron_Defender Unleash Iron Defender]]
-  * Usage: Active
-  * Prerequisite: Artificer
-  * Description
-  * This feat allows an Artificer to summon a Iron Defender Homunculus
-  * Created by adarr on 2/16/2017.
-  */
+ * [[https://ddowiki.com/page/Unleash_Iron_Defender Unleash Iron Defender]] Usage: Active
+ * Prerequisite: Artificer Description This feat allows an Artificer to summon a Iron Defender
+ * Homunculus Created by adarr on 2/16/2017.
+ */
 protected[feats] trait UnleashIronDefender
     extends FeatRequisiteImpl
     with ActiveFeat
@@ -42,9 +35,11 @@ protected[feats] trait UnleashIronDefender
     with GrantsToClass
     with RequiresAllOfClass
     with DefaultCasterCoolDown {
+
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((Artificer, 1))
 
   override def grantToClass: Seq[(HeroicCharacterClass, Int)] =
     List((Artificer, 1))
+
 }

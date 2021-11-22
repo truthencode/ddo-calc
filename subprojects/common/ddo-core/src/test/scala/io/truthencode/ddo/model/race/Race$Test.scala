@@ -20,8 +20,8 @@ package io.truthencode.ddo.model.race
 import org.scalatest.{FunSpec, Matchers}
 
 /**
-  * Created by adarr on 3/17/2017.
-  */
+ * Created by adarr on 3/17/2017.
+ */
 class Race$Test extends FunSpec with Matchers {
 
   describe("Race$Test") {
@@ -33,4 +33,5 @@ class Race$Test extends FunSpec with Matchers {
     }
 
   }
+
 }

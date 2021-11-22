@@ -27,12 +27,15 @@ trait GuardFlag {
 }
 
 object Guard extends ((Guards, Option[GuardModifier]) => Guard) {
-  implicit val guardValidator: Validator[Guard] = validator[Guard] { g => {
 
-    g.effects is notEmpty
+  implicit val guardValidator: Validator[Guard] = validator[Guard] { g =>
+    {
 
+      g.effects is notEmpty
+
+    }
   }
-  }
+
   type Parameters = (Guards, Option[GuardModifier])
 
   def apply(guard: Guards, affixes: Option[GuardModifier] = None): Guard = {
@@ -61,22 +64,26 @@ object Guard extends ((Guards, Option[GuardModifier]) => Guard) {
     affixes match {
       case Some(afx) =>
         Modifier.withNameInsensitiveOption(afx.prefix.getOrElse("")) match {
-          case Some(Minor) => 1
-          case Some(Lesser) => 2
-          case Some(Greater) => 3
+          case Some(Minor)    => 1
+          case Some(Lesser)   => 2
+          case Some(Greater)  => 3
           case Some(Superior) => 4
-          case Some(Epic) => 5
-          case _ => 0
+          case Some(Epic)     => 5
+          case _              => 0
         }
       case _ => 0
     }
   }
 
-
 }
 
-abstract case class Guard private[Guard](
-                                          override val guard: Guards, affixes: Option[GuardModifier]) extends Enchantment with GuardFlag with Passive {
+abstract case class Guard private[Guard] (
+  override val guard: Guards,
+  affixes: Option[GuardModifier]
+) extends Enchantment
+    with GuardFlag
+    with Passive {
+
   def copy(guard: Guards, affixes: Option[GuardModifier]): Guard
 
   val effects: List[Effect] = Nil

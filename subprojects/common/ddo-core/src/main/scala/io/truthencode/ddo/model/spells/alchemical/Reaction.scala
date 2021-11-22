@@ -25,8 +25,8 @@ import scala.collection.immutable
 sealed trait Reaction extends EnumEntry
 
 /**
-  * Reaction affects Elemental spells (Fire, Cold, Electric,Acid and poison)
-  */
+ * Reaction affects Elemental spells (Fire, Cold, Electric,Acid and poison)
+ */
 trait Pyrite extends Reaction
 
 /**
@@ -40,6 +40,7 @@ trait Verudite extends Reaction
 trait Orchidium extends Reaction
 
 object Reaction extends Enum[Reaction] {
+
   override def values: immutable.IndexedSeq[Reaction] = findValues
   case object Pyrite extends Pyrite
   case object Verudite extends Verudite

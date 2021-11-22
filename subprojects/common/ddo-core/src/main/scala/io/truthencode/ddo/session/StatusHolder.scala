@@ -23,7 +23,10 @@ import io.truthencode.ddo.support.requisite.{Inclusion, Requisite}
 
 import scala.collection.mutable
 
-abstract class StatusHolder[T <: EnumEntry with DisplayName with DisplayProperties with Requisite with Inclusion] {
+abstract class StatusHolder[
+  T <: EnumEntry with DisplayName with DisplayProperties with Requisite with Inclusion
+] {
+
   type E = Enum[_ <: T]
   type MappedValue = mutable.Map[String, T]
   val enum: E

@@ -21,13 +21,11 @@ import io.truthencode.ddo.model.religions.LordOfBlades
 import io.truthencode.ddo.support.requisite.FeatRequisiteImpl
 
 /**
-  * Created by adarr on 4/7/2017.
-  */
+ * Created by adarr on 4/7/2017.
+ */
 trait FollowerOfTheLordOfBlades
     extends FeatRequisiteImpl
     with EberronReligionNonWarforged
     with FollowerBase
     with LordOfBlades
-    with TheLordOfBladesFeatBase { self: DeityFeat =>
-
-}
+    with TheLordOfBladesFeatBase { self: DeityFeat => }

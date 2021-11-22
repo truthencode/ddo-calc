@@ -22,6 +22,7 @@ import io.truthencode.ddo.model.enhancement.enhancements.ClassEnhancement
 import org.scalatest.{FunSpec, Matchers}
 
 class SLAPrefixTest extends FunSpec with Matchers with LazyLogging {
+
   describe("SlA Prefix") {
     it("should prepend Enhancements with Spell-Like Ability:") {
       val e = ClassEnhancement.RapidCondensation
@@ -30,4 +31,5 @@ class SLAPrefixTest extends FunSpec with Matchers with LazyLogging {
       e.displayText shouldEqual "Spell-Like Ability: Rapid Condensation"
     }
   }
+
 }

@@ -20,8 +20,8 @@ package io.truthencode.ddo.support.charges
 trait Recharge {
 
   /**
-    * The rate charges are recovered
-    */
+   * The rate charges are recovered
+   */
   val rechargeRate: Either[() => RechargeAmount, RechargeAmount]
   val rechargeType: Either[() => Interval, Interval]
 }
@@ -43,4 +43,5 @@ case class IncrementalRecharge(
   override val rechargeRate: Either[() => RechargeAmount, RechargeAmount] = Right(
     RechargeAmount.Incremental(quantity)
   )
+
 }

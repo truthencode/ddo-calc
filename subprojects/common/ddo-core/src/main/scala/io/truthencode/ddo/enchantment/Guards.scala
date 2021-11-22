@@ -23,7 +23,9 @@ import io.truthencode.ddo.NoDefault
 import scala.collection.immutable.IndexedSeq
 
 sealed trait Guards extends EnumEntry
+
 object Guards extends Enum[Guards] with NoDefault[Guards] {
+
   val values: IndexedSeq[Guards] = findValues
   case object AcidGuard extends Guards
   case object AirGuard extends Guards

@@ -24,18 +24,19 @@ import io.truthencode.ddo.support.requisite.{
   RequiresAnyOfClass
 }
 
-/** Icon Feat Spell Penetration.png
-  * Spell Penetration (feat) - Passive
-  * Adds +2 to the caster level check for defeating a foe's spell resistance.
-  *
-  * Level 1: Artificer, Bard, Cleric, Druid, Favored Soul
-  * Level 1: Sorcerer, Wizard; Level 4: Paladin, Ranger
-  * */
+/**
+ * Icon Feat Spell Penetration.png Spell Penetration (feat) - Passive Adds +2 to the caster level
+ * check for defeating a foe's spell resistance.
+ *
+ * Level 1: Artificer, Bard, Cleric, Druid, Favored Soul Level 1: Sorcerer, Wizard; Level 4:
+ * Paladin, Ranger
+ */
 trait SpellPenetration
     extends FeatRequisiteImpl
     with ClassRequisiteImpl
     with Passive
     with RequiresAnyOfClass { self: GeneralFeat =>
+
   override def anyOfClass: Seq[(HeroicCharacterClass, Int)] =
     List(
       (HeroicCharacterClass.Artificer, 1),
@@ -48,4 +49,5 @@ trait SpellPenetration
       (HeroicCharacterClass.Paladin, 4),
       (HeroicCharacterClass.Ranger, 4)
     )
+
 }

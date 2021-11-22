@@ -26,6 +26,7 @@ import org.junit.runner.RunWith
 @FullOGNL
 @RunWith(classOf[ConcordionRunner])
 class AlchemistClassFeatSpec extends ClassFeatDisplayHelper {
+
   override val enum: E = Feat
 
   override val cClass: HeroicCharacterClass = HeroicCharacterClass.Alchemist

@@ -52,6 +52,7 @@ sealed trait ClassBasedEnhancements extends EnumEntry with DisplayName {
 
   override protected def nameSource: String =
     entryName.splitByCase.toPascalCase
+
 }
 
 // Class Enhancements
@@ -69,6 +70,7 @@ trait AlchemistEnhancement
 
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((Alchemist, 1))
+
 }
 
 /*
@@ -82,6 +84,7 @@ trait ArtificerEnhancement
 
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((Artificer, 1))
+
 }
 
 /*
@@ -95,6 +98,7 @@ trait BarbarianEnhancement
 
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((Barbarian, 1))
+
 }
 
 /*
@@ -108,6 +112,7 @@ trait BardEnhancement
 
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((Bard, 1))
+
 }
 
 /*
@@ -121,6 +126,7 @@ trait ClericEnhancement
 
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((Cleric, 1))
+
 }
 
 /*
@@ -135,6 +141,7 @@ trait DruidEnhancement
 
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((Druid, 1))
+
 }
 
 /*
@@ -149,6 +156,7 @@ trait FavoredSoulEnhancement
 
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((FavoredSoul, 1))
+
 }
 
 /*
@@ -156,6 +164,7 @@ Fighter
 Enhancements: Kensei, Stalwart Defender, Vanguard
  */
 trait FighterEnhancement extends FighterOrPaladinEnhancement with RequiresAllOfClass {
+
   private val cls = List((Fighter, 1))
   override def anyOfClass: Seq[(HeroicCharacterClass, Int)] = List((Fighter, 1))
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] = List((Fighter, 1))
@@ -183,6 +192,7 @@ trait MonkEnhancement
 
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((Monk, 1))
+
 }
 
 /*
@@ -191,6 +201,7 @@ Enhancements: Knight of the Chalice, Sacred Defender, Vanguard
  */
 
 trait PaladinEnhancement extends FighterOrPaladinEnhancement with RequiresAllOfClass {
+
   private val cls = List((Paladin, 1))
   override def anyOfClass: Seq[(HeroicCharacterClass, Int)] = cls
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] = cls
@@ -209,6 +220,7 @@ trait RangerEnhancement
 
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((Ranger, 1))
+
 }
 
 /*
@@ -223,6 +235,7 @@ trait RogueEnhancement
 
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((Rogue, 1))
+
 }
 
 /*
@@ -230,6 +243,7 @@ Sorcerer
 Enhancements: Air Savant, Earth Savant, Eldritch Knight, Fire Savant, Water Savant
  */
 trait SorcererEnhancement extends SorcererOrWizardEnhancement with RequiresAllOfClass {
+
   private val cls = List((Sorcerer, 1))
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] = cls
   override def anyOfClass: Seq[(HeroicCharacterClass, Int)] = cls
@@ -243,6 +257,7 @@ trait SorcererOrWizardEnhancement
 
   override def anyOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((Sorcerer, 1), (Wizard, 1))
+
 }
 
 /*
@@ -256,6 +271,7 @@ trait WarlockEnhancement
 
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((Warlock, 1))
+
 }
 
 /*
@@ -263,6 +279,7 @@ Wizard
 Enhancements: Archmage, Eldritch Knight, Pale Master
  */
 trait WizardEnhancement extends SorcererOrWizardEnhancement with RequiresAllOfClass {
+
   private val cls = List((Wizard, 1))
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] = cls
   override def anyOfClass: Seq[(HeroicCharacterClass, Int)] = cls
@@ -296,4 +313,5 @@ object ClassBasedEnhancements extends Enum[ClassBasedEnhancements] {
 
   override lazy val values: immutable.IndexedSeq[ClassBasedEnhancements] =
     findValues
+
 }

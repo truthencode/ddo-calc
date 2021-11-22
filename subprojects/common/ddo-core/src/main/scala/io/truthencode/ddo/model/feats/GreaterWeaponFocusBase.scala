@@ -25,11 +25,13 @@ import io.truthencode.ddo.support.requisite.{
   RequiresAllOfFeat
 }
 
-/** Icon Feat Greater Weapon Focus.png
-  * Greater Weapon Focus 	Passive 	Provides an additional +1 bonus to attack rolls with the chosen weapon type and additional +2 stacking Melee Power or Ranged Power. This feat stacks with Weapon Focus.
-  * */
+/**
+ * Icon Feat Greater Weapon Focus.png Greater Weapon Focus Passive Provides an additional +1 bonus
+ * to attack rolls with the chosen weapon type and additional +2 stacking Melee Power or Ranged
+ * Power. This feat stacks with Weapon Focus.
+ */
 protected[feats] trait GreaterWeaponFocusBase
-  extends FeatRequisiteImpl
+    extends FeatRequisiteImpl
     with ClassRequisiteImpl
     with Passive
     with RequiresAllOfClass
@@ -38,4 +40,5 @@ protected[feats] trait GreaterWeaponFocusBase
 
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((HeroicCharacterClass.Fighter, 8))
+
 }

@@ -30,16 +30,16 @@ import io.truthencode.ddo.support.requisite.{
 import scala.collection.immutable.IndexedSeq
 
 /**
-  * Created by adarr on 2/21/2017.
-  */
+ * Created by adarr on 2/21/2017.
+ */
 sealed trait MetaMagicFeat
     extends Feat
     with ClassRequisiteImpl
     with FriendlyDisplay
     with FeatMatcher { self: FeatType with Requisite with Inclusion with RequisiteType =>
 
-  val matchFeat: PartialFunction[Feat, MetaMagicFeat] = {
-    case x: MetaMagicFeat => x
+  val matchFeat: PartialFunction[Feat, MetaMagicFeat] = { case x: MetaMagicFeat =>
+    x
   }
 
   val matchFeatById: PartialFunction[String, MetaMagicFeat] = {
@@ -67,6 +67,7 @@ object MetaMagicFeat extends Enum[MetaMagicFeat] {
       (HeroicCharacterClass.Paladin, 4),
       (HeroicCharacterClass.Ranger, 4)
     )
+
   case object EmpowerHealingSpell extends MetaMagicFeat with EmpowerHealingSpell
   case object EmpowerSpell extends MetaMagicFeat with EmpowerSpell
   case object EnlargeSpell extends MetaMagicFeat with EnlargeSpell

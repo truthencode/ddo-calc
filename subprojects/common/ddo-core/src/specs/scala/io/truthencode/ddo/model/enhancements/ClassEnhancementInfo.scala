@@ -29,6 +29,7 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 trait ClassEnhancementInfo {
+
   type ENH = ClassEnhancement with Tier with ActionPointRequisite with PointInTreeRequisite
   val values: Seq[ENH] = ClassEnhancement.values collect { case x: ENH => x }
   val name: String
@@ -39,8 +40,8 @@ trait ClassEnhancementInfo {
   val description: String
 
   /**
-    * This should == ClassEnhancement.entryName
-    */
+   * This should == ClassEnhancement.entryName
+   */
   def id: String
 }
 
@@ -77,7 +78,7 @@ object ClassEnhancementInfo extends LazyLogging {
     logger.info(s"Searching $key using: $srch")
     val eOpt = ClassEnhancement.withNameInsensitiveOption(srch) match {
       case Some(
-          x: ClassEnhancement with Tier with ClassBasedEnhancements with PointInTreeRequisite with PointsAvailableRequisite with RequiresActionPoints
+            x: ClassEnhancement with Tier with ClassBasedEnhancements with PointInTreeRequisite with PointsAvailableRequisite with RequiresActionPoints
           ) =>
         logger.info(s"Found ${x.displayText} => ${x.entryName}")
         Some(x)
@@ -110,8 +111,8 @@ object ClassEnhancementInfo extends LazyLogging {
       logger.info(s"located ${e.displayText}")
 
       /**
-        * The string id used to create the object
-        */
+       * The string id used to create the object
+       */
       def id: String = e.entryName
       val actionPointCost: Int = e.apCostPerRank
       val ranks: Int = e.ranks
@@ -127,12 +128,13 @@ object ClassEnhancementInfo extends LazyLogging {
       val description: String = e.rawDescription
       CEnhancementDumb(key, id, actionPointCost, ranks, progression, requirements, description)
     } else {
-      logger.warn((s"did not locate id, using safe wrapper for $key"))
+      logger.warn(s"did not locate id, using safe wrapper for $key")
       CEnhancementDumb(key)
     }
 
   }
   // scalastyle:off number.of.methods
+
 }
 
 case class CEnhancementDumb(
@@ -145,10 +147,9 @@ case class CEnhancementDumb(
   description: String = ""
 ) extends ClassEnhancementInfo
 
-case class CEnhancement(
-  name: String
-)(implicit identifier: String = name.toPascalCase.filterAlphaNumeric)
-    extends ClassEnhancementInfo
+case class CEnhancement(name: String)(implicit
+  identifier: String = name.toPascalCase.filterAlphaNumeric
+) extends ClassEnhancementInfo
     with LazyLogging {
 
   private def _enh = {
@@ -162,8 +163,8 @@ case class CEnhancement(
   private val enh: ENH = _enh.get
 
   /**
-    * The string id used to create the object
-    */
+   * The string id used to create the object
+   */
   override def id: String = enh.entryName
   override val actionPointCost: Int = enh.apCostPerRank
   override val ranks: Int = enh.ranks

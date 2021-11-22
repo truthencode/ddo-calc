@@ -26,23 +26,25 @@ import io.truthencode.ddo.support.requisite.RequirementImplicits.{
 import io.truthencode.ddo.support.tree.TreeLike
 
 /**
-  * Represents a required amount of points spent (Action, Survival, Epic Destiny Points)
-  */
+ * Represents a required amount of points spent (Action, Survival, Epic Destiny Points)
+ */
 sealed trait PointRequisite {
   self: Requisite =>
 
 }
 
 /**
-  * Represents a progression in a given area such as 20 action points spent in a particular tree to qualify for an enhancement.
-  */
+ * Represents a progression in a given area such as 20 action points spent in a particular tree to
+ * qualify for an enhancement.
+ */
 sealed trait PointInTreeRequisite extends PointRequisite {
   self: Requisite =>
 
   /**
-    * Minimum points already invested
-    * @return Minimum points of the given type spent in the given tree.
-    */
+   * Minimum points already invested
+   * @return
+   *   Minimum points of the given type spent in the given tree.
+   */
   def progressionInTree: Seq[(TreeLike, SpendablePoints, Int)]
 }
 
@@ -50,10 +52,12 @@ sealed trait PointsAvailableRequisite extends PointRequisite {
   self: Requisite =>
 
   /**
-    * Denotes the type and amount of points required to be available to acquire the given Enhancement
-    * @note this may need to become a stackable trait to support multiple types.
-    * @return Seq of values.
-    */
+   * Denotes the type and amount of points required to be available to acquire the given Enhancement
+   * @note
+   *   this may need to become a stackable trait to support multiple types.
+   * @return
+   *   Seq of values.
+   */
   def pointsAvailable: Seq[(SpendablePoints, Int)]
 }
 
@@ -66,9 +70,10 @@ sealed trait PointsAvailableRequisite extends PointRequisite {
 // }
 
 /**
-  * Base Stackable trait implementation used to initialize when no other has been used.
-  * @note we should be able to create just one of these instead of a Race / Class / Feat etc specific one
-  */
+ * Base Stackable trait implementation used to initialize when no other has been used.
+ * @note
+ *   we should be able to create just one of these instead of a Race / Class / Feat etc specific one
+ */
 trait PointsInTreeRequisiteImpl extends MustContainImpl[Requirement] with PointInTreeRequisite {
   self: Requisite with RequisiteType =>
   override def progressionInTree: Seq[(TreeLike, SpendablePoints, Int)] = Nil
@@ -82,6 +87,7 @@ trait RequiresPointsInTree
   abstract override def allOf: Seq[Requirement] = super.allOf ++ {
     progressionInTree collect progressionWithPointsToReq
   }
+
 }
 
 trait PointsAvailableRequisiteImpl
@@ -92,9 +98,10 @@ trait PointsAvailableRequisiteImpl
 }
 
 /**
-  * Denotes the amount of points needed (or that must be available) to acquire this Enhancement.
-  * This is less specific than [[RequiresPointsInTree]], which specifics the amount of points spent in a specific tree.
-  */
+ * Denotes the amount of points needed (or that must be available) to acquire this Enhancement. This
+ * is less specific than [[RequiresPointsInTree]], which specifics the amount of points spent in a
+ * specific tree.
+ */
 trait RequiresPointsAvailable
     extends PointsAvailableRequisite
     with RequiresAllOf[Requirement]
@@ -103,4 +110,5 @@ trait RequiresPointsAvailable
   abstract override def allOf: Seq[Requirement] = super.allOf ++ {
     pointsAvailable collect pointToReq
   }
+
 }

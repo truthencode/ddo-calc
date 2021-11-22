@@ -19,31 +19,54 @@ package io.truthencode.ddo
 
 import com.typesafe.scalalogging.LazyLogging
 import io.truthencode.ddo.support.matching.{WordMatchStrategies, WordMatchStrategy}
-import io.truthencode.ddo.support.StringUtils.{Extensions, randomAlphanumericString}
+import io.truthencode.ddo.support.StringUtils.{randomAlphanumericString, Extensions}
 import org.scalactic.Equality
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, Matchers}
 
-
 class BindingTest extends FunSpec with Matchers with MockitoSugar with LazyLogging {
+
   final val Unbound = "Unbound"
-  final val possibleText: List[String] = List("Bound To Character on Equip",
+
+  final val possibleText: List[String] = List(
+    "Bound To Character on Equip",
     "Bound To Account on Equip",
     "Bound To Character on Acquire",
     "Bound To Account on Acquire",
     "Bound To Account on Equip",
     Unbound,
     "Bound To Character",
-    "Bound To Account")
+    "Bound To Account"
+  )
+
   final val numCharacters = 10
-  final val randWords = for {_ <- 1 to 5} yield randomAlphanumericString(numCharacters)
-  final val bindMap = possibleText.map {
-    words => (words, if (words.equalsIgnoreCase(Unbound)) Unbound else words.wordsToAcronym.getOrElse(Unbound))
+  final val randWords = for { _ <- 1 to 5 } yield randomAlphanumericString(numCharacters)
+
+  final val bindMap = possibleText
+    .map { words =>
+      (
+        words,
+        if (words.equalsIgnoreCase(Unbound)) Unbound
+        else words.wordsToAcronym.getOrElse(Unbound)
+      )
+    }
+    .toMap
+    .map { case (k, v) => v -> k }
+
+  final val abbr = possibleText.map { words =>
+    if (words.equalsIgnoreCase(Unbound)) Unbound else words.wordsToAcronym.getOrElse(Unbound)
   }
-    .toMap.map { case (k, v) => v -> k }
-  final val abbr = possibleText.map { words => if (words.equalsIgnoreCase(Unbound)) Unbound else words.wordsToAcronym.getOrElse(Unbound) }
-  final val checks: List[String] = List("BindsToAccount",
-    "Unbound", "BindsToCharacter", "BindsToCharacterOnEquip", "BindsToAccountOnEquip", "BindsToCharacterOnAcquire", "BindsToCharacterOnEquip")
+
+  final val checks: List[String] = List(
+    "BindsToAccount",
+    "Unbound",
+    "BindsToCharacter",
+    "BindsToCharacterOnEquip",
+    "BindsToAccountOnEquip",
+    "BindsToCharacterOnAcquire",
+    "BindsToCharacterOnEquip"
+  )
+
   describe("Binding Status") {
     they("should include unbound, account and character") {
       BindingStatus.values.foreach { x => checks.contains(x.entryName) }
@@ -84,6 +107,7 @@ class BindingTest extends FunSpec with Matchers with MockitoSugar with LazyLoggi
       rslt shouldEqual None
     }
   }
+
   describe("Binding Flags") {
     they("can create an instance from acronyms with [Option] or raw") {
       val words = possibleText.filter { x => x.equals(Unbound) }
@@ -110,16 +134,18 @@ class BindingTest extends FunSpec with Matchers with MockitoSugar with LazyLoggi
       }
     }
     they("should match Abbreviation with the name") {
-      implicit val caseInsensitiveEquality: Equality[String] = (self: String, b: Any) => b match {
-        case other: String => self.equalsIgnoreCase(other)
-        case _ => false
-      }
-      bindMap.foreach {
-        case (k, v) => val flag = BindingFlags.withName(k).toFullWord
-          logger.info(s"validating $flag == $v")
-          flag shouldEqual v
+      implicit val caseInsensitiveEquality: Equality[String] = (self: String, b: Any) =>
+        b match {
+          case other: String => self.equalsIgnoreCase(other)
+          case _             => false
+        }
+      bindMap.foreach { case (k, v) =>
+        val flag = BindingFlags.withName(k).toFullWord
+        logger.info(s"validating $flag == $v")
+        flag shouldEqual v
 
       }
     }
   }
+
 }

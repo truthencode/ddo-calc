@@ -21,13 +21,11 @@ import io.truthencode.ddo.model.religions.SovereignHost
 import io.truthencode.ddo.support.requisite.FeatRequisiteImpl
 
 /**
-  * Created by adarr on 4/7/2017.
-  */
+ * Created by adarr on 4/7/2017.
+ */
 trait FollowerOfTheSovereignHost
     extends FeatRequisiteImpl
     with EberronReligionNonWarforged
     with FollowerBase
     with SovereignHost
-    with TheSovereignHostFeatBase { self: DeityFeat =>
-
-}
+    with TheSovereignHostFeatBase { self: DeityFeat => }

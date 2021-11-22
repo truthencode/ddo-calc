@@ -21,13 +21,11 @@ import io.truthencode.ddo.model.religions.Vulkoor
 import io.truthencode.ddo.support.requisite.FeatRequisiteImpl
 
 /**
-  * Created by adarr on 4/7/2017.
-  */
+ * Created by adarr on 4/7/2017.
+ */
 trait FollowerOfVulkoor
     extends FeatRequisiteImpl
     with EberronReligionNonWarforged
     with FollowerBase
     with Vulkoor
-    with TheVulkoorFeatBase { self: DeityFeat =>
-
-}
+    with TheVulkoorFeatBase { self: DeityFeat => }

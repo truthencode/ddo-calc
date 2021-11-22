@@ -18,12 +18,13 @@
 package io.truthencode.ddo.model
 
 package object misc {
-    /* Shared Pools */
-    final val PoolCleave = "Cleave"
-    final val PoolGreatCleave = "GreatCleave"
 
-    /**
-     * Pool Timer shared among manyshot, ten thousand stars etc
-     */
-    final val PoolManyShot = "ManyShot"
+  /* Shared Pools */
+  final val PoolCleave = "Cleave"
+  final val PoolGreatCleave = "GreatCleave"
+
+  /**
+   * Pool Timer shared among manyshot, ten thousand stars etc
+   */
+  final val PoolManyShot = "ManyShot"
 }

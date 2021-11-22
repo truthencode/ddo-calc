@@ -19,20 +19,27 @@ package io.truthencode.ddo.model.feats
 
 import io.truthencode.ddo.model.classes.HeroicCharacterClass
 import io.truthencode.ddo.model.classes.HeroicCharacterClass.Alchemist
-import io.truthencode.ddo.support.requisite.{ClassRequisiteImpl, FeatRequisiteImpl, RequiresAllOfClass}
+import io.truthencode.ddo.support.requisite.{
+  ClassRequisiteImpl,
+  FeatRequisiteImpl,
+  RequiresAllOfClass
+}
 
 /**
- * You can use Intelligence for Will saves. Mutually exclusive with [[https://ddowiki.com/page/Liquid_Courage]]
+ * You can use Intelligence for Will saves. Mutually exclusive with
+ * [[https://ddowiki.com/page/Liquid_Courage]]
  *
- * @see [[https://ddowiki.com/page/Tough_Tincture]]
+ * @see
+ *   [[https://ddowiki.com/page/Tough_Tincture]]
  */
 protected[feats] trait ToughTincture
-  extends FeatRequisiteImpl
+    extends FeatRequisiteImpl
     with ClassRequisiteImpl
     with RequiresAllOfClass
     with AlchemistBonusFeat
     with Passive {
   self: ClassFeat =>
+
   private[this] val cls = (Alchemist, 8)
 
   abstract override def allOfClass: Seq[(HeroicCharacterClass, Int)] = super.allOfClass :+ cls

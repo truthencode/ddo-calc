@@ -20,6 +20,7 @@ package io.truthencode.ddo
 import org.scalatest.{FunSpec, Matchers}
 
 class StoreLocationTest extends FunSpec with Matchers {
+
   describe("Wearable Items") {
     they("should have a designated Equipment Slot as a location") {
       val eq = StoreLocation.Equipment
@@ -36,4 +37,5 @@ class StoreLocationTest extends FunSpec with Matchers {
       aug.map(_.generalAugment).contains(AugmentLocation.RedAugmentSlot)
     }
   }
+
 }

@@ -18,11 +18,12 @@
 package io.truthencode.ddo.model.effect
 
 /**
-  * A basic trait to provide source information.
-  * Useful mostly for tagging Arrays with where they came from.  I.e. An AC bonus coming from a specific equipped item
-  * and an Enhancement Line that don't stack.
-  */
+ * A basic trait to provide source information. Useful mostly for tagging Arrays with where they
+ * came from. I.e. An AC bonus coming from a specific equipped item and an Enhancement Line that
+ * don't stack.
+ */
 trait SourceInfo {
+
   val sourceId: String
   val sourceRef: AnyRef
 }
@@ -30,7 +31,9 @@ trait SourceInfo {
 object SourceInfo {
 
   def apply(sourceId: String, sourceRef: AnyRef): SourceInfo = new SourceInfo {
+
     override val sourceId: String = sourceId
     override val sourceRef: AnyRef = sourceRef
   }
+
 }

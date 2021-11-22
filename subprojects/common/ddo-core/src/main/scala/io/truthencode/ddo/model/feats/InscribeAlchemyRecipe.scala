@@ -29,11 +29,12 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  *You are able to copy alchemical formulae from Recipes into your spellbook.
-  * This action will destroy the Recipe.
-  *
-  *  @see [[https://ddowiki.com/page/Inscribe_Alchemy_Recipe]]
-  */
+ * You are able to copy alchemical formulae from Recipes into your spellbook. This action will
+ * destroy the Recipe.
+ *
+ * @see
+ *   [[https://ddowiki.com/page/Inscribe_Alchemy_Recipe]]
+ */
 protected[feats] trait InscribeAlchemyRecipe
     extends FeatRequisiteImpl
     with ClassRequisiteImpl
@@ -42,6 +43,7 @@ protected[feats] trait InscribeAlchemyRecipe
     with ActiveFeat
     with AtWillEvent
     with DefaultCoolDown {
+
   private[this] val cls = (Alchemist, 1)
   abstract override def grantToClass: Seq[(HeroicCharacterClass, Int)] = super.grantToClass :+ cls
 

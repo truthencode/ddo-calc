@@ -18,6 +18,7 @@
 package io.truthencode.ddo.model.enhancement.enhancements
 
 trait WeakeningMixtureCold extends WeakeningMixtureMultiSelector with MultiSelectorKeyGenerator {
+
   abstract override def keyList: List[String] = "Cold" :: super.keyList
 
   override lazy val description: Option[String] = Some(

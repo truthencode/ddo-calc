@@ -24,6 +24,7 @@ import scala.collection.immutable
 sealed trait DurationType extends EnumEntry
 
 object DurationType extends Enum[DurationType] {
+
   override def values: immutable.IndexedSeq[DurationType] = findValues
   case object Duration extends DurationType
   case object PerLevel extends DurationType

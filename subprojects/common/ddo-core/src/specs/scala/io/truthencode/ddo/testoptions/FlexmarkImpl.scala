@@ -21,6 +21,7 @@ import com.vladsch.flexmark.util.data.MutableDataSet
 import com.vladsch.flexmark.util.misc.Extension
 
 trait FlexmarkImpl extends Flexmark {
+
   override def flexmarkExtensions: Seq[Extension] = Seq.empty
 
   override def calls: Seq[() => MutableDataSet] = Seq.empty

@@ -21,32 +21,39 @@ import io.truthencode.ddo.model.classes.HeroicCharacterClass
 import io.truthencode.ddo.model.classes.HeroicCharacterClass.Ranger
 import io.truthencode.ddo.model.feats.GeneralFeat.WeaponSpecialization
 import io.truthencode.ddo.model.item.weapon.WeaponClass
-import io.truthencode.ddo.support.requisite.{ClassRequisiteImpl, FeatRequisiteImpl, GrantsToClass, RequiresAllOfFeat, RequiresAnyOfFeat, RequiresBaB}
-
+import io.truthencode.ddo.support.requisite.{
+  ClassRequisiteImpl,
+  FeatRequisiteImpl,
+  GrantsToClass,
+  RequiresAllOfFeat,
+  RequiresAnyOfFeat,
+  RequiresBaB
+}
 
 /**
-  * Feat bow strength.png
-  * Bow Strength
-  * Passive
-  * Strength bonus to damage is applied to Longbow and Shortbow.
-  *
-  * Point Blank Shot, Weapon Focus: Ranged Weapons
-  * Base Attack Bonus +4
-  * MustContainAtLeastOne of: Weapon Specialization: Ranged Weapons, Power Attack, Combat Expertise, Zen Archery
-  **/
+ * Feat bow strength.png Bow Strength Passive Strength bonus to damage is applied to Longbow and
+ * Shortbow.
+ *
+ * Point Blank Shot, Weapon Focus: Ranged Weapons Base Attack Bonus +4 MustContainAtLeastOne of:
+ * Weapon Specialization: Ranged Weapons, Power Attack, Combat Expertise, Zen Archery
+ */
 protected[feats] trait BowStrength
-  extends FeatRequisiteImpl
+    extends FeatRequisiteImpl
     // with ClassRequisiteImpl
     with Passive
     with RequiresBaB
     with RequiresAllOfFeat
     with RequiresAnyOfFeat
-    with FighterBonusFeat with GrantsToClass {
+    with FighterBonusFeat
+    with GrantsToClass {
   self: GeneralFeat =>
+
   override def anyOfFeats: Seq[GeneralFeat] =
-    List(GeneralFeat.PowerAttack,
+    List(
+      GeneralFeat.PowerAttack,
       GeneralFeat.CombatExpertise,
-      GeneralFeat.ZenArchery) ++ specializations
+      GeneralFeat.ZenArchery
+    ) ++ specializations
 
   private def specializations = GeneralFeat.weaponSpecializationAny collect {
     case x: WeaponSpecialization if x.weaponClass == WeaponClass.Ranged => x

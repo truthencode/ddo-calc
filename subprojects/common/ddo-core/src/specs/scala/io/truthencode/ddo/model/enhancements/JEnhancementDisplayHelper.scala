@@ -27,10 +27,11 @@ import scala.beans.BeanProperty
 abstract class JEnhancementDisplayHelper extends ClassEnhancementDisplayHelper with LazyLogging {
 
   /**
-    * Java Work-around to set
-    */
+   * Java Work-around to set
+   */
   @BeanProperty
   var treeId: String = _
+
   override lazy val tree: ClassTrees = ClassTrees.withName(treeId)
 
   @BeanProperty
@@ -49,12 +50,14 @@ abstract class JEnhancementDisplayHelper extends ClassEnhancementDisplayHelper w
   )
 
   sealed trait prefixes {
+
     val text: String
     val separator: String = ": "
 
     def prefix(value: String): String = {
       s"$text$separator$value"
     }
+
     def prefix(value: Int): String = prefix(value.toString)
   }
 
@@ -89,30 +92,31 @@ abstract class JEnhancementDisplayHelper extends ClassEnhancementDisplayHelper w
       )
 
     }
+
   }
 
   // [enhancement] | [Description][description] | [AP_Cost][apcost] | [Ranks][ranks] | [Progression][progression]| [Requirements][requirements]|
   def tier: Tier =
     Tier
       .withNameOption(currentTier)
-      .getOrElse({
+      .getOrElse {
         logger.error(
           s"Could not find a valid Tier using ID $currentTier defaulting to ${Tier.Core.entryName}"
         )
         Tier.Core
-      })
+      }
 
   def loadFromKey(enhancementId: String): ResultObject = {
     val trimmed = enhancementId.trim
-    logger.info(
-      s"************* Attempting to load Enhancement ResultObject using key: [$trimmed]"
-    )
+    logger.info(s"************* Attempting to load Enhancement ResultObject using key: [$trimmed]")
     // logger.info(s"mappvalues has ${mappedValues.size} elements")
     val ce: ClassEnhancementInfo =
-      mappedValues.getOrElse(trimmed, {
-        logger.warn(s"Failed to find Enhancement with id $enhancementId")
-        CEnhancementDumb(enhancementId)
-      })
+      mappedValues.getOrElse(
+        trimmed, {
+          logger.warn(s"Failed to find Enhancement with id $enhancementId")
+          CEnhancementDumb(enhancementId)
+        }
+      )
     logger.debug(ce.toString)
     implicit val altName: Option[String] = Some(enhancementId)
     ResultObject.apply(ce)

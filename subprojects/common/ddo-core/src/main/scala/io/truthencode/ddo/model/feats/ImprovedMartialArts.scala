@@ -27,8 +27,8 @@ import io.truthencode.ddo.support.requisite._
 import scala.collection.immutable
 
 /**
-  * Created by adarr on 4/6/2017.
-  */
+ * Created by adarr on 4/6/2017.
+ */
 trait ImprovedMartialArts
     extends FeatRequisiteImpl
     with FreeFeat
@@ -37,6 +37,7 @@ trait ImprovedMartialArts
     with RequiresAllOfClass
     with RequiresAttribute
     with ClassRestricted { self: EpicFeat =>
+
   override def allOfClass: immutable.Seq[(HeroicCharacterClass, Int)] =
     List((Monk, 12))
 
@@ -44,4 +45,5 @@ trait ImprovedMartialArts
 
   override def allOfFeats: Seq[Feat] =
     List(GeneralFeat.ImprovedCritical(WeaponClass.Bludgeon))
+
 }

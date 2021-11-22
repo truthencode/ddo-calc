@@ -24,10 +24,10 @@ import io.truthencode.ddo.model.skill.Skill.{Listen, Spot}
 import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, FreeFeat}
 
 /**
-  * | Icon |  Feat | Usage | Description | Prerequisite |
-  * | --- | --- | --- | --- | --- |
-  * |![Icon](https://ddowiki.com/images/thumb/Icon_Feat_Alertness.png/36px-Icon_Feat_Alertness.png)| [Alertness](https://ddowiki.com/page/Alertness)  | Passive  | Provides a +2 bonus to the character's Listen and Spot skills. | None |
-  */
+ * | Icon                                                                                           | Feat                                            | Usage   | Description                                                    | Prerequisite |
+ * |:-----------------------------------------------------------------------------------------------|:------------------------------------------------|:--------|:---------------------------------------------------------------|:-------------|
+ * | ![Icon](https://ddowiki.com/images/thumb/Icon_Feat_Alertness.png/36px-Icon_Feat_Alertness.png) | [Alertness](https://ddowiki.com/page/Alertness) | Passive | Provides a +2 bonus to the character's Listen and Spot skills. | None         |
+ */
 protected[feats] trait Alertness
     extends FeatRequisiteImpl
     with Passive
@@ -35,6 +35,7 @@ protected[feats] trait Alertness
     with FeaturesImpl
     with SkillFeature {
   self: GeneralFeat =>
-    override val bonusType: BonusType = BonusType.Feat
-    override val affectedSkills: List[(Skill, Int)] = List(Spot,Listen).map((_,2))
+
+  override val bonusType: BonusType = BonusType.Feat
+  override val affectedSkills: List[(Skill, Int)] = List(Spot, Listen).map((_, 2))
 }

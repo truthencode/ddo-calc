@@ -23,16 +23,13 @@ import io.truthencode.ddo.model.effect.features.{DodgeChanceFeature, FeaturesImp
 import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, RequiresAttribute}
 
 /**
-  *
-  * Usage: Passive
-  * Prerequisite: Dexterity 13+
-  * Description
-  * This feat grants a 3% Dodge bonus.
-  * *
-  *
-  * @todo A Fighter may select this feat as one of his fighter bonus feats.
-  * @todo A Monk may select this feat as one of his martial arts feats.
-  */
+ * Usage: Passive Prerequisite: Dexterity 13+ Description This feat grants a 3% Dodge bonus. *
+ *
+ * @todo
+ *   A Fighter may select this feat as one of his fighter bonus feats.
+ * @todo
+ *   A Monk may select this feat as one of his martial arts feats.
+ */
 trait Dodge
     extends FeatRequisiteImpl
     with Passive
@@ -49,4 +46,5 @@ trait Dodge
 
   override val dodgeBonusType: BonusType = BonusType.Feat
   override val dodgeBonusAmount: Int = 3
+
 }

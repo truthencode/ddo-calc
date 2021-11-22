@@ -22,8 +22,8 @@ import io.truthencode.ddo.model.race.Race.Warforged
 import io.truthencode.ddo.support.requisite.{RaceRequisiteImpl, RequiresNoneOfRace}
 
 /**
-  * Created by adarr on 4/6/2017.
-  */
+ * Created by adarr on 4/6/2017.
+ */
 trait EberronReligionNonWarforged
     extends RaceRequisiteImpl
     with RequiresNoneOfRace

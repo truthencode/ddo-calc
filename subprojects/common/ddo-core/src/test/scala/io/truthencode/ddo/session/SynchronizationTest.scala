@@ -23,13 +23,14 @@ import io.truthencode.ddo.model.feats.Feat
 import scala.collection.mutable
 
 class SynchronizationTest extends FunSpec {
+
   describe("Give or Take") {
     it("should do both?") {
 
       val sampleSize = 15
       def portion: Int = sampleSize / 2 + (sampleSize / 3)
       assume(sampleSize > portion)
-        val mL = mutable.IndexedSeq[Feat]()
+      val mL = mutable.IndexedSeq[Feat]()
 
       val list = Feat.values.take(sampleSize)
       val left = list.take(portion)
@@ -38,4 +39,5 @@ class SynchronizationTest extends FunSpec {
       println("we're here")
     }
   }
+
 }

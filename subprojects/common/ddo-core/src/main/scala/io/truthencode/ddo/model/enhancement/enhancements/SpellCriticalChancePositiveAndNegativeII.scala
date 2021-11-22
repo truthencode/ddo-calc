@@ -27,13 +27,11 @@ trait SpellCriticalChancePositiveAndNegativeII
     with SpellCriticalChancePrefix {
 
   override lazy val description: Option[String] =
-    Some(
-      """+2% chance to critically hit with Positive and Negative Spells.""".stripMargin
-    )
+    Some("""+2% chance to critically hit with Positive and Negative Spells.""".stripMargin)
 
   /**
-    * Some enhancements can be taken multiple times (generally up to three)
-    */
+   * Some enhancements can be taken multiple times (generally up to three)
+   */
   override val ranks: Int = 1
 
   override protected def nameSource: String = "Positive & Negative II".replaceRomanNumerals

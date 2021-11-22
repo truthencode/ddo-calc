@@ -27,10 +27,11 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * You can use Intelligence for to hit and damage rolls with simple weapons.
-  *
-  * @see [[https://ddowiki.com/page/Battalion_Brew]]
-  */
+ * You can use Intelligence for to hit and damage rolls with simple weapons.
+ *
+ * @see
+ *   [[https://ddowiki.com/page/Battalion_Brew]]
+ */
 protected[feats] trait BattalionBrew
     extends FeatRequisiteImpl
     with ClassRequisiteImpl
@@ -38,6 +39,7 @@ protected[feats] trait BattalionBrew
     with AlchemistBonusFeat
     with Passive {
   self: ClassFeat =>
+
   private[this] val cls = (Alchemist, 4)
 
   abstract override def allOfClass: Seq[(HeroicCharacterClass, Int)] = super.allOfClass :+ cls

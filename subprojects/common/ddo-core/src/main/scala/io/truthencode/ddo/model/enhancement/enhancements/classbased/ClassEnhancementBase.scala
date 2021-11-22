@@ -27,14 +27,15 @@ import io.truthencode.ddo.support.requisite._
 import io.truthencode.ddo.support.tree.TreeLike
 
 /**
-  * Convenience trait used to group class / race enhancement tier common information
-  */
+ * Convenience trait used to group class / race enhancement tier common information
+ */
 trait ClassEnhancementBase {
   self: ClassEnhancement
     with PointInTreeRequisite
     with RequiresPointsAvailable
     with ActionPointRequisite
     with Tier =>
+
   def validClasses: Seq[HeroicCharacterClass]
   def isSingleClass: Boolean = validClasses.size.equals(1)
   def singleClass: Option[HeroicCharacterClass] = isSingleClass ? validClasses.headOption | None

@@ -22,17 +22,14 @@ import io.truthencode.ddo.model.classes.HeroicCharacterClass
 import io.truthencode.ddo.model.classes.HeroicCharacterClass.Ranger
 import io.truthencode.ddo.support.requisite._
 
-/** Icon Feat Greater Two Weapon Fighting.png
-  * Greater Two Weapon Fighting
-  * Passive
-  * Increases the chance to proc an off-hand attack by 20%, bringing the total chance to 80%.
-  *
-  * Improved Two Weapon Fighting
-  * Dexterity 17, Base Attack Bonus +11
-  * *
-  */
+/**
+ * Icon Feat Greater Two Weapon Fighting.png Greater Two Weapon Fighting Passive Increases the
+ * chance to proc an off-hand attack by 20%, bringing the total chance to 80%.
+ *
+ * Improved Two Weapon Fighting Dexterity 17, Base Attack Bonus +11 *
+ */
 trait GreaterTwoWeaponFighting
-  extends FeatRequisiteImpl
+    extends FeatRequisiteImpl
     with ClassRequisiteImpl
     with Passive
     with RequiresAllOfFeat
@@ -41,6 +38,7 @@ trait GreaterTwoWeaponFighting
     with GrantsToClass
     with FighterBonusFeat {
   self: GeneralFeat =>
+
   override def requiresBaB: Int = 11
 
   override def allOfFeats: Seq[GeneralFeat] =

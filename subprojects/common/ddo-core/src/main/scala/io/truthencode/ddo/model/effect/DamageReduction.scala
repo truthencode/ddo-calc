@@ -18,21 +18,19 @@
 package io.truthencode.ddo.model.effect
 
 /**
-  * Reduces damage from a given source by a some amount
-  *
-  */
+ * Reduces damage from a given source by a some amount
+ */
 /**
-  * @author adarr
-  *
-  */
+ * @author
+ *   adarr
+ */
 trait DamageReduction
 
-
 /**
-  * Indicates physical as opposed to magical or other damage type
-  */
+ * Indicates physical as opposed to magical or other damage type
+ */
 trait Physical {
-  self : TypeCategory =>
+  self: TypeCategory =>
 }
 
 trait Slashing extends Physical with Form
@@ -42,15 +40,16 @@ trait Piercing extends Physical with Form
 trait Bludgeoning extends Physical with Form
 
 trait UnTyped {
-  self : TypeCategory =>
+  self: TypeCategory =>
 }
 
 trait Alignment {
-  self : TypeCategory =>
+  self: TypeCategory =>
 }
+
 /**
-  * Resists or inflicts all physical types of damage (Slash / Pierce / Bludgeon)
-  */
+ * Resists or inflicts all physical types of damage (Slash / Pierce / Bludgeon)
+ */
 trait FullPhysical extends Slashing with Piercing with Bludgeoning with FullMaterial
 
 trait Good extends Alignment with AlignmentBased
@@ -60,19 +59,20 @@ trait Evil extends Alignment with AlignmentBased
 trait Chaotic extends Alignment with AlignmentBased
 
 trait Lawful extends Alignment with AlignmentBased
+
 /**
-  * Resists, deals or bypasses all alignments
-  */
+ * Resists, deals or bypasses all alignments
+ */
 trait Aligned extends Good with Evil with Chaotic with Lawful
 
-
 /**
- * Pertains to the material substance used for an item which may affect the damage type dealt, such as a Silver Longsword
- * dealing 'Silver' Damage which can harm a Vampire.
+ * Pertains to the material substance used for an item which may affect the damage type dealt, such
+ * as a Silver Longsword dealing 'Silver' Damage which can harm a Vampire.
  */
 trait Material extends MaterialBased {
-  self:TypeCategory =>
+  self: TypeCategory =>
 }
+
 /**
  * Bypasses some constructs, such as Golems
  */
@@ -98,19 +98,25 @@ trait Mithral extends Material
  * Bypasses some undead such as Vampires
  */
 trait Silver extends Material
+
 /**
-  * Encompasses all material used for damage.
-  *
-  * Internally used as convenience trait that is more concise / useful
-  * for flagging "DR/-"
-  */
-trait FullMaterial extends Adamantine with Byeshk with ColdIron with Crystal with Mithral with Silver
+ * Encompasses all material used for damage.
+ *
+ * Internally used as convenience trait that is more concise / useful for flagging "DR/-"
+ */
+trait FullMaterial
+    extends Adamantine
+    with Byeshk
+    with ColdIron
+    with Crystal
+    with Mithral
+    with Silver
 
 trait Magic extends Other
 trait Light extends Other
 
-
 trait Energy extends Health
+
 /**
  * Damage type suffered by Constructs
  */
@@ -119,21 +125,23 @@ trait Rust extends Health
 trait Poison extends Health
 
 /**
- * Infuses with Positive Energy.  Heals the truly living and harms undead.
+ * Infuses with Positive Energy. Heals the truly living and harms undead.
  */
 trait Positive extends Health
 
 /**
- * Infuses with Negative Energy.  Heals the Undead, harms the truly living with no effect on living constructs.
+ * Infuses with Negative Energy. Heals the Undead, harms the truly living with no effect on living
+ * constructs.
  */
 trait Negative extends Health
 
 /**
- * Infuses constructs / living constructs with Healing.  No effect on the truly living or undead.
+ * Infuses constructs / living constructs with Healing. No effect on the truly living or undead.
  */
 trait Repair extends Health
 
 /**
- * Bane damage is considered untyped and thus can not be bypassed by effects such as Damage Reduction
+ * Bane damage is considered untyped and thus can not be bypassed by effects such as Damage
+ * Reduction
  */
 trait Bane extends UnTyped with Typeless

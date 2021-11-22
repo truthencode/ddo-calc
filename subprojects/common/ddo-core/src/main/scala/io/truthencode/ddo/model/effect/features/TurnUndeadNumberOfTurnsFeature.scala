@@ -23,6 +23,7 @@ import io.truthencode.ddo.model.stats.BasicStat
 
 trait TurnUndeadNumberOfTurnsFeature extends Features {
   self: SourceInfo =>
+
   val numberOfTurnsBonusType: BonusType
   val numberOfTurnsBonusAmount: Int
   private val src = this

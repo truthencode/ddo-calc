@@ -43,35 +43,35 @@ trait AlchemistTierOneEnhancementBase
     extends AlchemistClassEnhancementBase
     with Tier1EnhancementBase {
   self: ClassEnhancement with AlchemistEnhancement with RequiresPointsAvailable =>
- // Alchemist 1 implied via base Alchemist enhancement.
+  // Alchemist 1 implied via base Alchemist enhancement.
 }
 
 trait AlchemistTierTwoEnhancementBase
     extends AlchemistClassEnhancementBase
     with Tier2EnhancementBase {
   self: ClassEnhancement with AlchemistEnhancement with RequiresPointsAvailable =>
-    override def allOfClass: Seq[(HeroicCharacterClass, Int)] = Seq((Alchemist, 2))
+  override def allOfClass: Seq[(HeroicCharacterClass, Int)] = Seq((Alchemist, 2))
 }
 
 trait AlchemistTierThreeEnhancementBase
     extends AlchemistClassEnhancementBase
     with Tier3EnhancementBase {
   self: ClassEnhancement with AlchemistEnhancement with RequiresPointsAvailable =>
-    override def allOfClass: Seq[(HeroicCharacterClass, Int)] = Seq((Alchemist, 3))
+  override def allOfClass: Seq[(HeroicCharacterClass, Int)] = Seq((Alchemist, 3))
 }
 
 trait AlchemistTierFourEnhancementBase
     extends AlchemistClassEnhancementBase
     with Tier4EnhancementBase {
   self: ClassEnhancement with AlchemistEnhancement with RequiresPointsAvailable =>
-    override def allOfClass: Seq[(HeroicCharacterClass, Int)] = Seq((Alchemist, 4))
+  override def allOfClass: Seq[(HeroicCharacterClass, Int)] = Seq((Alchemist, 4))
 }
 
 trait AlchemistTierFiveEnhancementBase
     extends AlchemistClassEnhancementBase
     with Tier5EnhancementBase {
   self: ClassEnhancement with AlchemistEnhancement with RequiresPointsAvailable =>
-    override def allOfClass: Seq[(HeroicCharacterClass, Int)] = Seq((Alchemist, 5))
+  override def allOfClass: Seq[(HeroicCharacterClass, Int)] = Seq((Alchemist, 5))
 }
 
 trait ApothecaryCore extends AlchemistCoreEnhancementBase with Apothecary {

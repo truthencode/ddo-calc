@@ -27,16 +27,18 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * You are immune to Natural Poisons.
-  *
-  * @see [[https://ddowiki.com/page/Poisonblood]]
-  */
+ * You are immune to Natural Poisons.
+ *
+ * @see
+ *   [[https://ddowiki.com/page/Poisonblood]]
+ */
 protected[feats] trait Poisonblood
     extends FeatRequisiteImpl
     with ClassRequisiteImpl
     with GrantsToClass
     with RequiresAllOfClass
     with Passive {
+
   private[this] val cls = (Alchemist, 7)
 
   abstract override def grantToClass: Seq[(HeroicCharacterClass, Int)] = super.grantToClass :+ cls

@@ -23,11 +23,9 @@ import org.scalatest.{FunSpec, Matchers}
 import scala.languageFeature.postfixOps
 
 /**
-  * Created by adarr on 2/6/2017.
-  */
+ * Created by adarr on 2/6/2017.
+ */
 class SelfTypeEnumTest extends FunSpec with Matchers with LazyLogging {
-
-
 
   describe("Self typed enum entry hacks") {
     they("exist") {

@@ -16,16 +16,19 @@
  * limitations under the License.
  */
 package io.truthencode.ddo.model.feats
+
 import io.truthencode.ddo.model.classes.HeroicCharacterClass
 import io.truthencode.ddo.model.classes.HeroicCharacterClass.{Cleric, FavoredSoul, Paladin}
 import io.truthencode.ddo.support.requisite.{ClassRequisite, RequiresAnyOfClass}
 
 /**
-  * Created by adarr on 4/18/2017.
-  */
+ * Created by adarr on 4/18/2017.
+ */
 trait DivineClassBase extends ClassRequisite with RequiresAnyOfClass {
+
   override def anyOfClass: Seq[(HeroicCharacterClass, Int)] =
     allowedClasses.map((_, minLevel))
+
   protected val allowedClasses = List(Cleric, FavoredSoul, Paladin)
   protected val minLevel: Int = 1
 }

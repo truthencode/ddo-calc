@@ -50,7 +50,6 @@ dependencies {
     testRuntimeOnly(group = "org.junit.platform", name = "junit-platform-engine")
     testRuntimeOnly(group = "org.junit.platform", name = "junit-platform-launcher")
     testRuntimeOnly(group = "co.helmethair", name = "scalatest-junit-runner")
-
 }
 
 tasks {

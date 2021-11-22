@@ -19,16 +19,12 @@ package io.truthencode.ddo.model.feats
 
 import io.truthencode.ddo.model.classes.HeroicCharacterClass
 import io.truthencode.ddo.model.classes.HeroicCharacterClass.Monk
-import io.truthencode.ddo.support.requisite.{
-  FeatRequisiteImpl,
-  GrantsToClass,
-  RequiresAllOfClass
-}
+import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, GrantsToClass, RequiresAllOfClass}
 
 /**
-  * [[http://ddowiki.com/page/Ki_Strike:_Magic]]
-  * All of your unarmed melee attacks are empowered with ki and are considered magical for damage reduction purposes.
-  */
+ * [[http://ddowiki.com/page/Ki_Strike:_Magic]] All of your unarmed melee attacks are empowered with
+ * ki and are considered magical for damage reduction purposes.
+ */
 protected[feats] trait KiStrikeMagic
     extends FeatRequisiteImpl
     with Passive

@@ -30,7 +30,9 @@ import org.junit.runner.RunWith
 @FullOGNL
 @RunWith(classOf[ConcordionRunner])
 class EpicMetamagicFeatSpec extends EpicFeatFeatDisplayHelper {
-  override val filterByCategory: PartialFunction[Entry, EpicFeat] = {
-    case x: EpicMetaMagic => x.asInstanceOf[EpicFeat]
+
+  override val filterByCategory: PartialFunction[Entry, EpicFeat] = { case x: EpicMetaMagic =>
+    x.asInstanceOf[EpicFeat]
   }
+
 }

@@ -25,11 +25,8 @@ import org.scalatest.junit.JUnitRunner
 import org.scalatest.mockito.MockitoSugar
 import org.scalatest.{FunSpec, Matchers}
 
-class SpellBuilderTest
-    extends FunSpec
-    with Matchers
-    with MockitoSugar
-    with LazyLogging {
+class SpellBuilderTest extends FunSpec with Matchers with MockitoSugar with LazyLogging {
+
   private final val sampleDuration = 5L
   private final val sampleLevelCap = 32
   private final val SpellPointValue = 42
@@ -39,6 +36,7 @@ class SpellBuilderTest
   private val casterLevelCap = mock[CasterLevelCap]
   private val effectList = mock[EffectList]
   private val spellInfo = mock[SpellInfo]
+
   describe("Spell Builder") {
     it("should compile if all elements are present") {
       """ SpellBuilder.apply("NewSpell")

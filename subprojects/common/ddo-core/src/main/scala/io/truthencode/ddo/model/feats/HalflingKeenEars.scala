@@ -18,15 +18,11 @@
 package io.truthencode.ddo.model.feats
 
 import io.truthencode.ddo.model.race.Race
-import io.truthencode.ddo.support.requisite.{
-  FeatRequisiteImpl,
-  GrantsToRace,
-  RaceRequisiteImpl
-}
+import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, GrantsToRace, RaceRequisiteImpl}
 
 /**
-  * Created by adarr on 2/20/2017.
-  */
+ * Created by adarr on 2/20/2017.
+ */
 trait HalflingKeenEars
     extends FeatRequisiteImpl
     with RaceRequisiteImpl

@@ -20,48 +20,67 @@ package io.truthencode.ddo.model.misc
 import scala.collection.immutable.HashSet
 
 /**
-  * Created by adarr on 1/28/2017.
-  */
+ * Created by adarr on 1/28/2017.
+ */
 sealed trait Availability {
+
   def availabilityLevels: Set[AvailabilityLevel] = new HashSet[AvailabilityLevel]()
 
-  def isFreeToPlay: Boolean = availabilityLevels.contains(AvailabilityLevel.FreeToPlay) || availabilityLevels.contains(AvailabilityLevel.Favor)
+  def isFreeToPlay: Boolean = availabilityLevels.contains(
+    AvailabilityLevel.FreeToPlay
+  ) || availabilityLevels.contains(AvailabilityLevel.Favor)
 
   def isPremiumFeature: Boolean = availabilityLevels.contains(AvailabilityLevel.Premium)
 
 }
 
 /**
-  * Feature is available to anyone
-  */
+ * Feature is available to anyone
+ */
 trait FreeToPlayFeature extends Availability {
-  abstract override def availabilityLevels: Set[AvailabilityLevel] = super.availabilityLevels + AvailabilityLevel.FreeToPlay
+
+  abstract override def availabilityLevels: Set[AvailabilityLevel] =
+    super.availabilityLevels + AvailabilityLevel.FreeToPlay
+
 }
 
 /**
  * Feature is available for purchase via earning Favor on a per-server or account-wide fashion
  */
 trait FavorFeature extends Availability {
-  abstract override def availabilityLevels: Set[AvailabilityLevel] = super.availabilityLevels + AvailabilityLevel.Favor
+
+  abstract override def availabilityLevels: Set[AvailabilityLevel] =
+    super.availabilityLevels + AvailabilityLevel.Favor
+
 }
+
 /**
-  * Feature is available for purchase via DDO Store
-  */
+ * Feature is available for purchase via DDO Store
+ */
 trait PremiumFeature extends Availability {
+
   // TODO: Should add how to purchase, i.e. 1495 DDO Points or with Expansion Pack etc.
-  abstract override def availabilityLevels: Set[AvailabilityLevel] = super.availabilityLevels + AvailabilityLevel.Premium
+  abstract override def availabilityLevels: Set[AvailabilityLevel] =
+    super.availabilityLevels + AvailabilityLevel.Premium
+
 }
 
 /**
-  * Feature is available only via direct purchase
-  */
+ * Feature is available only via direct purchase
+ */
 trait IconicFeature extends Availability {
-  abstract override def availabilityLevels: Set[AvailabilityLevel] = super.availabilityLevels + AvailabilityLevel.Iconic
+
+  abstract override def availabilityLevels: Set[AvailabilityLevel] =
+    super.availabilityLevels + AvailabilityLevel.Iconic
+
 }
 
 /**
-  * Feature is available with active VIP subscription
-  */
+ * Feature is available with active VIP subscription
+ */
 trait VIPFeature extends Availability {
-  abstract override def availabilityLevels: Set[AvailabilityLevel] = super.availabilityLevels + AvailabilityLevel.VIP
+
+  abstract override def availabilityLevels: Set[AvailabilityLevel] =
+    super.availabilityLevels + AvailabilityLevel.VIP
+
 }

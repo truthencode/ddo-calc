@@ -26,9 +26,9 @@ import io.truthencode.ddo.support.naming.{Description, DisplayName, FriendlyDisp
 import scala.collection.JavaConverters._
 
 /**
-  * Created by adarr on 2/17/2017.
-  * Adds convenience and display functions for Concordion Acceptance testing against Feats in various contexts.
-  */
+ * Created by adarr on 2/17/2017. Adds convenience and display functions for Concordion Acceptance
+ * testing against Feats in various contexts.
+ */
 trait FeatDisplayHelper extends DisplayHelper {
 
   def prettyPrint(): String = {
@@ -54,8 +54,8 @@ trait FeatDisplayHelper extends DisplayHelper {
   }
 
   /**
-    * Removes Sub-Feats such as Weapon Proficiencies
-    */
+   * Removes Sub-Feats such as Weapon Proficiencies
+   */
   val filterByMainFeat: PartialFunction[Entry, Entry] = {
     case x: Feat with SubFeatInformation if !x.isSubFeat => x
   }
@@ -83,4 +83,5 @@ trait FeatDisplayHelper extends DisplayHelper {
 
   protected def withName(skillId: String): Option[Entry] =
     enum.withNameOption(skillId)
+
 }

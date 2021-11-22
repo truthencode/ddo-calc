@@ -21,17 +21,15 @@ import io.truthencode.ddo.model.enhancement.enhancements.classbased.ApothecaryTi
 
 trait InsulatedBoots extends ApothecaryTierFour with ClassEnhancementImpl {
 
-  override lazy val description: Option[String] = Some(
-    """+[2/4/6] Magical Resistance Rating.
+  override lazy val description: Option[String] = Some("""+[2/4/6] Magical Resistance Rating.
       |Rank 3: You are immune to Slippery Surfaces.
       |
-      |Not quite fashionable, but they'll keep you standing!""".stripMargin
-  )
+      |Not quite fashionable, but they'll keep you standing!""".stripMargin)
 
   override def apCostPerRank: Int = 1
 
   /**
-    * Some enhancements can be taken multiple times (generally up to three)
-    */
+   * Some enhancements can be taken multiple times (generally up to three)
+   */
   override val ranks: Int = 3
 }

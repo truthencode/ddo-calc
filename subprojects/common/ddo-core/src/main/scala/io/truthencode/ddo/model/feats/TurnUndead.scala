@@ -30,6 +30,7 @@ protected[feats] trait TurnUndead
     with GrantsToClass
     with RequiresAnyOfClass {
   self: Feat =>
+
   /* DDOWiki lists Bane of Undead as a prerequisite.  I am doing the other way around
        I.e. Bane of undead Grants the Feat:Turn Undead as the description suggests.
        We could implement as AutoGrant to: ED Bane of Undead, however, I do not wish to create cyclic
@@ -46,4 +47,5 @@ protected[feats] trait TurnUndead
     Seq((HeroicCharacterClass.Cleric, 1), (HeroicCharacterClass.Paladin, 4))
 
   }
+
 }

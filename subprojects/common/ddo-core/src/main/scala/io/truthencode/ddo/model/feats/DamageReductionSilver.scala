@@ -48,7 +48,10 @@ trait DamageReductionSilver
     List((FavoredSoul, 20))
 
   override def anyOfFeats: Seq[Feat] =
-    List(DeityFeat.BelovedOfTheSovereignHost,
-         DeityFeat.BelovedOfAmaunator,
-         DeityFeat.BelovedOfTheSilverFlame)
+    List(
+      DeityFeat.BelovedOfTheSovereignHost,
+      DeityFeat.BelovedOfAmaunator,
+      DeityFeat.BelovedOfTheSilverFlame
+    )
+
 }

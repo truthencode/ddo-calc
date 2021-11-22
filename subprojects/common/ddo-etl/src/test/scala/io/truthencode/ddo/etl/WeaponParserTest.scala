@@ -22,6 +22,7 @@ import org.scalatest.{FunSpec, Matchers}
 import scala.io.BufferedSource
 
 class WeaponParserTest extends FunSpec with Matchers {
+
   def loadData: BufferedSource = {
     scala.io.Source.fromResource(s"data/weapons/item_weapons_great_clubs.json")
   }

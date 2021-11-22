@@ -25,6 +25,4 @@ trait FollowerOfAureon
     with EberronReligionNonWarforged
     with FollowerBase
     with Aureon
-    with AureonFeatBase { self: DeityFeat =>
-
-}
+    with AureonFeatBase { self: DeityFeat => }

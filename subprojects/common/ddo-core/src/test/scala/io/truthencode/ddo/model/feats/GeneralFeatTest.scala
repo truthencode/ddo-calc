@@ -20,12 +20,14 @@ package io.truthencode.ddo.model.feats
 import org.scalatest.{FunSpec, Matchers}
 
 /**
-  * Created by adarr on 2/7/2017.
-  */
+ * Created by adarr on 2/7/2017.
+ */
 class GeneralFeatTest extends FunSpec with Matchers {
-describe("Feats") {
-  they("have discreet values") {
-    noException should be thrownBy GeneralFeat.values
+
+  describe("Feats") {
+    they("have discreet values") {
+      noException should be thrownBy GeneralFeat.values
+    }
   }
-}
+
 }

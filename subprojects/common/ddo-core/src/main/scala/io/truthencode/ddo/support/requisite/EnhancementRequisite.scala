@@ -23,10 +23,11 @@ import io.truthencode.ddo.support.requisite.RequirementImplicits.classEnhancemen
 import scala.language.{implicitConversions, postfixOps}
 
 /**
-  * Basic support for handling Class enhancement specific requisites
-  */
+ * Basic support for handling Class enhancement specific requisites
+ */
 sealed trait ClassEnhancementRequisite {
   self: Requisite =>
+
   def anyOfClassEnhancements: Seq[ClassEnhancement] // = IndexedSeq.apply()
 
   def allOfClassEnhancements: Seq[ClassEnhancement] // = IndexedSeq.apply()
@@ -38,6 +39,7 @@ trait ClassEnhancementRequisiteImpl
     extends MustContainImpl[Requirement]
     with ClassEnhancementRequisite {
   self: Requisite with RequisiteType =>
+
   def anyOfClassEnhancements: Seq[ClassEnhancement] = IndexedSeq.apply()
 
   def allOfClassEnhancements: Seq[ClassEnhancement] = IndexedSeq.apply()
@@ -53,11 +55,12 @@ object ClassEnhancementRequisite {
       cOpt <- ClassEnhancement.withNameInsensitiveOption(cls)
     } yield cOpt
   }
+
 }
 
 /**
-  * A free ClassEnhancement has no prerequisites and can be taken by any class at any level.
-  */
+ * A free ClassEnhancement has no prerequisites and can be taken by any class at any level.
+ */
 trait FreeClassEnhancement
     extends ClassEnhancementRequisite
     with RequiresNone
@@ -72,6 +75,7 @@ trait RequiresAnyOfClassEnhancement
   abstract override def oneOf: Seq[Requirement] = super.oneOf ++ {
     anyOfClassEnhancements collect classEnhancementToReq
   }
+
 }
 
 trait RequiresAllOfClassEnhancement
@@ -82,6 +86,7 @@ trait RequiresAllOfClassEnhancement
   abstract override def allOf: Seq[Requirement] = super.allOf ++ {
     allOfClassEnhancements collect classEnhancementToReq
   }
+
 }
 
 trait RequiresNoneOfClassEnhancement
@@ -92,4 +97,5 @@ trait RequiresNoneOfClassEnhancement
   abstract override def noneOf: Seq[Requirement] = super.noneOf ++ {
     noneOfClassEnhancements collect classEnhancementToReq
   }
+
 }

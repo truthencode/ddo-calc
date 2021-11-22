@@ -30,11 +30,10 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * [[https://ddowiki.com/page/Misty_Escape Misty Escape]]
-  * You become invisible and charge forward.
-  * During your escape, you move through monsters as if you were ethereal.
-  * These effects last for six seconds.
-  */
+ * [[https://ddowiki.com/page/Misty_Escape Misty Escape]] You become invisible and charge forward.
+ * During your escape, you move through monsters as if you were ethereal. These effects last for six
+ * seconds.
+ */
 protected[feats] trait MistyEscape
     extends FeatRequisiteImpl
     with ActiveFeat

@@ -23,6 +23,7 @@ import io.truthencode.ddo.model.stats.BasicStat
 
 trait TurnUndeadTotalHitDiceFeature extends Features {
   self: SourceInfo =>
+
   val totalHitDiceBonusType: BonusType
   val totalHitDiceValue: Int
   private val src = this
@@ -34,17 +35,16 @@ trait TurnUndeadTotalHitDiceFeature extends Features {
         BasicStat.TurnUndeadTotalHitDice
 
       lazy override protected[this] val parameterToModify: BonusType =
-          totalHitDiceBonusType
+        totalHitDiceBonusType
 
       override val source: SourceInfo = src
       override lazy val value: Int = totalHitDiceValue
 
     }
 
-
   abstract override def features: List[Feature[_]] = {
     assert(tHD.value == totalHitDiceValue)
-      super.features :+ tHD
+    super.features :+ tHD
   }
 
 }

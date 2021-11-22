@@ -19,17 +19,24 @@ package io.truthencode.ddo.model.feats
 
 import io.truthencode.ddo.model.classes.HeroicCharacterClass
 import io.truthencode.ddo.model.classes.HeroicCharacterClass.Warlock
-import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, GrantsToClass, RequiresAllOfClass, RequiresAllOfFeat}
+import io.truthencode.ddo.support.requisite.{
+  FeatRequisiteImpl,
+  GrantsToClass,
+  RequiresAllOfClass,
+  RequiresAllOfFeat
+}
 
 /**
-  * Adds the spell Blindness to your spellbook @ Level 2
-  */
+ * Adds the spell Blindness to your spellbook @ Level 2
+ */
 protected[feats] trait PactMagicBlindness
     extends FeatRequisiteImpl
     with Passive
     with RequiresAllOfClass
     with GrantsToClass
-    with PactMagicPrefix with RequiresAllOfFeat { self: ClassFeat =>
+    with PactMagicPrefix
+    with RequiresAllOfFeat { self: ClassFeat =>
+
   override protected def nameSource: String = "Blindness"
 
   override def grantToClass: Seq[(HeroicCharacterClass, Int)] = List((Warlock, 5))

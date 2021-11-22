@@ -18,15 +18,16 @@
 package io.truthencode.ddo.support
 
 /**
-  * Represents item modifier effects that can be prefixed or suffixed to an item to provide additional effects.
-  * Items can generally have up to two prefixes and one suffix, such as Flaming Sword of the Sun's Fury,
-  * where Flaming and "Sun's Fury' are affixes.
-  */
+ * Represents item modifier effects that can be prefixed or suffixed to an item to provide
+ * additional effects. Items can generally have up to two prefixes and one suffix, such as Flaming
+ * Sword of the Sun's Fury, where Flaming and "Sun's Fury' are affixes.
+ */
 sealed trait AffixSlot {
   def addSlot(s: AffixSlot): Unit
 }
 
 trait PrimaryPreSlot extends AffixSlot {
+
   type Pre = PrimaryPreSlot
   val pref: Pre = this
 
@@ -34,6 +35,7 @@ trait PrimaryPreSlot extends AffixSlot {
 }
 
 trait SecondaryPreSlot extends AffixSlot {
+
   type Pre2 = SecondaryPreSlot
   val pref2: Pre2 = this
 
@@ -41,6 +43,7 @@ trait SecondaryPreSlot extends AffixSlot {
 }
 
 trait PostSlot extends AffixSlot {
+
   type Post = PostSlot
   val post: Post = this
 

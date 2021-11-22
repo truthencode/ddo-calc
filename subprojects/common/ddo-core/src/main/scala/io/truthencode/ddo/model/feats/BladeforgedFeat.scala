@@ -21,8 +21,8 @@ import io.truthencode.ddo.model.race.Race
 import io.truthencode.ddo.support.requisite._
 
 /**
-  * Created by adarr on 2/20/2017.
-  */
+ * Created by adarr on 2/20/2017.
+ */
 trait BladeforgedFeat
     extends FeatRequisiteImpl
     with RaceRequisiteImpl

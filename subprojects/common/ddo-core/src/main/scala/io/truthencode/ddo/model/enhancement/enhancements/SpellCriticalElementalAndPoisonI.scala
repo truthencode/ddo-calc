@@ -27,23 +27,24 @@ trait SpellCriticalElementalAndPoisonI
     with SpellCriticalPrefix {
 
   /**
-    * Some enhancements have multiple ranks.
-    * This is the cost for each rank.
-    * Older versions had increasing costs which has been streamlined to a linear progression.
-    *
-    * @return
-    */
+   * Some enhancements have multiple ranks. This is the cost for each rank. Older versions had
+   * increasing costs which has been streamlined to a linear progression.
+   *
+   * @return
+   */
   override def apCostPerRank: Int = 2
 
   /**
-    * Some enhancements can be taken multiple times (generally up to three)
-    */
+   * Some enhancements can be taken multiple times (generally up to three)
+   */
   override val ranks: Int = 1
 
-  override protected def nameSource: String = "Elemental And Poison I".lowerCaseNoise.replaceRomanNumerals
+  override protected def nameSource: String =
+    "Elemental And Poison I".lowerCaseNoise.replaceRomanNumerals
 
   override lazy val description: Option[String] =
     Some(
       "n I: Your Acid, Cold, Electric, Fire, and Poison damage spells have an additional 1% chance to critically hit."
     )
+
 }

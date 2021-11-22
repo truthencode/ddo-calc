@@ -25,13 +25,11 @@ import io.truthencode.ddo.support.requisite.{
   RequiresBaB
 }
 
-/** Icon Feat Shot On The Run.png
-  * Shot on the Run Passive Negates the penalty to your attack roll for firing ranged weapon while moving.
-  * Also gives +3 ranged power.
-  * *
-  * Point Blank Shot, Mobility
-  * Dexterity 13, Base Attack Bonus 4+
-  * */
+/**
+ * Icon Feat Shot On The Run.png Shot on the Run Passive Negates the penalty to your attack roll for
+ * firing ranged weapon while moving. Also gives +3 ranged power. * Point Blank Shot, Mobility
+ * Dexterity 13, Base Attack Bonus 4+
+ */
 protected[feats] trait ShotOnTheRun
     extends FeatRequisiteImpl
     with Passive

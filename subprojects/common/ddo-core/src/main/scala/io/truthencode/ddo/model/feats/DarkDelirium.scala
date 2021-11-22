@@ -31,11 +31,12 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * [[https://ddowiki.com/page/Dark_Delirium Dark Delirium]]
-  * Plunge one enemy's mind into an illusory realm. That enemy is dazed and cannot act for 20 seconds.
-  * Each time this enemy is damaged, there's a 10% chance they break free.
- * @todo Should this be flagged as an SLA?
-  */
+ * [[https://ddowiki.com/page/Dark_Delirium Dark Delirium]] Plunge one enemy's mind into an illusory
+ * realm. That enemy is dazed and cannot act for 20 seconds. Each time this enemy is damaged,
+ * there's a 10% chance they break free.
+ * @todo
+ *   Should this be flagged as an SLA?
+ */
 protected[feats] trait DarkDelirium
     extends FeatRequisiteImpl
     with ActiveFeat

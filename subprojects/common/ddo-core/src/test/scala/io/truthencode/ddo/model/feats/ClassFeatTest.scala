@@ -31,4 +31,5 @@ class ClassFeatTest extends FunSpec with Matchers with LazyLogging {
       cf should contain(c)
     }
   }
+
 }

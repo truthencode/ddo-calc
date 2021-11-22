@@ -71,6 +71,11 @@ config {
             }
         }
     }
+    artifacts {
+        minpom {
+            enabled = false
+        }
+    }
 }
 
 

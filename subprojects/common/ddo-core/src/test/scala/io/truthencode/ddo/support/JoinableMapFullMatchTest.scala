@@ -24,6 +24,7 @@ class JoinableMapFullMatchTest
     extends FunSpec
     with Matchers
     with JoinAbleMap[String, Feat, Map[String, Feat]] {
+
   override implicit val joinOnKeys: Boolean = false
 
   override lazy val source = Feat.values.map { v =>
@@ -42,11 +43,13 @@ class JoinableMapFullMatchTest
     }
 
   }
+
   describe("Left Joins") {
     they("should contain all of the unique left side plus any common elements of the right side") {
       leftJoinA should contain theSameElementsAs commonWithA
     }
   }
+
   describe("Right Joins") {
     they("should contall all the unique right side plus any common elements of the left side") {
       rightJoinA should contain theSameElementsAs commonWithB

@@ -21,11 +21,13 @@ import io.truthencode.ddo.model.effect.features.Features
 import org.scalatest.{FunSpec, Matchers}
 
 class EffectTest extends FunSpec with Matchers {
-describe("A general effect") {
-  it("should be able to be instantiated") {
-    val e = new Effect with Features {
+
+  describe("A general effect") {
+    it("should be able to be instantiated") {
+      val e = new Effect with Features {
         override def features: List[Feature[_]] = List()
+      }
     }
   }
-}
+
 }

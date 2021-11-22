@@ -24,8 +24,10 @@ import org.scalatest.FunSuite
 
 // @RunWith(classOf[JUnitRunner])
 class LibrarySuite extends FunSuite {
+
   test("someLibraryMethod is always true") {
     def library: Library = new Library()
     assert(library.someLibraryMethod())
   }
+
 }

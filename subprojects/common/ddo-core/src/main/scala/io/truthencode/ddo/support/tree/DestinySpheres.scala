@@ -29,16 +29,18 @@ sealed trait DestinySpheres
     with DestinySphere
     with DisplayName
     with FriendlyDisplay {
+
   override protected def nameSource: String =
     entryName.splitByCase.toPascalCase
 
-    /**
-     * Used when qualifying a search with a prefix.
-     * Examples include finding "HalfElf" from qualified "Race:HalfElf"
-     *
-     * @return A default or applied prefix
-     */
-    override def searchPrefixSource: String = "DestinySphere"
+  /**
+   * Used when qualifying a search with a prefix. Examples include finding "HalfElf" from qualified
+   * "Race:HalfElf"
+   *
+   * @return
+   *   A default or applied prefix
+   */
+  override def searchPrefixSource: String = "DestinySphere"
 }
 
 trait Arcane extends DestinySpheres
@@ -47,6 +49,7 @@ trait Martial extends DestinySpheres
 trait Primal extends DestinySpheres
 
 object DestinySpheres extends Enum[DestinySpheres] with SearchPrefix {
+
   override def values: immutable.IndexedSeq[DestinySpheres] = findValues
   case object Arcane extends Arcane
   case object Divine extends Divine
@@ -54,10 +57,11 @@ object DestinySpheres extends Enum[DestinySpheres] with SearchPrefix {
   case object Primal extends Primal
 
   /**
-    * Used when qualifying a search with a prefix.
-    * Examples include finding "HalfElf" from qualified "Race:HalfElf"
-    *
-    * @return A default or applied prefix
-    */
+   * Used when qualifying a search with a prefix. Examples include finding "HalfElf" from qualified
+   * "Race:HalfElf"
+   *
+   * @return
+   *   A default or applied prefix
+   */
   override def searchPrefixSource: String = "Sphere"
 }

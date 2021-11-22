@@ -20,11 +20,13 @@ package io.truthencode.ddo.support.naming
 import io.truthencode.ddo.support.StringUtils.Extensions
 
 /**
-  * Alters Display by adding spaces between words.
-  */
+ * Alters Display by adding spaces between words.
+ */
 trait NonCaseManglingDisplay extends DisplayProperties {
+
   abstract override def displaySource: String = {
     val d = super.displaySource
     d.lowerCaseNoise
   }
+
 }

@@ -25,18 +25,14 @@ import io.truthencode.ddo.support.SearchPrefix
 import scala.collection.immutable
 // import io.truthencode.ddo.enumeration._
 
-
 /**
-  * Created by adarr on 8/12/2016.
-  */
+ * Created by adarr on 8/12/2016.
+ */
 sealed trait AlignmentType
 
 // extends BitWise
 
-sealed trait LawAxis
-  extends EnumEntry
-    with AlignmentType
-    with NoDefault[LawAxis] {
+sealed trait LawAxis extends EnumEntry with AlignmentType with NoDefault[LawAxis] {
 
   lazy val bitValue: Int = {
     c.bitValues
@@ -53,17 +49,20 @@ sealed trait LawAxis
 }
 
 object LawAxis extends Enum[LawAxis] with BitSupport with SearchPrefix {
+
   type T = LawAxis
 
-    /**
-     * Used when qualifying a search with a prefix.
-     * Examples include finding "HalfElf" from qualified "Race:HalfElf"
-     *
-     * @return A default or applied prefix
-     */
-    override def searchPrefixSource: String = "LawAxis"
+  /**
+   * Used when qualifying a search with a prefix. Examples include finding "HalfElf" from qualified
+   * "Race:HalfElf"
+   *
+   * @return
+   *   A default or applied prefix
+   */
+  override def searchPrefixSource: String = "LawAxis"
 
-    val values: immutable.IndexedSeq[T] = findValues
+  val values: immutable.IndexedSeq[T] = findValues
+
   val bitValues: Map[T, Int] = valuesToIndex.map { x =>
     x._1 -> Math.pow(2.0, x._2).toInt
   }
@@ -76,10 +75,7 @@ object LawAxis extends Enum[LawAxis] with BitSupport with SearchPrefix {
 
 }
 
-sealed trait MoralAxis
-  extends EnumEntry
-    with AlignmentType
-    with NoDefault[MoralAxis] {
+sealed trait MoralAxis extends EnumEntry with AlignmentType with NoDefault[MoralAxis] {
 
   val c = MoralAxis
 
@@ -92,16 +88,18 @@ sealed trait MoralAxis
 
 object MoralAxis extends Enum[MoralAxis] with BitSupport with SearchPrefix {
 
-    /**
-     * Used when qualifying a search with a prefix.
-     * Examples include finding "HalfElf" from qualified "Race:HalfElf"
-     *
-     * @return A default or applied prefix
-     */
-    override def searchPrefixSource: String = "MoralAxis"
+  /**
+   * Used when qualifying a search with a prefix. Examples include finding "HalfElf" from qualified
+   * "Race:HalfElf"
+   *
+   * @return
+   *   A default or applied prefix
+   */
+  override def searchPrefixSource: String = "MoralAxis"
 
-    type T = MoralAxis
+  type T = MoralAxis
   val values: immutable.IndexedSeq[MoralAxis] = findValues
+
   val bitValues: Map[T, Int] = valuesToIndex.map { x =>
     x._1 -> Math.pow(2.0, x._2).toInt
   }

@@ -26,28 +26,25 @@ trait AbilityIBombardier
     with AbilitySelector {
 
   /**
-    * Some enhancements have multiple ranks.
-    * This is the cost for each rank.
-    * Older versions had increasing costs which has been streamlined to a linear progression.
-    *
-    * @return
-    */
+   * Some enhancements have multiple ranks. This is the cost for each rank. Older versions had
+   * increasing costs which has been streamlined to a linear progression.
+   *
+   * @return
+   */
   override def apCostPerRank: Int = 2
 
   /**
-    * Some enhancements can be taken multiple times (generally up to three)
-    */
+   * Some enhancements can be taken multiple times (generally up to three)
+   */
   override val ranks: Int = 1
   override val abilitySelections: Seq[Attribute] = Seq(Attribute.Intelligence)
 
-  override lazy val description: Option[String] = Some(
-    "+1 to Intelligence"
-  )
+  override lazy val description: Option[String] = Some("+1 to Intelligence")
 
   /**
-    * Roman Numeral Suffix
-    *
-    * @return
-    */
+   * Roman Numeral Suffix
+   *
+   * @return
+   */
   override def rnSuffix: Int = 1
 }

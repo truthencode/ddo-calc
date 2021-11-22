@@ -34,16 +34,17 @@ import io.truthencode.ddo.support.naming.{FriendlyDisplay, PostText, Prefix}
 import io.truthencode.ddo.support.requisite._
 
 /**
-  * [[http://ddowiki.com/page/Feats Feats]] are special abilities that give your character a new capability, or improves one he or she already has.
-  */
+ * [[http://ddowiki.com/page/Feats Feats]] are special abilities that give your character a new
+ * capability, or improves one he or she already has.
+ */
 sealed trait GeneralFeat extends Feat with FriendlyDisplay with SubFeatInformation {
   self: FeatType with Requisite with Inclusion =>
 
 }
 
 /**
-  * General Feats aren't specific to a particular race or class.
-  */
+ * General Feats aren't specific to a particular race or class.
+ */
 // scalastyle:off number.of.methods
 object GeneralFeat
     extends Enum[GeneralFeat]
@@ -53,21 +54,21 @@ object GeneralFeat
 
   override lazy val values =
     findValues ++
-    simpleWeaponProficiencies ++
-    martialWeaponProficiencies ++
-    exoticWeaponProficiencies ++
-    weaponFocusAny ++
-    greaterWeaponFocusAny ++
-    superiorWeaponFocusAny ++
-    spellFocusAny ++
-    greaterSpellFocusAny ++
-    weaponSpecializationAny ++
-    greaterWeaponSpecializationAny ++
-    skillFocusAny ++
-    improvedCriticalAny
+      simpleWeaponProficiencies ++
+      martialWeaponProficiencies ++
+      exoticWeaponProficiencies ++
+      weaponFocusAny ++
+      greaterWeaponFocusAny ++
+      superiorWeaponFocusAny ++
+      spellFocusAny ++
+      greaterSpellFocusAny ++
+      weaponSpecializationAny ++
+      greaterWeaponSpecializationAny ++
+      skillFocusAny ++
+      improvedCriticalAny
 
-  val matchFeat: PartialFunction[Feat, GeneralFeat] = {
-    case x: GeneralFeat => x
+  val matchFeat: PartialFunction[Feat, GeneralFeat] = { case x: GeneralFeat =>
+    x
   }
 
   val matchFeatById: PartialFunction[String, GeneralFeat] = {
@@ -78,19 +79,19 @@ object GeneralFeat
   }
 
   /**
-    * Convenience function to group all weapon classes
-    *
-    * @return
-    */
+   * Convenience function to group all weapon classes
+   *
+   * @return
+   */
   def improvedCriticalAny: Seq[ImprovedCritical] = {
     for { wc <- WeaponClass.values } yield ImprovedCritical(wc)
   }
 
   /**
-    * Convenience function to group all Weapon Focus Feats
-    *
-    * @return
-    */
+   * Convenience function to group all Weapon Focus Feats
+   *
+   * @return
+   */
   def weaponFocusAny: Seq[WeaponFocus] = {
     for { wc <- WeaponClass.values } yield WeaponFocus(wc)
   }
@@ -182,12 +183,12 @@ object GeneralFeat
   ): Iterable[List[(Race, Int)]] = {
     val weaponGrants: Map[WeaponCategory with MartialWeapon, List[(Race, Int)]] =
       Map(
-        WeaponCategory.Longsword      -> List((Race.Elf, 1), (Race.Morninglord, 1)),
-        WeaponCategory.Longbow        -> List((Race.Elf, 1), (Race.Morninglord, 1)),
-        WeaponCategory.Shortbow       -> List((Race.Elf, 1), (Race.Morninglord, 1)),
-        WeaponCategory.Rapier         -> List((Race.Elf, 1), (Race.Morninglord, 1), (Race.DrowElf, 1)),
-        WeaponCategory.Shortsword     -> List((Race.DrowElf, 1)),
-        WeaponCategory.LightHammer    -> List((Race.Gnome, 1), (Race.DeepGnome, 1)),
+        WeaponCategory.Longsword   -> List((Race.Elf, 1), (Race.Morninglord, 1)),
+        WeaponCategory.Longbow     -> List((Race.Elf, 1), (Race.Morninglord, 1)),
+        WeaponCategory.Shortbow    -> List((Race.Elf, 1), (Race.Morninglord, 1)),
+        WeaponCategory.Rapier      -> List((Race.Elf, 1), (Race.Morninglord, 1), (Race.DrowElf, 1)),
+        WeaponCategory.Shortsword  -> List((Race.DrowElf, 1)),
+        WeaponCategory.LightHammer -> List((Race.Gnome, 1), (Race.DeepGnome, 1)),
         WeaponCategory.ThrowingHammer -> List((Race.Gnome, 1), (Race.DeepGnome, 1)),
         WeaponCategory.Warhammer      -> List((Race.Gnome, 1), (Race.DeepGnome, 1))
       )
@@ -224,8 +225,8 @@ object GeneralFeat
       with FriendlyDisplay {
 
     /**
-      * Delimits the prefix and text.
-      */
+     * Delimits the prefix and text.
+     */
     override protected val prefixSeparator: String = ": "
 
     override def prefix: Option[String] = Some("Improved Critical")
@@ -241,8 +242,8 @@ object GeneralFeat
       with FriendlyDisplay {
 
     /**
-      * Delimits the prefix and text.
-      */
+     * Delimits the prefix and text.
+     */
     override protected val prefixSeparator: String = ": "
 
     override def prefix: Option[String] = Some("Weapon Focus")
@@ -257,6 +258,7 @@ object GeneralFeat
       with SubFeat
       with Prefix
       with FighterBonusFeat {
+
     override protected val prefixSeparator: String = ": "
 
     override def prefix: Option[String] =
@@ -276,6 +278,7 @@ object GeneralFeat
       with SubFeat
       with Prefix
       with FriendlyDisplay {
+
     override protected val prefixSeparator: String = ": "
 
     override def prefix: Option[String] =
@@ -295,6 +298,7 @@ object GeneralFeat
       with SubFeat
       with Prefix
       with FriendlyDisplay {
+
     override protected val prefixSeparator: String = ": "
 
     override def prefix: Option[String] =
@@ -314,6 +318,7 @@ object GeneralFeat
       with SubFeat
       with Prefix
       with FriendlyDisplay {
+
     override protected val prefixSeparator: String = ": "
 
     override def prefix: Option[String] =
@@ -335,8 +340,9 @@ object GeneralFeat
       with SubFeat
       with Prefix {
 
-    /** * Delimits the prefix and text.
-      */
+    /**
+     * * Delimits the prefix and text.
+     */
     override protected val prefixSeparator: String = ": "
 
     override def prefix: Option[String] = Some("SpellFocus".splitByCase)
@@ -350,8 +356,9 @@ object GeneralFeat
       with SubFeat
       with Prefix {
 
-    /** Delimits the prefix and text.
-      */
+    /**
+     * Delimits the prefix and text.
+     */
     override protected val prefixSeparator: String = ": "
 
     override def prefix: Option[String] = Some("GreaterSpellFocus".splitByCase)
@@ -366,18 +373,22 @@ object GeneralFeat
   }
 
   /**
-    * The feat provides proficiency with basic weapons
-    *
-    * @todo grants
-    * @param weapon The Simple Weapon Category (i.e. Short Sword, Dagger, Light Crossbow)
-    * @note
-    * Every class except Wizards, Monks, and Druids get this feat for free at level 1.
-    * Wizards are only proficient in a subset of Simple weapons: (Club, Dagger, Quarterstaff, Heavy Crossbow, Light Crossbow, and Throwing Dagger).
-    * Monks are proficient with these simple weapons: Club, Dagger, Quarterstaff, Heavy Crossbow, Light Crossbow and of course Handwraps (Unarmed)
-    * Monks are also proficient with a few non-simple weapons: The Handaxe (Martial), The Kama (Exotic) and the Shuriken (Exotic)
-    * Druids are proficient with these simple weapons: Club, Dagger, Dart, Quarterstaff, Sickle, and Unarmed.
-    * Druids are also proficient with the Martial class Scimitar.
-    */
+   * The feat provides proficiency with basic weapons
+   *
+   * @todo
+   *   grants
+   * @param weapon
+   *   The Simple Weapon Category (i.e. Short Sword, Dagger, Light Crossbow)
+   * @note
+   *   Every class except Wizards, Monks, and Druids get this feat for free at level 1. Wizards are
+   *   only proficient in a subset of Simple weapons: (Club, Dagger, Quarterstaff, Heavy Crossbow,
+   *   Light Crossbow, and Throwing Dagger). Monks are proficient with these simple weapons: Club,
+   *   Dagger, Quarterstaff, Heavy Crossbow, Light Crossbow and of course Handwraps (Unarmed) Monks
+   *   are also proficient with a few non-simple weapons: The Handaxe (Martial), The Kama (Exotic)
+   *   and the Shuriken (Exotic) Druids are proficient with these simple weapons: Club, Dagger,
+   *   Dart, Quarterstaff, Sickle, and Unarmed. Druids are also proficient with the Martial class
+   *   Scimitar.
+   */
   case class SimpleWeaponProficiency(
     override val grantToClass: Seq[(HeroicCharacterClass, Int)],
     weapon: WeaponCategory with SimpleWeapon*
@@ -388,8 +399,8 @@ object GeneralFeat
       with SubFeat {
 
     /**
-      * Delimits the prefix and text.
-      */
+     * Delimits the prefix and text.
+     */
     override protected val prefixSeparator: String = ": "
 
     override def prefix: Option[String] = Some("Simple Weapon Proficiency")
@@ -398,6 +409,7 @@ object GeneralFeat
       case Some(x) => x.displayText
       case _       => entryName
     }
+
   }
 
   case class MartialWeaponProficiency(
@@ -411,8 +423,8 @@ object GeneralFeat
       with SubFeat {
 
     /**
-      * Delimits the prefix and text.
-      */
+     * Delimits the prefix and text.
+     */
     override protected val prefixSeparator: String = ": "
 
     override def prefix: Option[String] = Some("Martial Weapon Proficiency")
@@ -421,6 +433,7 @@ object GeneralFeat
       case Some(x) => x.displayText
       case _       => entryName
     }
+
   }
 
   case class ExoticWeaponProficiency(
@@ -433,8 +446,8 @@ object GeneralFeat
       with SubFeat {
 
     /**
-      * Delimits the prefix and text.
-      */
+     * Delimits the prefix and text.
+     */
     override protected val prefixSeparator: String = ": "
 
     override def prefix: Option[String] = Some("Exotic Weapon Proficiency")
@@ -443,6 +456,7 @@ object GeneralFeat
       case Some(x) => x.displayText
       case _       => entryName
     }
+
   }
 
   case class SkillFocus(skill: Skill)
@@ -452,8 +466,8 @@ object GeneralFeat
       with Prefix {
 
     /**
-      * Delimits the prefix and text.
-      */
+     * Delimits the prefix and text.
+     */
     override protected val prefixSeparator: String = ": "
 
     override def prefix: Option[String] = Some("Skill Focus")
@@ -621,6 +635,7 @@ object GeneralFeat
 
     override val subFeats: Seq[GeneralFeat with SubFeat] =
       weaponSpecializationAny
+
   }
 
   case object GreaterWeaponSpecialization
@@ -634,6 +649,7 @@ object GeneralFeat
 
     override def allOfFeats: Seq[GeneralFeat] =
       List(GeneralFeat.WeaponSpecialization)
+
   }
 
   case object SimpleThrownWeaponExpertise extends GeneralFeat with SimpleThrownWeaponExpertise
@@ -680,16 +696,20 @@ object GeneralFeat
   case object SwordsToPlowshares extends GeneralFeat with SwordsToPlowshares
 
   /**
-    * @todo Verify if Stunning Fist is actually listed as a General Feat or if we should make a separate Prefix for Martial Feats (Monk)
-    */
+   * @todo
+   *   Verify if Stunning Fist is actually listed as a General Feat or if we should make a separate
+   *   Prefix for Martial Feats (Monk)
+   */
   case object StunningFist extends GeneralFeat with StunningFist
 
   /**
-    * You can use your [Wisdom](/page/Wisdom "Wisdom") bonus instead of [Dexterity](/page/Dexterity "Dexterity") bonus to determine bonus to attack with ranged missile weapons if it is higher.
-    *
-    * *   Does <u>not</u> apply to [thrown weapons](/page/Thrown_weapon "Thrown weapon").
-    * *   [Shortbows](/page/Shortbow "Shortbow") and [Longbows](/page/Longbow "Longbow") are considered [Ki weapons](/page/Ki_weapons "Ki weapons").
-    */
+   * You can use your [Wisdom](/page/Wisdom "Wisdom") bonus instead of [Dexterity](/page/Dexterity
+   * "Dexterity") bonus to determine bonus to attack with ranged missile weapons if it is higher.
+   *
+   * * Does <u>not</u> apply to [thrown weapons](/page/Thrown_weapon "Thrown weapon"). *
+   * [Shortbows](/page/Shortbow "Shortbow") and [Longbows](/page/Longbow "Longbow") are considered
+   * [Ki weapons](/page/Ki_weapons "Ki weapons").
+   */
   case object ZenArchery extends GeneralFeat with ZenArchery
 
   // Spellcasting related
@@ -711,6 +731,7 @@ object GeneralFeat
 
     override val subFeats: Seq[GeneralFeat with SubFeat] =
       greaterWeaponFocusAny
+
   }
 
   case object SpellPenetration extends GeneralFeat with SpellPenetration with PostText {
@@ -742,6 +763,7 @@ object GeneralFeat
 
     override val subFeats: Seq[GeneralFeat with SubFeat] =
       simpleWeaponProficiencies
+
   }
 
   case object MartialWeaponProficiency
@@ -752,6 +774,7 @@ object GeneralFeat
 
     override val subFeats: Seq[GeneralFeat with SubFeat] =
       martialWeaponProficiencies
+
   }
 
   case object ExoticWeaponProficiency
@@ -781,8 +804,9 @@ object GeneralFeat
   case object SelfSufficient extends GeneralFeat with SelfSufficient
 
   /**
-    * @todo this needs to be a case class for each (allowed) Skill
-    */
+   * @todo
+   *   this needs to be a case class for each (allowed) Skill
+   */
   case object SkillFocus extends GeneralFeat with SkillFocusBase with ParentFeat {
     override val subFeats: Seq[GeneralFeat with SubFeat] = skillFocusAny
   }

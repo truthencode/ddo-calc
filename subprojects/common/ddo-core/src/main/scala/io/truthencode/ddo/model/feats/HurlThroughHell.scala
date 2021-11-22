@@ -26,10 +26,10 @@ import io.truthencode.ddo.model.classes.HeroicCharacterClass.Warlock
 import io.truthencode.ddo.support.requisite._
 
 /**
-  * [[https://ddowiki.com/page/Hurl_through_Hell Hurl through Hell]]
-  * Exile one target enemy from this existence.
-  * An enemy succeeding on a Will save vs DC(10 + Warlock level + Charisma Modifier) is instead paralyzed and helpless with fear for 6 seconds.
-  */
+ * [[https://ddowiki.com/page/Hurl_through_Hell Hurl through Hell]] Exile one target enemy from this
+ * existence. An enemy succeeding on a Will save vs DC(10 + Warlock level + Charisma Modifier) is
+ * instead paralyzed and helpless with fear for 6 seconds.
+ */
 protected[feats] trait HurlThroughHell
     extends FeatRequisiteImpl
     with ActiveFeat
@@ -50,9 +50,10 @@ protected[feats] trait HurlThroughHell
   override def allOfFeats: Seq[Feat] = Seq(ClassFeat.PactFiend)
 
   /**
-    * Allowed providing Character posseses NONE of these alignments
-    *
-    * @return Restricted alignments
-    */
+   * Allowed providing Character posseses NONE of these alignments
+   *
+   * @return
+   *   Restricted alignments
+   */
   override def noneOfAlignmentType: Seq[AlignmentType] = Seq(MoralAxis.Good)
 }

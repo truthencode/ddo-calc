@@ -26,12 +26,13 @@ import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, GrantsToClass, R
 import scala.collection.immutable
 
 /**
-  * Created by adarr on 2/16/2017.
-  * [[https://ddowiki.com/page/Artificer_Construct_Mastery]]
-  * This feat allows an Artificer to spontaneously cast any single-target Repair Damage or Inflict Damage spell they have
-  * inscribed in their spellbook. These spells will appear in bonus spell slots once inscribed.
-  * @note Currently set as an Active Feat: AtWillEvent
-  */
+ * Created by adarr on 2/16/2017. [[https://ddowiki.com/page/Artificer_Construct_Mastery]] This feat
+ * allows an Artificer to spontaneously cast any single-target Repair Damage or Inflict Damage spell
+ * they have inscribed in their spellbook. These spells will appear in bonus spell slots once
+ * inscribed.
+ * @note
+ *   Currently set as an Active Feat: AtWillEvent
+ */
 protected[feats] trait ArtificerConstructMastery
     extends FeatRequisiteImpl
     with ActiveFeat
@@ -40,12 +41,14 @@ protected[feats] trait ArtificerConstructMastery
     with SpellBookImpl
     with AtWillEvent
     with DefaultCasterCoolDown {
+
   override def allOfClass: Seq[(HeroicCharacterClass, Int)] =
     List((HeroicCharacterClass.Artificer, 1))
+
   override def grantToClass: Seq[(HeroicCharacterClass, Int)] =
     List((HeroicCharacterClass.Artificer, 1))
-  val fnArtificerInflictRepair
-      : PartialFunction[Spell, Spell with SingleTarget] = {
+
+  val fnArtificerInflictRepair: PartialFunction[Spell, Spell with SingleTarget] = {
     case x: SingleTarget => x
   }
 

@@ -17,6 +17,18 @@
  */
 plugins {
     id("scala-conventions")
+    id("org.scoverage")
 }
 
 
+scoverage {
+    val cfgs = listOf(Pair(org.scoverage.CoverageType.Branch, 0.2.toBigDecimal()),
+        Pair(org.scoverage.CoverageType.Statement, 0.75.toBigDecimal()))
+    val cks = cfgs.map { (k, v) ->
+        val b = org.scoverage.ScoverageExtension.CheckConfig()
+        b.minimumRate = v
+        b.coverageType = k
+        b
+    }
+    checks.addAll(cks)
+}

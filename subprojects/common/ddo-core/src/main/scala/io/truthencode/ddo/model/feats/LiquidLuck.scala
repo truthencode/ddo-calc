@@ -26,10 +26,11 @@ import io.truthencode.ddo.support.requisite.{
 }
 
 /**
-  * Gain Evasion.
-  *
-  * @see [[https://ddowiki.com/page/Liquid_Luck]]
-  */
+ * Gain Evasion.
+ *
+ * @see
+ *   [[https://ddowiki.com/page/Liquid_Luck]]
+ */
 protected[feats] trait LiquidLuck
     extends FeatRequisiteImpl
     with ClassRequisiteImpl
@@ -37,6 +38,7 @@ protected[feats] trait LiquidLuck
     with AlchemistBonusFeat
     with Passive {
   self: ClassFeat =>
+
   private[this] val cls = (Alchemist, 12)
 
   abstract override def allOfClass: Seq[(HeroicCharacterClass, Int)] = super.allOfClass :+ cls
