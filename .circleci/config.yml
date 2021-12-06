@@ -33,6 +33,7 @@ jobs:
       - run: ./gradlew assemble
       - run: cat /dev/null | ./gradlew check acceptanceTest
       - run: if [ -e ./gradlew ]; then ./gradlew reportScoverage --continue;else gradle reportScoverage --continue;fi
+      - run: echo "touched"
       - codecov/upload
       # Download and cache dependencies
       - restore_cache:
