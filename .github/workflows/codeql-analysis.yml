@@ -32,7 +32,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
+<<<<<<< HEAD
         language: [ 'java' ]
+=======
+        language: [ 'java','kotlin' ]
+>>>>>>> 446c748c (Add flow: CodeQL for Java / Kotlin)
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
         # Learn more about CodeQL language support at https://aka.ms/codeql-docs/language-support
 
