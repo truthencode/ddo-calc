@@ -28,7 +28,7 @@ dependencies {
     val scalaLibraryVersion: String by project
     val scalaMajorVersion: String by project
     val scalaCompilerPlugin by configurations.creating
-    scalaCompilerPlugin("com.typesafe.genjavadoc:genjavadoc-plugin_$scalaLibraryVersion:0.18")
+    scalaCompilerPlugin("com.typesafe.genjavadoc:genjavadoc-plugin_$scalaLibraryVersion:0.18_2.13.10")
     compileOnly("org.scoverage:scalac-scoverage-plugin_$scalaMajorVersion.7:1.4.10")
 
 }
