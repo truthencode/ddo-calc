@@ -42,7 +42,7 @@ dependencies {
     implementation("com.github.node-gradle:gradle-node-plugin:7.0.0")
 // code quality
     implementation("com.diffplug.spotless:spotless-plugin-gradle:6.19.0")
-    implementation("com.javiersc.gradle-plugins:dependency-updates:0.1.0-rc.40")
+    implementation("com.javiersc.gradle-plugins:dependency-updates:0.1.0-rc.45")
     // doc generation (requires python)
 //    implementation("com.palantir.baseline:gradle-baseline-java:$palantirPluginVersion")
 
