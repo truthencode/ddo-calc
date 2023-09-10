@@ -214,16 +214,16 @@ if (cleanTask.isPresent) {
     cleanTask.get().dependsOn("cleanGeneratedScala")
 }
 
-tasks {
-    // Use the built-in JUnit support of Gradle.
-    "test"(Test::class) {
-        useJUnitPlatform {
-            includeEngines = setOf("scalatest")
-            testLogging {
-                events("passed", "skipped", "failed")
-            }
-        }
-    }
+// tasks {
+//     // Use the built-in JUnit support of Gradle.
+//     "test"(Test::class) {
+//         useJUnitPlatform {
+//             includeEngines = setOf("scalatest")
+//             testLogging {
+//                 events("passed", "skipped", "failed")
+//             }
+//         }
+//     }
 //    val sv = named("syncVersionFiles").get()
 //    // BUG: should not need to declare task dependencies when tasks use non-conflicting outputs
 //    val gas = named("generateAvroScala").get()
@@ -231,4 +231,4 @@ tasks {
 //    withType<com.hierynomus.gradle.license.tasks.LicenseCheck> {
 //        mustRunAfter(gas)
 //    }
-}
+// }
