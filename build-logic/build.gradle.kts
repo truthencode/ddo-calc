@@ -74,7 +74,7 @@ dependencies {
     implementation("org.kordamp.gradle:jandex-gradle-plugin:$jandexPluginVersion")
 
     // Database
-    implementation("app.cash.sqldelight:gradle-plugin:2.0.0-alpha05")
+    implementation("app.cash.sqldelight:gradle-plugin:2.0.2")
 
     // String utils
     // camel / snake etc
