@@ -77,7 +77,7 @@ dependencies {
     // Logging
     implementation("com.tersesystems.blindsight:blindsight-logstash_$scalaMajorVersion:1.5.2")
     // https://mvnrepository.com/artifact/com.tersesystems.logback/logback-structured-config
-    implementation("com.tersesystems.logback:logback-structured-config:1.0.1")
+    implementation("com.tersesystems.logback:logback-structured-config:1.0.3")
     compileOnly("org.slf4j:jul-to-slf4j:$slf4jVersion")
     // implementation(group = "ch.qos.logback", name = "logback-classic")
     // implementation(group = "com.typesafe.scala-logging", name = "scala-logging_$scalaMajorVersion")
