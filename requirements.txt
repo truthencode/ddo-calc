@@ -10,7 +10,7 @@ beautifulsoup4==4.12.2
     # via mkdocs-embed-file-plugins
 bracex==2.4
     # via wcmatch
-certifi==2023.7.22
+certifi==2024.7.4
     # via requests
 charset-normalizer==3.1.0
     # via requests
