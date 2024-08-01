@@ -34,7 +34,7 @@ class DamageDiceTest
   extends AnyFunSpec with PropertyChecks with Matchers with MockitoSugar with LazyLogging {
 
   final val maxFlags = 4
-  val diceSet =
+  val diceSet: Vector[String] =
     Vector(
       "3[2d10] + 4",
       "1.5[1d8]",
@@ -60,7 +60,7 @@ class DamageDiceTest
 
     @scala.annotation.tailrec
     def rng: Int = {
-      val x = Random.nextInt(PhysicalDamageType.values.size)
+      val x = new java.security.SecureRandom().nextInt(PhysicalDamageType.values.size)
       if (x.!=(0)) {
         x
       } else {
@@ -77,7 +77,7 @@ class DamageDiceTest
     for { x <- diceSet.cross(tpl) } yield s"${x._1} ${x._2}"
   }
   describe("DnD Dice") {
-    they("should support 3[2D4 + 3] flags syntax") {
+    they("should support W[nDn + n] flags syntax") {
       randomDiceSets.foreach { d =>
         noException shouldBe thrownBy(DamageInfo.apply(d))
       }

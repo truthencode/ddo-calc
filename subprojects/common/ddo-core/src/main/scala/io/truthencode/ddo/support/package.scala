@@ -22,9 +22,10 @@ import com.typesafe.scalalogging.LazyLogging
 import com.wix.accord.Violation
 import io.truthencode.ddo.support.matching.{WordMatchStrategies, WordMatchStrategy}
 
+import java.security.SecureRandom
 import scala.collection.immutable.HashMap
 import scala.language.postfixOps
-import scala.util.Random
+
 import scala.util.control.Exception.catching
 
 package object support extends LazyLogging {
@@ -177,6 +178,7 @@ package object support extends LazyLogging {
     }
 
     implicit class IntExtensions(val source: Int) {
+
       /**
        * Convenience toString to add +/- to number for text fields
        * @return
@@ -276,8 +278,7 @@ package object support extends LazyLogging {
       }
 
       /**
-       * Replaces Roman Numeral Representation with Numerical value.
-       * i.e. IV -> 4
+       * Replaces Roman Numeral Representation with Numerical value. i.e. IV -> 4
        * @note
        *   This utility parses using Space as a delimiter. It is generally advised to use this
        *   before other manipulations such as removing spaces or changing cases.
@@ -323,7 +324,7 @@ package object support extends LazyLogging {
        *   source string with randomized upper and lower case characters.
        */
       def randomCase: String = {
-        val r = new Random
+        val r = new SecureRandom()
         s.toCharArray.map { x =>
           if (r.nextInt() > 0) x.toUpper else x.toLower
         }
@@ -336,11 +337,11 @@ package object support extends LazyLogging {
        * Will use space as a delimiter, falling back on Case else None.
        *
        * @example
-       * {{{
+       *   {{{
        * val wordList = List("I Believe Mom","i borrow money","IBetterMail","oracle")
        * wordList.map(x => wordsToAcronym(x)}
        * res0:List(Some("IBM"),Some("IBM"),Some("IBM"),None)
-       * }}}
+       *   }}}
        */
       def wordsToAcronym(implicit
         wordMatchStrategy: WordMatchStrategy = WordMatchStrategies.IgnoreCaseWordStrategy
@@ -398,7 +399,7 @@ package object support extends LazyLogging {
     final val LineSep = sys.props("line.separator")
     private val path = "io.truthencode.ddo.support"
     // Random generator
-    private[this] val random: scala.util.Random = new scala.util.Random
+    private[this] val random: SecureRandom = new SecureRandom()
 
     /**
      * Generate a random alphanumeric string of length n
