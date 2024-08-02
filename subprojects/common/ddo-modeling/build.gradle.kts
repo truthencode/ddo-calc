@@ -277,7 +277,7 @@ dependencies {
     implementation(enforcedPlatform(project(":ddo-platform-scala")))
     implementation(libs.scala2.library) {
         version {
-            strictly("2.13.10")
+            strictly("2.13.14")
         }
     }
     implementation(libs.enumeratum.s213)
