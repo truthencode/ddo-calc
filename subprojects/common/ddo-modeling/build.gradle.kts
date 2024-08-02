@@ -270,16 +270,9 @@ dependencies {
     check out refined library for compile time constraints
     unsure how  helpful this will be as most data will need runtime validation (aka wix)
      */
-    // Use Scala $scalaMajorVersion in our library project
-    val scalaLibraryVersion: String by project
-    val scalaMajorVersion: String by project
 
     implementation(enforcedPlatform(project(":ddo-platform-scala")))
-    implementation(libs.scala2.library) {
-        version {
-            strictly("2.13.14")
-        }
-    }
+
     implementation(libs.enumeratum.s213)
     implementation(libs.typesafe.config)
     implementation(libs.kxbmap.configs.s213)

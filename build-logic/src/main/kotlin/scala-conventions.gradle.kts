@@ -38,7 +38,6 @@ dependencies {
 }
 
 configure<org.scoverage.ScoverageExtension> {
-    scoverageVersion.set(libs.versions.scoverage)
     val cfgs =
         mapOf(
             Pair(org.scoverage.CoverageType.Branch, 0.5.toBigDecimal()),

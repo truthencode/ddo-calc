@@ -37,11 +37,12 @@ pluginManagement {
 //        id("org.kordamp.gradle.minpom") version kordampGradlePluginVersion
 //        id("com.mooltiverse.oss.nyx") version mooltiverseNyxPluginVersion
         id("org.gradle.toolchains.foojay-resolver-convention") version foojayResolverPluginVersionversion
+        id("io.quarkus") version quarkusPlatformVersion
         id("com.palantir.baseline") version palantirPluginVersion
         id("com.palantir.baseline-config") version palantirPluginVersion
         id("org.inferred.processors") version "3.7.0"
-        id("org.scoverage") version "8.0.3"
-        id("io.quarkus") version quarkusPlatformVersion
+        id("org.scoverage") version "8.1"
+        
 //        id("ru.vyarus.mkdocs") version "3.0.0"
     }
 }
