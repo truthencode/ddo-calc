@@ -49,9 +49,7 @@ val siteScm = "$gitHubBaseSite/$gitExtension"
 // Used for versioned documentation
 val mkDocsLatestAlias: String? by project
 
-fun mkDocAlias(): String {
-    return mkDocsLatestAlias ?: "Latest"
-}
+fun mkDocAlias(): String = mkDocsLatestAlias ?: "Latest"
 group = "io.truthencode"
 
 // MkDocs config
@@ -193,9 +191,7 @@ class VersionInfo {
     private fun optionalProperty(
         key: String,
         defaultValue: String? = null,
-    ): String? {
-        return readOptionalProperty(props, key, defaultValue)
-    }
+    ): String? = readOptionalProperty(props, key, defaultValue)
 
     val props = versionProperties()
     val major = optionalProperty("version.major", "0")?.toInt()

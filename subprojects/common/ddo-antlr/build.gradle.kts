@@ -20,11 +20,17 @@ description = "Antlr Parsing utilities"
 
 val antlrJavaPath =
     PackagePath(
-        project.layout.buildDirectory.dir("generated-src/java").get().asFile.path,
+        project.layout.buildDirectory
+            .dir("generated-src/java")
+            .get()
+            .asFile.path,
         "io.truthencode.ddo.grammar.antlr",
     )
 
-data class PackagePath(val source: String, val packageName: String) {
+data class PackagePath(
+    val source: String,
+    val packageName: String,
+) {
     /**
      * Property stores the base output folder.
      * This should generally be similar to 'src/generated/java'

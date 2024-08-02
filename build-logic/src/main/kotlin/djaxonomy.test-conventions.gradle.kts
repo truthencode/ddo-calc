@@ -54,13 +54,18 @@ sonar {
                 ).joinToString()
             property("sonar.scala.coverage.reportPaths", rPath)
         } else {
-            logger.warn("SONAR: ${project.name} is not a scala project or does not have the scala plugin applied, no coverage data will be available")
+            logger.warn(
+                "SONAR: ${project.name} is not a scala project or does not have the scala plugin applied, no coverage data will be available",
+            )
             // use Jacoco ?
             // sonar.coverage.jacoco.xmlReportPaths
         }
         val junitPaths =
             listOf("test-results/test", "test-results/acceptanceTest").joinToString {
-                project.layout.buildDirectory.dir(it).get().asFile.path
+                project.layout.buildDirectory
+                    .dir(it)
+                    .get()
+                    .asFile.path
             }
         property("sonar.junit.reportPaths", junitPaths)
     }

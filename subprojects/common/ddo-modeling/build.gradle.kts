@@ -44,15 +44,24 @@ val CODE_GEN = "codeGen"
 tasks.register("generateAvroSchemas", GradleBuild::class) {
     val output = layout.buildDirectory.dir("avro-gen")
     outputs.dir(output)
-    val input = rootProject.layout.projectDirectory.file("include/ddo-avro").asFile
+    val input =
+        rootProject.layout.projectDirectory
+            .file("include/ddo-avro")
+            .asFile
     inputs.dir(input)
-    dir = rootProject.layout.projectDirectory.file("include/ddo-avro").asFile
+    dir =
+        rootProject.layout.projectDirectory
+            .file("include/ddo-avro")
+            .asFile
 
     tasks = listOf("generateAvroScala")
 }
 
 tasks.register("cleanAvroSchemas", GradleBuild::class) {
-    dir = rootProject.layout.projectDirectory.file("include/ddo-avro").asFile
+    dir =
+        rootProject.layout.projectDirectory
+            .file("include/ddo-avro")
+            .asFile
 
     tasks = listOf("clean")
 }
@@ -208,7 +217,12 @@ task("genModel", org.openapitools.generator.gradle.plugin.tasks.GenerateTask::cl
     verbose.set(true)
     generatorName.set("scala-lagom-server")
     inputSpec.set(apiSpec.asPath)
-    outputDir.set(layout.buildDirectory.dir("generated/lagom").get().asFile.path)
+    outputDir.set(
+        layout.buildDirectory
+            .dir("generated/lagom")
+            .get()
+            .asFile.path,
+    )
 
     apiPackage.set("io.truthencode.ddo.api")
     invokerPackage.set("io.truthencode.ddo.invoker")
@@ -220,7 +234,12 @@ task("genGatling", org.openapitools.generator.gradle.plugin.tasks.GenerateTask::
     val id = "scala-gatling"
     generatorName.set(id)
     inputSpec.set(apiSpec.asPath)
-    outputDir.set(layout.buildDirectory.dir("generated/$id").get().asFile.path)
+    outputDir.set(
+        layout.buildDirectory
+            .dir("generated/$id")
+            .get()
+            .asFile.path,
+    )
 
     apiPackage.set("io.truthencode.ddo.api")
     invokerPackage.set("io.truthencode.ddo.invoker")
