@@ -76,7 +76,7 @@ kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "
 kotlin-stdlib-common = { module = "org.jetbrains.kotlin:kotlin-stdlib-common", version.ref = "kotlin" }
 kotlin-stdlib-jdk7 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.ref = "kotlin" }
 kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
-kxbmap-configs-s213 = {module= "com.github.kxbmap:configs_2.13", version.ref = "kxbmap" }
+kxbmap-configs-s213 = { module = "com.github.kxbmap:configs_2.13", version.ref = "kxbmap" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
 mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
 monix-eval-s213 = { module = "io.monix:monix-eval_2.13", version.ref = "monix" }
