@@ -228,6 +228,7 @@ object GeneralFeat
       triggersOff = Seq(TriggerEvent.OnUnEquip.toString),
       bonusType = criticalThreatRangeType.entryName
     )
+
     /**
      * @note
      *   Will need to look at stacking logic checks to make sure this stacks correctly (or more
@@ -236,17 +237,11 @@ object GeneralFeat
     override protected lazy val criticalThreatRangeType: BonusType = BonusType.Feat
     val wow: Seq[(WeaponCategory, Int)] = improvedCriticalRangeByWeapon(weaponClass) // wow1.flatten
     override protected val criticalThreatRangeAmount: Seq[(WeaponCategory, Int)] = wow
+
     /**
      * Delimits the prefix and text.
      */
     override protected val prefixSeparator: String = ": "
-//    val wow1: Seq[Seq[(WeaponCategory, Int)]] = for {
-//      weapon <- filterByWeaponClass(weaponClass)
-//      a1 <- icPlus1.filter(_ == weapon)
-//      a2 <- icPlus2.filter(_ == weapon)
-//      a3 <- icPlus3.filter(_ == weapon)
-//    } yield Seq((a1, 1), (a2, 2), (a3, 3))
-    // logger.info(s"found ${wow1.size} weapons for improved critical: ${weaponClass.entryName}")
 
     override def prefix: Option[String] = Some("Improved Critical")
 
@@ -268,6 +263,7 @@ object GeneralFeat
       effect.EffectCategories.GeneralCombat)
     override protected[this] val rangePowerCategories: Seq[effect.EffectCategories.Value] = Seq(
       effect.EffectCategories.GeneralCombat)
+
     /**
      * Delimits the prefix and text.
      */
@@ -421,6 +417,7 @@ object GeneralFeat
     override protected lazy val spellFocusBonusType: BonusType = BonusType.Feat
     override protected val spellFocusDifficultyCheck: Int = 1
     override protected val spellSchool: School = school
+
     /**
      * * Delimits the prefix and text.
      */
@@ -441,6 +438,7 @@ object GeneralFeat
     override protected lazy val spellFocusBonusType: BonusType = BonusType.Feat
     override protected val spellFocusDifficultyCheck: Int = 1
     override protected val spellSchool: School = school
+
     /**
      * Delimits the prefix and text.
      */
@@ -485,6 +483,7 @@ object GeneralFeat
       : Seq[effect.EffectCategories.Value] = Seq(effect.EffectCategories.GeneralCombat)
     override protected lazy val proficiencyType: BonusType = BonusType.Feat
     override protected val proficiencyAmount: Seq[WeaponCategory] = weapon
+
     /**
      * Delimits the prefix and text.
      */
@@ -511,6 +510,7 @@ object GeneralFeat
 
     override protected lazy val proficiencyType: BonusType = BonusType.Feat
     override protected val proficiencyAmount: Seq[WeaponCategory] = weapon
+
     /**
      * Delimits the prefix and text.
      */
@@ -535,6 +535,7 @@ object GeneralFeat
       : Seq[effect.EffectCategories.Value] = Seq(effect.EffectCategories.GeneralCombat)
     override protected lazy val proficiencyType: BonusType = BonusType.Feat
     override protected val proficiencyAmount: Seq[WeaponCategory] = weapon
+
     /**
      * Delimits the prefix and text.
      */
@@ -554,6 +555,7 @@ object GeneralFeat
 
     override lazy val bonusType: BonusType = BonusType.Feat
     override val affectedSkills: List[(Skill, Int)] = List((skill, 3))
+
     /**
      * Delimits the prefix and text.
      */
@@ -653,8 +655,6 @@ object GeneralFeat
   case object Precision extends GeneralFeat with Precision
 
   case object Resilience extends GeneralFeat with Resilience
-
-  // Seq(Feat.WeaponFocusBludgeon, Feat.WeaponFocusPiercing, Feat.WeaponFocusSlashing, Feat.WeaponFocusRanged, Feat.WeaponFocusThrown)
 
   // Passive Feats
   // General passive feats
@@ -931,9 +931,6 @@ object GeneralFeat
   // FavorPatron awarded free feats
   case object CoinLordFinishingSchoolTraining
     extends GeneralFeat with CoinLordFinishingSchoolTraining
-
-  // Exchange feats
-  // case object FeatRespecToken extends Feat with FeatRespecToken
 
   case object DraconicVitality extends GeneralFeat with DraconicVitality
 }

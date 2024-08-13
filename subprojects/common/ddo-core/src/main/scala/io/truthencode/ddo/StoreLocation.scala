@@ -19,6 +19,7 @@ package io.truthencode.ddo
 
 import enumeratum.{Enum, EnumEntry}
 import io.truthencode.ddo.enumeration.{BitSupport, BitWise}
+import io.truthencode.ddo.support.slots.{EquipmentSlot, WearLocation}
 
 import scala.collection.immutable
 
@@ -87,6 +88,7 @@ trait ItemEquip extends StoreLocation {
 object StoreLocation extends Enum[StoreLocation] with BitSupport {
 
   override type T = StoreLocation
+
   /**
    * Object can be slotted onto character, such as a sword or helmet. Items with this value should
    * further be constrained with corresponding WearLocation.
@@ -146,7 +148,9 @@ object StoreLocation extends Enum[StoreLocation] with BitSupport {
   case class FiligreeSlotLocation(filigreeLocation: FiligreeLocation)
     extends Filigree with FiligreeLocation
 
-  case class EquippedLocation(wearLocation: WearLocation) extends ItemEquip with EquipmentSlot
+  case class EquippedLocation(wearLocation: WearLocation) extends ItemEquip with EquipmentSlot {
+    override def displaySource: String = wearLocation.displaySource
+  }
 
   case object Equipped extends Inventory
 

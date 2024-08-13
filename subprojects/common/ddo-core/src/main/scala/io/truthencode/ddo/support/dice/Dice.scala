@@ -24,6 +24,7 @@ package io.truthencode.ddo.support.dice
  *   2d6 would be 2 6 sided dice or 2 - 12
  */
 trait Dice {
+
   /**
    * Number of Sides on the Die
    */
@@ -38,10 +39,15 @@ trait Dice {
 
 object Dice {
   def apply(s: Int, n: Int): Dice = new Dice() {
+
     /**
      * Number of Sides on the Die
      */
     override val sides: Int = s
     override val number: Int = n
+  }
+
+  def parse(s: String): Unit = {
+    val regx = """\[\d+d\d+\]""".r
   }
 }

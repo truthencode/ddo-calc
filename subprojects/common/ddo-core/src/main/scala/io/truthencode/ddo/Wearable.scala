@@ -17,12 +17,14 @@
  */
 package io.truthencode.ddo
 import enumeratum.EnumEntry
-import io.truthencode.ddo.enumeration.EnumExtensions._
+import io.truthencode.ddo.enumeration.EnumExtensions.{E2, EnumCompanionOps}
+import io.truthencode.ddo.support.slots.WearLocation
 
 /**
  * Indicates the given object can be equipped / wielded etc.
  */
 trait Wearable {
+
   /**
    * A list of allowed location slots
    *
