@@ -68,7 +68,7 @@
         <!-- Counchbase (lite) only deploys Native (Linux) on repo, so reproducability 
 			and development on windows is... limited at best. -->
         <couchbase.version>1.1.0</couchbase.version>
-        <logback.version>1.4.11</logback.version>
+        <logback.version>1.5.12</logback.version>
         <!-- Languages -->
         <!-- Extend -->
         <xtend.version>2.32.0</xtend.version>
