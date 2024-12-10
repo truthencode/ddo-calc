@@ -69,7 +69,7 @@ dependencies {
     implementation("org.scala-lang:scala-library:$scalaLibraryVersion")
     implementation("org.scala-lang:scala-reflect:$scalaLibraryVersion")
     implementation("org.scala-lang:scala-compiler:$scalaLibraryVersion")
-    implementation("com.typesafe.akka:akka-actor_$scalaMajorVersion:2.6.16")
+    implementation("com.typesafe.akka:akka-actor_$scalaMajorVersion:2.8.8")
     implementation("org.scalatra.scalate:scalate-core_$scalaMajorVersion:$scalateVersion")
     implementation("io.lemonlabs:scala-uri_$scalaMajorVersion:$lemonlabsVersion")
 
