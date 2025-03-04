@@ -330,7 +330,7 @@ squareup-moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 squareup-moshi-adapters = { module = "com.squareup.moshi:moshi-adapters", version.ref = "moshi" }
 squareup-moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
 squareup-moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
-typesafe-config = "com.typesafe:config:1.4.2"
+typesafe-config = "com.typesafe:config:1.4.3"
 ##                                 ⬆ :1.4.3"
 typesafe-scala-logging-s213 = { module = "com.typesafe.scala-logging:scala-logging_2.13", version.ref = "scala-logging" }
 typesafe-scala-logging-s3 = { module = "com.typesafe.scala-logging:scala-logging_3", version.ref = "scala-logging" }
