@@ -434,7 +434,7 @@ annotations = "org.jetbrains:annotations:17.0.0"
 ##                                   ⬆ :26.0.1"
 ##                                   ⬆ :26.0.2"
 
-zio-test-junit-s3 = "dev.zio:zio-test-junit_3:2.1.9"
+zio-test-junit-s3 = "dev.zio:zio-test-junit_3:2.1.16"
 ##                                        ⬆ :2.1.10"
 ##                                        ⬆ :2.1.11"
 ##                                        ⬆ :2.1.12"
