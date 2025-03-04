@@ -414,7 +414,7 @@ jakarta-inject-api = "jakarta.inject:jakarta.inject-api:2.0.1"
 microprofile-config-api = "org.eclipse.microprofile.config:microprofile-config-api:3.1"
 
 
-zio-prelude-s3 = "dev.zio:zio-prelude_3:1.0.0-RC31"
+zio-prelude-s3 = "dev.zio:zio-prelude_3:1.0.0-RC39"
 
 annotations = "org.jetbrains:annotations:17.0.0"
 ##                                   ⬆ :18.0.0"
