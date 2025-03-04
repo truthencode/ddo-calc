@@ -126,7 +126,7 @@ jayway-jsonpath = "2.9.0"
 jackson = "2.12.3"
 sttp = "3.9.8"
 
-scalafix-plugin = "0.2.2"
+scalafix-plugin = "0.2.4"
 scoverage-plugin = "8.1"
 quarkus-gradle-plugin = "3.19.1"
 spotless-plugin = "7.0.2"
