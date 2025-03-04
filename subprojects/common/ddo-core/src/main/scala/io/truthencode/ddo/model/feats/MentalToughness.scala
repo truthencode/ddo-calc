@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: MentalToughness.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +21,11 @@
 package io.truthencode.ddo.model.feats
 
 import io.truthencode.ddo.model.classes.HeroicCharacterClass
-import io.truthencode.ddo.support.requisite.{ClassRequisiteImpl, FeatRequisiteImpl, RequiresAnyOfClass}
+import io.truthencode.ddo.support.requisite.{
+  ClassRequisiteImpl,
+  FeatRequisiteImpl,
+  RequiresAnyOfClass
+}
 
 /**
  * Icon Feat Mental Toughness.png Mental Toughness Passive This feat Increases the character maximum
@@ -30,8 +37,8 @@ import io.truthencode.ddo.support.requisite.{ClassRequisiteImpl, FeatRequisiteIm
  *   Wizard; Level 4: Paladin, Ranger
  */
 trait MentalToughness
-  extends FeatRequisiteImpl with ClassRequisiteImpl with Passive with RequiresAnyOfClass
-  with AlchemistBonusFeat {
+  extends FeatRequisiteImpl with BonusSelectableToClassFeatImpl with ClassRequisiteImpl with Passive
+  with RequiresAnyOfClass with AlchemistBonusFeat {
   self: GeneralFeat =>
 
   override def anyOfClass: Seq[(HeroicCharacterClass, Int)] =

@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: package.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,11 +40,13 @@ import io.truthencode.ddo.support.tree.TreeLike
  */
 package object requisite {
   type Result = (Boolean, Option[List[Requisite]])
+
   /**
    * Default grouping key. Assumes a required value when none is specified, thus it is effectively
    * equivalent to [[requiredGroupKey]] at this time, but may change in the future.
    */
   final val defaultGroupKey = "Prerequisite"
+
   /**
    * This constant represents Required Groupings
    */
@@ -112,7 +117,7 @@ package object requisite {
           ReqRace(v1._1.entryName, v1._2)
       }
 
-    implicit class FeatImplicits(val source: Feat with EnumEntry) {
+    implicit class FeatImplicits(val source: Feat & EnumEntry) {
       def toReq: ReqFeat = ReqFeat(source.entryName)
     }
 

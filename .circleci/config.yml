@@ -2,9 +2,9 @@
 # See: https://circleci.com/docs/2.0/sample-config/
 version: 2.1
 orbs:
-    gradle: circleci/gradle@2.2.0
-    codecov: codecov/codecov@3.2.3
-    coverage-reporter: codacy/coverage-reporter@13.9.17
+    gradle: circleci/gradle@3.0.0
+    codecov: codecov/codecov@3.2.5
+    coverage-reporter: codacy/coverage-reporter@13.13.7
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -13,7 +13,7 @@ jobs:
         # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
         docker:
             # specify the version you desire here
-            - image: cimg/openjdk:11.0
+            - image: cimg/openjdk:21.0
               auth:
                   username: $docker_user
                   password: $docker_token
@@ -33,14 +33,10 @@ jobs:
         # Add steps to the job
         # See: https://circleci.com/docs/2.0/configuration-reference/#steps
         steps:
-            - checkout
+            - run: git clone --depth 20 "$CIRCLE_REPOSITORY_URL" --branch "$CIRCLE_BRANCH"
             - run: ./gradlew assemble
-            - run: cat /dev/null | ./gradlew reportScoverage aggregateAllTestReports
-            - run: if [ -e ./gradlew ]; then ./gradlew reportScoverage aggregateAllTestReports --continue;else gradle reportScoverage aggregateAllTestReports --continue;fi
+            - run: if [ -e ./gradlew ]; then ./gradlew reportScoverage aggregateScoverage --continue;else gradle reportScoverage aggregateScoverage --continue;fi
             - codecov/upload
-            - coverage-reporter/send_report:
-                  coverage-reports: report.xml,coverage.info
-                  project-token: $CODACY_PROJECT_TOKEN
             # Download and cache dependencies
             - restore_cache:
                   keys:

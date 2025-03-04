@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: ArmorClassPercentFeature.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,22 +33,23 @@ trait ArmorClassPercentFeature extends Features {
   self: SourceInfo =>
   protected val armorBonusType: BonusType
   protected val armorBonusAmount: Int
-  protected[this] val triggerOn: Seq[TriggerEvent]
-  protected[this] val triggerOff: Seq[TriggerEvent]
+  protected def triggerOn: Seq[TriggerEvent]
+  protected def triggerOff: Seq[TriggerEvent]
   private val src = this
-  private[this] val armorChance =
-    new PartModifier[Int, BasicStat with MissChance] with UsingSearchPrefix {
+  private val armorChance =
+    new PartModifier[Int, BasicStat & MissChance] with UsingSearchPrefix {
 
-      override protected[this] lazy val partToModify: BasicStat with MissChance =
+      override protected lazy val partToModify: BasicStat & MissChance =
         BasicStat.ArmorClass
 
       private val eb = EffectParameterBuilder()
-        .toggleOffValue(triggerOff: _*)
-        .toggleOnValue(triggerOn: _*)
+        .toggleOffValue(triggerOff*)
+        .toggleOnValue(triggerOn*)
         .addBonusType(armorBonusType)
         .build
 
-      override protected[this] def effectParameters: Seq[ParameterModifier[_]] = eb.modifiers
+      override protected def effectParameters: Seq[ParameterModifier[?]] = eb.modifiers
+
       /**
        * The General Description should be just that. This should not include specific values unless
        * all instances will share that value. I.e. a Dodge Effect might state it increases your
@@ -61,21 +65,22 @@ trait ArmorClassPercentFeature extends Features {
         triggersOff = triggerOff.map(_.entryName),
         bonusType = armorBonusType.toString
       )
+
       /**
        * The main name of the effect.
        *
-       * Naming conventions The name should be concisely non-specific.
-       * i.e. Prefer "ArmorClass" instead of "Deflection" or "Miss-Chance" Deflection is too
-       * specific as there are several stacking and non-stacking types (Natural Armor, Shield) that
-       * all contribute to your specific goal of increasing your armor class. Miss-Chance is to
-       * vague as it encompasses everything from incorporeal, dodge, armor class, arrow-deflection
-       * etc.
+       * Naming conventions The name should be concisely non-specific. i.e. Prefer "ArmorClass"
+       * instead of "Deflection" or "Miss-Chance" Deflection is too specific as there are several
+       * stacking and non-stacking types (Natural Armor, Shield) that all contribute to your
+       * specific goal of increasing your armor class. Miss-Chance is to vague as it encompasses
+       * everything from incorporeal, dodge, armor class, arrow-deflection etc.
        */
       override lazy val name: String = "ArmorClass"
 
       override val source: SourceInfo = src
       override lazy val value: Int = armorBonusAmount
       override lazy val effectText: Option[String] = Some(s"Armor Class by $value%")
+
       /**
        * Used when qualifying a search with a prefix. Examples include finding "HalfElf" from
        * qualified "Race:HalfElf"
@@ -86,7 +91,7 @@ trait ArmorClassPercentFeature extends Features {
       override def searchPrefixSource: String = partToModify.searchPrefixSource
     }
 
-  abstract override def features: Seq[Feature[_]] = {
+  abstract override def features: Seq[Feature[?]] = {
     assert(armorChance.value == armorBonusAmount)
     super.features :+ armorChance
   }

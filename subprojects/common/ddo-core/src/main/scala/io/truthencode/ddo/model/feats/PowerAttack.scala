@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: PowerAttack.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,13 +20,18 @@
  */
 package io.truthencode.ddo.model.feats
 
+import io.truthencode.ddo.activation.{ActivationTypeImpl, TriggeredEventImpl}
 import io.truthencode.ddo.enhancement.BonusType
 import io.truthencode.ddo.model.abilities.ActiveAbilities
 import io.truthencode.ddo.model.attribute.Attribute
 import io.truthencode.ddo.model.effect
 import io.truthencode.ddo.model.effect.TriggerEvent
 import io.truthencode.ddo.model.effect.features.{FeaturesImpl, GrantAbilityFeature}
-import io.truthencode.ddo.support.requisite.{AttributeRequisiteImpl, FeatRequisiteImpl, RequiresAllOfAttribute}
+import io.truthencode.ddo.support.requisite.{
+  AttributeRequisiteImpl,
+  FeatRequisiteImpl,
+  RequiresAllOfAttribute
+}
 
 import java.time.Duration
 
@@ -44,17 +52,19 @@ import java.time.Duration
  *   add Offensive Combat Stance
  */
 protected[feats] trait PowerAttack
-  extends FeatRequisiteImpl with ActiveFeat with Stance with AttributeRequisiteImpl with RequiresAllOfAttribute with MartialArtsFeat
-  with FighterBonusFeat with FeaturesImpl with GrantAbilityFeature {
+  extends FeatRequisiteImpl with BonusSelectableToClassFeatImpl with TriggeredEventImpl
+  with ActivationTypeImpl with ActiveFeat with Stance with AttributeRequisiteImpl
+  with RequiresAllOfAttribute with MartialArtsFeat with FighterBonusFeat with FeaturesImpl
+  with GrantAbilityFeature {
   self: GeneralFeat =>
   override lazy val grantedAbility: ActiveAbilities = ActiveAbilities.PowerAttack
   override val allOfAttributes: Seq[(Attribute, Int)] = List(
     (Attribute.Strength, 13)
   )
 // TODO: Add to hit penalty, Damage Bonus for PowerAttack
-  override protected[this] val triggerOn: Seq[TriggerEvent] = Seq(TriggerEvent.OnStance)
-  override protected[this] val triggerOff: Seq[TriggerEvent] = Seq(TriggerEvent.OnToggle)
-  override protected[this] val grantAbilityCategories: Seq[effect.EffectCategories.Value] =
+  override protected val triggerOn: Seq[TriggerEvent] = Seq(TriggerEvent.OnStance)
+  override protected val triggerOff: Seq[TriggerEvent] = Seq(TriggerEvent.OnToggle)
+  override protected val grantAbilityCategories: Seq[effect.EffectCategories.Value] =
     Seq(
       effect.EffectCategories.Ability,
       effect.EffectCategories.Stance,

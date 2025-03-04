@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: BitSupport.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +22,7 @@ package io.truthencode.ddo.enumeration
 
 import enumeratum.EnumEntry
 
-import scala.reflect.{ClassTag, classTag}
+import scala.reflect.{classTag, ClassTag}
 
 /**
  * Created by adarr on 1/22/2017.
@@ -28,7 +31,7 @@ trait BitSupport {
 
   //  self: Enum[_] =>
   type T <: EnumEntry
-  val bitValues: Map[T, Int]
+  def bitValues: Map[T, Int]
 
   def checkVal[C: ClassTag](cls: C): Boolean = classTag[C].runtimeClass.isInstance(cls)
 }
