@@ -15,6 +15,33 @@ Initial Data population / object builder
 
 These entities can be persisted in one or more databases.
 
+## Validation
+
+### [Wix-Accord](https://github.com/wix-incubator/accord)
+
+My first choice for object validation (Scala).  
+It has since been retired.
+Migrating to [ZIO Validation](https://zio.dev/zio-prelude/functional-data-types/validation/)
+
+### [Octopus](https://github.com/krzemin/octopus)
+
+Appears similar with integration with Catz / Scalaz but not scala 3 and last active 3 years ago.
+
+### [Parisksha](https://github.com/ayushworks/pariksha)
+
+Same as above with Catz and 4 years since last active.
+
+### [Fields](https://jap-company.github.io/fields/)
+
+Scala 3 and uses Final Tagless
+
+## Transformation
+
+### Chimney (https://github.com/scalalandio/chimney)
+
+Scala Object mangler / mapper to assist going from similar forms.
+Useful where User DTO ~= User Db Entity ~= User Login etc
+
 ## Packaging
 
 ### Layrry - A Launcher and API for Modularized Java Applications
@@ -54,6 +81,12 @@ There are also a handful of Proof of concept polygot notebooks out there, mostly
 
 ## Front End
 
+### Endpoints
+
+[Tapir](https://github.com/softwaremill/tapir)
+allows defining and documentation of http endpoints that can be implemented via other technologies
+such as Vert.x or Akka.
+
 Front End Using Kafka streams, we can update running totals and properties in an event-driven manner for character
 builders such as feats possessed, stances / abilities toggled, items equipped to dynamically show average damage, DR
 breaking, crit profiles, hit-points etc. without having to re-evaluate every effect in place.
@@ -66,8 +99,57 @@ operations etc without affecting the flow of the builder.
 
 Vert.x Vert.x can expose the API as a RESTful service and react via the event bus with Camel.
 
+#### REST Quarkus
+
+[Quarkus Renarde](https://docs.quarkiverse.io/quarkus-renarde/dev/advanced.html) - useful for basic front-end data view with full HTML5 +bootstrap htmx and Qute templates.
+Pros:
+
+- Works well with Hibernate ORM (Panache)
+- ease to add / create entities
+
+Cons:
+
+- not currently compatible with reactive, so entities can not be easily shared between the two using Active Record Pattern.
+- BackOffice extension is not compatible with reactive repositories or Kotlin Panache
+
+Assuming base entities are created via JPA @Entity without directly extending PanacheEntity, it is possible to use the repository pattern to create both a reactive and non-reactive repository. This however, prevents use of the Backoffice extension as it requires the entity to extend PanacheEntityBase.
+
 ## Apache Isis
 
 Rapid prototyping where Domain Objects become the UI.
 [Apache ~~Isis~~ Causeway](https://causeway.apache.org)
 May have potential direct-integration issues as a JPMS Java app, but as a RESTful DTO Front-end it could be extremely useful.
+
+## Messaging
+
+### MQTT
+
+Mosquitto - MQTT Broker - https://mosquitto.org/ Lightweight for inter object messaging and perhaps some chat.
+
+### Bayeux
+
+Cometd - Bayeux - https://www.cometd.org/ - Websockets for real time updates. Link to Restful API. / Database updates.
+
+## Database
+
+MongoDB - MongoDb is a document database that stores data in JSON-like documents.
+Use for persistent storage of data. Possibly for master data and / or user data.
+
+Hibernate / Quarkus Config https://quarkus.io/guides/datasource
+
+### Xodus
+
+Xodus - Jetbrains Xodus is a transactional embedded database for JVM.
+Use for Session Storage, Caching, and other data storage needs.
+
+### SpiceDB
+
+SpiceDB - https://spicedb.dev/ - A database for managing fine-grained permissions across many services.
+
+## Authorization and Authentication
+
+### Keycloak
+
+Keycloak - https://www.keycloak.org/ - Open Source Identity and Access Management.
+
+Dex - https://dexidp.io/ - OpenID Connect for Kubernetes.
