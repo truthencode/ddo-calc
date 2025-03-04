@@ -516,7 +516,7 @@ airframe-http-finagle-s213 = "org.wvlet.airframe:airframe-http-finagle_2.13:21.1
 
 scala-stm-s213 = "org.scala-stm:scala-stm_2.13:0.11.1"
 
-monix-execution-s213 = "io.monix:monix-execution_2.13:3.4.0"
+monix-execution-s213 = "io.monix:monix-execution_2.13:3.4.1"
 
 monix-bio-s213 = "io.monix:monix-bio_2.13:1.2.0"
 
