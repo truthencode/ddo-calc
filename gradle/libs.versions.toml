@@ -569,7 +569,7 @@ magnum-s3 = "com.augustnagro:magnum_3:1.2.1"
 
 quarkus-jacoco = { module = "io.quarkus:quarkus-jacoco" }
 
-scala-extensions = "io.rest-assured:scala-extensions:5.5.0"
+scala-extensions = "io.rest-assured:scala-extensions:5.5.1"
 
 awaitility = { module = "org.awaitility:awaitility" }
 
