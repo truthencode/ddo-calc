@@ -2,8 +2,6 @@
 
 import io.truthencode.buildlogic.KotlinTestKitExtension
 import io.truthencode.buildlogic.KotlinTestKits
-import io.truthencode.buildlogic.TestTypes
-
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -163,12 +161,10 @@ fun ProjectLanguages.projectBits(): Int? = current()?.stream()?.map { it.ordinal
 fun ProjectLanguages.bits(): Int? = this.stream().map { it.ordinal }?.reduce(0) { a, b -> a or b }
 
 fun JvmTestSuite.applyKoTest() {
-    val koTestVersion: String = (findProperty("koTestVersion") ?: embeddedKotlinVersion).toString()
-
     dependencies {
         implementation(libs.kotest.runner.junit.jvm)
-        implementation("io.kotest:kotest-assertions-core:$koTestVersion")
-        implementation("io.kotest:kotest-property:$koTestVersion")
+        implementation(libs.kotest.assertions.core)
+        implementation(libs.kotest.property)
     }
 }
 
@@ -260,136 +256,138 @@ fun JvmTestSuite.applyScalaTest() {
 //    }
 }
 
-project.testing {
-    suites {
-/*
-TODO: Add functional / integration etc as needed
-Also need to determine if this is a limited scope (i.e opt in by project)
-integrationTest by registering(JvmTestSuite::class)
-functionalTest by registering(JvmTestSuite::class)
-performanceTest by registering(JvmTestSuite::class)
- */
-        val test by getting(JvmTestSuite::class)
-        val acceptanceTest = register<JvmTestSuite>("acceptanceTest")
-        configureEach {
-            if (this is JvmTestSuite) {
-                val tt: TestTypes = TestTypes.fromNamingConvention(name)
+// Removing until 9.x migration
+//
+// project.testing {
+//     suites {
+// /*
+// TODO: Add functional / integration etc as needed
+// Also need to determine if this is a limited scope (i.e opt in by project)
+// integrationTest by registering(JvmTestSuite::class)
+// functionalTest by registering(JvmTestSuite::class)
+// performanceTest by registering(JvmTestSuite::class)
+//  */
+//         val test = named<JvmTestSuite::class>("test")
+//         val acceptanceTest = register<JvmTestSuite>("acceptanceTest")
+//         configureEach {
+//             if (this is JvmTestSuite) {
+//                 val tt: TestTypes = TestTypes.fromNamingConvention(name)
 
-// Kotlin specific
-                if (project.plugins.hasPlugin("org.jetbrains.kotlin.jvm")) {
-                    logger.info("Configuring Kotlin Testing for ${project.name}")
-                    when (extension.useKotlinTestKit.get()) {
-                        KotlinTestKits.KoTest -> {
-                            logger.warn("configuring KoTest for Unit testing")
-                            this.applyKoTest()
-                        }
+// // Kotlin specific
+//                 if (project.plugins.hasPlugin("org.jetbrains.kotlin.jvm")) {
+//                     logger.info("Configuring Kotlin Testing for ${project.name}")
+//                     when (extension.useKotlinTestKit.get()) {
+//                         KotlinTestKits.KoTest -> {
+//                             logger.warn("configuring KoTest for Unit testing")
+//                             this.applyKoTest()
+//                         }
 
-                        KotlinTestKits.KotlinTest -> {
-                            logger.warn("configuring KotlinTest for Unit testing")
+//                         KotlinTestKits.KotlinTest -> {
+//                             logger.warn("configuring KotlinTest for Unit testing")
 
-                            this.applyKotlinTest()
-                        }
+//                             this.applyKotlinTest()
+//                         }
 
-                        else -> {
-                            logger.warn("No specific Kotlin Test for Unit testing specified")
-                        }
-                    }
-                }
+//                         else -> {
+//                             logger.warn("No specific Kotlin Test for Unit testing specified")
+//                         }
+//                     }
+//                 }
 
-// Scala Specific
-                if (project.plugins.hasPlugin("scala")) {
-                    val builderScalaVersion: String by project
-                    logger.info("Configuring ${project.name} for Scala$builderScalaVersion ${tt.name} Testing :  ${this.name} ")
+// // Scala Specific
+//                 if (project.plugins.hasPlugin("scala")) {
+//                     val builderScalaVersion: String by project
+//                     logger.info("Configuring ${project.name} for Scala$builderScalaVersion ${tt.name} Testing :  ${this.name} ")
 
-                    when (tt) {
-                        TestTypes.Unit -> {
-                            logger.info(("Configuring standard Unit Test for scala"))
-                            useJUnitJupiter()
-                            this.applyJupiterEngine()
-                            //   this.applyVintageEngine()
-                            this.applyScalaTest()
+//                     when (tt) {
+//                         TestTypes.Unit -> {
+//                             logger.info(("Configuring standard Unit Test for scala"))
+//                             useJUnitJupiter()
+//                             this.applyJupiterEngine()
+//                             //   this.applyVintageEngine()
+//                             this.applyScalaTest()
 
-                            targets {
-                                logger.warn("Configuring Scala Unit Test for ${project.name}")
-                                this.forEach { tg ->
-                                    mapOf(tg.name to tg.testTask).forEach { (name, task) ->
-                                        logger.warn(
-                                            "$name : ${task.name}",
-                                        )
-                                    }
-                                }
-                                all {
-                                    testTask.configure {
-                                        this.filter {
-                                            setIncludePatterns("*Test", "*Suite")
-                                            setExcludePatterns("*IT", "*Spec")
-                                        }
-                                        useJUnitPlatform {
-                                            includeEngines =
-                                                setOf(
-                                                    TestEngine.JUnit5.id,
-                                                    TestEngine.ScalaTest.id,
-                                                )
+//                             targets {
+//                                 logger.warn("Configuring Scala Unit Test for ${project.name}")
+//                                 this.forEach { tg ->
+//                                     mapOf(tg.name to tg.testTask).forEach { (name, task) ->
+//                                         logger.warn(
+//                                             "$name : ${task.name}",
+//                                         )
+//                                     }
+//                                 }
+//                                 all {
+//                                     testTask.configure {
+//                                         this.filter {
+//                                             setIncludePatterns("*Test", "*Suite")
+//                                             setExcludePatterns("*IT", "*Spec")
+//                                         }
+//                                         useJUnitPlatform {
+//                                             includeEngines =
+//                                                 setOf(
+//                                                     TestEngine.JUnit5.id,
+//                                                     TestEngine.ScalaTest.id,
+//                                                 )
 
-                                            testLogging {
-                                                events("passed", "skipped", "failed")
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+//                                             testLogging {
+//                                                 events("passed", "skipped", "failed")
+//                                             }
+//                                         }
+//                                     }
+//                                 }
+//                             }
+//                         }
 
-                        TestTypes.Acceptance -> {
-                            useJUnitJupiter()
-                            // using scala helper methods in test configuration so we need to make sure
-                            // scala is on the test classpath even if it's a kotlin / java etc project
-                            if (builderScalaVersion == "3") {
-                                this.applyScala3Depends()
-                            } else {
-                                this.applyScala2Depends()
-                            }
+//                         TestTypes.Acceptance -> {
+//                             useJUnitJupiter()
+//                             // using scala helper methods in test configuration so we need to make sure
+//                             // scala is on the test classpath even if it's a kotlin / java etc project
+//                             if (builderScalaVersion == "3") {
+//                                 this.applyScala3Depends()
+//                             } else {
+//                                 this.applyScala2Depends()
+//                             }
 
-                            this.applyJupiterEngine()
-                            this.applyVintageEngine()
-                            logger.info("adding scala acceptance stuff")
-                            dependencies {
-                                implementation(libs.jade4j)
-                            }
-                            targets.all {
-                                testTask.configure {
-                                    useJUnitPlatform {
-                                        testLogging {
-                                            events("passed", "skipped", "failed")
-                                        }
-                                    }
-                                }
-                            }
-                        }
+//                             this.applyJupiterEngine()
+//                             this.applyVintageEngine()
+//                             logger.info("adding scala acceptance stuff")
+//                             dependencies {
+//                                 implementation(libs.jade4j)
+//                             }
+//                             targets.all {
+//                                 testTask.configure {
+//                                     useJUnitPlatform {
+//                                         testLogging {
+//                                             events("passed", "skipped", "failed")
+//                                         }
+//                                     }
+//                                 }
+//                             }
+//                         }
 
-                        else -> {
-                            logger.info("no config ATM (applying Jupiter as default")
-                            useJUnitJupiter()
-                        }
-                    }
-                    this.applyJavaAssertions()
-                }
-                if (project.plugins.hasPlugin("java-library") and (projectComposition() != LanguageComposition.Mixed)) {
-                    logger.info("java-library applied to ${project.name}, applying JUnit Jupiter")
-                    useJUnitJupiter()
-                    this.applyJavaAssertions()
-                }
+//                         else -> {
+//                             logger.info("no config ATM (applying Jupiter as default")
+//                             useJUnitJupiter()
+//                         }
+//                     }
+//                     this.applyJavaAssertions()
+//                 }
+//                 if (project.plugins.hasPlugin("java-library") and (projectComposition() != LanguageComposition.Mixed)) {
+//                     logger.info("java-library applied to ${project.name}, applying JUnit Jupiter")
+//                     useJUnitJupiter()
+//                     this.applyJavaAssertions()
+//                 }
 
-// Concordian BDD Acceptance
-                if (tt == TestTypes.Acceptance) {
-                    logger.info("applying Concordion Acceptance")
+// // Concordian BDD Acceptance
+//                 if (tt == TestTypes.Acceptance) {
+//                     logger.info("applying Concordion Acceptance")
 
-//  systemProperties["concordion.output.dir"] = "${reporting.baseDir}/spec"
-                    this.applyConcordionAcceptanceTest()
-                    this.applyVintageEngine()
-                    this.applyJupiterEngine()
-                }
-            }
-        }
-    }
-}
+// //  systemProperties["concordion.output.dir"] = "${reporting.baseDir}/spec"
+//                     this.applyConcordionAcceptanceTest()
+//                     this.applyVintageEngine()
+//                     this.applyJupiterEngine()
+//                 }
+//             }
+//         }
+//     }
+// }

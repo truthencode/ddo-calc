@@ -24,7 +24,7 @@ plugins {
 //     id("com.zlad.gradle.avrohugger")
 //    id("com.github.lkishalmi.gatling")
     //  id("io.gatling.gradle") version "3.9.5.5" replaces above
-    id("org.openapi.generator")
+    id("org.openapi.generator") version "4.2.2"
 //    id("code-quality")
 
 //    id("io.quarkus")//
@@ -76,10 +76,11 @@ tasks.register("cleanAvroSchemas", GradleBuild::class) {
 
 @Suppress("UnstableApiUsage")
 configurations {
-    val codeGen by configurations.creating {
-        isCanBeConsumed = false
-        isCanBeResolved = true
-    }
+//    val codeGen =
+        configurations.create("codeGen") {
+            isCanBeConsumed = false
+            isCanBeResolved = true
+        }
 }
 
 sourceSets {
@@ -224,7 +225,13 @@ run {
     }
 }
 
+tasks.withType<JavaCompile>().configureEach {
+    // apparently required for JDK 21
+    this.options.compilerArgs.add("-XDaddTypeAnnotationsToSymbol=true")
+}
+
 tasks.register("genModel", GenerateTask::class, fun GenerateTask.() {
+    description = "Generates scala lagom server against api spec"
     verbose.set(true)
     generatorName.set("scala-lagom-server")
     inputSpec.set(apiSpec.asPath)
@@ -241,7 +248,8 @@ tasks.register("genModel", GenerateTask::class, fun GenerateTask.() {
 })
 
 tasks.register("genGatling", GenerateTask::class, fun GenerateTask.() {
-    verbose.set(true)
+    verbose.set(false)
+    description = "Generates openapi spec using gatling"
     val id = "scala-gatling"
     generatorName.set(id)
     inputSpec.set(apiSpec.asPath)
@@ -282,7 +290,7 @@ dependencies {
     unsure how  helpful this will be as most data will need runtime validation (aka wix)
      */
     // Use Scala $scalaMajorVersion in our library project
-    val builderScalaVersion: String by project
+    val builderScalaVersion = providers.gradleProperty("builderScalaVersion").get()
 //    implementation(enforcedPlatform(project(":ddo-platform-scala")))
     when (builderScalaVersion) {
         "3" -> {

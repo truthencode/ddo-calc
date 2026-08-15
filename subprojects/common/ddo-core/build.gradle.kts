@@ -1,6 +1,3 @@
-import com.diffplug.gradle.spotless.SpotlessTask
-
-
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -38,7 +35,7 @@ dependencies {
 
     // Platform dependent
     // https://mvnrepository.com/artifact/org.json4s/json4s-native
-    val builderScalaVersion: String by project
+    val builderScalaVersion = providers.gradleProperty("builderScalaVersion").get()
     logger.info("showing builderScalaVersion: $builderScalaVersion")
     when (builderScalaVersion) {
         "3" -> {
@@ -89,7 +86,7 @@ testing {
     }
 }
 
-//tasks.withType<SpotlessTask> {
+// tasks.withType<SpotlessTask> {
 //    tasks.first { it == this }.mustRunAfter(tasks.withType<JavaCompile>())
 //
-//}
+// }

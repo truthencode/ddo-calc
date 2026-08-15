@@ -36,7 +36,8 @@ tasks.withType<KotlinCompile>().configureEach {
     }
 }
 
-val defaultJavaToolChainVersion: String by project
+// TODO: consolidate
+val defaultJavaToolChainVersion = providers.gradleProperty("defaultJavaToolChainVersion").getOrElse("21")
 
 dependencies {
     constraints {

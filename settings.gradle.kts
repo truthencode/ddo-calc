@@ -16,8 +16,6 @@
  * limitations under the License.
  */
 
-import de.fayard.refreshVersions.core.FeatureFlag
-import de.fayard.refreshVersions.core.StabilityLevel
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -25,14 +23,12 @@ import java.nio.file.Paths
 rootProject.name = "ddo-calc-parent"
 
 pluginManagement {
-    val mooltiverseNyxPluginVersion: String by settings
-    val foojayResolverPluginVersionversion: String by settings
-    val refreshVersionsPluginVersion: String by settings
+    val mooltiverseNyxPluginVersion = providers.gradleProperty("mooltiverseNyxPluginVersion")
+    val foojayResolverPluginVersionversion = providers.gradleProperty("foojayResolverPluginVersionversion")
 
     plugins {
         id("com.mooltiverse.oss.nyx") version mooltiverseNyxPluginVersion
         id("org.gradle.toolchains.foojay-resolver-convention") version foojayResolverPluginVersionversion
-        id("de.fayard.refreshVersions") version refreshVersionsPluginVersion
     }
 
     repositories {
@@ -44,43 +40,47 @@ pluginManagement {
 plugins {
     id("com.mooltiverse.oss.nyx")
     id("org.gradle.toolchains.foojay-resolver-convention")
-    id("de.fayard.refreshVersions")
 }
 
-enableFeaturePreviewQuietly("TYPESAFE_PROJECT_ACCESSORS", "Type-safe project accessors")
-
-/**
- * @see <a href="https://github.com/gradle/gradle/issues/19069">Feature request</a>
- */
-fun Settings.enableFeaturePreviewQuietly(
-    name: String,
-    summary: String,
-) {
-    enableFeaturePreview(name)
-
-    val logger: Any =
-        org.gradle.util.internal.IncubationLogger::class.java
-            .getDeclaredField("INCUBATING_FEATURE_HANDLER")
-            .apply { isAccessible = true }
-            .get(null)
-
-    @Suppress("UNCHECKED_CAST")
-    val features: MutableSet<String> =
-        org.gradle.internal.featurelifecycle.LoggingIncubatingFeatureHandler::class.java
-            .getDeclaredField("features")
-            .apply { isAccessible = true }
-            .get(logger) as MutableSet<String>
-
-    features.add(summary)
-}
+// log noise reduction (worked Gradle < 8.14)
+// enableFeaturePreviewQuietly("TYPESAFE_PROJECT_ACCESSORS", "Type-safe project accessors")
+//
+// /**
+// * @see <a href="https://github.com/gradle/gradle/issues/19069">Feature request</a>
+// * @see <a href="https://github.com/gradle/gradle/issues/24435">Specific for Conf Cache</a>
+// * @see <a href="https://github.com/gradle/gradle/issues/35595">Blocking Issue</a>
+// */
+// fun Settings.enableFeaturePreviewQuietly(
+//    name: String,
+//    summary: String,
+// ) {
+//    enableFeaturePreview(name)
+//
+//    val logger: Any =
+//        org.gradle.util.internal.IncubationLogger::class.java
+//            .getDeclaredField("INCUBATING_FEATURE_HANDLER")
+//            .apply { isAccessible = true }
+//            .get(null)
+//
+//    @Suppress("UNCHECKED_CAST")
+//    val features: MutableSet<String> =
+//        org.gradle.internal.featurelifecycle.LoggingIncubatingFeatureHandler::class.java
+//            .getDeclaredField("features")
+//            .apply { isAccessible = true }
+//            .get(logger) as MutableSet<String>
+//
+//    features.add(summary)
+// }
 
 // at some point in the future, see if we can safely make this property optional so there is no build warning if it is
 // not specified or create a sensible default
-val projectFolderDelimiter: String by settings
+val defaultDelimiter = " "
+val projectFolderDelimiter = providers.gradleProperty("projectFolderDelimiter").getOrElse(defaultDelimiter)
 
 @Suppress("CUSTOM_GETTERS_SETTERS")
 val projectFolders: List<String>
-    get() = settings.extra["projectFolders"]?.toString()?.split(projectFolderDelimiter) ?: listOf()
+    get() =
+        providers.gradleProperty("projectFolders").getOrElse("").split(projectFolderDelimiter)
 
 logger.info("checking $projectFolders for sub-projects")
 
@@ -144,17 +144,17 @@ if (System.getenv("enableCompositeBuild") == "true") {
         includeBuild(moduleBuild)
     }
 }
-
-@Suppress("UnstableApiUsage")
-refreshVersions {
-    // https://github.com/jmfayard/refreshVersions
-    rejectVersionIf {
-        candidate.stabilityLevel.isLessStableThan(StabilityLevel.Stable)
-    }
-    featureFlags {
-        this.enable(FeatureFlag.VERSIONS_CATALOG)
-    }
-}
+//
+// @Suppress("UnstableApiUsage")
+// refreshVersions {
+//    // https://github.com/jmfayard/refreshVersions
+//    rejectVersionIf {
+//        candidate.stabilityLevel.isLessStableThan(StabilityLevel.Stable)
+//    }
+//    featureFlags {
+//        this.enable(FeatureFlag.VERSIONS_CATALOG)
+//    }
+// }
 
 includeBuild("build-logic")
 // includeBuild("include/ddo-avro")

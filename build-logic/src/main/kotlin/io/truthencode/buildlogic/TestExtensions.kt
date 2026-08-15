@@ -5,7 +5,6 @@ import org.gradle.api.Project
 import org.gradle.api.plugins.jvm.JvmTestSuite
 import org.gradle.api.provider.Property
 import org.gradle.kotlin.dsl.invoke
-import org.gradle.kotlin.dsl.provideDelegate
 
 enum class KotlinTestKits {
     KoTest,
@@ -67,7 +66,7 @@ class TestBuildSupport(
     proj: Project,
 ) {
     // remove this once we Move these functions into kts file and can use version catalog
-    private val koTestVersion: String by proj
+    private val koTestVersion = proj.providers.gradleProperty("koTestVersion").get() // : String by proj
     val applyMockito = { suite: JvmTestSuite ->
         suite.useJUnitJupiter()
         suite.dependencies {

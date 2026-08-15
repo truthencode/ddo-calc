@@ -46,8 +46,9 @@ dependencies {
 }
 
 // See https://gist.github.com/adarro/0411f34ae1f048726b28e9f33e5c0a97 for JPMS revisit
-
-val defaultJavaToolChainVersion: String by project
+// TODO: remove hard-coded JDK 21 move to lib constant as least worst case?
+// TODO: locate all instances using this concept and consolidate
+val defaultJavaToolChainVersion = providers.gradleProperty("defaultJavaToolChainVersion").getOrElse("21")
 
 val javaToolchainVersion =
     provider {
@@ -74,6 +75,32 @@ tasks.withType<JavaCompile>().configureEach {
             isJSpecifyMode = true
         }
     }
+
+    // Add Type Annotations to Symbol for JDK 21+ to support NullAway and other tools that rely on type annotations.
+
+     // We use a lazy provider to safely inspect the toolchain metadata before execution
+//    val compilerMetadata = javaCompiler.map { it.metadata }.get()
+
+//    options.compilerArgs.addAll(compilerMetadata.map { metadata ->
+//        val vendorName = metadata.vendor.toString().lowercase()
+//        val version = metadata.languageVersion.asInt()
+//
+//        // 1. Check version: Must be less than JDK 22
+//        // 2. Check vendor: Exclude Oracle, ensure it is an OpenJDK-based build
+//        val isTargetVersion = version < 22
+//        val isNotOracle = !vendorName.contains("oracle")
+//        val isOpenJdk = vendorName.contains("openjdk") ||
+//                        vendorName.contains("adoptium") ||
+//                        vendorName.contains("temurin") ||
+//                        vendorName.contains("zulu") ||
+//                        vendorName.contains("azul")
+//
+//        if (isTargetVersion && isNotOracle && isOpenJdk) {
+//            listOf("-XDaddTypeAnnotationsToSymbol=true")
+//        } else {
+//            emptyList()
+//        }
+//    })
 }
 
 tasks.withType<Javadoc> {

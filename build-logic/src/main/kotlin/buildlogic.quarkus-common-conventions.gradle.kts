@@ -11,10 +11,11 @@ plugins {
     id("buildlogic.common-conventions")
 }
 
-val quarkusPlatformGroupId: String by project
-val quarkusPlatformArtifactId: String by project
-val quarkusPlatformVersion: String by project
+val quarkusPlatformGroupId = providers.gradleProperty("quarkusPlatformGroupId").get()
+val quarkusPlatformArtifactId = providers.gradleProperty("quarkusPlatformArtifactId").get()
+val quarkusPlatformVersion = providers.gradleProperty("quarkusPlatformVersion").get()
 
+logger.warn("Using Quarkus platform: $quarkusPlatformGroupId:$quarkusPlatformArtifactId:$quarkusPlatformVersion")
 dependencies {
     implementation(enforcedPlatform("$quarkusPlatformGroupId:$quarkusPlatformArtifactId:$quarkusPlatformVersion"))
     implementation("io.quarkus:quarkus-arc")
@@ -32,6 +33,8 @@ dependencies {
 //    testImplementation("io.rest-assured:rest-assured")
 }
 
-tasks.withType<Test> {
-    systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
+tasks {  
+    withType<Test> {
+        systemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager")
+    }
 }

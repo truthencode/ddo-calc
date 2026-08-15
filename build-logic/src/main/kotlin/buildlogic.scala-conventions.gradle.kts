@@ -86,7 +86,7 @@ tasks.withType<ScalaCompile>().configureEach {
 
         when (builderScalaVersion) {
             "3" -> {
-                logger.warn("Scala 3 detected")
+//                logger.warn("Scala 3 detected")
                 additionalParameters?.plusAssign(
                     listOf(
                         "-feature",
@@ -109,7 +109,7 @@ tasks.withType<ScalaCompile>().configureEach {
             }
 
             "2" -> {
-                logger.warn("Scala 2 detected")
+//                logger.warn("Scala 2 detected")
                 additionalParameters?.plusAssign(
                     listOf(
                         "-feature",
