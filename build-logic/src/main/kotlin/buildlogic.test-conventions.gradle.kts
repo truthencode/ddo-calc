@@ -119,6 +119,10 @@ enum class TestEngine(
     val id: String,
 ) {
     JUnit("junit"),
+
+    /**
+     * JUnit6 convention seems to be 'shoehorn' it under JUnit5
+     */
     JUnit5("junit-jupiter"),
     JUnit4("junit"),
     Spock("spock"),
@@ -132,11 +136,13 @@ typealias ProjectLanguages = EnumSet<ProjectLanguage>
 // infix fun ProjectLanguages.or(other: ProjectLanguages): ProjectLanguages = this.stream().map {
 //    it.ordinal
 
+
 fun current(): EnumSet<ProjectLanguage>? {
     val pl = ProjectLanguages.noneOf(ProjectLanguage::class.java)
     if (project.plugins.hasPlugin("scala")) {
         pl.add(ProjectLanguage.Scala)
     }
+    // TODO: include check for Multi Platform Kotlin
     if (project.plugins.hasPlugin("kotlin")) {
         pl.add(ProjectLanguage.Kotlin)
     }
@@ -146,6 +152,9 @@ fun current(): EnumSet<ProjectLanguage>? {
     return pl
 }
 
+/**
+ * Flags if we are using a 'pure' jvm project or mixed (Java + Scala / Kotlin)
+ */
 fun projectComposition(): LanguageComposition? {
     return current()?.size?.let {
         return if (it > 1) {
@@ -176,7 +185,7 @@ fun JvmTestSuite.applyConcordionAcceptanceTest() {
     dependencies {
         implementation(project())
         implementation(libs.concordion)
-// flexmark (mostly for concordion / markdown)
+        // flexmark (mostly for Concordion / Markdown)
         implementation(libs.flexmark.all)
     }
 }
