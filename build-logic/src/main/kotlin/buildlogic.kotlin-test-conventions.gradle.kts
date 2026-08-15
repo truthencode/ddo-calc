@@ -1,5 +1,6 @@
 import io.truthencode.buildlogic.KotlinTestKitExtension
 import io.truthencode.buildlogic.KotlinTestKits
+import io.truthencode.buildlogic.TestBuildSupport
 import org.gradle.accessors.dm.LibrariesForLibs
 
 /*
@@ -65,14 +66,37 @@ afterEvaluate {
     }
 }
 
-// afterEvaluate {
-//    val testMode =
-//        findProperty("kotlinTestSuite")
-//            ?.toString()
-//            ?.let(KotlinTestKits::valueOf)
-//            ?: KotlinTestKits.KoTest
-//    logger.warn("after evaluate ${project.name} kotlinTestMode: $testMode (JvmTestSuite)")
-//    @Suppress("UnstableApiUsage") // Remove after JvmTestSuite is no longer 'incubating'
+afterEvaluate {
+    val testMode =
+        findProperty("kotlinTestSuite")
+            ?.toString()
+            ?.let(KotlinTestKits::valueOf)
+            ?: KotlinTestKits.KoTest
+    logger.warn("after evaluate ${project.name} kotlinTestMode: $testMode (JvmTestSuite)")
+    @Suppress("UnstableApiUsage") // Remove after JvmTestSuite is no longer 'incubating'
+    testing {
+        val ts = TestBuildSupport(project)
+        suites {
+            val test = when (testMode) {
+                KotlinTestKits.KoTest -> {
+                    logger.warn("configuring ${project.name} KoTest for Unit testing (from kts)")
+                    named<JvmTestSuite>("test", ts.applyKoTest)
+                }
+
+                KotlinTestKits.KotlinTest -> {
+                    logger.warn("configuring ${project.name} KotlinTest for Unit testing (from kts)")
+                    named<JvmTestSuite>("test") {
+                        useKotlinTest()
+                    }
+                }
+
+                else -> {
+                    named<JvmTestSuite>("test")
+                }
+            }
+        }
+    }
+}
 //    testing {
 //
 //        val ts = TestBuildSupport(project)
