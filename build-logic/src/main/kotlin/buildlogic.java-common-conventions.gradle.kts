@@ -60,8 +60,17 @@ java {
         languageVersion.set(JavaLanguageVersion.of(javaToolchainVersion.get()))
     }
 }
+// Debugging only, remove!!!!
+tasks.withType<JavaCompile>().matching { it.name.contains("Quarkus")}.configureEach {
+    logger.warn("Not configuring Compiler task named $name")
+}
 
-tasks.withType<JavaCompile>().configureEach {
+// Filter out Quarkus compiler
+tasks.withType<JavaCompile>().matching {!it.name.contains("NativeTest") && !it.name.contains("Quarkus") && !it.name.contains("Integration")}.configureEach {
+    if (project.pluginManager.hasPlugin("io.quarkus")) {
+        logger.warn("We should try to skip this?")
+    }
+    logger.warn("Configuring Compiler task named $name")
     options.encoding = "UTF-8"
     options.errorprone {
         val regExcludeScala = Regex("""(.*\.scala|.*/generated*/.*)""")
@@ -78,29 +87,27 @@ tasks.withType<JavaCompile>().configureEach {
 
     // Add Type Annotations to Symbol for JDK 21+ to support NullAway and other tools that rely on type annotations.
 
-     // We use a lazy provider to safely inspect the toolchain metadata before execution
-//    val compilerMetadata = javaCompiler.map { it.metadata }.get()
+    // We use a lazy provider to safely inspect the toolchain metadata before execution
+    val metadata = javaCompiler.map { it.metadata }.get()
 
-//    options.compilerArgs.addAll(compilerMetadata.map { metadata ->
-//        val vendorName = metadata.vendor.toString().lowercase()
-//        val version = metadata.languageVersion.asInt()
-//
-//        // 1. Check version: Must be less than JDK 22
-//        // 2. Check vendor: Exclude Oracle, ensure it is an OpenJDK-based build
-//        val isTargetVersion = version < 22
-//        val isNotOracle = !vendorName.contains("oracle")
-//        val isOpenJdk = vendorName.contains("openjdk") ||
-//                        vendorName.contains("adoptium") ||
-//                        vendorName.contains("temurin") ||
-//                        vendorName.contains("zulu") ||
-//                        vendorName.contains("azul")
-//
-//        if (isTargetVersion && isNotOracle && isOpenJdk) {
-//            listOf("-XDaddTypeAnnotationsToSymbol=true")
-//        } else {
-//            emptyList()
-//        }
-//    })
+    val vendorName = metadata.vendor.toString().lowercase()
+    val version = metadata.languageVersion.asInt()
+logger.warn("checking vend $vendorName jdk $version")
+//    // 1. Check version: Must be less than JDK 22
+//    // 2. Check vendor: Exclude Oracle, ensure it is an OpenJDK-based build
+    val isTargetVersion = version < 22
+    val isNotOracle = !vendorName.contains("oracle")
+    val isOpenJdk = vendorName.contains("openjdk") ||
+        vendorName.contains("adoptium") ||
+        vendorName.contains("temurin") ||
+        vendorName.contains("zulu") ||
+        vendorName.contains("azul") ||
+        vendorName.contains("corretto")
+
+    if (isTargetVersion && isNotOracle && isOpenJdk) {
+logger.warn("adding type annotation arg")
+        options.compilerArgs.addAll(listOf("-XDaddTypeAnnotationsToSymbol=true"))
+    } else { logger.warn("Not adding type annotation option") }
 }
 
 tasks.withType<Javadoc> {

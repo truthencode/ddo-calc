@@ -52,9 +52,10 @@ dependencies {
     implementation(libs.bundles.hoplite)
 }
 
-kotlin {
-    jvmToolchain {
-//        check(this is JavaToolchainSpec)
-        languageVersion.set(JavaLanguageVersion.of(defaultJavaToolChainVersion))
-    }
-}
+// is set by included java-convention and should be picked up by kotlin
+//kotlin {
+//    jvmToolchain {
+////        check(this is JavaToolchainSpec)
+//        languageVersion.set(JavaLanguageVersion.of(defaultJavaToolChainVersion))
+//    }
+//}

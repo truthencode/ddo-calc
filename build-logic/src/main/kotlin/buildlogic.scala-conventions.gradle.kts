@@ -26,12 +26,12 @@ plugins {
     id("org.scoverage")
 }
 val libs = the<LibrariesForLibs>()
-val builderScalaVersion: String by project
+val builderScalaVersion = providers.gradleProperty("builderScalaVersion")
 
 scala {
 
     scalaVersion =
-        when (builderScalaVersion) {
+        when (builderScalaVersion.get()) {
             "3" -> {
                 libs.versions.scala3.version
                     .get()
@@ -66,8 +66,9 @@ scala {
 
 configure<org.scoverage.ScoverageExtension> {
 
-    scoverageVersion.set(libs.versions.scoverage.engine)
+
     logger.warn("${project.name} (scoverage) $builderScalaVersion")
+//    scoverageVersion.set(libs.versions.scoverage.engine)
     val cfgs =
         mapOf(
             Pair(org.scoverage.CoverageType.Branch, 0.5.toBigDecimal()),
@@ -84,7 +85,7 @@ configure<org.scoverage.ScoverageExtension> {
 tasks.withType<ScalaCompile>().configureEach {
     scalaCompileOptions.apply {
 
-        when (builderScalaVersion) {
+        when (builderScalaVersion.get()) {
             "3" -> {
 //                logger.warn("Scala 3 detected")
                 additionalParameters?.plusAssign(

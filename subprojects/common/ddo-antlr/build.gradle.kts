@@ -58,10 +58,6 @@ data class PackagePath(
 }
 
 tasks {
-    withType<JavaCompile>().configureEach {
-        // apparently required for JDK 21
-        this.options.compilerArgs.add("-XDaddTypeAnnotationsToSymbol=true")
-    }
     generateGrammarSource {
         logger.warn("outputDirectory: ${outputDirectory.path}")
         val outPath = antlrJavaPath.packageToPath(outputFolderBase = outputDirectory).path

@@ -15,7 +15,7 @@ val quarkusPlatformGroupId = providers.gradleProperty("quarkusPlatformGroupId").
 val quarkusPlatformArtifactId = providers.gradleProperty("quarkusPlatformArtifactId").get()
 val quarkusPlatformVersion = providers.gradleProperty("quarkusPlatformVersion").get()
 
-logger.warn("Using Quarkus platform: $quarkusPlatformGroupId:$quarkusPlatformArtifactId:$quarkusPlatformVersion")
+logger.debug("Using Quarkus platform: $quarkusPlatformGroupId:$quarkusPlatformArtifactId:$quarkusPlatformVersion")
 dependencies {
     implementation(enforcedPlatform("$quarkusPlatformGroupId:$quarkusPlatformArtifactId:$quarkusPlatformVersion"))
     implementation("io.quarkus:quarkus-arc")
