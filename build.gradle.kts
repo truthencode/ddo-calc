@@ -1,6 +1,3 @@
-import nl.littlerobots.vcu.plugin.resolver.VersionSelectors
-
-
 plugins {
     id("nl.littlerobots.version-catalog-update") version "1.1.1"
 }

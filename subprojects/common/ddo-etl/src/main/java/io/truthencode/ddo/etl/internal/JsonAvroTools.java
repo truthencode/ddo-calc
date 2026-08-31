@@ -61,7 +61,7 @@ public class JsonAvroTools {
             Schema schema = new Schema.Parser().parse(avroSchema);
             DatumWriter<GenericRecord> datumWriter = new SpecificDatumWriter<>(schema);
             DataFileWriter<GenericRecord> dataFileWriter = new DataFileWriter<>(datumWriter);
-            dataFileWriter.create(schema, new DataOutputStream(new FileOutputStream(new File(dataOutFilePath))));
+            dataFileWriter.create(schema, new DataOutputStream(new FileOutputStream(dataOutFilePath)));
             if (jsonDataMap != null && jsonDataMap.get(AVRO_ARRAY) != null && jsonDataMap.get(AVRO_ARRAY) instanceof List<?>) {
                 List<Map<String, Object>> list = (List<Map<String, Object>>) jsonDataMap.get(AVRO_ARRAY);
                 for (Map<String, Object> data : list) {

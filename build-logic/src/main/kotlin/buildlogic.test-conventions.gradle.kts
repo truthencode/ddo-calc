@@ -116,6 +116,7 @@ enum class LanguageComposition {
     Mixed,
 }
 
+// TODO: Move to Class object under io.truthencode.buildLogic
 enum class TestEngine(
     val id: String,
 ) {

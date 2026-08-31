@@ -1,5 +1,3 @@
-import org.openapitools.generator.gradle.plugin.tasks.GenerateTask
-
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -74,7 +72,6 @@ tasks.register("cleanAvroSchemas", GradleBuild::class) {
     tasks = listOf("clean")
 }
 
-@Suppress("UnstableApiUsage")
 configurations {
 //    val codeGen =
         configurations.create("codeGen") {
@@ -212,7 +209,9 @@ dependencies {
             implementation(libs.typesafe.scala.logging.s213)
         }
     }
-    // Scala Deps with no Scala 3 version
+
+    // TODO: Migrate to PureConfig or another maintained config wrapper
+    //  No Scala 3 version and not updated in years
     implementation(libs.kxbmap.configs.s213)
 
     implementation(libs.typesafe.config)
