@@ -33,14 +33,7 @@ jobs:
         # Add steps to the job
         # See: https://circleci.com/docs/2.0/configuration-reference/#steps
         steps:
-            - add_ssh_keys
-            - run:
-                  name: Checkout code
-                  command: |
-                      mkdir -p ~/.ssh
-                      ssh-keyscan github.com >> ~/.ssh/known_hosts
-                      git clone git@github.com:${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git .
-                      git checkout -f $CIRCLE_SHA1
+            - checkout
             - run: ./gradlew assemble
             - run: if [ -e ./gradlew ]; then ./gradlew reportScoverage aggregateScoverage --continue;else gradle reportScoverage aggregateScoverage --continue;fi
             - codecov/upload
