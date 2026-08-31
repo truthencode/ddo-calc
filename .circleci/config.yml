@@ -33,6 +33,11 @@ jobs:
         # Add steps to the job
         # See: https://circleci.com/docs/2.0/configuration-reference/#steps
         steps:
+            - run:
+                name: Populate GitHub known hosts
+                command: |
+                  mkdir -p ~/.ssh
+                  ssh-keyscan github.com >> ~/.ssh/known_hosts
             - run: git clone --depth 20 "$CIRCLE_REPOSITORY_URL" --branch "$CIRCLE_BRANCH"
             - run: ./gradlew assemble
             - run: if [ -e ./gradlew ]; then ./gradlew reportScoverage aggregateScoverage --continue;else gradle reportScoverage aggregateScoverage --continue;fi
