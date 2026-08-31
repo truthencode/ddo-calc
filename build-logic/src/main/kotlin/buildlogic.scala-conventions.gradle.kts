@@ -26,12 +26,12 @@ plugins {
     id("org.scoverage")
 }
 val libs = the<LibrariesForLibs>()
-val builderScalaVersion = providers.gradleProperty("builderScalaVersion")
+val builderScalaVersion = providers.gradleProperty("builderScalaVersion").getOrElse("3") // default to Scala 3
 
 scala {
 
     scalaVersion =
-        when (builderScalaVersion.get()) {
+        when (builderScalaVersion) {
             "3" -> {
                 libs.versions.scala3.version
                     .get()
@@ -83,34 +83,54 @@ configure<org.scoverage.ScoverageExtension> {
 }
 
 tasks.withType<ScalaCompile>().configureEach {
+    val cName = this.name
     scalaCompileOptions.apply {
 
-        when (builderScalaVersion.get()) {
+
+        val oldSDbParams = listOf("-Xsemanticdb",
+            "-semanticdb-target",
+            project.layout.buildDirectory
+                .get()
+                .toString(),)
+        val tp = layout.buildDirectory.dir("semanticdb").get().asFile.path
+        logger.debug("Setting target semanticdb root to $tp for configuration $cName")
+
+        val s2_sdb = listOf("-Xplugin-require:semanticdb",
+            "-P:semanticdb:targetroot:$tp",
+            )
+        val s3_sdb = listOf("-Xsemanticdb",
+            "-semanticdb-target:$tp",)
+
+        val s3Rewrites = listOf( "-rewrite",
+//                        "-new-syntax",
+            "-source:3.4-migration",
+            "-Xignore-scala2-macros",
+            "-new-syntax",)
+
+
+
+
+//        "-Xplugin-require:semanticdb",
+//        "-P:semanticdb:sourceroot:${projectDir.absolutePath}",
+//        "-P:semanticdb:targetroot:${layout.buildDirectory}/semanticdb"
+        when (builderScalaVersion) {
             "3" -> {
-//                logger.warn("Scala 3 detected")
+//                logger.debug("Scala 3 detected")
                 additionalParameters?.plusAssign(
                     listOf(
                         "-feature",
                         "-explain",
                         "-Wsafe-init", // Added per Quarkus - Scala3 extension notes along with semanticdb
-                        "-Xsemanticdb",
-                        "-semanticdb-target",
-                        project.layout.buildDirectory
-                            .get()
-                            .toString(),
+
                         "-Yretain-trees", // Needed for Enumeratum
-                        "-rewrite",
-//                        "-new-syntax",
-                        "-source:3.4-migration",
-                        "-Xignore-scala2-macros",
-                        "-new-syntax",
+
 //                        "explain"
-                    ),
+                    ) + s3_sdb + s3Rewrites,
                 )
             }
 
             "2" -> {
-//                logger.warn("Scala 2 detected")
+//                logger.debug("Scala 2 detected")
                 additionalParameters?.plusAssign(
                     listOf(
                         "-feature",

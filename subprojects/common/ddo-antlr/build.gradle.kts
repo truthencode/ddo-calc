@@ -13,7 +13,7 @@ dependencies {
     antlr(libs.antlr4) // use ANTLR version 4
     implementation(libs.logback.classic)
 }
-
+// TODO: remove repositories block from subprojects build.gradle.kts
 repositories {
     mavenCentral()
 }

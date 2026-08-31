@@ -28,7 +28,7 @@ dependencies {
     implementation(project(":ddo-util")) {
         because("Implicits with string matching etc")
     }
-    val builderScalaVersion: String by project
+    val builderScalaVersion = providers.gradleProperty("builderScalaVersion").getOrElse("3")
     logger.info("showing builderScalaVersion: $builderScalaVersion")
     when (builderScalaVersion) {
         "3" -> {

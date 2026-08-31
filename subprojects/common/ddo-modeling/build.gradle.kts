@@ -24,7 +24,7 @@ plugins {
 //     id("com.zlad.gradle.avrohugger")
 //    id("com.github.lkishalmi.gatling")
     //  id("io.gatling.gradle") version "3.9.5.5" replaces above
-    id("org.openapi.generator") version "4.2.2"
+    alias(libs.plugins.openapi.generator)
 //    id("code-quality")
 
 //    id("io.quarkus")//
@@ -177,112 +177,6 @@ val schemas =
     mapOf("ddoModel" to defaultApiSpec, "parseHub" to defaultApiSpec.copy(spec = "$rootDir/specs/parsehub.yaml"))
 val specs = mapOf("parseHub" to PackageSpec(basePackage = "io.truthencode.ddo.etl.parsehub"))
 
-openApiValidate {
-    inputSpec.set(apiSpec.asPath)
-}
-
-// avrohugger {
-//     this.sourceDirectories {
-//         this.from(schemaDir)
-//     }
-//     this.destinationDirectory.set(generatedScalaSourceDir.singleFile)
-//     typeMapping {
-//         protocolType = com.zlad.gradle.avrohugger.AvrohuggerExtension.ScalaADT
-//         enumType = com.zlad.gradle.avrohugger.AvrohuggerExtension.ScalaCaseObjectEnum
-//     }
-// }
-val schemaList = listOf("parseHub")
-
-// Create Tasks to generate Avro Schemas for our OpenAPI specs
-
-val genAvroSchemaTask =
-    tasks.register("genAvroSchema", fun Task.() {
-        this.group = "OpenAPI Tools"
-        dependsOn("openApiValidate")
-    })
-
-run {
-    @Suppress("IDENTIFIER_LENGTH")
-    schemaList.forEach { id ->
-        val name = "genAvroSchema$id"
-        tasks.register(name, org.openapitools.generator.gradle.plugin.tasks.GenerateTask::class) {
-            description = "Generates Avro Schema for $id"
-            group = "OpenAPI Tools"
-            generatorName.set("avro-schema")
-            schemas[id]?.let { s ->
-                inputSpec.set(s.spec)
-                outputDir.set(s.schemaDir)
-            }
-            specs[id]?.let { p ->
-                apiPackage.set(p.api)
-                invokerPackage.set(p.invoker)
-                modelPackage.set(p.model)
-            }
-            this.group = "OpenAPI Tools"
-            dependsOn("openApiValidate")
-            genAvroSchemaTask.get().dependsOn(this)
-        }
-    }
-}
-
-tasks.withType<JavaCompile>().configureEach {
-    // apparently required for JDK 21
-    this.options.compilerArgs.add("-XDaddTypeAnnotationsToSymbol=true")
-}
-
-tasks.register("genModel", GenerateTask::class, fun GenerateTask.() {
-    description = "Generates scala lagom server against api spec"
-    verbose.set(true)
-    generatorName.set("scala-lagom-server")
-    inputSpec.set(apiSpec.asPath)
-    outputDir.set(
-        layout.buildDirectory
-            .dir("generated/lagom")
-            .get()
-            .asFile.path,
-    )
-
-    apiPackage.set("io.truthencode.ddo.api")
-    invokerPackage.set("io.truthencode.ddo.invoker")
-    modelPackage.set("io.truthencode.ddo.models.model")
-})
-
-tasks.register("genGatling", GenerateTask::class, fun GenerateTask.() {
-    verbose.set(false)
-    description = "Generates openapi spec using gatling"
-    val id = "scala-gatling"
-    generatorName.set(id)
-    inputSpec.set(apiSpec.asPath)
-    outputDir.set(
-        layout.buildDirectory
-            .dir("generated/$id")
-            .get()
-            .asFile.path,
-    )
-
-    apiPackage.set("io.truthencode.ddo.api")
-    invokerPackage.set("io.truthencode.ddo.invoker")
-    modelPackage.set("io.truthencode.ddo.models.model")
-})
-
-tasks.register<Delete>("cleanAvroSchema") {
-    description = "Clears generated Schemas Directory"
-    group = "source generation"
-    delete = setOf(schemaDir)
-}
-
-tasks.register<Delete>("cleanGeneratedScala") {
-    description = "Cleans generated scala directory"
-    group = "source generation"
-    delete = setOf(generatedScalaSourceDir)
-}
-
-val cleanTask = tasks.named("clean")
-
-if (cleanTask.isPresent) {
-    cleanTask.get().dependsOn("cleanGeneratedScala")
-}
-
 dependencies {
     /*
     https://github.com/fthomas/refined
@@ -303,16 +197,12 @@ dependencies {
             // replacing wix accord validation with zio-prelude validation
 //            implementation(libs.wix.accord.core.s213)
             implementation(libs.dev.zio.prelude.s3)
-            implementation(libs.kxbmap.configs.s213)
+
         }
 
         else -> {
             implementation(libs.scala2.library)
-            implementation(libs.scala2.library)
             implementation(libs.enumeratum.s213)
-
-            implementation(libs.kxbmap.configs.s213)
-
             implementation(libs.json4s.native.s213)
 
             // validation and rules
@@ -322,6 +212,8 @@ dependencies {
             implementation(libs.typesafe.scala.logging.s213)
         }
     }
+    // Scala Deps with no Scala 3 version
+    implementation(libs.kxbmap.configs.s213)
 
     implementation(libs.typesafe.config)
 

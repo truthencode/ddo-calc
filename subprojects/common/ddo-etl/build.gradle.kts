@@ -62,7 +62,7 @@ dependencies {
      */
 
     // https://mvnrepository.com/artifact/org.json4s/json4s-native
-    val builderScalaVersion: String by project
+    val builderScalaVersion = providers.gradleProperty("builderScalaVersion").getOrElse("3")
     when (builderScalaVersion) {
         "3" -> {
             implementation(libs.scala3.library)

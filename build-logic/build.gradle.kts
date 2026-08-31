@@ -30,11 +30,10 @@ repositories {
     }
 }
 
-val kotlinVersion = project.property("kotlinVersion") as String
-val quarkusPlatformVersion = project.property("quarkusPlatformVersion") as String
-val jandexPluginVersion = project.property("jandexPluginVersion") as String
+//val kotlinVersion = project.property("kotlinVersion") as String
+//val jandexPluginVersion = project.property("jandexPluginVersion") as String
 val defaultJavaToolChainVersion = project.findProperty("defaultJavaToolChainVersion") as String?
-val kasechangeVersion = project.property("kasechangeVersion") as String
+//val kasechangeVersion = project.property("kasechangeVersion") as String
 
 dependencies {
     // enables gradle catalog for included convention plugins
@@ -92,7 +91,7 @@ dependencies {
     // quarkus related
     // quarkus incompatible with avrohugger (old scala 12.1) used by ddo-modeling.  Need a separate build.
     // TODO: check new avrohugger for quarkus compatibility
-//    implementation(libs.quarkus.gradle.plugin)
+
     implementation(libs.jandex.gradle.plugin)
 
     // Database
@@ -131,3 +130,8 @@ kotlin {
         // (this as JavaToolchainSpec).vendor.set(JvmVendorSpec.GRAAL_VM)
     }
 }
+
+// Helper function that transforms a Gradle Plugin alias from a
+// Version Catalog into a valid dependency notation for buildSrc
+fun DependencyHandlerScope.plugin(plugin: Provider<PluginDependency>) =
+    plugin.map { "${it.pluginId}:${it.pluginId}.gradle.plugin:${it.version}" }

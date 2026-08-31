@@ -83,8 +83,9 @@ configure<com.diffplug.gradle.spotless.SpotlessExtension> {
 
     project.plugins.withId("scala") {
         logger.info("SPOTLESS: configuring scala formatting to ${project.name} (scalafmt)")
-        scala {
-            val scalaFmtVersion: String by project
+        scala {            
+            // TODO: Migrate any version references to use the Version Catalog instead of gradle properties for consistency and single source of truth
+            val scalaFmtVersion = providers.gradleProperty("scalaFmtVersion").getOrElse("3.9.1")
             // version and configFile are both optional
             scalafmt(scalaFmtVersion).configFile(rootProject.file(".scalafmt.conf"))
             target("**/src/**/*.scala")
@@ -95,6 +96,7 @@ configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     project.plugins.withId("java") {
         logger.info("SPOTLESS: configuring java formatting to ${project.name} (googleJavaFormat)")
         java {
+            // TODO: Migrate any version references to use the Version Catalog instead of gradle properties for consistency and single source of truth
             googleJavaFormat("1.25.2")
                 .aosp()
                 .reflowLongStrings()

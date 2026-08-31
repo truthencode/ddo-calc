@@ -25,7 +25,7 @@ plugins {
 
 dependencies {
     dependencies {
-        val builderScalaVersion: String by project
+        val builderScalaVersion = providers.gradleProperty("builderScalaVersion").getOrElse("3")
 
         implementation(enforcedPlatform(project(":ddo-platform-scala")))
 

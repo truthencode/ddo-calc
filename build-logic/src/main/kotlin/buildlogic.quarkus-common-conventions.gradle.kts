@@ -1,3 +1,5 @@
+import org.gradle.accessors.dm.LibrariesForLibs
+
 /**
  * This file is part of the common build-logic project.
  * Adds quarkus specific core plugins and configurations
@@ -11,12 +13,17 @@ plugins {
     id("buildlogic.common-conventions")
 }
 
+val libs = the<LibrariesForLibs>()
+
 val quarkusPlatformGroupId = providers.gradleProperty("quarkusPlatformGroupId").get()
 val quarkusPlatformArtifactId = providers.gradleProperty("quarkusPlatformArtifactId").get()
 val quarkusPlatformVersion = providers.gradleProperty("quarkusPlatformVersion").get()
 
 logger.debug("Using Quarkus platform: $quarkusPlatformGroupId:$quarkusPlatformArtifactId:$quarkusPlatformVersion")
 dependencies {
+
+    val quarkusVersion = libs.versions.quarkus.asProvider().get()
+    logger.info("Using Quarkus version: $quarkusVersion")
     implementation(enforcedPlatform("$quarkusPlatformGroupId:$quarkusPlatformArtifactId:$quarkusPlatformVersion"))
     implementation("io.quarkus:quarkus-arc")
     implementation("io.quarkus:quarkus-smallrye-health")
