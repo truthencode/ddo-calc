@@ -33,7 +33,12 @@ jobs:
         # Add steps to the job
         # See: https://circleci.com/docs/2.0/configuration-reference/#steps
         steps:
-            - checkout
+            - run:
+                  name: Checkout code
+                  command: |
+                      git clone --depth 50 --branch "$CIRCLE_BRANCH" \
+                          "https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git" .
+                      git checkout "$CIRCLE_SHA1"
             - run: ./gradlew assemble
             - run: if [ -e ./gradlew ]; then ./gradlew reportScoverage aggregateScoverage --continue;else gradle reportScoverage aggregateScoverage --continue;fi
             - codecov/upload
