@@ -520,7 +520,7 @@ monix-execution-s213 = "io.monix:monix-execution_2.13:3.4.0"
 
 monix-bio-s213 = "io.monix:monix-bio_2.13:1.2.0"
 
-pulsar-client-all = "org.apache.pulsar:pulsar-client-all:2.9.1"
+pulsar-client-all = "org.apache.pulsar:pulsar-client-all:4.2.4"
 
 pulsar4s-core-s213 = "com.clever-cloud.pulsar4s:pulsar4s-core_2.13:2.8.1"
 
