@@ -39,7 +39,7 @@ jobs:
                       git clone --depth 50 --branch "$CIRCLE_BRANCH" \
                           "https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git" .
                       git checkout "$CIRCLE_SHA1"
-                      git fetch origin master
+                      git fetch origin +refs/heads/master:refs/remotes/origin/master
             - run: ./gradlew assemble
             - run: if [ -e ./gradlew ]; then ./gradlew reportScoverage aggregateScoverage --continue;else gradle reportScoverage aggregateScoverage --continue;fi
             - codecov/upload
