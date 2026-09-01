@@ -68,7 +68,7 @@ junit-platform = "1.10.0"
 kotest = "5.9.1"
 jspecify = "1.0.0"
 jetbrains-annotations = "26.0.2"
-kotlin = "2.1.10"
+kotlin = "2.4.10"
 
 mockito = "5.16.0"
 monix = "3.4.1"
