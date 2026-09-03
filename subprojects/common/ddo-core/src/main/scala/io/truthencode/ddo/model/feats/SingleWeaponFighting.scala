@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: SingleWeaponFighting.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +21,11 @@
 package io.truthencode.ddo.model.feats
 
 import io.truthencode.ddo.model.skill.Skill
-import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, RequiresAnyOfSkill, SkillRequisiteImpl}
+import io.truthencode.ddo.support.requisite.{
+  FeatRequisiteImpl,
+  RequiresAnyOfSkill,
+  SkillRequisiteImpl
+}
 
 /**
  * Icon Feat Single Weapon Fighting.png Single Weapon Fighting Passive While Single Weapon Fighting,
@@ -31,8 +38,8 @@ import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, RequiresAnyOfSki
  * of Balance
  */
 protected[feats] trait SingleWeaponFighting
-  extends FeatRequisiteImpl with SkillRequisiteImpl with Passive with RequiresAnyOfSkill
-  with FighterBonusFeat with MartialArtsFeat {
+  extends FeatRequisiteImpl with BonusSelectableToClassFeatImpl with SkillRequisiteImpl with Passive
+  with RequiresAnyOfSkill with FighterBonusFeat with MartialArtsFeat {
   self: GeneralFeat =>
   override def oneOfSkill: Seq[(Skill, Int)] = List((Skill.Balance, 2))
 }

@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: CreateThrall.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,12 +20,17 @@
  */
 package io.truthencode.ddo.model.feats
 
-import io.truthencode.ddo.activation.AtWillEvent
+import io.truthencode.ddo.activation.{AtWillEvent, TriggeredActivationImpl}
 import io.truthencode.ddo.model.classes.HeroicCharacterClass
 import io.truthencode.ddo.model.classes.HeroicCharacterClass.Warlock
 import io.truthencode.ddo.model.misc.DefaultCasterCoolDown
 import io.truthencode.ddo.model.spells.SpellLikeAbility
-import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, GrantsToClass, RequiresAllOfClass, RequiresAllOfFeat}
+import io.truthencode.ddo.support.requisite.{
+  FeatRequisiteImpl,
+  GrantsToClass,
+  RequiresAllOfClass,
+  RequiresAllOfFeat
+}
 
 /**
  * [[https://ddowiki.com/page/Create_Thrall Create Thrall]] Official: Target enemy fights for you 60
@@ -32,8 +40,9 @@ import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, GrantsToClass, R
  * feats allowed. Affects also Undead.
  */
 protected[feats] trait CreateThrall
-  extends FeatRequisiteImpl with ActiveFeat with AtWillEvent with SpellLikeAbility
-  with RequiresAllOfClass with RequiresAllOfFeat with GrantsToClass with DefaultCasterCoolDown {
+  extends FeatRequisiteImpl with TriggeredActivationImpl with ActiveFeat with AtWillEvent
+  with SpellLikeAbility with RequiresAllOfClass with RequiresAllOfFeat with GrantsToClass
+  with DefaultCasterCoolDown {
   self: ClassFeat =>
 
   override def grantToClass: Seq[(HeroicCharacterClass, Int)] =

@@ -1,3 +1,6 @@
+import com.diffplug.gradle.spotless.SpotlessTask
+
+
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -16,116 +19,77 @@
  * limitations under the License.
  */
 
- // ddo-core
+// ddo-core
 plugins {
-    id("scala-library-profile")
-//    id("ru.vyarus.mkdocs") // version "3.0.0"
-//    id("acceptance-test-conventions")
-//    id("doc-uml")
-}
-
-testing {
-    suites {
-        val test by getting(JvmTestSuite::class) {
-            useJUnitJupiter()
-        }
-
-        register<JvmTestSuite>("integrationTest") {
-            dependencies {
-                implementation(project())
-            }
-
-            targets {
-                all {
-                    testTask.configure {
-                        shouldRunAfter(test)
-                    }
-                }
-            }
-        }
-    }
-}
-
-tasks.named("check") {
-    dependsOn(testing.suites.named("integrationTest"))
+    id("buildlogic.quarkus-component-conventions")
+    id("buildlogic.scala-library-profile")
+    id("buildlogic.test-conventions")
 }
 
 description = "Core DDO Objects"
 
 dependencies {
-    val concordionVersion: String by project
+//    implementation(enforcedPlatform(project(":ddo-platform-scala")))
+    implementation(project(":ddo-util"))
+    implementation(project(":ddo-modeling"))
+    compileOnly(libs.jakarta.inject)
+    // https://mvnrepository.com/artifact/org.eclipse.microprofile.config/microprofile-config-api
+    implementation(libs.eclipse.microprofile.config)
 
-    dependencies {
-        implementation(platform(project(":ddo-platform-scala")))
-        implementation(project(":ddo-util"))
-        implementation(project(":ddo-modeling"))
+    // Platform dependent
+    // https://mvnrepository.com/artifact/org.json4s/json4s-native
+    val builderScalaVersion: String by project
+    logger.info("showing builderScalaVersion: $builderScalaVersion")
+    when (builderScalaVersion) {
+        "3" -> {
+            implementation(libs.scala3.library)
+            implementation(libs.json4s.native.s3)
 
-        val scalaLibraryVersion: String by project
-        val scalaMajorVersion: String by project
-        /* Platform dependent */
-        // https://mvnrepository.com/artifact/org.json4s/json4s-native
-        implementation(group = "org.json4s", name = "json4s-native_$scalaMajorVersion")
+            implementation(libs.enumeratum.s3)
 
-//        annotationProcessor("net.thauvin.erik:semver:1.2.0")
-//        compileOnly("net.thauvin.erik:semver:1.2.0")
+            implementation(libs.kxbmap.configs.s213)
+            // validation and rules
+            // replacing wix accord validation with zio-prelude validation
 
-        implementation("org.scala-lang:scala-library:$scalaLibraryVersion")
-        implementation(group = "com.beachape", name = "enumeratum_$scalaMajorVersion")
-        implementation(group = "com.typesafe", name = "config")
-        implementation(group = "com.github.kxbmap", name = "configs_$scalaMajorVersion")
-        // validation and rules
-        implementation(group = "com.wix", name = "accord-core_$scalaMajorVersion")
+            implementation(libs.dev.zio.prelude.s3)
+            implementation(libs.typesafe.scala.logging.s3)
+            testImplementation(libs.dev.zio.test.junit.s3)
+        }
 
-        implementation(group = "ch.qos.logback", name = "logback-classic")
-        implementation(group = "com.typesafe.scala-logging", name = "scala-logging_$scalaMajorVersion")
-        testImplementation(project(":ddo-testing-util"))
-        testImplementation(group = "org.scalatest", name = "scalatest_$scalaMajorVersion")
-        testImplementation(group = "org.scalacheck", name = "scalacheck_$scalaMajorVersion")
-        testImplementation(group = "org.scalatestplus", "mockito-3-4_$scalaMajorVersion")
-        testImplementation(group = "com.wix", name = "accord-scalatest_$scalaMajorVersion")
+        else -> {
+            implementation(libs.scala2.library)
+            implementation(libs.json4s.native.s213)
 
-        // JUnit 5
-        testRuntimeOnly(group = "org.junit.platform", name = "junit-platform-engine")
-        testRuntimeOnly(group = "org.junit.platform", name = "junit-platform-launcher")
-        testRuntimeOnly(group = "co.helmethair", name = "scalatest-junit-runner")
-        testRuntimeOnly(group = "org.junit.vintage", name = "junit-vintage-engine")
+            implementation(libs.enumeratum.s213)
 
-        // Concordion BDD
-//        val acceptanceTestImplementation by configurations.getting
-//        acceptanceTestImplementation.extendsFrom(configurations["testCompileClasspath"])
-//        acceptanceTestImplementation(group = "org.concordion", name = "concordion", version = concordionVersion)
-//        // flexmark (mostly for concordion / markdown)
-//        acceptanceTestImplementation("com.vladsch.flexmark:flexmark-all:0.62.2")
+            implementation(libs.kxbmap.configs.s213)
+            // validation and rules
 
-//        acceptanceTestImplementation(
-//            group = "com.vladsch.flexmark",
-//            name = "flexmark-ext-gfm-strikethrough",
-//            version = "0.62.2"
-//        )
-//        acceptanceTestImplementation(group = "com.vladsch.flexmark", name = "flexmark-ext-emoji", version = "0.62.2")
-//        acceptanceTestImplementation ("com.vladsch.flexmark:flexmark-ext-yaml-front-matter:0.62.2")
-//        // https://mvnrepository.com/artifact/com.vladsch.flexmark/flexmark-ext-gfm-tasklist
-//        acceptanceTestImplementation(
-//            group = "com.vladsch.flexmark",
-//            name = "flexmark-ext-gfm-tasklist",
-//            version = "0.62.2"
-//        )
+            implementation(libs.dev.zio.prelude.s213)
 
-        testImplementation(group = "de.neuland-bfi", name = "jade4j", version = "1.2.7")
-        testImplementation(group = "net.ruippeixotog", name = "scala-scraper_$scalaMajorVersion", version = "2.2.1")
-        testCompileOnly(group = "org.jetbrains", name = "annotations", version = "17.0.0")
+            implementation(libs.typesafe.scala.logging.s213)
+        }
+    }
+    implementation(libs.logback.classic)
+    implementation(libs.typesafe.config)
+    implementation(libs.jetbrains.annotations)
+    testImplementation(project(":ddo-testing-util"))
+}
 
-        implementation(group = "org.jetbrains", name = "annotations", version = "17.0.0")
+testing {
+    suites {
+        @Suppress("UnstableApiUsage")
+        withType(JvmTestSuite::class)
+            .matching { it.name in listOf("acceptanceTest") }
+            .configureEach {
+                dependencies {
+                    implementation(project(":ddo-modeling"))
+                }
+            }
     }
 }
 
-//sourceSets {
-//    this.getByName("acceptanceTest") {
-//        java {
-//            setSrcDirs(listOf<String>())
-//        }
-//        scala {
-//            setSrcDirs(listOf("test/scala"))
-//        }
-//    }
+//tasks.withType<SpotlessTask> {
+//    tasks.first { it == this }.mustRunAfter(tasks.withType<JavaCompile>())
+//
 //}
