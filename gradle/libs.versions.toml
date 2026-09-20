@@ -145,7 +145,7 @@ nullaway-plugin = "2.2.0"
 errorprone-plugin = "4.1.0"
 nullaway = "0.12.4"
 errorprone-processor = "2.36.0"
-truth = "1.4.4"
+truth = "1.4.5"
 guava-truth = "33.4.0-jre"
 
 [libraries]
