@@ -1,6 +1,7 @@
 import com.diffplug.gradle.spotless.SpotlessTask
 import io.truthencode.buildlogic.RecurseValue
 import io.truthencode.buildlogic.Recursion
+import org.gradle.accessors.dm.LibrariesForLibs
 import org.gradle.kotlin.dsl.withType
 
 /*
@@ -25,6 +26,8 @@ plugins {
     id("com.diffplug.spotless")
 }
 
+val libs = the<LibrariesForLibs>()
+
 enum class ScriptLanguage { GradleBuild, KotlinScriptBuild }
 
 fun buildLang(): ScriptLanguage =
@@ -40,7 +43,11 @@ fun walkBack(
         f
     } else {
         when (recurse.recurseValue) {
-            RecurseValue.NONE -> null // throw IOException("can not locate file $fileName")
+            RecurseValue.NONE -> {
+                null
+            }
+
+            // throw IOException("cannot locate file $fileName")
             RecurseValue.FINITE -> {
                 walkBack("../$fileName", recurse - 1, proj.rootProject)
             }
@@ -53,12 +60,13 @@ fun walkBack(
 }
 
 configure<com.diffplug.gradle.spotless.SpotlessExtension> {
-    ratchetFrom("origin/master")
+    // ratchetFrom("origin/master")
     if (buildLang() == ScriptLanguage.KotlinScriptBuild) {
         logger.debug("SPOTLESS: configuring kotlin script formatting to ${project.name}")
         kotlinGradle {
-//            ktlint("0.50.0")
-            diktat("1.2.5").configFile(rootProject.file("diktat-analysis.yml"))
+            val diktatVersion = libs.versions.diktat
+            diktat(diktatVersion.get()).configFile(rootProject.file("diktat-analysis.yml"))
+            licenseHeaderFile(rootProject.file("gradle/LICENSE_HEADER_JAVA"), "package ")
             target("**/src/main/kotlin/*.build.kts")
         }
     }
@@ -84,10 +92,19 @@ configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     project.plugins.withId("scala") {
         logger.info("SPOTLESS: configuring scala formatting to ${project.name} (scalafmt)")
         scala {
-            val scalaFmtVersion: String by project
+            // TODO: Migrate Spotless config versions to version catalog
+            //    ScalaFmt, GoogleJavaFormat, Diktat, ktlint etc. all have their versions specified in the build script, which should be migrated to the version catalog for consistency and single source of truth
+            // TODO: Multiple ScalaFmt Version Declarations
+            //   Possibly just grep the version specified in the file? Else we should inject it to match our version catalog
+            //   Either direction is possible, just should really have one truth.
+            // as it's required to have the version in the document, we should be able to remove this altogether
+//            val scalaFmtVersion = libs.versions.scalaFmt
+//            val scalaFmtVersion = providers.gradleProperty("scalaFmtVersion").getOrElse("3.9.1")
             // version and configFile are both optional
-            scalafmt(scalaFmtVersion).configFile(rootProject.file(".scalafmt.conf"))
+//            scalafmt(scalaFmtVersion.get()).configFile(rootProject.file(".scalafmt.conf"))
             target("**/src/**/*.scala")
+            // Exclude Scala files that contain dollar signs in their names (Generally used for Java Interop and Scala compiler-generated files)
+            targetExclude("**/src/**/*\$*.scala")
             licenseHeaderFile(project.rootProject.file("gradle/LICENSE_HEADER_JAVA"), "package ")
         }
     }
@@ -95,7 +112,9 @@ configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     project.plugins.withId("java") {
         logger.info("SPOTLESS: configuring java formatting to ${project.name} (googleJavaFormat)")
         java {
-            googleJavaFormat("1.25.2")
+            // TODO: Migrate any version references to use the Version Catalog instead of gradle properties for consistency and single source of truth
+            val googleJavaFormatVersion = libs.versions.google.java.format
+            googleJavaFormat(googleJavaFormatVersion.get())
                 .aosp()
                 .reflowLongStrings()
                 .formatJavadoc(true)
