@@ -474,7 +474,7 @@ rest-assured = { module = "io.rest-assured:rest-assured" }
 
 scala3-compiler-s3 = "org.scala-lang:scala3-compiler_3:3.5.0"
 
-vertx-lang-scala = "com.github.vert-x3:vertx-lang-scala:4.5.8"
+vertx-lang-scala = "com.github.vert-x3:vertx-lang-scala:4.5.11"
 
 core-s3 = "com.softwaremill.sttp.client3:core_3:3.9.8"
 
