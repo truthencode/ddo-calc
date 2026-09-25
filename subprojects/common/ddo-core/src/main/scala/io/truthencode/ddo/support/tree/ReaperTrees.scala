@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: ReaperTrees.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +27,7 @@ import io.truthencode.ddo.support.naming.{DisplayName, FriendlyDisplay}
 import scala.collection.immutable
 
 sealed trait ReaperTrees extends EnumEntry with ReaperTree with DisplayName with FriendlyDisplay {
+
   /**
    * Used when qualifying a search with a prefix. Examples include finding "HalfElf" from qualified
    * "Race:HalfElf"

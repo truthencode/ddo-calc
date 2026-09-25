@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: DisplayPropertiesTest.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +31,7 @@ import scala.language.postfixOps
  * Testing name / identity and search prefixs, affixes and separators.
  */
 class DisplayPropertiesTest extends AnyFunSpec with Matchers with LazyLogging {
+
   /**
    * A basic prefix that uses the text parameter value as thee display source with no additional
    * manipulation.
@@ -35,6 +39,7 @@ class DisplayPropertiesTest extends AnyFunSpec with Matchers with LazyLogging {
    *   main text source
    */
   case class SimplePrefix(text: String) extends DisplayName with Prefix {
+
     /**
      * Optional Prefix, used to separate sub-items such as Spell Critical Schools and also to
      * disambiguate certain entities such as Feat: precision.
@@ -54,6 +59,7 @@ class DisplayPropertiesTest extends AnyFunSpec with Matchers with LazyLogging {
   }
 
   case class SkillSearchPrefix(text: String) extends DisplayName with UsingSkillSearchPrefix {
+
     /**
      * Sets or maps the source text for the DisplayName.
      *

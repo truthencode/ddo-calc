@@ -1,0 +1,14 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+        mavenLocal()
+    }
+    // Use quarkusPluginVersion from gradle.properties to keep in sync with main build
+    var quarkusPluginVersion = providers.gradleProperty("quarkusPluginVersion").getOrElse("3.38.1")
+    plugins {
+        id "io.quarkus" version quarkusPluginVersion
+    }
+}
+
+rootProject.name = 'scala3-quarkus-quickstart'

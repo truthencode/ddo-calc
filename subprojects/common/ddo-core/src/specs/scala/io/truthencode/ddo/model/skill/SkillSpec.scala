@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: SkillSpec.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +35,8 @@ import scala.jdk.CollectionConverters.SeqHasAsJava
   markdownExtensions = Array(
     MarkdownExtensions.WIKILINKS,
     MarkdownExtensions.AUTOLINKS,
-    MarkdownExtensions.TASKLISTITEMS))
+    MarkdownExtensions.TASKLISTITEMS)
+)
 class SkillSpec {
   val skillEnum: Skill.type = Skill
 

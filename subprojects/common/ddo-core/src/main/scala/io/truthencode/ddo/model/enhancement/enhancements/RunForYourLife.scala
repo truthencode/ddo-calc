@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: RunForYourLife.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +27,7 @@ trait RunForYourLife extends ApothecaryTierFour with ClassEnhancementImpl {
   override lazy val description: Option[String] = Some(
     """While your Reaction is Verdanite, you gain 1% Movement Speed per Alchemist Level.""".stripMargin
   )
+
   /**
    * Some enhancements can be taken multiple times (generally up to three)
    */

@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: DeityUniqueLevelBase.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +22,11 @@ package io.truthencode.ddo.model.feats
 
 import io.truthencode.ddo.model.classes.HeroicCharacterClass.{Cleric, FavoredSoul, Paladin}
 import io.truthencode.ddo.model.item.weapon.FavoredWeapon
-import io.truthencode.ddo.support.requisite.{RaceRequisiteImpl, RequiresAllOfClass, RequiresAllOfFeat}
+import io.truthencode.ddo.support.requisite.{
+  RaceRequisiteImpl,
+  RequiresAllOfClass,
+  RequiresAllOfFeat
+}
 
 /**
  * This trait may be renamed if someone has a suggestion for a better name for the 3rd tier / 6th
@@ -27,7 +34,7 @@ import io.truthencode.ddo.support.requisite.{RaceRequisiteImpl, RequiresAllOfCla
  */
 trait DeityUniqueLevelBase
   extends ReligionFeatBase with RaceRequisiteImpl with RequiresAllOfClass with UniqueLevel {
-  self: FavoredWeapon with RequiresAllOfFeat =>
+  self: FavoredWeapon & RequiresAllOfFeat =>
   List(Cleric, Paladin, FavoredSoul).map((_, 6))
 
 }

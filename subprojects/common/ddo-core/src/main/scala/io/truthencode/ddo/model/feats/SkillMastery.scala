@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: SkillMastery.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +22,12 @@ package io.truthencode.ddo.model.feats
 
 import io.truthencode.ddo.model.classes.HeroicCharacterClass
 import io.truthencode.ddo.model.classes.HeroicCharacterClass.{Barbarian, Bard, Rogue}
-import io.truthencode.ddo.support.requisite.{ClassRequisite, FeatRequisiteImpl, GrantsToClass, RequiresAnyOfClass}
+import io.truthencode.ddo.support.requisite.{
+  ClassRequisite,
+  FeatRequisiteImpl,
+  GrantsToClass,
+  RequiresAnyOfClass
+}
 
 /**
  * A rogue with this ability gains +1 to all skills. This ability may be taken multiple times. Notes

@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: Effect.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +30,8 @@ import io.truthencode.ddo.api.model.effect.BasicEffectInfo
  * @param generalDescription
  *   The general description of the effect.
  * @param categories
- *   a list of Categories useful for menu / UI placement and also for searching / querying for Miss-Chance or other
- *   desired effects.
+ *   a list of Categories useful for menu / UI placement and also for searching / querying for
+ *   Miss-Chance or other desired effects.
  */
-case class Effect(name: String, generalDescription: String, categories: Seq[String]) extends BasicEffectInfo
+case class Effect(name: String, generalDescription: String, categories: Seq[String])
+  extends BasicEffectInfo

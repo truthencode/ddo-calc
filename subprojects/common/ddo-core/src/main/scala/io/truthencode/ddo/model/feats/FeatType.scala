@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: FeatType.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,10 +41,9 @@ trait Toggle extends FeatType
 
 /**
  * This effect is a stance, which means it can be on or off, but may also have some stacking
- * restrictions.
- * i.e. only one offensive combat stance may be active at any given time, and automatically toggles
- * off a defensive combat stance, however it may be combined with a non-conflicting stance, such as
- * a wizards undead shroud or the iconic feat Amauntor's Flames.
+ * restrictions. i.e. only one offensive combat stance may be active at any given time, and
+ * automatically toggles off a defensive combat stance, however it may be combined with a
+ * non-conflicting stance, such as a wizards undead shroud or the iconic feat Amauntor's Flames.
  */
 trait Stance extends FeatType with Toggle with ActiveFeat with OnToggleEvent with DefaultCoolDown
 

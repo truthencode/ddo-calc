@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: TriggerEvent.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,6 +54,7 @@ object TriggerEvent extends IndexedEnum[TriggerEvent] {
    * with Passive, always on effects.
    */
   case object Never extends PassiveEvent
+
   /**
    * Occurs on every attack
    */
@@ -64,7 +68,7 @@ object TriggerEvent extends IndexedEnum[TriggerEvent] {
   /**
    * Occurs when you are damaged (hit)
    */
-  case object OnDamage extends ActiveEvent
+  case object OnDamage extends ActiveEvent, TriggerEvent
 
   /**
    * Occurs when you are hit by a spell
@@ -74,7 +78,7 @@ object TriggerEvent extends IndexedEnum[TriggerEvent] {
   /**
    * Occurs when you cast a spell
    */
-  case object OnSpellCast extends ActiveEvent
+  case object OnSpellCast extends ActiveEvent, TriggerEvent
 
   /**
    * Occurs when you activate a SLA (Spell like ability)
@@ -119,6 +123,7 @@ object TriggerEvent extends IndexedEnum[TriggerEvent] {
    * Triggers on a ceratin percentage of health raises above the threshold
    */
   case object OnHealthLevelAbove extends ActiveEvent
+
   /**
    * Can be toggled on / off as desired
    */
@@ -159,12 +164,12 @@ object TriggerEvent extends IndexedEnum[TriggerEvent] {
   /**
    * Occurs when equipping an item
    */
-  case object OnEquip extends ActiveEvent
+  case object OnEquip extends ActiveEvent, TriggerEvent
 
   /**
    * Occurs when un-equipping an item
    */
-  case object OnUnEquip extends ActiveEvent
+  case object OnUnEquip extends ActiveEvent, TriggerEvent
 
   /**
    * Occurs when you are centered.
@@ -187,8 +192,7 @@ object TriggerEvent extends IndexedEnum[TriggerEvent] {
   object OnUnconscious extends ActiveEvent
 
   /**
-   * Activates / Cycles based on some timer.
-   * i.e. Deflect Arrows
+   * Activates / Cycles based on some timer. i.e. Deflect Arrows
    */
   object OnTimer extends ActiveEvent
 
@@ -198,8 +202,8 @@ object TriggerEvent extends IndexedEnum[TriggerEvent] {
   object OnTumble extends ActiveEvent
 
   /**
-   * Special End event. Denotes the effect ends at the end of whatever the TriggerOn event was.
-   * i.e. End of Tumble for the Mobility Feat
+   * Special End event. Denotes the effect ends at the end of whatever the TriggerOn event was. i.e.
+   * End of Tumble for the Mobility Feat
    * @note
    *   need a better name for this
    */

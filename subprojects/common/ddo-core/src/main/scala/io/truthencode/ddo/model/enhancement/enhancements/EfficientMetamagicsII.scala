@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: EfficientMetamagicsII.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +26,7 @@ import io.truthencode.ddo.support.naming.RomanNumeralAffix
 // TODO: Need to add mutliselector support similar to Martial Weapon Proficiency:x
 trait EfficientMetamagicsII
   extends BombardierTierThree with ClassEnhancementImpl with RomanNumeralAffix {
+
   /**
    * Some enhancements can be taken multiple times (generally up to three)
    */

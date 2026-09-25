@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: FeatureTest.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +26,12 @@ import io.truthencode.ddo.enhancement.BonusType
 import io.truthencode.ddo.model.effect.Feature.printFeature
 import io.truthencode.ddo.model.effect.features.SkillEffect
 import io.truthencode.ddo.model.feats.{Feat, GeneralFeat}
-import io.truthencode.ddo.model.item.weapon.WeaponCategory.{filterByWeaponClass, icPlus1, icPlus2, icPlus3}
+import io.truthencode.ddo.model.item.weapon.WeaponCategory.{
+  filterByWeaponClass,
+  icPlus1,
+  icPlus2,
+  icPlus3
+}
 import io.truthencode.ddo.model.item.weapon.WeaponClass
 import io.truthencode.ddo.model.skill.Skill.{Listen, Spot}
 import io.truthencode.ddo.model.stats.{BasicStat, MissChance}
@@ -36,18 +44,19 @@ import org.scalatestplus.mockito.MockitoSugar
 
 import scala.collection.immutable
 import scala.util.{Success, Try}
+import scala.reflect.Selectable.reflectiveSelectable
 
 class FeatureTest extends AnyFunSpec with Matchers with MockitoSugar with LazyLogging {
 
   val featEffects: Unit = {
-    val fList = for {
+    val fList = for
       feat <- Feat.values
       features <- feat.namedFeatures
       feature <- features._2
-    } yield (feat, feature)
+    yield (feat, feature)
   }
 
-  def fixture = new {
+  def fixture: Object { val sourceInfo: SourceInfo } = new {
     val sourceInfo: SourceInfo = SourceInfo("TestContext", this)
   }
 
@@ -65,7 +74,8 @@ class FeatureTest extends AnyFunSpec with Matchers with MockitoSugar with LazyLo
       val param = EffectParameter.BonusType(BonusType.Feat)
       val part = EffectPart.MissChanceEffect(BasicStat.DodgeChance)
       val mockDetailedEffect = mock[DetailedEffect]
-      val partMod = new PartModifier[Int, BasicStat with MissChance] with UsingSearchPrefix {
+      val partMod = new PartModifier[Int, BasicStat & MissChance] with UsingSearchPrefix {
+
         /**
          * Used when qualifying a search with a prefix. Examples include finding "HalfElf" from
          * qualified "Race:HalfElf"
@@ -75,6 +85,7 @@ class FeatureTest extends AnyFunSpec with Matchers with MockitoSugar with LazyLo
          */
         override def searchPrefixSource: String = partToModify.searchPrefixSource
         override lazy val part: Try[EffectPart] = Success(EffectPart.MissChanceEffect(partToModify))
+
         /**
          * The General Description should be just that. This should not include specific values
          * unless all instances will share that value. I.e. a Dodge Effect might state it increases
@@ -97,7 +108,7 @@ class FeatureTest extends AnyFunSpec with Matchers with MockitoSugar with LazyLo
         override def categories: Seq[String] =
           Seq(EffectCategories.General, EffectCategories.MissChance).map(_.toString)
 
-        override protected[this] lazy val partToModify: BasicStat with MissChance =
+        override protected lazy val partToModify: BasicStat & MissChance =
           BasicStat.DodgeChance
         private val eb = EffectParameterBuilder()
           .toggleOffValue(TriggerEvent.OnDeath)
@@ -105,7 +116,7 @@ class FeatureTest extends AnyFunSpec with Matchers with MockitoSugar with LazyLo
           .addBonusType(BonusType.Feat)
           .build
 
-        override protected[this] def effectParameters: Seq[ParameterModifier[_]] = eb.modifiers
+        override protected def effectParameters: Seq[ParameterModifier[?]] = eb.modifiers
         override val effectDetail: DetailedEffect = mockDetailedEffect
         override val value: Int = 3
         override val source: SourceInfo = SourceInfo("ExampleDodge", this)
@@ -128,7 +139,7 @@ class FeatureTest extends AnyFunSpec with Matchers with MockitoSugar with LazyLo
       val ff: immutable.Seq[SkillEffect] = feat.features.collect { case y: SkillEffect =>
         y
       }
-      ff.map(_.skill) should contain allOf (Listen, Spot)
+      (ff.map(_.skill) should contain).allOf(Listen, Spot)
     }
 
     it("should contain relevant source information", FeatTest, SkillTest, FeatureTest) {
@@ -168,7 +179,7 @@ class FeatureTest extends AnyFunSpec with Matchers with MockitoSugar with LazyLo
       val mDetail = mock[DetailedEffect]
       val f = fixture
       val pm = new PartModifier[Int, GeneralFeat] with UsingSearchPrefix {
-        override protected[this] lazy val partToModify: GeneralFeat =
+        override protected lazy val partToModify: GeneralFeat =
           GeneralFeat.Trip
 
         /**
@@ -207,7 +218,7 @@ class FeatureTest extends AnyFunSpec with Matchers with MockitoSugar with LazyLo
           .addBonusType(BonusType.ActionBoost)
           .build
 
-        override protected[this] def effectParameters: Seq[ParameterModifier[_]] = eb.modifiers
+        override protected def effectParameters: Seq[ParameterModifier[?]] = eb.modifiers
         override val value: Int = 3
         override val source: SourceInfo = f.sourceInfo
         override val effectDetail: DetailedEffect = mDetail

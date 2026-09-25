@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: CoolDownPool.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,6 +36,7 @@ object CoolDownPool extends Enum[CoolDownPool] {
    * Several Ranged Events use this pool. * ManyShot * Multitude of Missiles
    */
   case object ManyShot extends CoolDownPool {
+
     /**
      * Used to group shared timer resources. It is strongly recommended to use one of the values in
      * [[io.truthencode.ddo.model.misc.CoolDownPool]]
@@ -40,6 +44,7 @@ object CoolDownPool extends Enum[CoolDownPool] {
     override val coolDownPoolId: String = PoolManyShot
   }
   case object Cleave extends CoolDownPool {
+
     /**
      * Used to group shared timer resources. It is strongly recommended to use one of the values in
      * [[io.truthencode.ddo.model.misc.CoolDownPool]]
@@ -47,6 +52,7 @@ object CoolDownPool extends Enum[CoolDownPool] {
     override val coolDownPoolId: String = PoolCleave
   }
   case object GreatCleave extends CoolDownPool {
+
     /**
      * Used to group shared timer resources. It is strongly recommended to use one of the values in
      * [[io.truthencode.ddo.model.misc.CoolDownPool]]

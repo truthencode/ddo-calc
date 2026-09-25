@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: ParentFeat.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,11 +22,11 @@ package io.truthencode.ddo.model.feats
 
 /**
  * A Parent Feat is a Feat which acts as a container for linked sub-feats. A basic example would be
- * Spell Focus, which contains sub-feats for each school of magic.
- * i.e. Spell Focus: Enchantment, Spell Focus: Necromancy etc.
+ * Spell Focus, which contains sub-feats for each school of magic. i.e. Spell Focus: Enchantment,
+ * Spell Focus: Necromancy etc.
  */
 trait ParentFeat {
   self: Feat =>
-  val subFeats: Seq[Feat with SubFeat]
+  val subFeats: Seq[Feat & SubFeat]
 
 }

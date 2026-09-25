@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: Determination.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +28,7 @@ trait Determination extends ApothecaryCore with ClassEnhancementImpl {
   // Will Save +1
   // override val tree: ClassTrees = ClassTrees.Apothecary
   override lazy val description: Option[String] = Some("+1 Will Save")
+
   /**
    * Some enhancements can be taken multiple times (generally up to three)
    */

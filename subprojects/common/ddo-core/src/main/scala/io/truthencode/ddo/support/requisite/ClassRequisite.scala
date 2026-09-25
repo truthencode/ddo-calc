@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: ClassRequisite.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,7 +48,7 @@ trait ClassRequisite {
  * override and augment selected values.
  */
 trait ClassRequisiteImpl extends MustContainImpl[Requirement] with ClassRequisite {
-  self: Requisite with RequisiteType =>
+  self: Requisite & RequisiteType =>
   def gkRequiredClasses: String = defaultGroupKey
   def gkGrantClasses: String = defaultGroupKey
   def gkBonusSelectableClasses: String = defaultGroupKey
@@ -71,18 +74,18 @@ trait FreeClass extends ClassRequisite with RequiresNone with RequiredExpression
 trait RequiresAnyOfClass extends ClassRequisite with RequiresOneOf[Requirement] with Requisite {
 
   abstract override def oneOf: Seq[Requirement] = super.oneOf ++ {
-    anyOfClass.map(_.toReq).map(GroupedRequirement(_, gkRequiredClasses,RequisiteType.Require))
+    anyOfClass.map(_.toReq).map(GroupedRequirement(_, gkRequiredClasses, RequisiteType.Require))
   }
 }
 
 /**
- * Feature requires this particular set of classes.
- * i.e. A given feat may only be available to Monks.
+ * Feature requires this particular set of classes. i.e. A given feat may only be available to
+ * Monks.
  */
 trait RequiresAllOfClass extends ClassRequisite with RequiresAllOf[Requirement] with Requisite {
 
   abstract override def allOf: Seq[Requirement] = super.allOf ++ {
-    allOfClass.map(_.toReq).map(GroupedRequirement(_, gkRequiredClasses,RequisiteType.Require))
+    allOfClass.map(_.toReq).map(GroupedRequirement(_, gkRequiredClasses, RequisiteType.Require))
   }
 }
 
@@ -93,7 +96,7 @@ trait RequiresAllOfClass extends ClassRequisite with RequiresAllOf[Requirement] 
 trait RequiresNoneOfClass extends ClassRequisite with RequiresNoneOf[Requirement] with Requisite {
 
   abstract override def noneOf: Seq[Requirement] = super.noneOf ++ {
-    noneOfClass.map(_.toReq).map(GroupedRequirement(_, gkProhibitedClasses,RequisiteType.Prohibit))
+    noneOfClass.map(_.toReq).map(GroupedRequirement(_, gkProhibitedClasses, RequisiteType.Prohibit))
   }
 }
 
@@ -103,7 +106,7 @@ trait RequiresNoneOfClass extends ClassRequisite with RequiresNoneOf[Requirement
 trait GrantsToClass
   extends ClassRequisite with GrantExpression with RequiresOneOf[Requirement] with Requisite {
   abstract override def oneOf: Seq[Requirement] = super.oneOf ++ {
-    grantToClass.map(_.toReq).map(GroupedRequirement(_, gkGrantClasses,RequisiteType.Grant))
+    grantToClass.map(_.toReq).map(GroupedRequirement(_, gkGrantClasses, RequisiteType.Grant))
   }
 }
 
@@ -114,6 +117,8 @@ trait GrantsToClass
 trait SelectableToClass
   extends ClassRequisite with ClassRequisiteImpl with RequiresOneOf[Requirement] with Requisite {
   abstract override def oneOf: Seq[Requirement] = super.oneOf ++ {
-    bonusSelectableToClass.map(_.toReq).map(GroupedRequirement(_, gkBonusSelectableClasses,RequisiteType.Require))
+    bonusSelectableToClass
+      .map(_.toReq)
+      .map(GroupedRequirement(_, gkBonusSelectableClasses, RequisiteType.Require))
   }
 }

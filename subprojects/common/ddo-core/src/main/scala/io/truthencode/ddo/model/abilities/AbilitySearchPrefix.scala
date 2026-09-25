@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: AbilitySearchPrefix.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +23,7 @@ package io.truthencode.ddo.model.abilities
 import io.truthencode.ddo.support.SearchPrefix
 
 trait AbilitySearchPrefix extends SearchPrefix {
+
   /**
    * Used when qualifying a search with a prefix. Examples include finding "HalfElf" from qualified
    * "Race:HalfElf"

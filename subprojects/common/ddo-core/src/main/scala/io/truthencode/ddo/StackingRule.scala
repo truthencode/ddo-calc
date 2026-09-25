@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: StackingRule.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,4 +40,4 @@ trait NonStacking extends StackingRule
 /**
  * Miscellaneous bonuses coming from the same source don't stack (ie - 2 paladins' aura).
  */
-trait StacksWithAllButSame extends StackingRule
+trait StacksWithUnique extends StackingRule

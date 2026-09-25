@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: Armor.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,8 +20,9 @@
  */
 package io.truthencode.ddo.model.item.armor
 
+import io.truthencode.ddo.Wearable
 import io.truthencode.ddo.model.item.WearableItem
-import io.truthencode.ddo.{WearLocation, Wearable}
+import io.truthencode.ddo.support.slots.WearLocation
 
 /**
  * Represents body armor such as Breast plates, Chainmail etc.
@@ -34,6 +38,7 @@ import io.truthencode.ddo.{WearLocation, Wearable}
  *   Lore VI Potency +80 Superior Lightning Resistance Blue Augment Slot
  */
 trait Armor extends WearableItem with Wearable {
+
   /**
    * A bitmask that corresponds to one or more [io.truthencode.ddo.WearLocation] values.
    */

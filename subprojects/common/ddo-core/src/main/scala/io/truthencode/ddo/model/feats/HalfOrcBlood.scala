@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: HalfOrcBlood.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,12 +24,14 @@ import io.truthencode.ddo.model.race.Race
 import io.truthencode.ddo.support.StringUtils.Extensions
 import io.truthencode.ddo.support.naming.Prefix
 import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, RaceRequisite, RequiresAllOfRace}
+
 /**
  * Created by adarr on 2/20/2017.
  */
 trait HalfOrcBlood
   extends FeatRequisiteImpl with RaceRequisite with Passive with Prefix with RequiresAllOfRace {
   self: RacialFeat =>
+
   /**
    * Delimits the prefix and text.
    */

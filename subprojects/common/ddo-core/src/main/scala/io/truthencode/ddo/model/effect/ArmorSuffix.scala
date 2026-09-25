@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: ArmorSuffix.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +20,7 @@
  */
 package io.truthencode.ddo.model.effect
 
-import enumeratum.{EnumEntry, Enum => SmartEnum}
+import enumeratum.{Enum => SmartEnum, EnumEntry}
 
 sealed trait ArmorSuffix extends EnumEntry with Suffix
 object ArmorSuffix extends SmartEnum[ArmorSuffix] {
@@ -28,6 +31,7 @@ object ArmorSuffix extends SmartEnum[ArmorSuffix] {
   case object Command extends ArmorSuffix
   // case object  Crafteditemenchantments/Temporarylist  extends ArmorSuffix
   case object ElectricResistance extends ArmorSuffix with Resist with Electric
+
   /**
    * Enumeration indicating All elements
    */

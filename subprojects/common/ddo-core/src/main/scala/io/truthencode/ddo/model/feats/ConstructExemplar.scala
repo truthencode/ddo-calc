@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: ConstructExemplar.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,7 +25,11 @@ import io.truthencode.ddo.model.classes.HeroicCharacterClass.Artificer
 import io.truthencode.ddo.model.feats.ClassFeat.ImprovedConstructEssence
 import io.truthencode.ddo.model.race.Race
 import io.truthencode.ddo.model.race.Race.Warforged
-import io.truthencode.ddo.support.requisite.{RequiresAllOfClass, RequiresAllOfFeat, RequiresNoneOfRace}
+import io.truthencode.ddo.support.requisite.{
+  RequiresAllOfClass,
+  RequiresAllOfFeat,
+  RequiresNoneOfRace
+}
 
 /**
  * Created by adarr on 4/3/2017.

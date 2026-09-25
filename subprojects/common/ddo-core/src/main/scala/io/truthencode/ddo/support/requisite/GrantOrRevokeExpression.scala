@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: GrantOrRevokeExpression.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +24,7 @@ package io.truthencode.ddo.support.requisite
  * Created by adarr on 1/30/2017.
  */
 sealed trait GrantOrRevokeExpression {
+
   /**
    * Automatically granted this feat / skill / ability when this criteria is met
    */

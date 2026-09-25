@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: ClassEnhancementDisplayHelper.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +23,12 @@ package io.truthencode.ddo.model.enhancements
 import com.typesafe.scalalogging.LazyLogging
 import io.truthencode.ddo.model.enhancement.enhancements.ClassEnhancement
 import io.truthencode.ddo.model.enhancement.{ClassBasedEnhancements, Tier}
-import io.truthencode.ddo.support.requisite.{ActionPointRequisite, PointInTreeRequisite, PointsAvailableRequisite, RequiresActionPoints}
+import io.truthencode.ddo.support.requisite.{
+  ActionPointRequisite,
+  PointInTreeRequisite,
+  PointsAvailableRequisite,
+  RequiresActionPoints
+}
 
 trait ClassEnhancementDisplayHelper extends EnhancementDisplayHelper with LazyLogging {
   type ENH = ClassEnhancement with Tier with ActionPointRequisite with PointInTreeRequisite

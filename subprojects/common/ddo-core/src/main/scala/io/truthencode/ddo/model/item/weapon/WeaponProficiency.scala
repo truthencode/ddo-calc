@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: WeaponProficiency.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +24,7 @@ package io.truthencode.ddo.model.item.weapon
  * Base trait to provide a field for weapon proficiency
  */
 sealed trait WeaponProficiency {
+
   /**
    * MustContainAtLeastOne of the [[io.truthencode.ddo.model.item.weapon.ProficiencyClass]] values.
    */
@@ -33,12 +37,14 @@ sealed trait WeaponProficiency {
 trait MartialWeapon extends WeaponProficiency {
   override val proficiency: ProficiencyClass = ProficiencyClass.Martial
 }
+
 /**
  * Weapon generally requires no special training to use.
  */
 trait SimpleWeapon extends WeaponProficiency {
   override val proficiency: ProficiencyClass = ProficiencyClass.Simple
 }
+
 /**
  * Weapon is extremely rare or requires extensive training.
  */

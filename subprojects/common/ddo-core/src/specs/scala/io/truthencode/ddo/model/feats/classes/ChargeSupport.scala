@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: ChargeSupport.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,9 +38,9 @@ trait ChargeSupport {
     @BeanProperty var maxCharges: Int,
     @BeanProperty var quantity: java.util.OptionalInt,
     @BeanProperty var interval: Optional[Duration]) {
-    var safeInterval: Long =  interval.toScala match {
-        case Some(x) => x.toSeconds
-        case None => -99L
+    var safeInterval: Long = interval.toScala match {
+      case Some(x) => x.toSeconds
+      case None => -99L
     }
   }
   def readChargeInfo[T <: Chargeable](s: T): ChargeInfo = {
@@ -64,6 +67,5 @@ trait ChargeSupport {
       else { None }
     ChargeInfo(resultMaxCharges, q.toJavaPrimitive, d.toJava)
   }
-
 
 }

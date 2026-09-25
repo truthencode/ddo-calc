@@ -1,133 +1,441 @@
 [versions]
-ch-qos-logback = "1.2.11"
-com-clever-cloud-pulsar4s = "2.8.1"
-com-wix = "0.7.6"
-io-getquill = "3.11.0"
-io-vertx = "4.2.3"
-org-apache-camel = "3.13.0"
-org-jacoco = "0.8.9"
-org-junit-jupiter = "5.8.2"
-org-scoverage = "1.4.10"
-org-testcontainers = "1.16.2"
-org-wvlet-airframe = "21.12.1"
+airframe = "23.9.0"
+allure = "2.25.0"
+antlr = "4.13.2"
+assertj = "3.27.3"
+assertj-core = "3.27.7"
+avro = "1.12.2"
+avrohugger = "2.0.0"
+bootstrap = "5.3.3"
+bootstrap-icons = "1.10.5"
+camel = "4.20.2"
+# compiled in Kotlin thus bound to kotlin version
+cashapp-sqldelight = "2.4.0"
+chimney = "1.4.0"
+ci-detect-plugin = "0.5.0"
+commons-lang3 = "3.13.0"
+configs = "0.6.1"
+dependency-updates = "0.1.0-rc.45"
+diktat = "2.0.0"
+eclipse-microprofile = "3.1"
+enumeratum = "1.7.5"
+errorprone-plugin = "5.1.1"
+errorprone-processor = "2.50.0"
+flexmark = "0.64.8"
+freefair-lombok-plugin = "9.7.0"
+gatling-highcharts = "3.15.1"
+getquill = "4.8.6"
+google-java-format = "1.36.1"
+gradle-bloop = "1.6.4"
+gradle-dependency-plantuml-exporter-plugin = "1.0.0"
+gradle-node-plugin = "7.1.0"
+# updated in 2019
+gradle-plantuml-plugin = "1.6.0"
+guava-truth = "33.4.0-jre"
+h2 = "2.2.220"
+hadoop = "3.4.1"
+hamcrest = "3.0"
+hibernate-validator = "8.0.1.Final"
+hoplite = "2.9.0"
+htmx = "2.0.3"
+hypersistence = "3.9.2"
+jackson = "2.12.3"
+jade4j = "1.3.2"
+jakarta-annotations = "3.0.0"
+jakarta-inject = "2.0.1.MR"
+jakarta-servlet-jakarta-servlet-api = "6.0.0"
+jakarta-validation = "3.1.0"
+jandex-gradle-plugin = "2.3.0"
+# @pin Used for toolchain. Quarkus 3.37.x and earlier work fine with Java 21.
+java-version = "21"
+javax-servlet-api = "6.2.0-M2"
+javax-ws-rs-api = "4.0.0"
+jayway-jsonpath = "2.9.0"
+jetbrains-annotations = "26.0.2"
+jetbrains-xodus = "2.0.1"
+jline = "3.27.1"
+jquery = "3.7.1"
+json4s = "4.1.0-M3"
+jspecify = "1.0.1"
+jstachio = "1.3.6"
+junit-platform = "1.10.0"
+junit5 = "6.1.3"
+kasechange = "1.4.1"
+kordamp-jandex-gradle-plugin = "2.0.0"
+kotest = "6.2.4"
+kotlin = "2.4.20"
+logback = "1.6.3"
+lombok = "1.18.48"
+magnum-s3 = "1.2.1"
+manifold = "2024.1.32"
+me-atrox-haikunator-haikunator = "2.0.1"
+microprofile-config-api = "3.1.1"
+mockito = "5.16.0"
+monix = "3.4.1"
+moshi = "1.15.2"
+mutiny-vertx = "3.18.1"
+nullaway-checker = "0.14.1"
+# nullaway = "0.13.8"
+nullaway-gradle = "3.2.0"
+org-cometd-java = "8.0.2"
+org-eclipse-jetty = "12.0.10"
+oshai-logging = "4.0.2"
+plantuml-generator-plugin = "0.0.3"
+plantuml-plugin = "9.7.0"
+pulsar-client = "4.2.4"
+pulsar4s = "2.12.0.1"
+quarkus = "3.39.5"
+quarkus-freemarker = "1.3.0"
+quarkus-renarde = "3.1.8"
+quarkus-s3 = "1.0.0"
+refreshVersions-plugin = "0.60.5"
+rest-assured = "6.0.1"
+savro = "0.11.0"
+scala-logging = "3.9.5"
+scala-scraper = "3.1.2"
+scala-stm = "0.9"
+#noinspection UnusedVersionCatalogEntry
+scala2-suffix = "2.13"
+scala2-version = "2.13.18"
+scala3-version = "3.8.4"
+scalaFmt = "3.11.5"
+scalacheck = "1.19.0"
+scalafix-plugin = "0.3.0"
+scalatest = "3.2.20"
+scalatestplus = "3.2.20"
+scalatestplus-extension = "3.2.20.0"
+scoverage-engine = "2.5.2"
+scoverage-plugin = "9.1"
+smallrye-jandex = "3.6.0"
+sonarqube-plugin = "7.4.0.8496"
+sortablejs = "1.15.6"
+spotless-plugin = "7.0.2"
+spring-dependency-management-plugin = "1.1.7"
+sttp = "3.9.8"
+swagger-plugin = "2.2.55"
+# TODO: Remove Legacy Kotlin symbol processing plugin
+symbol-processing-gradle-plugin = "2.3.12"
+taxi-lang = "1.71.0"
+testcontainers = "1.19.0"
+testcontainers-mongo = "1.19.0"
+testcontainers-pulsar = "1.19.0"
+truth = "1.4.4"
+typesafe-config = "1.4.3"
+typesafe-scala-logging = "3.9.5"
+version-catalog-plugin = "0.8.5"
+version-plugin = "0.52.0"
+vertx = "4.6.8"
+wix-accord = "0.7.6"
+zio-dev = "2.1.26"
+zio-prelude = "1.0.0-RC48"
 
-[libraries]
-ch-qos-logback-logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "ch-qos-logback" }
-ch-qos-logback-logback-core = { module = "ch.qos.logback:logback-core", version.ref = "ch-qos-logback" }
-co-helmethair-scalatest-junit-runner = "co.helmethair:scalatest-junit-runner:0.1.10"
-com-beachape-enumeratum_2-13 = "com.beachape:enumeratum_2.13:1.7.0"
-com-clever-cloud-pulsar4s-pulsar4s-avro_2-13 = { module = "com.clever-cloud.pulsar4s:pulsar4s-avro_2.13", version.ref = "com-clever-cloud-pulsar4s" }
-com-clever-cloud-pulsar4s-pulsar4s-core_2-13 = { module = "com.clever-cloud.pulsar4s:pulsar4s-core_2.13", version.ref = "com-clever-cloud-pulsar4s" }
-com-clever-cloud-pulsar4s-pulsar4s-monix_2-13 = { module = "com.clever-cloud.pulsar4s:pulsar4s-monix_2.13", version.ref = "com-clever-cloud-pulsar4s" }
-com-geirsson-scalafmt-core_2-13 = "com.geirsson:scalafmt-core_2.13:3.1.1"
-com-github-kxbmap-configs_2-13 = "com.github.kxbmap:configs_2.13:0.6.1"
-com-h2database-h2 = "com.h2database:h2:1.4.200"
-com-hazelcast = "com.hazelcast:hazelcast:5.0"
-com-tersesystems-blindsight-blindsight-logstash_2-13 = "com.tersesystems.blindsight:blindsight-logstash_2.13:1.5.2"
-com-tersesystems-logback-logback-structured-config = "com.tersesystems.logback:logback-structured-config:1.0.1"
-com-typesafe-akka-akka-actor_2-13 = "com.typesafe.akka:akka-actor_2.13:2.6.16"
-com-typesafe-config = "com.typesafe:config:1.4.2"
-com-typesafe-genjavadoc-genjavadoc-plugin_2-13-7 = "com.typesafe.genjavadoc:genjavadoc-plugin_2.13.7:0.18"
-com-typesafe-scala-logging-scala-logging_2-13 = "com.typesafe.scala-logging:scala-logging_2.13:3.9.2"
-com-vladsch-flexmark-flexmark-all = "com.vladsch.flexmark:flexmark-all:0.62.2"
-com-wix-accord-core_2-13 = { module = "com.wix:accord-core_2.13", version.ref = "com-wix" }
-com-wix-accord-scalatest_2-13 = { module = "com.wix:accord-scalatest_2.13", version.ref = "com-wix" }
-de-neuland-bfi-jade4j = "de.neuland-bfi:jade4j:1.2.7"
-dev-zio-zio_2-13 = "dev.zio:zio_2.13:1.0.12"
-io-gatling-highcharts-gatling-charts-highcharts = "io.gatling.highcharts:gatling-charts-highcharts:3.2.1"
-io-getquill-quill-core_2-13 = { module = "io.getquill:quill-core_2.13", version.ref = "io-getquill" }
-io-getquill-quill-jdbc-monix_2-13 = { module = "io.getquill:quill-jdbc-monix_2.13", version.ref = "io-getquill" }
-io-getquill-quill-monix_2-13 = { module = "io.getquill:quill-monix_2.13", version.ref = "io-getquill" }
-io-getquill-quill-sql_2-13 = { module = "io.getquill:quill-sql_2.13", version.ref = "io-getquill" }
-io-github-davidgregory084-vertices-core_2-13 = "io.github.davidgregory084:vertices-core_2.13:0.1.2"
-io-lemonlabs-scala-uri_2-13 = "io.lemonlabs:scala-uri_2.13:4.0.0-M3"
-io-monix-monix-bio_2-13 = "io.monix:monix-bio_2.13:1.2.0"
-io-monix-monix-eval_2-13 = "io.monix:monix-eval_2.13:3.4.0"
-io-monix-monix-execution_2-13 = "io.monix:monix-execution_2.13:3.4.0"
-io-monix-monix-reactive_2-13 = "io.monix:monix-reactive_2.13:3.4.0"
-io-swagger-core-v3-swagger-jaxrs2 = "io.swagger.core.v3:swagger-jaxrs2:2.1.11"
-io-vertx-vertx-auth-shiro = { module = "io.vertx:vertx-auth-shiro", version.ref = "io-vertx" }
-io-vertx-vertx-codegen = { module = "io.vertx:vertx-codegen", version.ref = "io-vertx" }
-io-vertx-vertx-core = { module = "io.vertx:vertx-core", version.ref = "io-vertx" }
-io-vertx-vertx-ignite = { module = "io.vertx:vertx-ignite", version.ref = "io-vertx" }
-io-vertx-vertx-junit5 = { module = "io.vertx:vertx-junit5", version.ref = "io-vertx" }
-io-vertx-vertx-mongo-client = { module = "io.vertx:vertx-mongo-client", version.ref = "io-vertx" }
-io-vertx-vertx-web = { module = "io.vertx:vertx-web", version.ref = "io-vertx" }
-io-vertx-vertx-web-client = { module = "io.vertx:vertx-web-client", version.ref = "io-vertx" }
-javax-servlet-javax-servlet-api = "javax.servlet:javax.servlet-api:3.1.0"
-javax-ws-rs-javax-ws-rs-api = "javax.ws.rs:javax.ws.rs-api:2.1"
-net-ruippeixotog-scala-scraper_2-13 = "net.ruippeixotog:scala-scraper_2.13:2.2.1"
-net-sourceforge-plantuml = "net.sourceforge.plantuml:plantuml:1.2023.10"
-net-thauvin-erik-semver = "net.thauvin.erik:semver:1.2.0"
-org-antlr-antlr4 = "org.antlr:antlr4:4.10.1"
-org-apache-camel-camel-componentdsl = { module = "org.apache.camel:camel-componentdsl", version.ref = "org-apache-camel" }
-org-apache-camel-camel-core = { module = "org.apache.camel:camel-core", version.ref = "org-apache-camel" }
-org-apache-camel-camel-main = { module = "org.apache.camel:camel-main", version.ref = "org-apache-camel" }
-org-apache-camel-camel-pulsar = { module = "org.apache.camel:camel-pulsar", version.ref = "org-apache-camel" }
-org-apache-camel-camel-test-junit5 = { module = "org.apache.camel:camel-test-junit5", version.ref = "org-apache-camel" }
-org-apache-camel-camel-testcontainers-junit5 = { module = "org.apache.camel:camel-testcontainers-junit5", version.ref = "org-apache-camel" }
-org-apache-camel-camel-vertx = { module = "org.apache.camel:camel-vertx", version.ref = "org-apache-camel" }
-org-apache-commons-commons-lang3 = "org.apache.commons:commons-lang3:3.7"
-org-apache-httpcomponents-httpclient = "org.apache.httpcomponents:httpclient:4.5.13"
-org-apache-logging-log4j-log4j-core = "org.apache.logging.log4j:log4j-core:2.17.1"
-org-apache-pulsar-pulsar-client-all = "org.apache.pulsar:pulsar-client-all:2.9.1"
-org-apache-shiro-shiro-core = "org.apache.shiro:shiro-core:1.8.0"
-org-concordion = "org.concordion:concordion:3.1.3"
-org-concordion-concordion-collapse-output-extension = "org.concordion:concordion-collapse-output-extension:1.0.0"
-org-concordion-concordion-embed-extension = "org.concordion:concordion-embed-extension:1.2.0"
-org-eclipse-jetty-jetty-server = "org.eclipse.jetty:jetty-server:11.0.7"
-org-evosuite-evosuite-standalone-runtime = "org.evosuite:evosuite-standalone-runtime:1.0.5"
-org-jacoco-org-jacoco-agent = { module = "org.jacoco:org.jacoco.agent", version.ref = "org-jacoco" }
-org-jacoco-org-jacoco-ant = { module = "org.jacoco:org.jacoco.ant", version.ref = "org-jacoco" }
-org-javassist = "org.javassist:javassist:3.20.0-GA"
-org-jetbrains-annotations = "org.jetbrains:annotations:13.0"
-org-jetbrains-kotlin-kotlin-build-tools-impl = "org.jetbrains.kotlin:kotlin-build-tools-impl:1.9.10"
-org-jetbrains-kotlin-kotlin-compiler-embeddable = "org.jetbrains.kotlin:kotlin-compiler-embeddable:1.9.10"
-org-jetbrains-kotlin-kotlin-klib-commonizer-embeddable = "org.jetbrains.kotlin:kotlin-klib-commonizer-embeddable:1.9.10"
-org-jetbrains-kotlin-kotlin-reflect = "org.jetbrains.kotlin:kotlin-reflect:1.9.0"
-org-jetbrains-kotlin-kotlin-scripting-compiler-embeddable = "org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable:1.9.10"
-org-jetbrains-kotlin-kotlin-stdlib = "org.jetbrains.kotlin:kotlin-stdlib:1.9.0"
-org-jetbrains-kotlin-kotlin-stdlib-common = "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.0"
-org-jetbrains-kotlin-kotlin-stdlib-jdk7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.0"
-org-jetbrains-kotlin-kotlin-stdlib-jdk8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0"
-org-json4s-json4s-native_2-13 = "org.json4s:json4s-native_2.13:4.0.3"
-org-junit-junit-bom = "org.junit:junit-bom:5.8.2"
-org-junit-jupiter-junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "org-junit-jupiter" }
-org-junit-jupiter-junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "org-junit-jupiter" }
-org-junit-jupiter-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "org-junit-jupiter" }
-org-junit-platform-junit-platform-engine = "org.junit.platform:junit-platform-engine:1.8.1"
-org-junit-platform-junit-platform-launcher = "org.junit.platform:junit-platform-launcher:1.8.1"
-org-junit-platform-junit-platform-runner = "org.junit.platform:junit-platform-runner:1.8.2"
-org-junit-vintage-junit-vintage-engine = "org.junit.vintage:junit-vintage-engine:5.8.2"
-org-mockito-mockito-core = "org.mockito:mockito-core:3.4.6"
-org-mockito-mockito-scala-scalatest_2-13 = "org.mockito:mockito-scala-scalatest_2.13:1.16.49"
-org-scala-lang-scala-compiler = "org.scala-lang:scala-compiler:2.13.7"
-org-scala-lang-scala-library = "org.scala-lang:scala-library:2.12.8"
-org-scala-lang-scala-reflect = "org.scala-lang:scala-reflect:2.13.7"
-org-scala-stm-scala-stm_2-13 = "org.scala-stm:scala-stm_2.13:0.11.1"
-org-scalacheck-scalacheck_2-13 = "org.scalacheck:scalacheck_2.13:1.15.4"
-org-scalatest-scalatest_2-13 = "org.scalatest:scalatest_2.13:3.3.0-SNAP3"
-org-scalatestplus-mockito-3-4_2-13 = "org.scalatestplus:mockito-3-4_2.13:3.3.0.0-SNAP3"
-org-scalatra-scalate-scalate-core_2-13 = "org.scalatra.scalate:scalate-core_2.13:1.9.7"
-org-scoverage-scalac-scoverage-plugin_2-13-7 = { module = "org.scoverage:scalac-scoverage-plugin_2.13.7", version.ref = "org-scoverage" }
-org-scoverage-scalac-scoverage-runtime_2-13 = { module = "org.scoverage:scalac-scoverage-runtime_2.13", version.ref = "org-scoverage" }
-org-slf4j-jul-to-slf4j = "org.slf4j:jul-to-slf4j:1.8.0-beta4"
-org-slf4j-slf4j-api = "org.slf4j:slf4j-api:1.7.36"
-org-testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "org-testcontainers" }
-org-testcontainers-mongodb = { module = "org.testcontainers:mongodb", version.ref = "org-testcontainers" }
-org-testcontainers-pulsar = { module = "org.testcontainers:pulsar", version.ref = "org-testcontainers" }
-org-wvlet-airframe-airframe-config_2-13 = { module = "org.wvlet.airframe:airframe-config_2.13", version.ref = "org-wvlet-airframe" }
-org-wvlet-airframe-airframe-http-finagle_2-13 = { module = "org.wvlet.airframe:airframe-http-finagle_2.13", version.ref = "org-wvlet-airframe" }
-org-wvlet-airframe-airframe_2-13 = { module = "org.wvlet.airframe:airframe_2.13", version.ref = "org-wvlet-airframe" }
+# @SuppressWarnings("unused")
+[bundles]
+concordion = [
+  "concordion",
+  "concordion-collapse-output-extension",
+  "concordion-embed-extension",
+]
+hoplite = [
+  "sksamuel-hoplite-core",
+  "sksamuel-hoplite-hocon",
+  "sksamuel-hoplite-yaml",
+]
+kotest = [
+  "kotest-assertions-core-jvm",
+  "kotest-property-jvm",
+  "kotest-runner-junit-jvm",
+]
+xodus = [
+  "xodus-crypto",
+  "xodus-entity-store",
+  "xodus-environment",
+  "xodus-openAPI",
+  "xodus-vfs",
+]
 
+#scala-logging = ["typesafe-scala-logging-s213", "typesafe-config"]
 [plugins]
-com-dorongold-task-tree = "com.dorongold.task-tree:2.1.0"
+avrohugger = { id = "com.zlad.gradle.avrohugger", version.ref = "avrohugger" }
+cashapp-sqldelight = { id = "app.cash.sqldelight", version.ref = "cashapp-sqldelight" }
+ci-detect = { id = "be.vbgn.ci-detect", version.ref = "ci-detect-plugin" }
+com-adarshr-test-logger = "com.adarshr.test-logger:4.0.0"
+com-dorongold-task-tree = "com.dorongold.task-tree:4.0.2"
 com-github-ManifestClasspath = "com.github.ManifestClasspath:0.1.0-RELEASE"
-com-github-ben-manes-versions = "com.github.ben-manes.versions:0.41.0"
-com-github-lkishalmi-gatling = "com.github.lkishalmi.gatling:3.2.9"
-com-zlad-gradle-avrohugger = "com.zlad.gradle.avrohugger:0.7.0"
-net-thauvin-erik-gradle-semver = "net.thauvin.erik.gradle.semver:1.0.4"
-nl-littlerobots-version-catalog-update = "nl.littlerobots.version-catalog-update:0.8.1"
-org-jetbrains-kotlin-jvm = "org.jetbrains.kotlin.jvm:1.9.10"
-org-kordamp-gradle-project = "org.kordamp.gradle.project:0.51.0"
-org-openapi-generator = "org.openapi.generator:4.2.2"
+com-github-ben-manes-versions = "com.github.ben-manes.versions:0.64.0"
+com-vanniktech-dependency-graph-generator = "com.vanniktech.dependency.graph.generator:0.8.0"
+com-zlad-gradle-avrohugger = "com.zlad.gradle.avrohugger:2.0.0"
+dependency-updates = { id = "com.javiersc.gradle.plugins.dependency.updates", version.ref = "dependency-updates" }
+errorprone = { id = "net.ltgt.errorprone", version.ref = "errorprone-plugin" }
+freefair-lombok-plugin = { id = "io.freefair.lombok", version.ref = "freefair-lombok-plugin" }
+freefair-plantuml = { id = "io.freefair.plantuml", version.ref = "plantuml-plugin" }
+gradle-node = { id = "com.github.node-gradle.node", version.ref = "gradle-node-plugin" }
+# gradle-dependency-plantuml-exporter-plugin = { id = "gradle.plugin.ms.ralph.gradle:gradle-dependency-plantuml-exporter-plugin", version.ref = "gradle-dependency-plantuml-exporter-plugin" }
+gradle-plantuml = { id = "com.cosminpolifronie.gradle.plantuml", version.ref = "gradle-plantuml-plugin" }
+io-gatling-gradle = "io.gatling.gradle:3.15.1.3"
+jandex-gradle = { id = "org.kordamp.gradle.jandex", version.ref = "jandex-gradle-plugin" }
+kotlin-allopen = { id = "org.jetbrains.kotlin.plugin.allopen", version.ref = "kotlin" }
+nl-littlerobots-version-catalog-update = "nl.littlerobots.version-catalog-update:1.1.1"
+nullaway = { id = "net.ltgt.nullaway", version.ref = "nullaway-gradle" }
+openapi-generator = "org.openapi.generator:7.25.0"
+org-openapi-generator = "org.openapi.generator:7.24.0"
+org-sonarqube = "org.sonarqube:7.5.0.8588"
+plantuml-dripto = { id = "org.dripto.gradle.plugin.plantuml.plantuml-generator", version.ref = "plantuml-generator-plugin" }
+quarkus = "io.quarkus:3.39.5"
+ru-vyarus-mkdocs = "ru.vyarus.mkdocs:4.0.1"
+scalafix = { id = "io.github.cosmicsilence.scalafix", version.ref = "scalafix-plugin" }
+scoverage = { id = "org.scoverage", version.ref = "scoverage-plugin" }
+sonarqube = { id = "org.sonarqube", version.ref = "sonarqube-plugin" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless-plugin" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management-plugin" }
+swagger = { id = "io.swagger.core.v3.swagger-gradle-plugin", version.ref = "swagger-plugin" }
+symbol-processing = { id = "com.google.devtools.ksp", version.ref = "symbol-processing-gradle-plugin" }
+versions-catalog = { id = "nl.littlerobots.version-catalog-update", version.ref = "version-catalog-plugin" }
+versions-manes = { id = "com.github.ben-manes.versions", version.ref = "version-plugin" }
+
+# kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+[libraries]
+accord-core-s213 = { module = "com.wix:accord-core_2.13", version.ref = "wix-accord" }
+airframe-config-s213 = { module = "org.wvlet.airframe:airframe-config_2.13", version.ref = "airframe" }
+airframe-http-finagle-s213 = { module = "org.wvlet.airframe:airframe-http-finagle_2.13", version.ref = "airframe" }
+airframe-s213 = { module = "org.wvlet.airframe:airframe_2.13", version.ref = "airframe" }
+allure-bom = { module = "io.qameta.allure:allure-bom", version.ref = "allure" }
+annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotations" }
+antlr4 = "org.antlr:antlr4:4.13.1"
+apache-hadoop-common = { module = "org.apache.hadoop:hadoop-common", version.ref = "hadoop" }
+apache-logging-log4j-log4j-core = "org.apache.logging.log4j:log4j-core:3.0.0-alpha1"
+avro-tools = { module = "org.apache.avro:avro-tools", version.ref = "avro" }
+awaitility = { module = "org.awaitility:awaitility" }
+bootstrap = { module = "org.webjars:bootstrap", version.ref = "bootstrap" }
+bootstrap-icons = "org.webjars.npm:bootstrap-icons:1.10.5"
+camel-componentdsl = { module = "org.apache.camel:camel-componentdsl", version.ref = "camel" }
+camel-core = { module = "org.apache.camel:camel-core", version.ref = "camel" }
+camel-main = { module = "org.apache.camel:camel-main", version.ref = "camel" }
+camel-pulsar = { module = "org.apache.camel:camel-pulsar", version.ref = "camel" }
+camel-testcontainers-junit5 = { module = "org.apache.camel:camel-testcontainers-junit5", version.ref = "camel" }
+chimney-s213 = { module = "io.scalaland:chimney_2.13", version.ref = "chimney" }
+chimney-s3 = { module = "io.scalaland:chimney_3", version.ref = "chimney" }
+commons-lang3 = { module = "org.apache.commons:commons-lang3", version.ref = "commons-lang3" }
+concordion = "org.concordion:concordion:4.0.1"
+concordion-collapse-output-extension = "org.concordion:concordion-collapse-output-extension:1.0.0"
+concordion-embed-extension = "org.concordion:concordion-embed-extension:1.2.0"
+core-s3 = { module = "com.softwaremill.sttp.client3:core_3", version.ref = "sttp" }
+dev-zio-prelude-s213 = { module = "dev.zio:zio-prelude_2.13", version.ref = "zio-prelude" }
+dev-zio-prelude-s3 = { module = "dev.zio:zio-prelude_3", version.ref = "zio-prelude" }
+dev-zio-s213 = { module = "dev.zio:zio_2.13", version.ref = "zio-dev" }
+dev-zio-s3 = { module = "dev.zio:zio_3", version.ref = "zio-dev" }
+dev-zio-test-junit-s213 = { module = "dev.zio:zio-test-junit_2.13", version.ref = "zio-dev" }
+dev-zio-test-junit-s3 = { module = "dev.zio:zio-test-junit_3", version.ref = "zio-dev" }
+eclipse-microprofile-config = { module = "org.eclipse.microprofile.config:microprofile-config-api", version.ref = "eclipse-microprofile" }
+enumeratum-s213 = { module = "com.beachape:enumeratum_2.13", version.ref = "enumeratum" }
+enumeratum-s3 = { module = "com.beachape:enumeratum_3", version.ref = "enumeratum" }
+errorprone-processor = { module = "com.google.errorprone:error_prone_core", version.ref = "errorprone-processor" }
+fasterxml-jackson-module-s213 = { module = "com.fasterxml.jackson.module:jackson-module-scala_2.13", version.ref = "jackson" }
+fasterxml-jackson-module-s3 = { module = "com.fasterxml.jackson.module:jackson-module-scala_3", version.ref = "jackson" }
+flexmark-all = "com.vladsch.flexmark:flexmark-all:0.64.8"
+flyway-database-postgresql = { module = "org.flywaydb:flyway-database-postgresql" }
+gatling-charts-highcharts = { module = "io.gatling.highcharts:gatling-charts-highcharts", version.ref = "gatling-highcharts" }
+github-oshai-kotlin-logging = { module = "io.github.oshai:kotlin-logging-jvm", version.ref = "oshai-logging" }
+google-truth = { module = "com.google.truth:truth", version.ref = "truth" }
+gradle-bloop = { module = "ch.epfl.scala:gradle-bloop_2.13", version.ref = "gradle-bloop" }
+# Guava Needed to force truth to NOT pollute with andriod version
+guava-jre = { module = "com.google.guava:guava", version.ref = "guava-truth" }
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+hamcrest = { module = "org.hamcrest:hamcrest", version.ref = "hamcrest" }
+hibernate-validator = { module = "org.hibernate.validator:hibernate-validator", version.ref = "hibernate-validator" }
+hoplite-core = { module = "com.sksamuel.hoplite:hoplite-core", version.ref = "hoplite" }
+hoplite-hocon = { module = "com.sksamuel.hoplite:hoplite-hocon", version.ref = "hoplite" }
+hoplite-yaml = { module = "com.sksamuel.hoplite:hoplite-yaml", version.ref = "hoplite" }
+hypersistence-utils = { module = "io.hypersistence:hypersistence-utils-hibernate-63", version.ref = "hypersistence" }
+hypersistence-utils-hibernate = { module = "io.hypersistence:hypersistence-utils-hibernate-63", version.ref = "hypersistence" }
+io-jstach-jstachio = { module = "io.jstach:jstachio", version.ref = "jstachio" }
+io-quarkiverse-renarde-quarkus-renarde-oidc = { module = "io.quarkiverse.renarde:quarkus-renarde-oidc", version.ref = "quarkus-renarde" }
+io-quarkiverse-renarde-quarkus-renarde-oidc-test = { module = "io.quarkiverse.renarde:quarkus-renarde-oidc-tests", version.ref = "quarkus-renarde" }
+jackson-module-enum = { module = "com.github.pjfanning:jackson-module-scala3-enum_3", version.ref = "jackson" }
+jackson-module-scala-s3 = { module = "com.fasterxml.jackson.module:jackson-module-scala_3", version.ref = "jackson" }
+jade4j = "de.neuland-bfi:jade4j:1.3.2"
+jakarta-annotations = { module = "jakarta.annotation:jakarta.annotation-api", version.ref = "jakarta-annotations" }
+jakarta-inject = { module = "jakarta.inject:jakarta.inject-api", version.ref = "jakarta-inject" }
+jakarta-inject-api = { module = "jakarta.inject:jakarta.inject-api", version.ref = "jakarta-inject" }
+jakarta-servlet-jakarta-servlet-api = { module = "jakarta.servlet:jakarta.servlet-api", version.ref = "jakarta-servlet-jakarta-servlet-api" }
+jakarta-validation = { module = "jakarta.validation:jakarta.validation-api", version.ref = "jakarta-validation" }
+jandex = { module = "io.smallrye:jandex", version.ref = "smallrye-jandex" }
+javax-servlet-api = { module = "jakarta.servlet:jakarta.servlet-api", version.ref = "javax-servlet-api" }
+javax-ws-rs-api = { module = "jakarta.ws.rs:jakarta.ws.rs-api", version.ref = "javax-ws-rs-api" }
+jayway-jsonpath = { module = "com.jayway.jsonpath:json-path", version.ref = "jayway-jsonpath" }
+jetbrains-annotations = { module = "org.jetbrains:annotations", version.ref = "jetbrains-annotations" }
+jline-core = { module = "org.jline:jline", version.ref = "jline" }
+jline-jansi = { module = "org.jline:jansi", version.ref = "jline" }
+jquery = { module = "org.webjars:jquery", version.ref = "jquery" }
+json4s-native-s213 = { module = "org.json4s:json4s-native_2.13", version.ref = "json4s" }
+json4s-native-s3 = { module = "org.json4s:json4s-native_3", version.ref = "json4s" }
+jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }
+junit-junit5-bom = { module = "org.junit:junit-bom", version.ref = "junit5" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine" }
+junit-platform-engine = { module = "org.junit.platform:junit-platform-engine" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+junit-platform-reporting = { module = "org.junit.platform:junit-platform-reporting", version.ref = "junit5" }
+junit-platform-runner = { module = "org.junit.platform:junit-platform-runner" }
+junit-vintage-engine = { module = "org.junit.vintage:junit-vintage-engine" }
+kasechange = { module = "net.pearx.kasechange:kasechange", version.ref = "kasechange" }
+# we may be able to remove these in favor of platform specifics
+kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+kotest-assertions-core-jvm = { module = "io.kotest:kotest-assertions-core-jvm", version.ref = "kotest" }
+kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
+kotest-property-jvm = { module = "io.kotest:kotest-property-jvm", version.ref = "kotest" }
+kotest-runner-junit-jvm = { module = "io.kotest:kotest-runner-junit5-jvm", version.ref = "kotest" }
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+kotlin-bom = { module = "org.jetbrains.kotlin:kotlin-bom", version.ref = "kotlin" }
+kotlin-build-tools-impl = { module = "org.jetbrains.kotlin:kotlin-build-tools-impl" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
+kotlin-scripting-compiler-embeddable = { module = "org.jetbrains.kotlin:kotlin-scripting-compiler-embeddable", version.ref = "kotlin" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlin-stdlib-common = { module = "org.jetbrains.kotlin:kotlin-stdlib-common", version.ref = "kotlin" }
+kotlin-stdlib-jdk7 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk7", version.ref = "kotlin" }
+kotlin-stdlib-jdk8 = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
+kxbmap-configs-s213 = { module = "com.github.kxbmap:configs_2.13", version.ref = "configs" }
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+magnum-s3 = { module = "com.augustnagro:magnum_3", version.ref = "magnum-s3" }
+me-atrox-haikunator-haikunator = { module = "me.atrox.haikunator:Haikunator", version.ref = "me-atrox-haikunator-haikunator" }
+microprofile-config-api = { module = "org.eclipse.microprofile.config:microprofile-config-api", version.ref = "microprofile-config-api" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockito" }
+mongodb = { module = "org.testcontainers:mongodb", version.ref = "testcontainers-mongo" }
+monix-bio-s213 = { module = "io.monix:monix-bio_2.13", version.ref = "monix" }
+monix-eval-s213 = { module = "io.monix:monix-eval_2.13", version.ref = "monix" }
+monix-execution-s213 = { module = "io.monix:monix-execution_2.13", version.ref = "monix" }
+monix-reactive-s213 = { module = "io.monix:monix-reactive_2.13", version.ref = "monix" }
+moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
+nullaway = { module = "com.uber.nullaway:nullaway", version.ref = "nullaway-checker" }
+org-cometd-java-client = { module = "org.cometd.java:cometd-java-client", version.ref = "org-cometd-java" }
+org-cometd-java-client-http-jetty = { module = "org.cometd.java:cometd-java-client-http-jetty", version.ref = "org-cometd-java" }
+org-cometd-java-client-websocket-jakarta = { module = "org.cometd.java:cometd-java-client-websocket-jakarta", version.ref = "org-cometd-java" }
+org-cometd-java-cometd-java-api-server = { module = "org.cometd.java:cometd-java-api-server", version.ref = "org-cometd-java" }
+org-cometd-java-cometd-java-server-http-jakarta = { module = "org.cometd.java:cometd-java-server-http-jakarta", version.ref = "org-cometd-java" }
+org-cometd-java-cometd-java-server-websocket-jakarta = { module = "org.cometd.java:cometd-java-server-websocket-jakarta", version.ref = "org-cometd-java" }
+org-cometd-javascript-cometd-javascript-common = { module = "org.cometd.javascript:cometd-javascript-common", version.ref = "org-cometd-java" }
+org-eclipse-jetty-ee10-jetty-ee10-servlets = { module = "org.eclipse.jetty.ee10:jetty-ee10-servlets", version.ref = "org-eclipse-jetty" }
+org-eclipse-jetty-jetty-jmx = { module = "org.eclipse.jetty:jetty-jmx", version.ref = "org-eclipse-jetty" }
+org-eclipse-jetty-jetty-slf4j-impl = { module = "org.eclipse.jetty:jetty-slf4j-impl", version.ref = "org-eclipse-jetty" }
+org-eclipse-jetty-jetty-util = { module = "org.eclipse.jetty:jetty-util", version.ref = "org-eclipse-jetty" }
+org-eclipse-jetty-jetty-util-ajax = { module = "org.eclipse.jetty:jetty-util-ajax", version.ref = "org-eclipse-jetty" }
+org-testcontainers-junit-jupiter = { module = "org.testcontainers:junit-jupiter", version.ref = "testcontainers" }
+pulsar = { module = "org.testcontainers:pulsar", version.ref = "testcontainers-pulsar" }
+pulsar-client-all = { module = "org.apache.pulsar:pulsar-client-all", version.ref = "pulsar-client" }
+pulsar4s-avro-s213 = { module = "com.clever-cloud.pulsar4s:pulsar4s-avro_2.13", version.ref = "pulsar4s" }
+pulsar4s-core-s213 = { module = "com.clever-cloud.pulsar4s:pulsar4s-core_2.13", version.ref = "pulsar4s" }
+pulsar4s-monix-s213 = { module = "com.clever-cloud.pulsar4s:pulsar4s-monix_2.13", version.ref = "pulsar4s" }
+quarkus-arc = { module = "io.quarkus:quarkus-arc" }
+quarkus-flyway = { module = "io.quarkus:quarkus-flyway" }
+quarkus-freemarker = { module = "io.quarkiverse.freemarker:quarkus-freemarker", version.ref = "quarkus-freemarker" }
+quarkus-hibernate-orm = { module = "io.quarkus:quarkus-hibernate-orm" }
+quarkus-hibernate-orm-panache = { module = "io.quarkus:quarkus-hibernate-orm-panache" }
+quarkus-hibernate-orm-panache-kotlin = { module = "io.quarkus:quarkus-hibernate-orm-panache-kotlin" }
+quarkus-hibernate-reactive-rest-data-panache = { module = "io.quarkus:quarkus-hibernate-reactive-rest-data-panache" }
+quarkus-hibernate-validator = { module = "io.quarkus:quarkus-hibernate-validator", version.ref = "quarkus" }
+quarkus-jackson = { module = "io.quarkus:quarkus-jackson" }
+quarkus-jacoco = { module = "io.quarkus:quarkus-jacoco" }
+quarkus-jdbc-postgresql = { module = "io.quarkus:quarkus-jdbc-postgresql" }
+quarkus-junit5 = { module = "io.quarkus:quarkus-junit5" }
+quarkus-junit5-component = { module = "io.quarkus:quarkus-junit5-component" }
+quarkus-kotlin = { module = "io.quarkus:quarkus-kotlin" }
+quarkus-mailer = { module = "io.quarkus:quarkus-mailer" }
+quarkus-messaging-kafka = { module = "io.quarkus:quarkus-messaging-kafka" }
+quarkus-mockito = { module = "io.quarkus:quarkus-junit5-mockito", version.ref = "quarkus" }
+quarkus-mutiny = { module = "io.quarkus:quarkus-mutiny" }
+quarkus-narayana-jta = { module = "io.quarkus:quarkus-narayana-jta" }
+quarkus-openapi = { module = "io.quarkus:quarkus-smallrye-openapi", version.ref = "quarkus" }
+quarkus-platform-bom = { module = "io.quarkus.platform:quarkus-bom", version.ref = "quarkus" }
+quarkus-qute-web = { module = "io.quarkiverse.qute.web:quarkus-qute-web" }
+quarkus-reactive-pg-client = { module = "io.quarkus:quarkus-reactive-pg-client" }
+quarkus-reactive-routes = { module = "io.quarkus:quarkus-reactive-routes" }
+quarkus-renarde = { module = "io.quarkiverse.renarde:quarkus-renarde", version.ref = "quarkus-renarde" }
+quarkus-renarde-backoffice = { module = "io.quarkiverse.renarde:quarkus-renarde-backoffice", version.ref = "quarkus-renarde" }
+quarkus-renarde-pdf = { module = "io.quarkiverse.renarde:quarkus-renarde-pdf", version.ref = "quarkus-renarde" }
+quarkus-renarde-security = { module = "io.quarkiverse.renarde:quarkus-renarde-security", version.ref = "quarkus-renarde" }
+quarkus-renarde-tests = { module = "io.quarkiverse.renarde:quarkus-renarde-test", version.ref = "quarkus-renarde" }
+quarkus-rest = { module = "io.quarkus:quarkus-rest", version.ref = "quarkus" }
+quarkus-rest-jackson = { module = "io.quarkus:quarkus-rest-jackson" }
+quarkus-rest-qute = { module = "io.quarkus:quarkus-rest-qute" }
+quarkus-resteasy-reactive = { module = "io.quarkus:quarkus-resteasy-reactive", version.ref = "quarkus" }
+quarkus-scala-s3 = { module = "io.quarkiverse.scala:quarkus-scala3", version.ref = "quarkus-s3" }
+quarkus-smallrye-context-propagation = { module = "io.quarkus:quarkus-smallrye-context-propagation", version.ref = "quarkus" }
+quarkus-smallrye-health = { module = "io.quarkus:quarkus-smallrye-health", version.ref = "quarkus" }
+quarkus-smallrye-metrics = { module = "io.quarkus:quarkus-smallrye-metrics" }
+quarkus-smallrye-openapi = { module = "io.quarkus:quarkus-smallrye-openapi", version.ref = "quarkus" }
+quarkus-webjars = { module = "io.quarkus:quarkus-web-dependency-locator", version.ref = "quarkus" }
+# Not sure if we need this?
+# scala-library = { module = "org.scala-lang:scala-library", version.ref = "scala2-version" }
+quill-core-s213 = { module = "io.getquill:quill-core_2.13", version.ref = "getquill" }
+quill-jdbc-monix-s213 = { module = "io.getquill:quill-jdbc-monix_2.13", version.ref = "getquill" }
+quill-monix-s213 = { module = "io.getquill:quill-monix_2.13", version.ref = "getquill" }
+quill-sql-s213 = { module = "io.getquill:quill-sql_2.13", version.ref = "getquill" }
+quill-sql-s3 = { module = "io.getquill:quill-sql_3", version.ref = "getquill" }
+rest-assured = { module = "io.rest-assured:rest-assured" }
+ruippeixotog-scala-scraper-s213 = { module = "net.ruippeixotog:scala-scraper_2.13", version.ref = "scala-scraper" }
+ruippeixotog-scala-scraper-s3 = { module = "net.ruippeixotog:scala-scraper_3", version.ref = "scala-scraper" }
+savro-s213 = { module = "ca.dataedu:savro_2.13", version.ref = "savro" }
+scala-compiler-s3 = { module = "org.scala-lang:scala3-compiler_3", version.ref = "scala3-version" }
+scala-extensions = { module = "io.rest-assured:scala-extensions", version.ref = "rest-assured" }
+scala-library-s3 = { module = "org.scala-lang:scala3-library_3", version.ref = "scala3-version" }
+scala-logging-s213 = { module = "com.typesafe.scala-logging:scala-logging_2.13", version.ref = "scala-logging" }
+scala-logging-s3 = { module = "com.typesafe.scala-logging:scala-logging_3", version.ref = "typesafe-scala-logging" }
+scala-scraper-s3 = { module = "net.ruippeixotog:scala-scraper_3", version.ref = "scala-scraper" }
+scala-stm-s213 = { module = "org.scala-stm:scala-stm_2.13", version.ref = "scala-stm" }
+scala2-library = { module = "org.scala-lang:scala-library", version.ref = "scala2-version" }
+scala3-compiler-s3 = { module = "org.scala-lang:scala3-compiler_3", version.ref = "scala3-version" }
+scala3-library = { module = "org.scala-lang:scala3-library_3", version.ref = "scala3-version" }
+scala3-library-s3 = { module = "org.scala-lang:scala3-library_3", version.ref = "scala3-version" }
+scalacheck-s213 = { module = "org.scalacheck:scalacheck_2.13", version.ref = "scalacheck" }
+scalacheck-s3 = { module = "org.scalacheck:scalacheck_3", version.ref = "scalacheck" }
+scalafmt-core-s213 = { module = "com.geirsson:scalafmt-core_2.13", version.ref = "scalaFmt" }
+scalatest-junit-runner = { module = "co.helmethair:scalatest-junit-runner" }
+scalatest-plus-junit-s213 = { module = "org.scalatestplus:junit-5-14_2.13", version.ref = "scalatestplus-extension" }
+scalatest-plus-junit-s3 = { module = "org.scalatestplus:junit-5-14_3", version.ref = "scalatestplus-extension" }
+scalatest-plus-mockito-s213 = { module = "org.scalatestplus:mockito-5-23_2.13", version.ref = "scalatestplus-extension" }
+scalatest-plus-mockito-s3 = { module = "org.scalatestplus:mockito-5-23_3", version.ref = "scalatestplus-extension" }
+scalatest-plus-scalacheck-s213 = { module = "org.scalatestplus:scalacheck-1-19_2.13", version.ref = "scalatestplus-extension" }
+scalatest-plus-scalacheck-s3 = { module = "org.scalatestplus:scalacheck-1-19_3", version.ref = "scalatestplus-extension" }
+# @pin Scalatest 2.13 may be finicky
+scalatest-s213 = "org.scalatest:scalatest_2.13:3.3.0-SNAP4"
+scalatest-s3 = { module = "org.scalatest:scalatest_3", version.ref = "scalatest" }
+# Scala 3 now adds its own instrumentation
+# scoverage-runtime-s3 = { module = "org.scoverage:scalac-scoverage-runtime_3", version.ref = "scoverage-engine" }
+scoverage-runtime-s213 = { module = "org.scoverage:scalac-scoverage-runtime_2.13", version.ref = "scoverage-engine" }
+sksamuel-hoplite-core = { module = "com.sksamuel.hoplite:hoplite-core", version.ref = "hoplite" }
+sksamuel-hoplite-hocon = { module = "com.sksamuel.hoplite:hoplite-hocon", version.ref = "hoplite" }
+sksamuel-hoplite-yaml = { module = "com.sksamuel.hoplite:hoplite-yaml", version.ref = "hoplite" }
+smallrye-mutiny-vertx = { module = "io.smallrye.reactive:smallrye-mutiny-vertx-web", version.ref = "mutiny-vertx" }
+smallrye-mutiny-vertx-client = { module = "io.smallrye.reactive:smallrye-mutiny-vertx-web-client", version.ref = "mutiny-vertx" }
+smallrye-reactive-messaging-inmemory = { module = "io.smallrye.reactive:smallrye-reactive-messaging-in-memory" }
+softwaremill-sttp-s3 = { module = "com.softwaremill.sttp.client3:core_3", version.ref = "sttp" }
+squareup-moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
+squareup-moshi-adapters = { module = "com.squareup.moshi:moshi-adapters", version.ref = "moshi" }
+squareup-moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshi" }
+squareup-moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshi" }
+systems-manifold = { module = "systems.manifold:manifold", version.ref = "manifold" }
+systems-manifold-ext = { module = "systems.manifold:manifold-ext", version.ref = "manifold" }
+systems-manifold-ext-rt = { module = "systems.manifold:manifold-ext-rt", version.ref = "manifold" }
+systems-manifold-preprocessor = { module = "systems.manifold:manifold-preprocessor", version.ref = "manifold" }
+taxi-avrototaxi = { module = "org.taxilang:avro-to-taxi", version.ref = "taxi-lang" }
+taxi-jpa = { module = "org.taxilang:taxi-jpa", version.ref = "taxi-lang" }
+taxi-lang = { module = "org.taxilang:taxi", version.ref = "taxi-lang" }
+testing-assertj = { module = "org.assertj:assertj-core", version.ref = "assertj" }
+typesafe-config = { module = "com.typesafe:config", version.ref = "typesafe-config" }
+typesafe-scala-logging-s213 = { module = "com.typesafe.scala-logging:scala-logging_2.13", version.ref = "scala-logging" }
+typesafe-scala-logging-s3 = { module = "com.typesafe.scala-logging:scala-logging_3", version.ref = "scala-logging" }
+vertx-lang-scala = { module = "com.github.vert-x3:vertx-lang-scala", version.ref = "vertx" }
+webjars-bootstrap = { module = "org.webjars:bootstrap", version.ref = "bootstrap" }
+webjars-htmx = { module = "org.webjars.npm:htmx.org", version.ref = "htmx" }
+webjars-jquery = { module = "org.webjars:jquery", version.ref = "jquery" }
+webjars-sortablejs = { module = "org.webjars.npm:sortablejs", version.ref = "sortablejs" }
+xodus-crypto = { module = "org.jetbrains.xodus:xodus-crypto", version.ref = "jetbrains-xodus" }
+xodus-entity-store = { module = "org.jetbrains.xodus:xodus-entity-store", version.ref = "jetbrains-xodus" }
+xodus-environment = { module = "org.jetbrains.xodus:xodus-environment", version.ref = "jetbrains-xodus" }
+xodus-openAPI = { module = "org.jetbrains.xodus:xodus-openAPI", version.ref = "jetbrains-xodus" }
+xodus-vfs = { module = "org.jetbrains.xodus:xodus-vfs", version.ref = "jetbrains-xodus" }
+zio-prelude-s3 = { module = "dev.zio:zio-prelude_3", version.ref = "zio-prelude" }
+zio-s213 = { module = "dev.zio:zio_2.13", version.ref = "zio-dev" }
+zio-s3 = { module = "dev.zio:zio_3", version.ref = "zio-dev" }
+zio-test-junit-s3 = { module = "dev.zio:zio-test-junit_3", version.ref = "zio-dev" }

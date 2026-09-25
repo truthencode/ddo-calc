@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: School.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,6 +31,7 @@ import scala.collection.immutable.IndexedSeq
  * Represents one of the eight schools of magic.
  */
 sealed trait School extends EnumEntry with DisplayName with FriendlyDisplay {
+
   /**
    * Sets or maps the source text for the DisplayName.
    *

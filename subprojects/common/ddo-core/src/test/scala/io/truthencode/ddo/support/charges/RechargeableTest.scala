@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: RechargeableTest.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,7 +32,6 @@ class RechargeableTest extends AnyFunSpec with Matchers with LazyLogging {
   describe("A rechargeable item") {
     they("should handle 3 charges, you regain 1 charge every 12 seconds") {
       val expectedText = "should handle 3 charges, you regain 1 charge every 12 seconds"
-
 
       val expectedMaxCharges: Int = 3
       val expectedQuantity: Option[Int] = Some(1)

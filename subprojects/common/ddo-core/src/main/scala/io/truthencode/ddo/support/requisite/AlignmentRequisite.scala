@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: AlignmentRequisite.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +21,14 @@
 package io.truthencode.ddo.support.requisite
 
 import io.truthencode.ddo.model.alignment.{AlignmentType, Alignments}
-import io.truthencode.ddo.support.requisite.RequirementImplicits.{alignmentTypeToReq, alignmentsToReq}
+import io.truthencode.ddo.support.requisite.RequirementImplicits.{
+  alignmentTypeToReq,
+  alignmentsToReq
+}
 trait AlignmentRequisite {
 
   /**
-   * Allowed if Character has Any of these Alignments
-   * i.e. Can be Neutral or Good or Chaotic etc
+   * Allowed if Character has Any of these Alignments i.e. Can be Neutral or Good or Chaotic etc
    * @return
    *   Allowed Types
    */
@@ -73,8 +78,7 @@ trait AlignmentRequisite {
 trait AlignmentRequisiteImpl extends AlignmentRequisite {
 
   /**
-   * Allowed if Character has Any of these Alignments
-   * i.e. Can be Neutral or Good or Chaotic etc
+   * Allowed if Character has Any of these Alignments i.e. Can be Neutral or Good or Chaotic etc
    *
    * @return
    *   Allowed Types

@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: LiquidPowerI.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,6 +39,7 @@ trait LiquidPowerI extends BombardierCore with ClassEnhancementImpl {
       |While in Pyrite Reaction, you gain +5 Fire, Cold, Electric, Acid, and Poison Spell Power
       |""".stripMargin
   )
+
   /**
    * Some enhancements can be taken multiple times (generally up to three)
    */

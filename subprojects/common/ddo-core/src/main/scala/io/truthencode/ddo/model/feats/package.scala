@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: package.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +26,7 @@ import scala.reflect.ClassTag
  * Created by adarr on 2/15/2017.
  */
 package object feats {
+
   /**
    * see
    * [[http://stackoverflow.com/questions/41014979/elegant-way-to-chain-scala-partial-functions SO]]
@@ -35,6 +39,7 @@ package object feats {
    *   Outbound type
    */
   implicit class PartFuncOps[A: ClassTag, B](pf: PartialFunction[A, B]) {
+
     /**
      * Chains linked partial functions with an 'Or' operator
      * @param other

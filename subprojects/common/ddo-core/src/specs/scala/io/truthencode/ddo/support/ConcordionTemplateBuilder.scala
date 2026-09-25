@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: ConcordionTemplateBuilder.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +24,7 @@ import com.typesafe.scalalogging.LazyLogging
 import de.neuland.jade4j.{Jade4J, JadeConfiguration}
 import enumeratum.{Enum, EnumEntry}
 import io.truthencode.ddo.enumeration.Companionable
-import io.truthencode.ddo.support.StringUtils.{Extensions, randomAlphaString}
+import io.truthencode.ddo.support.StringUtils.{randomAlphaString, Extensions}
 
 import scala.jdk.CollectionConverters.IterableHasAsJava
 import scala.reflect.ClassTag

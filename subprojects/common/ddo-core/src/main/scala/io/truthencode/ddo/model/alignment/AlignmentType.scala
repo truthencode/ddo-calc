@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: AlignmentType.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,14 +26,11 @@ import io.truthencode.ddo.enumeration.BitSupport
 import io.truthencode.ddo.support.SearchPrefix
 
 import scala.collection.immutable
-// import io.truthencode.ddo.enumeration._
 
 /**
  * Created by adarr on 8/12/2016.
  */
 sealed trait AlignmentType
-
-// extends BitWise
 
 sealed trait LawAxis extends EnumEntry with AlignmentType with NoDefault[LawAxis] {
 

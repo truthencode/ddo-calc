@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: ScalaTestTags.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +20,10 @@
  */
 package io.truthencode.ddo.test.tags
 import org.scalatest.Tag
+
 /**
- * Tags for filtering Scalatests [[https://www.scalatest.org/user_guide/tagging_your_tests]] Tests or accesses a
- * Database
+ * Tags for filtering Scalatests [[https://www.scalatest.org/user_guide/tagging_your_tests]] Tests
+ * or accesses a Database
  */
 object DBTest extends Tag("io.truthencode.tags.Database")
 
@@ -34,12 +38,12 @@ object IntegrationTest extends Tag("io.truthencode.tags.Integration")
 object UnitTest extends Tag("io.truthencode.tags.Unit")
 
 /**
- * Tests Clustering (May be slow or require network connectivity etc)
+ * Tests Clustering (Test may be slow or require network connectivity etc.)
  */
 object ClusteringTest extends Tag("io.truthencode.tags.Clustering")
 
 /**
- * Indicates a slow running or time consuming test
+ * Indicates a slow running or time-consuming test
  */
 object Slow extends Tag("io.truthencode.tags.Slow")
 
@@ -55,8 +59,8 @@ object SkillTest extends Tag("io.truthencode.tags.Skill")
 object FunctionalTest extends Tag("io.truthencode.tags.Function")
 
 /**
- * Tests basic functionality of a given library or interaction between.
- * Does not affect production code but illustrates the use.
- * i.e. verify running a Camel Context inside a Vertx instance using a Monix execution context.
+ * Tests basic functionality of a given library or interaction between. Does not affect production
+ * code but illustrates the use. i.e. verify running a Camel Context inside a Vertx instance using a
+ * Monix execution context.
  */
-object  FunctionLOnly extends Tag("io.truthencode.tags.FunctionOnly")
+object FunctionLOnly extends Tag("io.truthencode.tags.FunctionOnly")

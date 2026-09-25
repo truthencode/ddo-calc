@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: AlchemicalShield.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +32,7 @@ trait AlchemicalShield extends ApothecaryCore with ClassEnhancementImpl {
   override lazy val description: Option[String] = Some(
     "While in cloth armor or in Composite Plating, you have a +4 Alchemical bonus to AC and are protected from Magic Missiles. While your Reaction is Verdanite, +5 Positive & Negative Spell Power."
   )
+
   /**
    * Some enhancements can be taken multiple times (generally up to three)
    */

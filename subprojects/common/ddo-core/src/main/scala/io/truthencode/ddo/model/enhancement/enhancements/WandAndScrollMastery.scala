@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: WandAndScrollMastery.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +27,7 @@ trait WandAndScrollMastery extends BombardierTierOne with ClassEnhancementImpl {
   override lazy val description: Option[String] = Some(
     "+[25/50/75]% damage and healing from your wands, scrolls, and other items that cast spells, and +[1/3/6] to the save DCs of your offensive wands"
   )
+
   /**
    * Some enhancements can be taken multiple times (generally up to three)
    */

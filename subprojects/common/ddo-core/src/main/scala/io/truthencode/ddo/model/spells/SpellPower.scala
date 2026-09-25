@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: SpellPower.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,11 +27,13 @@ import io.truthencode.ddo.model.skill.Skill.{Heal, Perform, Repair, Spellcraft}
 import io.truthencode.ddo.support.SearchPrefix
 import io.truthencode.ddo.support.StringUtils.Extensions
 import io.truthencode.ddo.support.naming.{DisplayName, FriendlyDisplay}
+
 /**
  * Represents one of the eight schools of magic.
  */
 sealed trait SpellPower
   extends EnumEntry with DisplayName with FriendlyDisplay with SkillLinkedPower {
+
   /**
    * Sets or maps the source text for the DisplayName.
    *

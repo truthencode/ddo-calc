@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: SearchPrefix.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +24,7 @@ package io.truthencode.ddo.support
  * Created by adarr on 2/10/2017.
  */
 trait SearchPrefix {
+
   /**
    * Used when qualifying a search with a prefix. Examples include finding "HalfElf" from qualified
    * "Race:HalfElf"

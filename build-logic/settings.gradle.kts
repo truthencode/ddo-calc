@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// build-logic
 pluginManagement {
     repositories {
         mavenCentral()
@@ -27,8 +27,9 @@ pluginManagement {
         maven("https://jitpack.io")
     }
 
-    val foojayResolverPluginVersionversion: String by settings
-    val palantirPluginVersion: String by settings
+    val foojayResolverPluginVersionversion = providers.gradleProperty("foojayResolverPluginVersionversion")
+    val palantirPluginVersion = providers.gradleProperty("palantirPluginVersion")
+    // val quarkusPlatformVersion = providers.gradleProperty("quarkusPlatformVersion")
 
     plugins {
 //        id("org.kordamp.gradle.project") version kordampGradlePluginVersion
@@ -36,9 +37,12 @@ pluginManagement {
 //        id("org.kordamp.gradle.minpom") version kordampGradlePluginVersion
 //        id("com.mooltiverse.oss.nyx") version mooltiverseNyxPluginVersion
         id("org.gradle.toolchains.foojay-resolver-convention") version foojayResolverPluginVersionversion
-        id("com.palantir.baseline") version palantirPluginVersion
-        id("com.palantir.baseline-config") version palantirPluginVersion
-        id("org.inferred.processors") version "3.7.0"
+        // id("com.palantir.baseline") version palantirPluginVersion
+        // id("com.palantir.baseline-config") version palantirPluginVersion
+        // id("org.inferred.processors") version "3.7.0"
+
+        // id("io.quarkus") version quarkusPlatformVersion
+
 //        id("ru.vyarus.mkdocs") version "3.0.0"
     }
 }
@@ -48,6 +52,66 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention")
 }
 
+// refreshVersions {
+//
+//    this.featureFlags{enable(FeatureFlag.VERSIONS_CATALOG)
+//
+//    }
+// }
+
+/* Hackathon to use catalogs in convention plugin
+Tracked in [github.com/gradle/gradle/issues/17863]
+SO [stackoverflow.com/questions/69080927/gradle-7-2-gradle-kotlin-dsl-how-to-use-catalogs-in-convention-plugin]
+Add custom code in included-builds build.gradle(.kts)
+Add custom code in convention plugins settings.gradle(.kts)
+
+``` kotlin
+// ./build-src/build.gradle.kts
+plugins {
+    `kotlin-dsl`
+}
+
+repositories {
+    mavenCentral()
+}
+
+println("from build-src build script: ${libs.versions.bb.get()}")
+
+dependencies {
+    implementation(files(libs.javaClass.superclass.protectionDomain.codeSource.location))
+}
+
+// ./build-src/settings.gradle.kts
+dependencyResolutionManagement {
+    versionCatalogs {
+        create("libs") {
+            from(files("../gradle/libs.versions.toml"))
+        }
+    }
+}
+
+// ./build-src/src/main/kotlin/foo.gradle.kts
+import org.gradle.accessors.dm.LibrariesForLibs
+
+val libs = the<LibrariesForLibs>()
+println("from pre compiled script plugin: ${libs.versions.bb.get()}")
+
+// ./build.hide
+plugins {
+    id("foo")
+}
+
+println("from main build script: ${libs.versions.bb.get()}")
+
+// ./gradle/libs.versions.toml
+[versions]
+bb = "3.2.1"
+
+// ./settings.gradle.kts
+rootProject.name = "showcase"
+includeBuild("build-src")
+
+*/
 dependencyResolutionManagement {
     versionCatalogs {
         // declares an additional catalog, named 'testLibs', from the 'test-libs.versions.toml' file
@@ -56,3 +120,5 @@ dependencyResolutionManagement {
         }
     }
 }
+
+rootProject.name = "build-logic"

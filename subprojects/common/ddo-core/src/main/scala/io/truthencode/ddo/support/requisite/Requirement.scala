@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: Requirement.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,9 +51,9 @@ sealed trait Requirement
 object Requirement extends Enum[Requirement] {
   case class GroupedRequirement[T <: Requirement](t: T, key: String, reqType: RequisiteType)
     extends Requirement {
-      override def alphaSortKey: String = key
+    override def alphaSortKey: String = key
 
-      /**
+    /**
      * Sets or maps the source text for the DisplayName.
      *
      * @return
@@ -354,8 +357,8 @@ object Requirement extends Enum[Requirement] {
    * @param trained
    *   determines if the skill must be trained to this level or simply a total value after buffs,
    *   equipment, etc. true (i.e. the base skill must be explicitly trained to this level.) false
-   *   the total effective skill must be this level.
-   * i.e. can include bonuses from items / ability scores etc.
+   *   the total effective skill must be this level. i.e. can include bonuses from items / ability
+   *   scores etc.
    */
   case class ReqSkill(id: String, amount: Int, trained: Boolean = false)
     extends Requirement with NumberRequirementSort {
@@ -364,7 +367,7 @@ object Requirement extends Enum[Requirement] {
     override def alphaSortKey: String = id
 
     override def displayText: String = {
-      val pf = if (trained) s"(Trained) " else ""
+      val pf = if trained then s"(Trained) " else ""
       s"${pf}Ranks in $id: $amount"
     }
 

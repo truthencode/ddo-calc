@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: ImprovedUncannyDodge.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +20,7 @@
  */
 package io.truthencode.ddo.model.feats
 
-import io.truthencode.ddo.activation.AtWillEvent
+import io.truthencode.ddo.activation.{AtWillEvent, TriggeredActivationImpl}
 import io.truthencode.ddo.model.classes.HeroicCharacterClass
 import io.truthencode.ddo.model.classes.HeroicCharacterClass.{Barbarian, Rogue}
 import io.truthencode.ddo.support.requisite.{FeatRequisiteImpl, FreeFeat, GrantsToClass}
@@ -33,16 +36,15 @@ import java.time.Duration
  *
  * @note
  *   This feat effectively replaces [[https://ddowiki.com/page/Uncanny_Dodge UncannyDodge]] if the
- *   character has both.
- * i.e. Does not stack, but improves the Dodge feat with an improved Active ability. As of Update
- * 14, using this ability is no longer restricted by number of uses per rest. However, it is
- * restricted by cooldown.
+ *   character has both. i.e. Does not stack, but improves the Dodge feat with an improved Active
+ *   ability. As of Update 14, using this ability is no longer restricted by number of uses per
+ *   rest. However, it is restricted by cooldown.
  * @todo
  *   Need to add Passive Dodge Bonus
  */
 protected[feats] trait ImprovedUncannyDodge
-  extends FeatRequisiteImpl with Passive with ActiveFeat with AtWillEvent with GrantsToClass
-  with FreeFeat {
+  extends FeatRequisiteImpl with TriggeredActivationImpl with Passive with ActiveFeat
+  with AtWillEvent with GrantsToClass with FreeFeat {
   self: ClassFeat =>
   override def grantToClass: Seq[(HeroicCharacterClass, Int)] =
     List((Barbarian, 8), (Rogue, 8))

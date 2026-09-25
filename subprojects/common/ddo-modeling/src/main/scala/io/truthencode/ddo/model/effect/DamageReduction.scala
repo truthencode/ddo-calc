@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: DamageReduction.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,6 +49,7 @@ trait UnTyped {
 trait Alignment {
   self: TypeCategory =>
 }
+
 /**
  * Resists or inflicts all physical types of damage (Slash / Pierce / Bludgeon)
  */
@@ -58,6 +62,7 @@ trait Evil extends Alignment with AlignmentBased
 trait Chaotic extends Alignment with AlignmentBased
 
 trait Lawful extends Alignment with AlignmentBased
+
 /**
  * Resists, deals or bypasses all alignments
  */
@@ -70,6 +75,7 @@ trait Aligned extends Good with Evil with Chaotic with Lawful
 trait Material extends MaterialBased {
   self: TypeCategory =>
 }
+
 /**
  * Bypasses some constructs, such as Golems
  */
@@ -95,6 +101,7 @@ trait Mithral extends Material
  * Bypasses some undead such as Vampires
  */
 trait Silver extends Material
+
 /**
  * Encompasses all material used for damage.
  *
@@ -107,6 +114,7 @@ trait Magic extends Other
 trait Light extends Other
 
 trait Energy extends Health
+
 /**
  * Damage type suffered by Constructs
  */

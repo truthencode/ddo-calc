@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: Aberrations.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +21,8 @@
 package io.truthencode.ddo.model.compendium.types
 
 /**
- * Created by adarr on 3/25/2017.
+ * Corresponds to the 'Type' attribute. Created by adarr on 3/25/2017.
  */
 trait Aberrations extends MainType {
-  override val mainTypes = Some(MonsterType.Aberration)
+  override val mainTypes: Option[MonsterType] = Some(MonsterType.Aberration)
 }

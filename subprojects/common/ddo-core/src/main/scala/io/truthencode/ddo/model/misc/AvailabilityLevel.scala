@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: AvailabilityLevel.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +34,7 @@ object AvailabilityLevel extends Enum[AvailabilityLevel] {
   override def values: IndexedSeq[AvailabilityLevel] = findValues
 
   case object FreeToPlay extends AvailabilityLevel with Abbreviation {
+
     /**
      * The short form of the word
      */

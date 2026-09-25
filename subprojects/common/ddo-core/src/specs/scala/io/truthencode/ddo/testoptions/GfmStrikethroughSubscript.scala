@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: GfmStrikethroughSubscript.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,7 +44,7 @@ trait GfmStrikethroughSubscript extends Flexmark {
    */
   private[this] def taskOptions()(implicit dataSet: MutableDataSet): () => MutableDataSet = { () =>
     dataSet
-  //   .set(StrikethroughSubscriptExtension.STRIKETHROUGH_STYLE_HTML_CLOSE,"someCssClassLikely")
+    //   .set(StrikethroughSubscriptExtension.STRIKETHROUGH_STYLE_HTML_CLOSE,"someCssClassLikely")
 
   }
 

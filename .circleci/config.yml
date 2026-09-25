@@ -2,9 +2,9 @@
 # See: https://circleci.com/docs/2.0/sample-config/
 version: 2.1
 orbs:
-    gradle: circleci/gradle@2.2.0
-    codecov: codecov/codecov@3.2.3
-    coverage-reporter: codacy/coverage-reporter@13.9.17
+    gradle: circleci/gradle@3.0.0
+    codecov: codecov/codecov@3.2.5
+    coverage-reporter: codacy/coverage-reporter@13.13.7
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -13,7 +13,7 @@ jobs:
         # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
         docker:
             # specify the version you desire here
-            - image: cimg/openjdk:11.0
+            - image: cimg/openjdk:21.0
               auth:
                   username: $docker_user
                   password: $docker_token
@@ -22,6 +22,8 @@ jobs:
             # CircleCI maintains a library of pre-built images
             # documented at https://circleci.com/docs/2.0/circleci-images/
             # - image: circleci/postgres:9.4
+
+        resource_class: large
 
         working_directory: ~/repo
 
@@ -33,25 +35,47 @@ jobs:
         # Add steps to the job
         # See: https://circleci.com/docs/2.0/configuration-reference/#steps
         steps:
-            - checkout
-            - run: ./gradlew assemble
-            - run: cat /dev/null | ./gradlew reportScoverage aggregateAllTestReports
-            - run: if [ -e ./gradlew ]; then ./gradlew reportScoverage aggregateAllTestReports --continue;else gradle reportScoverage aggregateAllTestReports --continue;fi
-            - codecov/upload
-            - coverage-reporter/send_report:
-                  coverage-reports: report.xml,coverage.info
-                  project-token: $CODACY_PROJECT_TOKEN
-            # Download and cache dependencies
+            - run:
+                  name: Checkout code
+                  command: |
+                      git clone --depth 50 --branch "$CIRCLE_BRANCH" \
+                          "https://github.com/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}.git" .
+                      git checkout "$CIRCLE_SHA1"
+                      git fetch origin +refs/heads/master:refs/remotes/origin/master
             - restore_cache:
                   keys:
-                      - v1-dependencies-{{ checksum "build.gradle.kts" }}
+                      - v1-dependencies-{{ .Branch }}-{{ checksum "gradle/libs.versions.toml" }}
+                      - v1-dependencies-{{ checksum "gradle/libs.versions.toml" }}
                       # fallback to using the latest cache if no exact match is found
                       - v1-dependencies-
-
+            - with_tool_cache:
+                  tool: gradle
+                  steps:
+                      - run: ./gradlew assemble
+                      - run: if [ -e ./gradlew ]; then ./gradlew check reportScoverage aggregateScoverageTestReporting aggregateAcceptanceTestReporting aggregateTestReporting --no-configuration-cache --continue;else gradle check reportScoverage aggregateScoverageTestReporting aggregateAcceptanceTestReporting aggregateTestReporting --no-configuration-cache --continue;fi
             - save_cache:
                   paths:
-                      - ~/.gradle
-                  key: v1-dependencies--{{ checksum "build.gradle.kts" }}
+                      - ~/.gradle/caches
+                      - ~/.gradle/wrapper
+                  key: v1-dependencies-{{ .Branch }}-{{ checksum "gradle/libs.versions.toml" }}
+            # 2. Upload the aggregated XML files to the CircleCI "Tests" tab
+            # Collect only JUnit TEST-*.xml files to avoid pom.xml/site.xml parse errors
+            - run:
+                  name: Collect test results
+                  when: always
+                  command: |
+                      mkdir -p /tmp/test-results
+                      find subprojects -name "TEST-*.xml" -path "*/build/test-results/*" \
+                          -exec cp --parents {} /tmp/test-results/ \;
+            - store_test_results:
+                  path: /tmp/test-results
+            - store_artifacts:
+                  path: subprojects/common/ddo-test-results/build/reports/tests/test/aggregated-results
+                  destination: unit-test-html-report
+            - store_artifacts:
+                  path: subprojects/common/ddo-test-results/build/reports/tests/acceptanceTest/aggregated-results
+                  destination: acceptance-test-html-report
+            - codecov/upload
 workflows:
     example-workflow:
         jobs:

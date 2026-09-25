@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: WeakeningMixtureMultiSelector.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +21,11 @@
 package io.truthencode.ddo.model.enhancement.enhancements
 
 import io.truthencode.ddo.model.enhancement.enhancements.classbased.BombardierTierFive
-import io.truthencode.ddo.support.naming.{DisplayProperties, FriendlyDisplay, WeakeningMixturePrefix}
+import io.truthencode.ddo.support.naming.{
+  DisplayProperties,
+  FriendlyDisplay,
+  WeakeningMixturePrefix
+}
 
 import scala.collection.immutable
 
@@ -31,6 +38,7 @@ trait WeakeningMixtureMultiSelector
   )
   protected lazy val keys: immutable.Seq[String] =
     keyList.map(v => s"$prefix$v")
+
   /**
    * Some enhancements can be taken multiple times (generally up to three)
    */

@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: UsingSearchPrefix.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,6 +23,7 @@ package io.truthencode.ddo.support.naming
 import io.truthencode.ddo.support.SearchPrefix
 
 trait UsingSearchPrefix extends SearchPrefix {
+
   /**
    * Concatenates the prefix with the main value. Enums should typically use entryName, and others
    * likely namesource from DisplayProperties

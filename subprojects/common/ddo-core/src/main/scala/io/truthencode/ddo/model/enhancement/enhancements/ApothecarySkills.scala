@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: ApothecarySkills.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,6 +29,7 @@ trait ApothecarySkills extends ApothecaryTierOne with ClassEnhancementImpl {
   override lazy val description: Option[String] = Some(
     "+[1/2/3] Haggle, Concentration, and Heal. Rank 3: +1 Will Saves"
   )
+
   /**
    * Some enhancements can be taken multiple times (generally up to three)
    */

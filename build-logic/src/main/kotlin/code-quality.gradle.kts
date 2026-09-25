@@ -1,5 +1,8 @@
-import io.truthencode.djaxonomy.etc.RecurseValue
-import io.truthencode.djaxonomy.etc.Recursion
+import com.diffplug.gradle.spotless.SpotlessTask
+import io.truthencode.buildlogic.RecurseValue
+import io.truthencode.buildlogic.Recursion
+import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.kotlin.dsl.withType
 
 /*
  * SPDX-License-Identifier: Apache-2.0
@@ -20,48 +23,35 @@ import io.truthencode.djaxonomy.etc.Recursion
  */
 
 plugins {
-
-//    id("com.github.hierynomus.license")
     id("com.diffplug.spotless")
-//    id("com.javiersc.gradle.plugins.dependency.updates")
 }
 
-/* Licensing
- go-to license formatter seems to be stale
- https://github.com/KyoriPowered/indra/wiki/indra-licenser-spotless adds improvement wrapper on spotless (i.e. template replacement)
- but currently only supports kotlin, java (no explicit scala)
-*/
-//indraSpotlessLicenser {
-//    licenseHeaderFile(rootProject.file("license_header.txt")) // default value
-//    headerFormat { doubleSlash() } // default: slashStar()
-//    languageFormatOverride("kotlin") { prefix("/// ") } // default: unset, optional
-//    property("name", project.name) // replace $name in the header file with the provided value
-//    newLine(false) // default value, adds a blank line between the license header and delimiter
-//    extraConfig {
-//        // configre options provided by Spotless itself
-//    }
-//}
-//license {
-//    header = rootProject.file("gradle/LICENSE_HEADER")
-//}
-
+val libs = the<LibrariesForLibs>()
 
 enum class ScriptLanguage { GradleBuild, KotlinScriptBuild }
 
-fun buildLang(): ScriptLanguage {
-    return if (project.buildFile.name.endsWith("kts")) ScriptLanguage.KotlinScriptBuild else ScriptLanguage.GradleBuild
-}
+fun buildLang(): ScriptLanguage =
+    if (project.buildFile.name.endsWith("kts")) ScriptLanguage.KotlinScriptBuild else ScriptLanguage.GradleBuild
 
-fun walkBack(fileName: String, recurse: Recursion, proj: Project = project.rootProject): java.io.File? {
+fun walkBack(
+    fileName: String,
+    recurse: Recursion,
+    proj: Project = project.rootProject,
+): File? {
     val f = proj.file(fileName)
     return if (f.exists()) {
         f
     } else {
         when (recurse.recurseValue) {
-            RecurseValue.NONE -> null // throw IOException("can not locate file $fileName")
+            RecurseValue.NONE -> {
+                null
+            }
+
+            // throw IOException("cannot locate file $fileName")
             RecurseValue.FINITE -> {
                 walkBack("../$fileName", recurse - 1, proj.rootProject)
             }
+
             RecurseValue.INFINITE -> {
                 walkBack("../$fileName", recurse, proj.rootProject)
             }
@@ -69,72 +59,79 @@ fun walkBack(fileName: String, recurse: Recursion, proj: Project = project.rootP
     }
 }
 
-val headerFile: File? = rootProject.file("gradle/LICENSE_HEADER_SPOTLESS")
-
 configure<com.diffplug.gradle.spotless.SpotlessExtension> {
-//   ratchetFrom("origin/master")
+    // ratchetFrom("origin/master")
     if (buildLang() == ScriptLanguage.KotlinScriptBuild) {
         logger.debug("SPOTLESS: configuring kotlin script formatting to ${project.name}")
         kotlinGradle {
-//            ktlint("0.50.0")
-            diktat("1.2.5").configFile(rootProject.file("diktat-analysis.yml"))
-            target("*.build.kts")
+            val diktatVersion = libs.versions.diktat
+            diktat(diktatVersion.get()).configFile(rootProject.file("diktat-analysis.yml"))
+            licenseHeaderFile(rootProject.file("gradle/LICENSE_HEADER_JAVA"), "package ")
+            target("**/src/main/kotlin/*.build.kts")
         }
     }
 
     project.plugins.withId("org.jetbrains.kotlin.jvm") {
-        logger.debug("SPOTLESS: configuring Kotlin formatting to ${project.name}")
+        logger.info("SPOTLESS: configuring Kotlin formatting to ${project.name} (ktlint)")
         kotlin {
-//                licenseHeader("/* (C) \$YEAR */")
-//            if (!headerFile?.exists()!!) {
-//                logger.error("NO LICENSE FILE FOUND!!!!!!!!!!!!!!")
-//            } else {
-//                logger.error("LICENSE FILE EXISTS!!!!!")
-//                licenseHeaderFile(headerFile)
-//            }
-            // ktfmt("0.44") // ('0.30').dropboxStyle()
-//            ktlint("0.50.0")
-            // version and configFile are both optional
-            logger.info("kotlin format: ${project.name}")
+            /* detekt or diktat would be nice to use for analysis,
+             but only ktlint is supported in both spotless and trunk. */
 
             target(
                 listOf(
-                    "*.kt",
+                    "**/src/**/*.kt",
                 ),
             )
-            val dta = "diktat-analysis.yml"
-            walkBack(dta, Recursion.RecurseSome(1)).let { f ->
-                diktat("1.2.5").configFile(f)
-            }
 
-//            diktat("1.0.1").configFile(rootProject.file("diktat-analysis.yml"))
-            licenseHeaderFile(rootProject.file("gradle/LICENSE_HEADER_SPOTLESS"))
-
+            ktlint()
+            licenseHeaderFile(rootProject.file("gradle/LICENSE_HEADER_JAVA"), "package ")
             toggleOffOn()
         }
     }
 
-//    if (project.plugins.hasPlugin("scala")) {
-//        logger.info("SPOTLESS: configuring scala formatting to ${project.name}")
-//        scala {
-//            //  licenseHeaderFile( rootProject.file("gradle/LICENSE_HEADER"))
-//            target("**/*.scala") // don't format worksheets
-//            val scalaFmtVersion: String by project
-//            // version and configFile are both optional
-//            scalafmt(scalaFmtVersion).configFile(rootProject.file(".scalafmt.conf"))
-//            target("*.scala")
-//        }
-//        licenseHeaderFile(rootProject.file("gradle/LICENSE_HEADER_SPOTLESS"))
-//    }
-
     project.plugins.withId("scala") {
-        logger.debug("SPOTLESS: configuring scala formatting to ${project.name}")
+        logger.info("SPOTLESS: configuring scala formatting to ${project.name} (scalafmt)")
         scala {
-            val scalaFmtVersion: String by project
+            // TODO: Migrate Spotless config versions to version catalog
+            //    ScalaFmt, GoogleJavaFormat, Diktat, ktlint etc. all have their versions specified in the build script, which should be migrated to the version catalog for consistency and single source of truth
+            // TODO: Multiple ScalaFmt Version Declarations
+            //   Possibly just grep the version specified in the file? Else we should inject it to match our version catalog
+            //   Either direction is possible, just should really have one truth.
+            // as it's required to have the version in the document, we should be able to remove this altogether
+//            val scalaFmtVersion = libs.versions.scalaFmt
+//            val scalaFmtVersion = providers.gradleProperty("scalaFmtVersion").getOrElse("3.9.1")
             // version and configFile are both optional
-            scalafmt(scalaFmtVersion).configFile(rootProject.file(".scalafmt.conf"))
-            target("*.scala")
-            licenseHeaderFile(project.rootProject.file("gradle/LICENSE_HEADER_SPOTLESS"),"package")
+//            scalafmt(scalaFmtVersion.get()).configFile(rootProject.file(".scalafmt.conf"))
+            target("**/src/**/*.scala")
+            // Exclude Scala files that contain dollar signs in their names (Generally used for Java Interop and Scala compiler-generated files)
+            targetExclude("**/src/**/*\$*.scala")
+            licenseHeaderFile(project.rootProject.file("gradle/LICENSE_HEADER_JAVA"), "package ")
         }
+    }
+
+    project.plugins.withId("java") {
+        logger.info("SPOTLESS: configuring java formatting to ${project.name} (googleJavaFormat)")
+        java {
+            // TODO: Migrate any version references to use the Version Catalog instead of gradle properties for consistency and single source of truth
+            val googleJavaFormatVersion = libs.versions.google.java.format
+            googleJavaFormat(googleJavaFormatVersion.get())
+                .aosp()
+                .reflowLongStrings()
+                .formatJavadoc(true)
+                .reorderImports(true)
+                .groupArtifact("com.google.googlejavaformat:google-java-format")
+
+            target("**/src/**/java/*.java")
+            licenseHeaderFile(project.rootProject.file("gradle/LICENSE_HEADER_JAVA"), "package ")
+        }
+    }
+}
+
+tasks.withType<SpotlessTask> {
+    // unsure why this is necessary
+    // possibly due to a non-standard project layout or additional source sets?
+    if (project.plugins.hasPlugin("java")) {
+        logger.info("explicitly adding java compile task dependency to spotless task ${this.name}")
+        tasks.first { it == this }.mustRunAfter(tasks.withType<JavaCompile>())
     }
 }

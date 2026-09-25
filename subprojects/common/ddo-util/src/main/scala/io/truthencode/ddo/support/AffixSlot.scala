@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: AffixSlot.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,31 +21,31 @@
 package io.truthencode.ddo.support
 
 /**
- * Represents item modifier effects that can be prefixed or suffixed to an item to provide additional effects. Items can
- * generally have up to two prefixes and one suffix, such as Flaming Sword of the Sun's Fury, where Flaming and "Sun's
- * Fury' are affixes.
+ * Represents item modifier effects that can be prefixed or suffixed to an item to provide
+ * additional effects. Items can generally have up to two prefixes and one suffix, such as Flaming
+ * Sword of the Sun's Fury, where Flaming and "Sun's Fury' are affixes.
  */
 sealed trait AffixSlot {
   def addSlot(s: AffixSlot): Unit
 }
 
 trait PrimaryPreSlot extends AffixSlot {
-    type Pre = PrimaryPreSlot
-    val pref: Pre = this
+  type Pre = PrimaryPreSlot
+  val pref: Pre = this
 
-    abstract override def addSlot(s: AffixSlot): Unit = super.addSlot(pref)
+  abstract override def addSlot(s: AffixSlot): Unit = super.addSlot(pref)
 }
 
 trait SecondaryPreSlot extends AffixSlot {
-    type Pre2 = SecondaryPreSlot
-    val pref2: Pre2 = this
+  type Pre2 = SecondaryPreSlot
+  val pref2: Pre2 = this
 
-    abstract override def addSlot(s: AffixSlot): Unit = super.addSlot(pref2)
+  abstract override def addSlot(s: AffixSlot): Unit = super.addSlot(pref2)
 }
 
 trait PostSlot extends AffixSlot {
-    type Post = PostSlot
-    val post: Post = this
+  type Post = PostSlot
+  val post: Post = this
 
-    abstract override def addSlot(s: AffixSlot): Unit = super.addSlot(post)
+  abstract override def addSlot(s: AffixSlot): Unit = super.addSlot(post)
 }

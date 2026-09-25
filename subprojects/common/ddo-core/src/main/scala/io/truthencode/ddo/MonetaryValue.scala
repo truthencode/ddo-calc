@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: MonetaryValue.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +20,7 @@
  */
 package io.truthencode.ddo
 
-import enumeratum.{EnumEntry, Enum => SmartEnum}
+import enumeratum.{Enum => SmartEnum, EnumEntry}
 
 /**
  * should indicate the base value (in platinum type denominations) This should probably be expanded
@@ -26,6 +29,7 @@ import enumeratum.{EnumEntry, Enum => SmartEnum}
  * Turbine points could be noted if the item is available from the DDO Store etc.
  */
 sealed abstract class MonetaryValue extends EnumEntry
+
 /**
  * should indicate the base value (in platinum type denominations) This should probably be expanded
  * to a general DDO Denomination to support the concept of cost. i.e. plat would simply be the

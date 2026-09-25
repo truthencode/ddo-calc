@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: DefaultValue.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,14 +19,17 @@
  * limitations under the License.
  */
 package io.truthencode.ddo
+
 /**
  * Used to supply some default value or None if there is no default.
  */
 trait DefaultValue[T] {
+
   /**
    * The default value for the object
    */
   lazy val default: Option[T] = None
+
   /**
    * True if value is default value, otherwise false.
    * @note
@@ -38,6 +44,7 @@ trait DefaultValue[T] {
       case _ => false
     }
   }
+
   /**
    * True if there is a default value.
    */
