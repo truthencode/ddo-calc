@@ -90,7 +90,7 @@ scoverage-engine = "2.3.0"
 quarkus-s3 = "1.0.0"
 quarkus = "3.19.1"
 quarkus-freemarker = "1.2.0"
-quarkus-renarde = "3.0.20"
+quarkus-renarde = "3.1.8"
 
 manifold = "2024.1.32"
 kordamp-jandex-gradle-plugin = "2.0.0"
