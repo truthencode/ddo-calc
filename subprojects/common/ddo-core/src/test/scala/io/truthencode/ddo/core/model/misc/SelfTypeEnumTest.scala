@@ -24,8 +24,6 @@ import com.typesafe.scalalogging.LazyLogging
 import org.scalatest.funspec.AnyFunSpec
 import org.scalatest.matchers.should.Matchers
 
-import scala.languageFeature.postfixOps
-
 /**
  * Created by adarr on 2/6/2017.
  */
