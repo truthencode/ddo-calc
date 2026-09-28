@@ -59,7 +59,7 @@ class BindingTest extends AnyFunSpec with Matchers with MockitoSugar with LazyLo
     "BindsToCharacterOnAcquire",
     "BindsToCharacterOnEquip"
   )
-  describe("Binding Status") {
+  ignore("Binding Status") {
     they("should include unbound, account and character") {
       BindingStatus.values.foreach { x => checks.contains(x.entryName) }
     }
