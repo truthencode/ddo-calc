@@ -403,7 +403,7 @@ jquery = "org.webjars:jquery:3.7.1"
 
 manifold-ext-rt = "systems.manifold:manifold-ext-rt:2024.1.32"
 
-scala-logging-s3 = "com.typesafe.scala-logging:scala-logging_3:3.9.5"
+scala-logging-s3 = "com.typesafe.scala-logging:scala-logging_3:3.9.6"
 
 config = "com.typesafe:config:1.4.2"
 ##                        ⬆ :1.4.3"
