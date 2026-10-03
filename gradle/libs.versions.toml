@@ -132,7 +132,7 @@ quarkus-gradle-plugin = "3.19.1"
 spotless-plugin = "7.0.2"
 version-plugin = "0.52.0"
 version-catalog-plugin = "0.8.5"
-refreshVersions-plugin = "0.60.5"
+refreshVersions-plugin = "0.60.6"
 
 assertj-core = "3.27.3"
 hibernate-validator = "8.0.1.Final"
