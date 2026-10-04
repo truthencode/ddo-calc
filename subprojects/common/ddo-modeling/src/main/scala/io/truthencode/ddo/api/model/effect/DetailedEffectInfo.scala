@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2025
+ *
+ * Author: Andre White.
+ * FILE: DetailedEffectInfo.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,27 +21,37 @@
 package io.truthencode.ddo.api.model.effect
 
 trait DetailedEffectInfo {
+
   /**
    * This will need to uniquely identify the effect
    */
   val id: String
+
   /**
    * A specific description of the effect This should include the affected value, such as "Armor
    * Class by 3%"
    */
   val description: String
+
   /**
    * When this effect applies. Should correspond to some state chance such as full health,
    * unconscious, on critical hit, on miss, or Always on, etc.
    */
   val triggersOn: Seq[String]
+
   /**
    * When this effect does not apply. Could be, never or some duration or any of the list from
    * triggersOn
    */
   val triggersOff: Seq[String]
+
   /**
    * The type of bonus determines stacking rules.
    */
   val bonusType: String
+
+  /**
+   * Associated scaling values
+   */
+  val scaling: Option[Map[String, Int]]
 }

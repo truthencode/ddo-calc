@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.truthencode.ddo
+package io.truthencode.ddo.core
 
 import com.sksamuel.pulsar4s.Topic
 
@@ -48,6 +48,6 @@ package object subscription {
   type HaggleProvider = SkillProvider
 
   final val attributeTopicPrefix = "non-persistent://sample/standalone/ns1/"
-  def genAttrPrefix(t:String):String = s"$attributeTopicPrefix$t"
+  def genAttrPrefix(t: String): String = s"$attributeTopicPrefix$t"
 
 }

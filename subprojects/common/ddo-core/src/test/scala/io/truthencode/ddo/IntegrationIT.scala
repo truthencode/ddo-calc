@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: IntegrationIT.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +18,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.truthencode.ddo
+package io.truthencode.ddo.core
 
 import com.typesafe.scalalogging.LazyLogging
 import org.scalatest.funspec.AnyFunSpec

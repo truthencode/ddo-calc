@@ -25,7 +25,7 @@
 
 plugins {
     id("scala-library-profile")
-    id("acceptance-test-conventions")
+    id("djaxonomy.test-conventions")
 }
 
 description = "Async DAO for DDO objects"
@@ -37,14 +37,14 @@ dependencies {
     val monixVersion: String by project
 
     // https://mvnrepository.com/artifact/org.json4s/json4s-native
-    implementation(group = "org.json4s", name = "json4s-native_$scalaMajorVersion", version = "3.6.7")
+    implementation(libs.json4s.native.s213)
 
     implementation(platform(project(":ddo-platform-scala")))
     implementation(project(":ddo-modeling"))
-    implementation("org.scala-lang:scala-library:$scalaLibraryVersion")
-    implementation(group = "com.beachape", name = "enumeratum_$scalaMajorVersion")
-    implementation(group = "com.typesafe", name = "config")
-    implementation(group = "com.github.kxbmap", name = "configs_$scalaMajorVersion")
+    implementation(libs.scala2.library)
+    implementation(libs.enumeratum.s213)
+    implementation(libs.typesafe.config)
+    implementation(libs.kxbmap.configs.s213)
 
     // Quill  / Monix async
     implementation(group = "io.getquill", name = "quill-sql_$scalaMajorVersion", version = quillVersion)
@@ -53,13 +53,13 @@ dependencies {
     implementation(group = "io.getquill", name = "quill-jdbc-monix_$scalaMajorVersion", version = quillVersion)
     // Unsure if I really need this but occasionally get a noclass def for ZIO/Fail
     // https://mvnrepository.com/artifact/dev.zio/zio
-    implementation("dev.zio:zio_2.13:1.0.12")
+    implementation(libs.zio.2.13)
 
     implementation(group = "io.monix", name = "monix-eval_$scalaMajorVersion", version = monixVersion)
     implementation(group = "io.monix", name = "monix-reactive_$scalaMajorVersion", version = monixVersion)
 
     // Testing Database
-    testImplementation("com.h2database:h2:1.4.200")
+    testImplementation(libs.h2)
 
     // validation and rules
     implementation(group = "ch.qos.logback", name = "logback-classic")
