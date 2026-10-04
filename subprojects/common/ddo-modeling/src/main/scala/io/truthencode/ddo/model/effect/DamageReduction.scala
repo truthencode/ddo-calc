@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: DamageReduction.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -156,6 +159,6 @@ trait Cold extends Elemental
 trait Electric extends Elemental
 
 /**
- * Reduces damage from Acid, Fire, Cold and Electric
+ * Reduces damage from Acid, Fire, Cold, and Electric
  */
 trait ElementalResistance extends Resist with Acid with Fire with Cold with Electric

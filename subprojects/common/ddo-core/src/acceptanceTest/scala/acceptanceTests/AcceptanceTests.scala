@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: AcceptanceTests.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,12 +21,11 @@
 package acceptanceTests
 
 import org.concordion.api.FullOGNL
-import org.concordion.integration.junit4.ConcordionRunner
-import org.junit.runner.RunWith
+import org.concordion.api.ConcordionFixture
 
 @FullOGNL
 //@Extensions(Array(classOf[EmbedExtension], classOf[CollapseOutputExtension]))
-@RunWith(classOf[ConcordionRunner])
+@ConcordionFixture
 //@ConcordionOptions(
 //  declareNamespaces = Array("ext", "urn:concordion-extensions:2010"),
 //  markdownExtensions = Array(MarkdownExtensions.WIKILINKS,

@@ -9,13 +9,9 @@ plugins {
 }
 
 dependencies {
-    implementation(enforcedPlatform(project(":ddo-platform")))
+    implementation(platform(project(":ddo-platform")))
     antlr(libs.antlr4) // use ANTLR version 4
     implementation(libs.logback.classic)
-}
-
-repositories {
-    mavenCentral()
 }
 
 description = "Antlr Parsing utilities"
@@ -57,17 +53,17 @@ data class PackagePath(
         get() = packageToPath(packageName)
 }
 
-tasks {
-
+tasks {     
     generateGrammarSource {
-        logger.warn("outputDirectory: ${outputDirectory.path}")
+        logger.debug("outputDirectory: ${outputDirectory.path}")
         val outPath = antlrJavaPath.packageToPath(outputFolderBase = outputDirectory).path
+        // TODO: Antlr task should avoid doFirst and doLast
+        // possibly add dependent copy task to move files to right location
         doFirst {
-            logger.warn("making outputDirectory: ${outputDirectory.path}")
-            project.mkdir(outPath)
+            logger.debug("making outputDirectory: ${outputDirectory.path}")
+            File(outPath).mkdirs()
         }
-//        project.mkdir(outPath)
-        logger.warn("setting -lib to : $outPath")
+        logger.debug("setting -lib to : $outPath")
         maxHeapSize = "64m"
         arguments = arguments +
             listOf(
@@ -78,7 +74,7 @@ tasks {
 //        this.includes.clear()
 //        this.includes.addAll(listOf("**/*Lexer.g4"))
         doLast {
-            logger.warn("Moving files to right location ..")
+            logger.debug("Moving files to right location ..")
             val filter =
                 FilenameFilter { _, name ->
                     name.endsWith(".java")
@@ -89,17 +85,17 @@ tasks {
                 // This captures the package name from the file.
                 // We also need to move companion files (.tokens and .interp)
 
-                logger.warn("Queueing ${it.name} to right location ..")
+                logger.debug("Queueing ${it.name} to right location ..")
                 val pkg = it.readLines().find { it.trim().startsWith("package") }
                 pkg?.let { fi ->
                     val packagePath = fi.split(' ')[1].removeSuffix(";").replace('.', '/')
                     move[it] = File("${outputDirectory.path}/$packagePath/${it.name}")
                     companionExtensions.forEach { ext ->
                         val exFileName = it.name.removeSuffix(".${it.extension}").plus(".$ext")
-                        logger.warn("checking for companion file $exFileName")
+                        logger.debug("checking for companion file $exFileName")
                         val exFile = File(it.parentFile, exFileName)
                         if (exFile.exists()) {
-                            logger.warn("companion file $exFile exists .. queueing for move")
+                            logger.debug("companion file {} exists .. queueing for move", exFile)
                             move[exFile] = File("${outputDirectory.path}/$packagePath/${exFile.name}")
                         }
                     }
@@ -107,17 +103,17 @@ tasks {
             }
             move.forEach { (k, v) ->
                 if (k.exists()) {
-                    logger.warn("$k is in the wrong location .. ${k.path}")
+                    logger.debug("{} is in the wrong location .. {}", k, k.path)
                     if (!v.exists()) {
 
                         val result = k.renameTo(v)
                         val rMsg = if (result) "succeeded" else "failed"
-                        logger.warn("moving to ${v.path} $rMsg")
+                        logger.debug("moving to ${v.path} $rMsg")
                     } else {
-                        logger.warn("${v.path} already exists .. deleting $k.path")
+                        logger.debug("{} already exists .. deleting {}.path", v.path, k)
                         val result = k.delete()
                         val rMsg = if (result) "succeeded" else "failed"
-                        logger.warn("deleting $k.path $rMsg")
+                        logger.debug("deleting {}.path {}", k, rMsg)
                     }
                 }
             }

@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: MagicDamageType.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +21,9 @@
 package io.truthencode.ddo.model.meta
 
 import enumeratum.{Enum, EnumEntry}
-import io.truthencode.ddo.NoDefault
-import io.truthencode.ddo.model.effect._
+import io.truthencode.ddo.model.effect.*
+import io.truthencode.ddo.model.effect.Damage
+import io.truthencode.ddo.modeling.NoDefault
 
 import scala.collection.immutable
 

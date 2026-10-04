@@ -1,7 +1,10 @@
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
- * Copyright 2015-2021 Andre White.
+ * Copyright 2015-2021
+ *
+ * Author: Andre White.
+ * FILE: TypeCategory.scala
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,7 +57,7 @@ trait Other extends TypeCategory
  *
  * @note
  *   this only indicates there is some type of elemental damage / resist use
- *   [[io.truthencode.ddo.model.effect.ElementalResistance]] which extends this to indicate resist
- *   for all elemental types.
+ *   [[io.truthencode.ddo.core.model.effect.ElementalResistance]] which extends this to indicate
+ *   resist for all elemental types.
  */
 trait Elemental extends TypeCategory

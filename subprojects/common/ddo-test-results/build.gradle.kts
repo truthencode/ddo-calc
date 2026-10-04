@@ -2,8 +2,13 @@ import java.io.Writer
 
 plugins {
     base
+    id("buildlogic.common-conventions")
+//    `jvm-test-suite`
     id("test-report-aggregation")
+    id("jacoco-report-aggregation")
 }
+// displayName =  "Test Results"
+description = "Utility class for aggregating Reports"
 
 dependencies {
     // projectList().map { it -> testReportAggregation(project("$it")) }
@@ -12,23 +17,57 @@ dependencies {
     testReportAggregation(project(":ddo-core"))
     testReportAggregation(project(":ddo-etl"))
     testReportAggregation(project(":ddo-modeling"))
-    testReportAggregation(project(":ddo-platform"))
-    testReportAggregation(project(":ddo-platform-kotlin"))
-    testReportAggregation(project(":ddo-platform-scala"))
     testReportAggregation(project(":ddo-util"))
+    jacocoAggregation(project(":ddo-antlr"))
+    jacocoAggregation(project(":ddo-core"))
+    jacocoAggregation(project(":ddo-etl"))
+    jacocoAggregation(project(":ddo-modeling"))
+    jacocoAggregation(project(":ddo-util"))
     // acceptanceTestReportAggregation(project(":ddo-core"))
 }
+
+// reporting {
+//    reports {
+//        // Explicitly lookup and configure the existing report task by name
+// //        named<AggregateTestReport>("testAggregateTestReport") {
+// //            testSuiteName.set("test")
+// //        }
+// //        val test by creating(TestReport::class) {}
+// //        val acceptanceTest by getting(TestReport::class) {}
+// //        val testAggregateTestReport by learning<AggregateTestReport> {
+// //            testSuiteName.set("test")
+// //        }
+// //       val myTest = create<AggregateTestReport>("aggregateTestReporting") {
+// ////            testType.set(TestSuiteType.UNIT_TEST)
+// //            testSuiteName.set("atest")
+// //
+// //        }
+// //        withType<AggregateTestReport>().configureEach {
+// //            val n = this.name
+// //            logger.warn("configuring $n test aggregation")
+// //            testSuiteName.set(n)
+// //        }
+//    }
+// }
 
 reporting {
     @Suppress("UnstableApiUsage")
     reports {
-        val testAggregateTestReport by creating(AggregateTestReport::class) {
-//            testType.set(TestSuiteType.UNIT_TEST)
-            testSuiteName.set("acceptance-test")
+        create<AggregateTestReport>("aggregateTestReporting") {
+            testSuiteName.set("test")
         }
-        // val testAggregateAcceptanceTestReport by creating(AggregateTestReport::class) {
-        //     testType.set("acceptance-test")
-        // }
+        create<AggregateTestReport>("aggregateAcceptanceTestReporting") {
+            testSuiteName.set("acceptanceTest")
+        }
+        create<AggregateTestReport>("aggregateScoverageTestReporting") {
+            testSuiteName.set("scoverageTest")
+        }
+        create<JacocoCoverageReport>("testCodeCoverageReport") {
+            testSuiteName.set("test")
+        }
+        create<JacocoCoverageReport>("acceptanceTestCodeCoverageReport") {
+            testSuiteName.set("acceptanceTest")
+        }
     }
 }
 // sonar {
@@ -42,6 +81,7 @@ this list isn't immediately available in the configuration phase, so we have to 
 from a manually run listProjects task
  */
 tasks.register("listProjects") {
+    notCompatibleWithConfigurationCache("A one-off utility task most useful when changing the build which negates the task")
     description = "print out report aggregation projects"
     group = "utility"
     doLast {
@@ -78,10 +118,11 @@ fun findProjects(
     if (!project.name
             .contains("test") &&
         project.name.startsWith("ddo") &&
-        project != project.rootProject
+        project != project.rootProject &&
+        project.plugins.hasPlugin("java") // plugins should be applied at this point
     ) {
         writer.add(":${project.name}")
-        logger.info("found ${project.childProjects.size} child projects in ${project.name}")
+        logger.debug("found ${project.childProjects.size} child projects in ${project.name}")
     }
     project.childProjects.forEach { (_, childProject) -> findProjects(writer, childProject) }
 }
@@ -89,11 +130,11 @@ fun findProjects(
 /**
 Should be called with mdDocsBuild task
 
- Transliterated Groovy -> Kotlin from
- https://gist.githubusercontent.com/nikialeksey/7cefae6b3104ce9a2c765197343bc436/raw/fb61c7d35480f9ae16650aefbb31c9c11420bec4/dependency-report.gradle
- Inspired by https://gist.github.com/tzachz/419478fc8b009e953f5e5dc39f3f3a2a
- Task creates a .dot file with all inter-module dependencies
- Supports any depth of nested modules
+Transliterated Groovy -> Kotlin from
+https://gist.githubusercontent.com/nikialeksey/7cefae6b3104ce9a2c765197343bc436/raw/fb61c7d35480f9ae16650aefbb31c9c11420bec4/dependency-report.gradle
+Inspired by https://gist.github.com/tzachz/419478fc8b009e953f5e5dc39f3f3a2a
+Task creates a .dot file with all inter-module dependencies
+Supports any depth of nested modules
 
  */
 tasks.register("moduleDependencyReport") {
