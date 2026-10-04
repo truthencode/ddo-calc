@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 import org.gradle.accessors.dm.LibrariesForLibs
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
 
 
 plugins {
@@ -27,16 +27,19 @@ plugins {
 
 val libs = the<LibrariesForLibs>()
 
-tasks.withType<KotlinCompile>().configureEach {
-    compilerOptions {
+afterEvaluate {
+    tasks.withType<KotlinJvmCompile>().configureEach {
+        compilerOptions {
 
-        freeCompilerArgs.add(
-            "-opt-in=kotlin.ExperimentalStdlibApi",
-        )
+            freeCompilerArgs.add(
+                "-opt-in=kotlin.ExperimentalStdlibApi",
+            )
+        }
     }
-}
+} // afterEvaluate
 
-val defaultJavaToolChainVersion: String by project
+// TODO: consolidate
+val defaultJavaToolChainVersion = providers.gradleProperty("defaultJavaToolChainVersion").getOrElse("21")
 
 dependencies {
     constraints {
@@ -49,11 +52,4 @@ dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     // configuration objects https://github.com/sksamuel/hoplite
     implementation(libs.bundles.hoplite)
-}
-
-kotlin {
-    jvmToolchain {
-//        check(this is JavaToolchainSpec)
-        languageVersion.set(JavaLanguageVersion.of(defaultJavaToolChainVersion))
-    }
 }

@@ -1,6 +1,3 @@
-import com.diffplug.gradle.spotless.SpotlessTask
-
-
 /*
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -28,6 +25,10 @@ plugins {
 
 description = "Core DDO Objects"
 
+val sVersion = "3"
+scalaBuildInfo {
+    scalaVersion = sVersion
+}
 dependencies {
 //    implementation(enforcedPlatform(project(":ddo-platform-scala")))
     implementation(project(":ddo-util"))
@@ -38,22 +39,20 @@ dependencies {
 
     // Platform dependent
     // https://mvnrepository.com/artifact/org.json4s/json4s-native
-    val builderScalaVersion: String by project
-    logger.info("showing builderScalaVersion: $builderScalaVersion")
-    when (builderScalaVersion) {
+    // val builderScalaVersion = providers.gradleProperty("builderScalaVersion").get()
+    // logger.debug("${project.name}: showing builderScalaVersion: $builderScalaVersion")
+    when (sVersion) {
         "3" -> {
             implementation(libs.scala3.library)
             implementation(libs.json4s.native.s3)
 
             implementation(libs.enumeratum.s3)
 
-            implementation(libs.kxbmap.configs.s213)
             // validation and rules
             // replacing wix accord validation with zio-prelude validation
 
             implementation(libs.dev.zio.prelude.s3)
             implementation(libs.typesafe.scala.logging.s3)
-            testImplementation(libs.dev.zio.test.junit.s3)
         }
 
         else -> {
@@ -62,7 +61,6 @@ dependencies {
 
             implementation(libs.enumeratum.s213)
 
-            implementation(libs.kxbmap.configs.s213)
             // validation and rules
 
             implementation(libs.dev.zio.prelude.s213)
@@ -70,6 +68,8 @@ dependencies {
             implementation(libs.typesafe.scala.logging.s213)
         }
     }
+
+    implementation(libs.kxbmap.configs.s213)
     implementation(libs.logback.classic)
     implementation(libs.typesafe.config)
     implementation(libs.jetbrains.annotations)
@@ -88,8 +88,3 @@ testing {
             }
     }
 }
-
-//tasks.withType<SpotlessTask> {
-//    tasks.first { it == this }.mustRunAfter(tasks.withType<JavaCompile>())
-//
-//}
